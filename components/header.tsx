@@ -1,20 +1,25 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { CalendarDays, Menu, Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import Link from "next/link";
+import { CalendarDays, Menu, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { siteConfig } from "@/config/site"
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { siteConfig } from "@/config/site";
 
 export default function Header() {
-  const { setTheme } = useTheme()
+  const { setTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between py-4">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center">
+      <div className="container flex h-20 items-center justify-between space-x-4 px-6 py-4 mx-auto">
         <div className="flex items-center gap-2 md:gap-6">
           <Sheet>
             <SheetTrigger asChild>
@@ -26,7 +31,11 @@ export default function Header() {
             <SheetContent side="right">
               <nav className="grid gap-6 text-lg font-medium">
                 {siteConfig.mainNav.map((item, index) => (
-                  <Link key={index} href={item.href} className="flex w-full items-center py-2 text-sm font-medium">
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className="flex w-full items-center py-2 text-sm font-medium"
+                  >
                     {item.title}
                   </Link>
                 ))}
@@ -37,19 +46,19 @@ export default function Header() {
             <CalendarDays className="h-6 w-6 ml-2" />
             <span className="font-bold text-xl">{siteConfig.name}</span>
           </Link>
-          <nav className="hidden md:flex gap-6">
+          <nav className="hidden md:flex gap-8 px-6">
             {siteConfig.mainNav.map((item, index) => (
               <Link
                 key={index}
                 href={item.href}
-                className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
+                className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.title}
               </Link>
             ))}
           </nav>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4 px-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -59,9 +68,15 @@ export default function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>روشن</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>تاریک</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>سیستم</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                روشن
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                تاریک
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                سیستم
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link href="/login">
@@ -75,5 +90,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }

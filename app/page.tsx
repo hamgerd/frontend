@@ -34,10 +34,10 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center justify-center min-h-screen w-full">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted ">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted flex items-center justify-center">
+        <div className="container px-4 md:px-6 mx-auto">  
           <div className="flex flex-col items-center gap-4 text-center">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
               رویدادهای فارسی را بسازید، مدیریت کنید و در آن‌ها شرکت کنید
@@ -58,15 +58,15 @@ export default function Home() {
       </section>
 
       {/* Featured Events */}
-      <section className="w-full py-12 md:py-24">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 flex items-center justify-center">
+        <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center gap-4 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">رویدادهای برتر</h2>
             <p className="max-w-[700px] text-muted-foreground md:text-xl">
               جدیدترین و محبوب‌ترین رویدادهای در حال برگزاری
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 place-items-center">
             {featuredEvents.map((event) => (
               <Card key={event.id} className="overflow-hidden">
                 <div className="relative h-48">
@@ -107,13 +107,13 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted flex items-center justify-center">
+        <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center gap-4 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">ویژگی‌های پلتفرم</h2>
             <p className="max-w-[700px] text-muted-foreground md:text-xl">ابزارهای قدرتمند برای مدیریت رویدادهای شما</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 place-items-center">
             <div className="flex flex-col items-center text-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4">
                 <CalendarDays className="h-8 w-8" />
@@ -140,8 +140,8 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="w-full py-12 md:py-24">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 flex items-center justify-center">
+        <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center gap-4 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">همین امروز شروع کنید</h2>
             <p className="max-w-[700px] text-muted-foreground md:text-xl">
