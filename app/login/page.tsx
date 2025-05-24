@@ -1,17 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/components/ui/use-toast";
+import axios from "axios";
+
+// import apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const formSchema = z.object({
   email: z.string().email({
@@ -21,33 +31,42 @@ const formSchema = z.object({
     message: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
   }),
   rememberMe: z.boolean().default(false),
-})
+});
 
 export default function LoginPage() {
-  const { toast } = useToast()
-  const [isLoading, setIsLoading] = useState(false)
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: false,
+      // rememberMe: false,
     },
-  })
+  });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    try {
+      await axios.post("http://localhost:8000" + "/users/auth/token/", {
+        email: values.email,
+        password: values.password,
+      });
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
-      setIsLoading(false)
       toast({
         title: "ورود موفقیت‌آمیز",
         description: "شما با موفقیت وارد شدید.",
-      })
-    }, 1000)
+      });
+    } catch (err) {
+      console.log(err);
+      toast({
+        title: "ورود ناموفق",
+        description: "ورود شما ناموفق بود. لطفاً دوباره تلاش کنید.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -62,17 +81,24 @@ export default function LoginPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "این پلتفرم به ما کمک کرد تا سمینارهای آموزشی خود را به شکل حرفه‌ای و با کیفیت عالی برگزار کنیم."
+              "این پلتفرم به ما کمک کرد تا سمینارهای آموزشی خود را به شکل
+              حرفه‌ای و با کیفیت عالی برگزار کنیم."
             </p>
-            <footer className="text-sm">محمد علوی - مدیر آموزش شرکت فناوری نوین</footer>
+            <footer className="text-sm">
+              محمد علوی - مدیر آموزش شرکت فناوری نوین
+            </footer>
           </blockquote>
         </div>
       </div>
       <div className="p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">ورود به حساب کاربری</h1>
-            <p className="text-sm text-muted-foreground">اطلاعات حساب کاربری خود را وارد کنید</p>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              ورود به حساب کاربری
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              اطلاعات حساب کاربری خود را وارد کنید
+            </p>
           </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -96,7 +122,11 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>رمز عبور</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="********" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -108,7 +138,10 @@ export default function LoginPage() {
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">
                     <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>مرا به خاطر بسپار</FormLabel>
@@ -122,7 +155,10 @@ export default function LoginPage() {
             </form>
           </Form>
           <div className="text-center text-sm">
-            <Link href="/forgot-password" className="text-primary hover:underline">
+            <Link
+              href="/forgot-password"
+              className="text-primary hover:underline"
+            >
               رمز عبور خود را فراموش کرده‌اید؟
             </Link>
           </div>
@@ -131,7 +167,9 @@ export default function LoginPage() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">یا</span>
+              <span className="bg-background px-2 text-muted-foreground">
+                یا
+              </span>
             </div>
           </div>
           <div className="text-center text-sm">
@@ -149,5 +187,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

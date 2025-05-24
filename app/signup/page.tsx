@@ -1,21 +1,31 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import axios from "axios";
 
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/components/ui/use-toast";
+
+// import apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const formSchema = z
   .object({
-    name: z.string().min(2, {
+    username: z.string().min(2, {
       message: "نام باید حداقل ۲ کاراکتر باشد.",
     }),
     email: z.string().email({
@@ -34,35 +44,50 @@ const formSchema = z
   .refine((data) => data.password === data.confirmPassword, {
     message: "رمز عبور و تکرار آن باید یکسان باشند.",
     path: ["confirmPassword"],
-  })
+  });
 
 export default function SignupPage() {
-  const { toast } = useToast()
-  const [isLoading, setIsLoading] = useState(false)
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",
       terms: false,
     },
-  })
+  });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
-      setIsLoading(false)
+    try {
+      await axios.post("http://localhost:8000" + "/users/register/", {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      });
+
       toast({
         title: "ثبت‌نام موفقیت‌آمیز",
         description: "حساب کاربری شما با موفقیت ایجاد شد.",
-      })
-    }, 1000)
+      });
+
+      console.log(values);
+    } catch (err) {
+      console.error(err);
+
+      toast({
+        title: "خطا در ثبت‌نام",
+        description: "لطفاً دوباره تلاش کنید.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -77,23 +102,30 @@ export default function SignupPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "ثبت‌نام در این پلتفرم به ما امکان داد تا کارگاه‌های آموزشی خود را به آسانی مدیریت کنیم."
+              "ثبت‌نام در این پلتفرم به ما امکان داد تا کارگاه‌های آموزشی خود را
+              به آسانی مدیریت کنیم."
             </p>
-            <footer className="text-sm">سارا محمدی - مدیر آموزش موسسه فناوری اطلاعات</footer>
+            <footer className="text-sm">
+              سارا محمدی - مدیر آموزش موسسه فناوری اطلاعات
+            </footer>
           </blockquote>
         </div>
       </div>
       <div className="p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">ایجاد حساب کاربری</h1>
-            <p className="text-sm text-muted-foreground">اطلاعات خود را وارد کنید تا حساب کاربری جدید ایجاد شود</p>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              ایجاد حساب کاربری
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              اطلاعات خود را وارد کنید تا حساب کاربری جدید ایجاد شود
+            </p>
           </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
-                name="name"
+                name="username"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>نام و نام خانوادگی</FormLabel>
@@ -124,7 +156,11 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>رمز عبور</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="********" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -137,7 +173,11 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>تکرار رمز عبور</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="********" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -149,12 +189,18 @@ export default function SignupPage() {
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">
                     <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
                         با{" "}
-                        <Link href="/terms" className="text-primary hover:underline">
+                        <Link
+                          href="/terms"
+                          className="text-primary hover:underline"
+                        >
                           قوانین و مقررات
                         </Link>{" "}
                         موافقم
@@ -163,7 +209,12 @@ export default function SignupPage() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button
+                type="submit"
+                className="w-full"
+                // onClick={handleSignup}
+                disabled={isLoading}
+              >
                 {isLoading ? "در حال ثبت‌نام..." : "ثبت‌نام"}
               </Button>
             </form>
@@ -173,7 +224,9 @@ export default function SignupPage() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">یا</span>
+              <span className="bg-background px-2 text-muted-foreground">
+                یا
+              </span>
             </div>
           </div>
           <div className="text-center text-sm">
@@ -191,5 +244,5 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
