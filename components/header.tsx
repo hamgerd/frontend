@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center">
-      <div className="container flex h-20 items-center justify-between space-x-4 px-6 py-4 mx-auto">
+      <div className="container flex h-20 items-center justify-between lg:space-x-4 ;g:px-6 py-4 mx-auto">
         <div className="flex items-center gap-2 md:gap-6">
           <Sheet>
             <SheetTrigger asChild>
@@ -44,7 +44,9 @@ export default function Header() {
           </Sheet>
           <Link href="/" className="flex items-center space-x-2">
             <CalendarDays className="h-6 w-6 ml-2" />
-            <span className="font-bold text-xl">{siteConfig.name}</span>
+            <span className="font-bold lg:text-xl text-sm">
+              {siteConfig.name}
+            </span>
           </Link>
           <nav className="hidden md:flex gap-8 px-6">
             {siteConfig.mainNav.map((item, index) => (
@@ -80,12 +82,12 @@ export default function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           <Link href="/login">
-            <Button variant="outline" size="sm" className="ml-2">
+            <Button variant="outline" size="default" className="">
               ورود
             </Button>
           </Link>
           <Link href="/signup">
-            <Button size="sm">ثبت نام</Button>
+            <Button size="default">ثبت نام</Button>
           </Link>
         </div>
       </div>

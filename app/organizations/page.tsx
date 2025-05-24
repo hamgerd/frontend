@@ -1,11 +1,17 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, Calendar, MapPin, Search, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardFooter } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, Calendar, MapPin, Search, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardFooter } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 
 export default function OrganizationsPage() {
   // Mock organizations data
@@ -25,7 +31,8 @@ export default function OrganizationsPage() {
     {
       id: 2,
       name: "موسسه آموزشی نوآوران",
-      description: "موسسه آموزشی نوآوران با هدف ارائه آموزش‌های کاربردی و تخصصی در حوزه‌های مختلف فعالیت می‌کند.",
+      description:
+        "موسسه آموزشی نوآوران با هدف ارائه آموزش‌های کاربردی و تخصصی در حوزه‌های مختلف فعالیت می‌کند.",
       logo: "/placeholder.svg?height=200&width=200",
       location: "اصفهان",
       eventCount: 8,
@@ -36,7 +43,8 @@ export default function OrganizationsPage() {
     {
       id: 3,
       name: "انجمن مدیران کسب و کار",
-      description: "انجمن مدیران کسب و کار با هدف توسعه مهارت‌های مدیریتی و کارآفرینی در ایران فعالیت می‌کند.",
+      description:
+        "انجمن مدیران کسب و کار با هدف توسعه مهارت‌های مدیریتی و کارآفرینی در ایران فعالیت می‌کند.",
       logo: "/placeholder.svg?height=200&width=200",
       location: "مشهد",
       eventCount: 15,
@@ -59,7 +67,8 @@ export default function OrganizationsPage() {
     {
       id: 5,
       name: "انجمن بازاریابی دیجیتال",
-      description: "انجمن بازاریابی دیجیتال با هدف توسعه دانش و مهارت‌های بازاریابی دیجیتال در ایران فعالیت می‌کند.",
+      description:
+        "انجمن بازاریابی دیجیتال با هدف توسعه دانش و مهارت‌های بازاریابی دیجیتال در ایران فعالیت می‌کند.",
       logo: "/placeholder.svg?height=200&width=200",
       location: "تهران",
       eventCount: 10,
@@ -70,7 +79,8 @@ export default function OrganizationsPage() {
     {
       id: 6,
       name: "مرکز نوآوری و کارآفرینی",
-      description: "مرکز نوآوری و کارآفرینی با هدف حمایت از استارتاپ‌ها و ایده‌های نوآورانه فعالیت می‌کند.",
+      description:
+        "مرکز نوآوری و کارآفرینی با هدف حمایت از استارتاپ‌ها و ایده‌های نوآورانه فعالیت می‌کند.",
       logo: "/placeholder.svg?height=200&width=200",
       location: "تبریز",
       eventCount: 7,
@@ -78,65 +88,78 @@ export default function OrganizationsPage() {
       category: "کارآفرینی",
       verified: false,
     },
-  ]
+  ];
 
   return (
-    <div className="container py-10">
-      <div className="flex flex-col items-center gap-4 text-center mb-10">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">سازمان‌ها</h1>
-        <p className="max-w-[700px] text-muted-foreground md:text-xl">
-          با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها شرکت کنید
-        </p>
-      </div>
+    <div className="container py-10 mx-auto">
+      <div className="mx-4">
+        <div className="flex flex-col items-center gap-4 text-center mb-10">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            سازمان‌ها
+          </h1>
+          <p className="max-w-[700px] text-muted-foreground md:text-xl">
+            با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها
+            شرکت کنید
+          </p>
+        </div>
 
-      {/* Search and Filters */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
-        <div className="md:col-span-2 relative">
-          <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="جستجوی سازمان..." className="pr-10" />
-        </div>
-        <div>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="دسته‌بندی" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">همه</SelectItem>
-              <SelectItem value="technology">فناوری</SelectItem>
-              <SelectItem value="business">کسب و کار</SelectItem>
-              <SelectItem value="education">آموزشی</SelectItem>
-              <SelectItem value="design">طراحی</SelectItem>
-              <SelectItem value="marketing">بازاریابی</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="مرتب‌سازی" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="newest">جدیدترین</SelectItem>
-              <SelectItem value="popular">محبوب‌ترین</SelectItem>
-              <SelectItem value="mostEvents">بیشترین رویداد</SelectItem>
-              <SelectItem value="mostMembers">بیشترین اعضا</SelectItem>
-            </SelectContent>
-          </Select>
+        {/* Search and Filters */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+          <div className="md:col-span-2 relative">
+            <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Input placeholder="جستجوی سازمان..." className="pr-10" />
+          </div>
+          <div>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="دسته‌بندی" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">همه</SelectItem>
+                <SelectItem value="technology">فناوری</SelectItem>
+                <SelectItem value="business">کسب و کار</SelectItem>
+                <SelectItem value="education">آموزشی</SelectItem>
+                <SelectItem value="design">طراحی</SelectItem>
+                <SelectItem value="marketing">بازاریابی</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="مرتب‌سازی" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="newest">جدیدترین</SelectItem>
+                <SelectItem value="popular">محبوب‌ترین</SelectItem>
+                <SelectItem value="mostEvents">بیشترین رویداد</SelectItem>
+                <SelectItem value="mostMembers">بیشترین اعضا</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
 
       {/* Organizations Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 mx-6">
         {organizations.map((org) => (
           <Card key={org.id} className="overflow-hidden">
             <div className="p-6 flex flex-col items-center">
               <div className="relative h-24 w-24 rounded-full overflow-hidden mb-4 bg-muted">
-                <Image src={org.logo || "/placeholder.svg"} alt={org.name} fill className="object-cover" />
+                <Image
+                  src={org.logo || "/placeholder.svg"}
+                  alt={org.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="flex items-center gap-2 mb-2">
                 <h3 className="font-bold text-xl text-center">{org.name}</h3>
                 {org.verified && (
-                  <Badge variant="outline" className="bg-primary/10 text-primary">
+                  <Badge
+                    variant="outline"
+                    className="bg-primary/10 text-primary"
+                  >
                     تایید شده
                   </Badge>
                 )}
@@ -145,7 +168,9 @@ export default function OrganizationsPage() {
                 <MapPin className="h-4 w-4" />
                 <span>{org.location}</span>
               </div>
-              <p className="text-muted-foreground text-sm text-center line-clamp-2 mb-4">{org.description}</p>
+              <p className="text-muted-foreground text-sm text-center line-clamp-2 mb-4">
+                {org.description}
+              </p>
               <div className="flex justify-between w-full mb-4">
                 <div className="flex items-center gap-1 text-muted-foreground text-sm">
                   <Calendar className="h-4 w-4" />
@@ -217,13 +242,18 @@ export default function OrganizationsPage() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg">
-        <h2 className="text-2xl font-bold">می‌خواهید سازمان خود را ثبت کنید؟</h2>
-        <p className="text-muted-foreground">به سادگی می‌توانید سازمان خود را ثبت کرده و رویدادهای خود را مدیریت کنید</p>
+      <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
+        <h2 className="text-2xl font-bold">
+          می‌خواهید سازمان خود را ثبت کنید؟
+        </h2>
+        <p className="text-muted-foreground">
+          به سادگی می‌توانید سازمان خود را ثبت کرده و رویدادهای خود را مدیریت
+          کنید
+        </p>
         <Button asChild size="lg" className="mt-2">
           <Link href="/new-organization">ثبت سازمان جدید</Link>
         </Button>
       </div>
     </div>
-  )
+  );
 }

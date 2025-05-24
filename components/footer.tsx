@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
-    <footer className="border-t py-16 bg-muted/30 w-full px-auto">
-      <div className="container grid grid-cols-1 md:grid-cols-4 gap-8 px-6 mx-auto">
+    <footer className="border-t py-10 bg-muted/30 w-full flex flex-col  ">
+      <div className="container grid grid-cols-1 md:grid-cols-4 gap-8 px-10 mx-auto">
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <CalendarDays className="h-6 w-6" />
@@ -169,7 +169,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="container mt-12 pt-8 border-t px-6 mx-auto">
+      <div className="container mt-12 pt-8 border-t px-6  mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} رویداد فارسی. تمامی حقوق محفوظ
