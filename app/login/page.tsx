@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import api, { setAccessToken, setRefreshToken } from "@/lib/axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,9 +20,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
-import axios from "axios";
-
-// import apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const formSchema = z.object({
   email: z.string().email({
@@ -49,10 +47,22 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      await axios.post("http://localhost:8000" + "/users/auth/token/", {
+      const res = await api.post("/users/auth/token/", {
         email: values.email,
         password: values.password,
       });
+
+      const refresh = res.data.refresh;
+      setRefreshToken(refresh);
+
+      const accessRes = await api.post<{ access: string }>(
+        "/users/auth/token/refresh/",
+        {
+          refresh,
+        }
+      );
+
+      setAccessToken(accessRes.data.access);
 
       toast({
         title: "ورود موفقیت‌آمیز",
@@ -143,6 +153,7 @@ export default function LoginPage() {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
+                    {/* // TODO */}
                     <div className="space-y-1 leading-none">
                       <FormLabel>مرا به خاطر بسپار</FormLabel>
                     </div>
@@ -155,6 +166,7 @@ export default function LoginPage() {
             </form>
           </Form>
           <div className="text-center text-sm">
+            {/* // TODO */}
             <Link
               href="/forgot-password"
               className="text-primary hover:underline"

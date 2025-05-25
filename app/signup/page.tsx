@@ -70,7 +70,7 @@ export default function SignupPage() {
         email: values.email,
         password: values.password,
       });
-
+      // TODO toast is not working
       toast({
         title: "ثبت‌نام موفقیت‌آمیز",
         description: "حساب کاربری شما با موفقیت ایجاد شد.",
