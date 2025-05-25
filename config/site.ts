@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "رویداد فارسی",
+  name: "گردهم",
   description: "وب‌سایت برگزاری رویداد‌ها، سمینارها و کارگاه‌های آموزشی",
   mainNav: [
     {
