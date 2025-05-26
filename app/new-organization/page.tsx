@@ -1,19 +1,39 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { ArrowLeft, Upload } from "lucide-react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowLeft, Upload } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 
 const organizationFormSchema = z.object({
   name: z.string().min(3, {
@@ -45,13 +65,13 @@ const organizationFormSchema = z.object({
   twitter: z.string().optional(),
   instagram: z.string().optional(),
   linkedin: z.string().optional(),
-})
+});
 
 export default function NewOrganizationPage() {
-  const { toast } = useToast()
-  const [isLoading, setIsLoading] = useState(false)
-  const [logoFile, setLogoFile] = useState<File | null>(null)
-  const [coverFile, setCoverFile] = useState<File | null>(null)
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [coverFile, setCoverFile] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof organizationFormSchema>>({
     resolver: zodResolver(organizationFormSchema),
@@ -70,26 +90,26 @@ export default function NewOrganizationPage() {
       instagram: "",
       linkedin: "",
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof organizationFormSchema>) {
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Simulate API call
     setTimeout(() => {
-      console.log(values)
-      console.log("Logo file:", logoFile)
-      console.log("Cover file:", coverFile)
-      setIsLoading(false)
+      console.log(values);
+      console.log("Logo file:", logoFile);
+      console.log("Cover file:", coverFile);
+      setIsLoading(false);
       toast({
         title: "سازمان با موفقیت ایجاد شد",
         description: "سازمان شما ایجاد شد و برای بررسی ارسال شد.",
-      })
-    }, 1000)
+      });
+    }, 1000);
   }
 
   return (
-    <div className="container py-10">
+    <div className="container mx-auto py-10">
       <div className="flex items-center mb-6">
         <Button variant="outline" size="sm" asChild>
           <Link href="/dashboard">
@@ -100,7 +120,9 @@ export default function NewOrganizationPage() {
       </div>
 
       <div className="flex flex-col items-center gap-4 text-center mb-10">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">ثبت سازمان جدید</h1>
+        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+          ثبت سازمان جدید
+        </h1>
         <p className="max-w-[700px] text-muted-foreground md:text-xl">
           اطلاعات سازمان خود را وارد کنید تا آن را برای کاربران منتشر کنیم
         </p>
@@ -111,7 +133,9 @@ export default function NewOrganizationPage() {
           <Card>
             <CardHeader>
               <CardTitle>اطلاعات اصلی</CardTitle>
-              <CardDescription>اطلاعات اصلی سازمان خود را وارد کنید</CardDescription>
+              <CardDescription>
+                اطلاعات اصلی سازمان خود را وارد کنید
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <FormField
@@ -121,9 +145,15 @@ export default function NewOrganizationPage() {
                   <FormItem>
                     <FormLabel>نام سازمان</FormLabel>
                     <FormControl>
-                      <Input placeholder="مثال: انجمن برنامه‌نویسان ایران" {...field} />
+                      <Input
+                        placeholder="مثال: انجمن برنامه‌نویسان ایران"
+                        {...field}
+                      />
                     </FormControl>
-                    <FormDescription>نام سازمان خود را وارد کنید. این نام در همه جا نمایش داده می‌شود.</FormDescription>
+                    <FormDescription>
+                      نام سازمان خود را وارد کنید. این نام در همه جا نمایش داده
+                      می‌شود.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -141,7 +171,10 @@ export default function NewOrganizationPage() {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription>توضیحات کاملی درباره سازمان، اهداف و فعالیت‌های آن بنویسید.</FormDescription>
+                    <FormDescription>
+                      توضیحات کاملی درباره سازمان، اهداف و فعالیت‌های آن
+                      بنویسید.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -153,7 +186,10 @@ export default function NewOrganizationPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>دسته‌بندی</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
@@ -169,7 +205,8 @@ export default function NewOrganizationPage() {
                         </SelectContent>
                       </Select>
                       <FormDescription>
-                        دسته‌بندی سازمان به کاربران کمک می‌کند تا سازمان شما را راحت‌تر پیدا کنند.
+                        دسته‌بندی سازمان به کاربران کمک می‌کند تا سازمان شما را
+                        راحت‌تر پیدا کنند.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -184,7 +221,9 @@ export default function NewOrganizationPage() {
                       <FormControl>
                         <Input placeholder="مثال: ۱۳۹۰" {...field} />
                       </FormControl>
-                      <FormDescription>سال تاسیس سازمان خود را وارد کنید.</FormDescription>
+                      <FormDescription>
+                        سال تاسیس سازمان خود را وارد کنید.
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -210,15 +249,21 @@ export default function NewOrganizationPage() {
                             accept="image/*"
                             onChange={(e) => {
                               if (e.target.files && e.target.files[0]) {
-                                setLogoFile(e.target.files[0])
+                                setLogoFile(e.target.files[0]);
                               }
                             }}
                           />
                         </label>
                         <p className="pr-1">یا بکشید و رها کنید</p>
                       </div>
-                      <p className="text-xs leading-5 text-muted-foreground">PNG, JPG تا ۲ مگابایت</p>
-                      {logoFile && <p className="mt-2 text-xs text-primary">{logoFile.name}</p>}
+                      <p className="text-xs leading-5 text-muted-foreground">
+                        PNG, JPG تا ۲ مگابایت
+                      </p>
+                      {logoFile && (
+                        <p className="mt-2 text-xs text-primary">
+                          {logoFile.name}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -241,15 +286,21 @@ export default function NewOrganizationPage() {
                             accept="image/*"
                             onChange={(e) => {
                               if (e.target.files && e.target.files[0]) {
-                                setCoverFile(e.target.files[0])
+                                setCoverFile(e.target.files[0]);
                               }
                             }}
                           />
                         </label>
                         <p className="pr-1">یا بکشید و رها کنید</p>
                       </div>
-                      <p className="text-xs leading-5 text-muted-foreground">PNG, JPG تا ۵ مگابایت</p>
-                      {coverFile && <p className="mt-2 text-xs text-primary">{coverFile.name}</p>}
+                      <p className="text-xs leading-5 text-muted-foreground">
+                        PNG, JPG تا ۵ مگابایت
+                      </p>
+                      {coverFile && (
+                        <p className="mt-2 text-xs text-primary">
+                          {coverFile.name}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -260,7 +311,9 @@ export default function NewOrganizationPage() {
           <Card>
             <CardHeader>
               <CardTitle>اطلاعات تماس</CardTitle>
-              <CardDescription>اطلاعات تماس سازمان خود را وارد کنید</CardDescription>
+              <CardDescription>
+                اطلاعات تماس سازمان خود را وارد کنید
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -298,7 +351,11 @@ export default function NewOrganizationPage() {
                   <FormItem>
                     <FormLabel>آدرس دقیق</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="آدرس کامل سازمان را وارد کنید..." className="resize-none" {...field} />
+                      <Textarea
+                        placeholder="آدرس کامل سازمان را وارد کنید..."
+                        className="resize-none"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -311,7 +368,11 @@ export default function NewOrganizationPage() {
                   <FormItem>
                     <FormLabel>ایمیل</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="example@domain.com" {...field} />
+                      <Input
+                        type="email"
+                        placeholder="example@domain.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -336,7 +397,9 @@ export default function NewOrganizationPage() {
           <Card>
             <CardHeader>
               <CardTitle>شبکه‌های اجتماعی</CardTitle>
-              <CardDescription>لینک شبکه‌های اجتماعی سازمان خود را وارد کنید (اختیاری)</CardDescription>
+              <CardDescription>
+                لینک شبکه‌های اجتماعی سازمان خود را وارد کنید (اختیاری)
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -409,5 +472,5 @@ export default function NewOrganizationPage() {
         </form>
       </Form>
     </div>
-  )
+  );
 }

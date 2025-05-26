@@ -66,14 +66,7 @@ export default function Footer() {
                 درباره ما
               </Link>
             </li>
-            <li>
-              <Link
-                href="/contact"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                تماس با ما
-              </Link>
-            </li>
+            <li></li>
           </ul>
         </div>
 
@@ -104,22 +97,8 @@ export default function Footer() {
                 داشبورد کاربری
               </Link>
             </li>
-            <li>
-              <Link
-                href="/help"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                راهنما و پشتیبانی
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/blog"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                وبلاگ
-              </Link>
-            </li>
+            <li></li>
+            <li></li>
           </ul>
         </div>
 
