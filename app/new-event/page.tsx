@@ -328,7 +328,8 @@ export default function NewEventPage() {
                 />
               </CardContent>
             </Card>
-
+            //
+            // TODO make ticket section as a list of tickets with delete and add button also with a title | startDate and end date for each ticket
             <Card>
               <CardHeader>
                 <CardTitle>ظرفیت و قیمت</CardTitle>
