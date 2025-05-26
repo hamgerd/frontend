@@ -145,7 +145,6 @@ export default function Footer() {
       <div className="container mt-12 pt-8 border-t px-6  mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-muted-foreground">
-            // FIXME
             <span className="flex items-center gap-1 text-sm">
               <a href="https://hamgerd.ir" className="hover:underline">
                 هم‌گرد
