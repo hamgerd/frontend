@@ -1,56 +1,27 @@
 import Link from "next/link";
-import {
-  CalendarDays,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-} from "lucide-react";
+import { CalendarDays, Mail, MapPin, Phone } from "lucide-react";
+import { FaTelegram } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
     <footer className="border-t py-10 bg-muted/30 w-full flex flex-col  ">
       <div className="container grid grid-cols-1 md:grid-cols-4 gap-8 px-10 mx-auto">
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
+        <div className="space-y-4 flex justify-center flex-col">
+          <div className="flex items-center  gap-2">
             <CalendarDays className="h-6 w-6" />
-            <span className="font-bold text-xl">رویداد فارسی</span>
+            <span className="font-bold text-xl">گرد‌هم</span>
           </div>
           <p className="text-sm text-muted-foreground">
             پلتفرم جامع برگزاری و مدیریت رویدادهای آموزشی، علمی و تجاری
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex justify-center gap-6">
             <Link
-              href="#"
+              href="https://t.me/hamgerd_ir"
               className="text-muted-foreground hover:text-foreground"
             >
-              <Facebook className="h-5 w-5" />
+              <FaTelegram className="h-5 w-5" />
               <span className="sr-only">فیسبوک</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              <Twitter className="h-5 w-5" />
-              <span className="sr-only">توییتر</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              <Instagram className="h-5 w-5" />
-              <span className="sr-only">اینستاگرام</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              <Linkedin className="h-5 w-5" />
-              <span className="sr-only">لینکدین</span>
             </Link>
           </div>
         </div>
@@ -152,20 +123,20 @@ export default function Footer() {
           <ul className="space-y-3">
             <li className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-4 w-4 shrink-0" />
-              <span>تهران، خیابان ولیعصر، برج رویداد، طبقه ۵</span>
+              <span>ارومیه، میدان ولایت فقیه، خ مطهری، کوچه گمرک</span>
             </li>
             <li className="flex items-center gap-2 text-muted-foreground">
               <Phone className="h-4 w-4 shrink-0" />
-              <span>۰۲۱-۸۸۸۸۸۸۸۸</span>
+              <a href="tel:09964066461">09964066461</a>
             </li>
             <li className="flex items-center gap-2 text-muted-foreground">
               <Mail className="h-4 w-4 shrink-0" />
-              <span>info@eventfarsi.ir</span>
+              <span>info@hamgerd.ir</span>
             </li>
           </ul>
-          <Button className="w-full" variant="outline">
+          {/* <Button className="w-full" variant="outline">
             <Link href="/contact">ارسال پیام</Link>
-          </Button>
+          </Button> */}
         </div>
       </div>
 
