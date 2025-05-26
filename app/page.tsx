@@ -40,7 +40,7 @@ export default function Home() {
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center gap-4 text-center">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-              رویدادهای فارسی را بسازید، مدیریت کنید و در آن‌ها شرکت کنید
+              هم‌گرد، جایی برای ساختن و مدیریت رویدادهایی که به‌یاد می‌مانند.
             </h1>
             <p className="max-w-[700px] text-muted-foreground md:text-xl">
               پلتفرم جامع برگزاری و مدیریت رویدادهای آموزشی، علمی و تجاری

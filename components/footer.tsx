@@ -1,16 +1,21 @@
 import Link from "next/link";
-import { CalendarDays, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { FaTelegram } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="border-t py-10 bg-muted/30 w-full flex flex-col  ">
       <div className="container grid grid-cols-1 md:grid-cols-4 gap-8 px-10 mx-auto">
         <div className="space-y-4 flex justify-center flex-col">
-          <div className="flex items-center  gap-2">
-            <CalendarDays className="h-6 w-6" />
-            <span className="font-bold text-xl">گرد‌هم</span>
+          <div className="flex items-center gap-2">
+            <Image
+              src={"/hamgerd-logo.svg"}
+              alt="logo"
+              width={60}
+              height={60}
+              className="ml-2 dark:invert"
+            />
           </div>
           <p className="text-sm text-muted-foreground">
             پلتفرم جامع برگزاری و مدیریت رویدادهای آموزشی، علمی و تجاری
@@ -21,7 +26,7 @@ export default function Footer() {
               className="text-muted-foreground hover:text-foreground"
             >
               <FaTelegram className="h-5 w-5" />
-              <span className="sr-only">فیسبوک</span>
+              <span className="sr-only">تلگرام</span>
             </Link>
           </div>
         </div>
@@ -134,17 +139,41 @@ export default function Footer() {
               <span>info@hamgerd.ir</span>
             </li>
           </ul>
-          {/* <Button className="w-full" variant="outline">
-            <Link href="/contact">ارسال پیام</Link>
-          </Button> */}
         </div>
       </div>
 
       <div className="container mt-12 pt-8 border-t px-6  mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} رویداد فارسی. تمامی حقوق محفوظ
-            است.
+            // FIXME
+            <span className="flex items-center gap-1 text-sm">
+              <a href="https://hamgerd.ir" className="hover:underline">
+                هم‌گرد
+              </a>
+              © 2025
+              <span className="mx-1">licensed under</span>
+              <a
+                href="https://creativecommons.org/licenses/by-sa/4.0/"
+                className="flex items-center hover:underline"
+              >
+                CC BY-SA 4.0
+                <img
+                  src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+                  className="inline-block w-4 h-4 mx-0.5"
+                  alt="CC"
+                />
+                <img
+                  src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
+                  className="inline-block w-4 h-4 mx-0.5"
+                  alt="BY"
+                />
+                <img
+                  src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
+                  className="inline-block w-4 h-4 mx-0.5"
+                  alt="SA"
+                />
+              </a>
+            </span>
           </p>
           <div className="flex gap-6">
             <Link

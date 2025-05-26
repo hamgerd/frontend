@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, Menu, Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -43,10 +44,13 @@ export default function Header() {
             </SheetContent>
           </Sheet>
           <Link href="/" className="flex items-center space-x-2">
-            <CalendarDays className="h-6 w-6 ml-2" />
-            <span className="font-bold lg:text-xl text-sm">
-              {siteConfig.name}
-            </span>
+            <Image
+              src={"/hamgerd-logo.svg"}
+              alt="logo"
+              width={60}
+              height={60}
+              className=" ml-2 dark:invert"
+            />
           </Link>
           <nav className="hidden md:flex gap-8 px-6">
             {siteConfig.mainNav.map((item, index) => (
