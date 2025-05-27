@@ -1,42 +1,12 @@
-import Link from "next/link";
 import Image from "next/image";
 import {
-  ArrowRight,
   Calendar,
   Globe,
-  Mail,
-  MessageSquare,
-  Phone,
   Users,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 
 export default function AboutPage() {
-  // Mock team data
-  const team = [
-    {
-      name: "علی محمدی",
-      role: "مدیرعامل",
-      image: "/placeholder.svg?height=300&width=300",
-    },
-    {
-      name: "سارا احمدی",
-      role: "مدیر فنی",
-      image: "/placeholder.svg?height=300&width=300",
-    },
-    {
-      name: "محمد حسینی",
-      role: "مدیر بازاریابی",
-      image: "/placeholder.svg?height=300&width=300",
-    },
-    {
-      name: "مریم کریمی",
-      role: "مدیر محصول",
-      image: "/placeholder.svg?height=300&width=300",
-    },
-  ];
 
   return (
     <div className="container py-10 mx-auto ">
@@ -47,30 +17,9 @@ export default function AboutPage() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">داستان ما</h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                رویداد فارسی در سال ۱۴۰۰ با هدف ساده‌سازی فرآیند مدیریت رویدادها
-                در ایران آغاز به کار کرد. ما متوجه شدیم که بسیاری از سازمان‌ها و
-                افراد برای برگزاری رویدادها با چالش‌های متعددی روبرو هستند.
-              </p>
-              <p>
-                تیم ما متشکل از متخصصان حوزه فناوری و رویدادها، با درک عمیق از
-                نیازهای برگزارکنندگان و شرکت‌کنندگان، پلتفرمی جامع و کاربرپسند
-                طراحی کرد که تمام جنبه‌های مدیریت رویداد را پوشش می‌دهد.
-              </p>
-              <p>
-                امروز، رویداد فارسی به یکی از پیشتازان صنعت مدیریت رویداد در
-                ایران تبدیل شده است و هزاران رویداد موفق از طریق پلتفرم ما
-                برگزار شده است.
-              </p>
-              <p>
-                سکوی هم‌گرد نمونه ای از نرم‌افزار متن‌باز و آزاد «نشست» است که
-                هدف آن ایجاد فضایی برای سازماندهی و برگزاری رویداد با تمرکز بر
-                آزادی کاربر، حریم خصوصی و امنیت داده میباشد.
-              </p>
+        <div className=" gap-12 items-center mb-16 mx-auto flex">
+          <div className="lg:mx-48 mx-4">
+            <div className="space-y-4 text-muted-foreground leading-10">
               <p>
                 هدف هم‌گرد ایجاد فضایی مدنی و کارآمد است تا گروه‌ها و اشخاص
                 آزادانه بتوانند رویداد های فرهنگی، آموزشی و ... را برگزار نموده
@@ -109,14 +58,6 @@ export default function AboutPage() {
                 بزرگ‌تر برای توسعه فناوری‌های آزاد و انسانی نیز هستید.
               </p>
             </div>
-          </div>
-          <div className="relative h-80 rounded-lg overflow-hidden">
-            <Image
-              src="/placeholder.svg?height=400&width=600"
-              alt="هم‌گرد"
-              fill
-              className="object-cover"
-            />
           </div>
         </div>
 
