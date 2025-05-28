@@ -1,16 +1,17 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { CalendarDays, MapPin, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Event } from "@/models";
+import { Event } from "@/models/event";
 
 type EventCardProps = {
   event: Event;
 };
 
 const EventCard = ({ event }: EventCardProps) => {
-  return ( 
+  return (
     <Card key={event.id} className="overflow-hidden">
       <div className="relative h-48">
         <Image
@@ -27,6 +28,7 @@ const EventCard = ({ event }: EventCardProps) => {
         <h3 className="font-bold text-xl mb-2">{event.title}</h3>
         <div className="flex items-center gap-2 text-muted-foreground mb-2">
           <CalendarDays className="h-4 w-4" />
+          {/*  // FIXME */}
           <span>{event.start_date}</span>
         </div>
         <div className="flex items-center gap-2 text-muted-foreground mb-2">
@@ -35,7 +37,7 @@ const EventCard = ({ event }: EventCardProps) => {
         </div>
         <div className="flex items-center gap-2 text-muted-foreground">
           <Users className="h-4 w-4" />
-          <span>{event.attendees} شرکت‌کننده</span>
+          <span>{event.max_participants} شرکت‌کننده</span>
         </div>
       </CardContent>
       <CardFooter className="p-6 pt-0">
