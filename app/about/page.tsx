@@ -1,13 +1,8 @@
 import Image from "next/image";
-import {
-  Calendar,
-  Globe,
-  Users,
-} from "lucide-react";
+import { Calendar, Globe, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function AboutPage() {
-
   return (
     <div className="container py-10 mx-auto ">
       <div className="mx-5">
@@ -77,11 +72,10 @@ export default function AboutPage() {
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4">
                     <Calendar className="h-8 w-8" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">ساده‌سازی مدیریت</h3>
+                  <h3 className="text-xl font-bold mb-2">حریم خصوصی</h3>
                   <p className="text-muted-foreground">
-                    ما به دنبال ساده‌سازی فرآیند مدیریت رویدادها برای
-                    برگزارکنندگان هستیم تا آن‌ها بتوانند بر محتوا و کیفیت
-                    رویدادها تمرکز کنند.
+                    در همگرد ما متعهد به حفظ اطلاعات کاربران هستیم و بستری امن
+                    برای برگزاری رویداد فراهم می‌کنیم.
                   </p>
                 </div>
               </CardContent>
@@ -92,13 +86,10 @@ export default function AboutPage() {
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground mb-4">
                     <Users className="h-8 w-8" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">
-                    ارتقای تجربه کاربری
-                  </h3>
+                  <h3 className="text-xl font-bold mb-2">کارایی و نوآوری </h3>
                   <p className="text-muted-foreground">
-                    ما به دنبال ارتقای تجربه شرکت‌کنندگان از طریق ارائه یک
-                    پلتفرم ساده، کاربرپسند و امن برای ثبت‌نام و شرکت در رویدادها
-                    هستیم.
+                    با ابزارهای نوآورانه، فرآیند ثبت، مدیریت و حضور در رویدادها
+                    را سریع و کارآمد می‌کنیم.
                   </p>
                 </div>
               </CardContent>
@@ -111,8 +102,8 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-xl font-bold mb-2">توسعه صنعت رویداد</h3>
                   <p className="text-muted-foreground">
-                    ما به دنبال توسعه صنعت رویداد در ایران از طریق ارائه ابزارها
-                    و منابع لازم برای برگزاری رویدادهای با کیفیت هستیم.
+                    به رشد حرفه‌ای صنعت رویداد در ایران با ارائه زیرساخت، ابزار
+                    و دانش تخصصی کمک می‌کنیم.
                   </p>
                 </div>
               </CardContent>
