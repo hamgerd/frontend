@@ -6,7 +6,6 @@ import { ArrowLeft } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,14 +19,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
-
-// import apiUrl = process.env.NEXT_PUBLIC_API_URL;
+import api from "@/lib/axios";
 
 const formSchema = z
   .object({
-    username: z.string().min(2, {
-      message: "نام باید حداقل ۲ کاراکتر باشد.",
-    }),
     email: z.string().email({
       message: "لطفا یک ایمیل معتبر وارد کنید.",
     }),
@@ -53,7 +48,6 @@ export default function SignupPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -65,12 +59,11 @@ export default function SignupPage() {
     setIsLoading(true);
 
     try {
-      await axios.post("http://localhost:8000" + "/users/register/", {
-        username: values.username,
+      await api.post("/api/v1/users/register/", {
         email: values.email,
         password: values.password,
       });
-      // TODO toast is not working
+      // FIXME
       toast({
         title: "ثبت‌نام موفقیت‌آمیز",
         description: "حساب کاربری شما با موفقیت ایجاد شد.",
@@ -123,19 +116,6 @@ export default function SignupPage() {
           </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>نام و نام خانوادگی</FormLabel>
-                    <FormControl>
-                      <Input placeholder="محمد محمدی" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name="email"
@@ -209,12 +189,7 @@ export default function SignupPage() {
                   </FormItem>
                 )}
               />
-              <Button
-                type="submit"
-                className="w-full"
-                // onClick={handleSignup}
-                disabled={isLoading}
-              >
+              <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "در حال ثبت‌نام..." : "ثبت‌نام"}
               </Button>
             </form>
