@@ -155,10 +155,10 @@ export default function Footer() {
           </p>
           <div className="flex gap-6">
             <Link
-              href="/terms"
+              href="/tos"
               className="text-sm text-muted-foreground hover:underline underline-offset-4"
             >
-              قوانین و مقررات
+              شرایط استفاده
             </Link>
             <Link
               href="/privacy"
