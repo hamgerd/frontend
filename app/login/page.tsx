@@ -22,13 +22,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
-  username: z.string().min(3, {
+  email: z.string().min(3, {
     message: "نام کاربری باید حداقل ۳ کاراکتر باشد.",
   }),
   password: z.string().min(8, {
     message: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
   }),
-  rememberMe: z.boolean().default(false),
+  // rememberMe: z.boolean().default(false),
 });
 
 export default function LoginPage() {
@@ -38,7 +38,7 @@ export default function LoginPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
       // rememberMe: false,
     },
@@ -47,8 +47,8 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      const res = await api.post("/users/auth/token/", {
-        username: values.username,
+      const res = await api.post("api/v1/users/auth/token/", {
+        email: values.email,
         password: values.password,
       });
 
@@ -56,7 +56,7 @@ export default function LoginPage() {
       setRefreshToken(refresh);
 
       const accessRes = await api.post<{ access: string }>(
-        "/users/auth/token/refresh/",
+        "/api/v1/users/auth/token/refresh/",
         {
           refresh,
         }
@@ -114,7 +114,7 @@ export default function LoginPage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
-                name="username"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>ایمیل</FormLabel>
@@ -153,7 +153,7 @@ export default function LoginPage() {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-                    {/* // TODO */}
+                    {/* FIXME */}
                     <div className="space-y-1 leading-none">
                       <FormLabel>مرا به خاطر بسپار</FormLabel>
                     </div>
@@ -166,7 +166,7 @@ export default function LoginPage() {
             </form>
           </Form>
           <div className="text-center text-sm">
-            {/* // TODO */}
+            {/* FIXME */}
             <Link
               href="/forgot-password"
               className="text-primary hover:underline"
