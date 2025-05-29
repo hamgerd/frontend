@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -18,108 +19,51 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { useEffect, useState } from "react";
+import api from "@/lib/axios";
+import { Event } from "@/models/event";
 
-// This is a mock page component with hard-coded data for demonstration
-export default function EventPage({ params }: { params: { id: string } }) {
-  // In a real app, you would fetch the event data based on params.id
-  const event = {
-    id: params.id,
-    title: "کنفرانس فناوری‌های نوین وب",
-    description:
-      "کنفرانس فناوری‌های نوین وب یک رویداد تخصصی برای علاقه‌مندان به فناوری‌های وب است. در این کنفرانس، سخنرانان برجسته از آخرین پیشرفت‌ها و نوآوری‌های حوزه وب صحبت خواهند کرد.",
-    longDescription:
-      "کنفرانس فناوری‌های نوین وب یک رویداد تخصصی برای علاقه‌مندان به فناوری‌های وب است. در این کنفرانس، سخنرانان برجسته از آخرین پیشرفت‌ها و نوآوری‌های حوزه وب صحبت خواهند کرد. این کنفرانس فرصتی برای یادگیری، شبکه‌سازی و آشنایی با متخصصان این حوزه است. شرکت‌کنندگان می‌توانند در کارگاه‌های آموزشی، پنل‌های تخصصی و جلسات پرسش و پاسخ شرکت کنند. موضوعات اصلی کنفرانس شامل: فریم‌ورک‌های جدید وب، امنیت وب، پرفورمنس و بهینه‌سازی، هوش مصنوعی در وب و آینده فناوری‌های وب می‌باشد.",
-    date: "۱۵ مرداد ۱۴۰۲",
-    startTime: "۰۹:۰۰",
-    endTime: "۱۷:۰۰",
-    location: "تهران، سالن همایش‌های برج میلاد",
-    address: "تهران، بزرگراه شهید همت، برج میلاد، سالن همایش‌های اصلی",
-    price: "۵۰۰,۰۰۰ تومان",
-    capacity: 300,
-    attendees: 250,
-    image: "/placeholder.svg?height=400&width=800",
-    category: "فناوری",
-    organizer: {
-      id: 1,
-      name: "انجمن برنامه‌نویسان ایران",
-      image: "/placeholder.svg?height=100&width=100",
-      description:
-        "انجمن برنامه‌نویسان ایران یک سازمان غیرانتفاعی است که با هدف توسعه دانش برنامه‌نویسی و فناوری‌های مرتبط در ایران فعالیت می‌کند.",
-      email: "info@iranprogrammers.org",
-      website: "www.iranprogrammers.org",
-    },
-    speakers: [
-      {
-        id: 1,
-        name: "علی محمدی",
-        role: "مدیر فنی شرکت فناوران",
-        image: "/placeholder.svg?height=100&width=100",
-        topic: "آینده فریم‌ورک‌های وب",
-        time: "۱۰:۰۰ - ۱۱:۰۰",
-      },
-      {
-        id: 2,
-        name: "سارا احمدی",
-        role: "متخصص امنیت وب",
-        image: "/placeholder.svg?height=100&width=100",
-        topic: "امنیت در اپلیکیشن‌های وب مدرن",
-        time: "۱۱:۰۰ - ۱۲:۰۰",
-      },
-      {
-        id: 3,
-        name: "محمد رضایی",
-        role: "مهندس ارشد فرانت‌اند",
-        image: "/placeholder.svg?height=100&width=100",
-        topic: "بهینه‌سازی پرفورمنس در برنامه‌های وب",
-        time: "۱۳:۰۰ - ۱۴:۰۰",
-      },
-    ],
-    schedule: [
-      {
-        time: "۰۹:۰۰ - ۰۹:۳۰",
-        title: "پذیرش و ثبت‌نام",
-        description: "خوش‌آمدگویی و ثبت‌نام شرکت‌کنندگان",
-      },
-      {
-        time: "۰۹:۳۰ - ۱۰:۰۰",
-        title: "افتتاحیه",
-        description: "سخنرانی افتتاحیه و معرفی برنامه کنفرانس",
-      },
-      {
-        time: "۱۰:۰۰ - ۱۱:۰۰",
-        title: "آینده فریم‌ورک‌های وب",
-        description: "سخنرانی علی محمدی درباره روندهای آینده فریم‌ورک‌های وب",
-        speaker: "علی محمدی",
-      },
-      {
-        time: "۱۱:۰۰ - ۱۲:۰۰",
-        title: "امنیت در اپلیکیشن‌های وب مدرن",
-        description: "سخنرانی سارا احمدی درباره چالش‌های امنیتی وب مدرن",
-        speaker: "سارا احمدی",
-      },
-      {
-        time: "۱۲:۰۰ - ۱۳:۰۰",
-        title: "استراحت و ناهار",
-        description: "صرف ناهار و استراحت",
-      },
-      {
-        time: "۱۳:۰۰ - ۱۴:۰۰",
-        title: "بهینه‌سازی پرفورمنس در برنامه‌های وب",
-        description: "سخنرانی محمد رضایی درباره تکنیک‌های بهینه‌سازی عملکرد",
-        speaker: "محمد رضایی",
-      },
-      {
-        time: "۱۴:۰۰ - ۱۵:۰۰",
-        title: "پنل تخصصی",
-        description: "پنل تخصصی با حضور سخنرانان و پرسش و پاسخ",
-      },
-      {
-        time: "۱۵:۰۰ - ۱۷:۰۰",
-        title: "کارگاه عملی",
-        description: "کارگاه عملی پیاده‌سازی یک اپلیکیشن وب مدرن",
-      },
-    ],
-  };
+import { useParams } from "next/navigation";
+
+export default function EventPage() {
+  const params = useParams();
+  const [eventDetails, setEventDetails] = useState<Event>();
+
+  useEffect(() => {
+    const fetchEventDetails = async () => {
+      try {
+        const res = await api.get(`/api/v1/events/${params.id}/`);
+        setEventDetails(res.data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (params?.id) {
+      fetchEventDetails();
+    }
+  }, [params?.id]);
+  // Add a loading state while event details are being fetched
+  if (!eventDetails) {
+    return (
+      <div className="container flex lg:mx-auto flex-col py-10">
+        <div className="mx-4">
+          <div className="flex items-center mb-6">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/events">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                بازگشت به رویدادها
+              </Link>
+            </Button>
+          </div>
+          <div className="flex items-center justify-center h-64">
+            <p>در حال بارگذاری اطلاعات رویداد...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container flex lg:mx-auto flex-col py-10">
@@ -143,37 +87,37 @@ export default function EventPage({ params }: { params: { id: string } }) {
           <div className="md:col-span-2">
             <div className="relative  h-72 sm:h-96 rounded-lg overflow-hidden mb-6">
               <Image
-                src={event.image || "/placeholder.svg"}
-                alt={event.title}
+                src={eventDetails.image || "/placeholder.svg"}
+                alt={eventDetails.title}
                 fill
                 className="object-cover"
               />
               <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-md">
-                {event.category}
+                {eventDetails.category || null}
               </div>
             </div>
 
-            <h1 className="text-3xl font-bold mb-4">{event.title}</h1>
+            <h1 className="text-3xl font-bold mb-4">{eventDetails.title}</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <CalendarDays className="h-5 w-5" />
-                <span>{event.date}</span>
+                <span>{eventDetails.start_date}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Clock className="h-5 w-5" />
                 <span>
-                  {event.startTime} تا {event.endTime}
+                  {eventDetails.start_date} تا {eventDetails.end_date}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="h-5 w-5" />
-                <span>{event.location}</span>
+                <span>{eventDetails.location}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Users className="h-5 w-5" />
                 <span>
-                  {event.attendees} از {event.capacity} شرکت‌کننده
+                  {eventDetails.max_participants} از {} شرکت‌کننده
                 </span>
               </div>
             </div>
@@ -186,11 +130,11 @@ export default function EventPage({ params }: { params: { id: string } }) {
               </TabsList>
               <TabsContent value="about" className="mt-6">
                 <p className="mb-6 whitespace-pre-line">
-                  {event.longDescription}
+                  {eventDetails.description}
                 </p>
 
                 <h3 className="text-lg font-bold mb-2">محل برگزاری</h3>
-                <p className="mb-6">{event.address}</p>
+                <p className="mb-6">{eventDetails.location}</p>
 
                 <div className="rounded-lg overflow-hidden h-64 bg-muted">
                   {/* Google Map would go here in a real application */}
@@ -201,7 +145,7 @@ export default function EventPage({ params }: { params: { id: string } }) {
               </TabsContent>
               <TabsContent value="schedule" className="mt-6">
                 <div className="space-y-6">
-                  {event.schedule.map((item, index) => (
+                  {/* {eventDetails.schedule.map((item, index) => (
                     <div key={index} className="relative pr-10 pb-6 border-r">
                       <div className="absolute right-[-8px] top-2 w-4 h-4 rounded-full bg-primary"></div>
                       <div className="mb-1 font-medium">{item.time}</div>
@@ -216,12 +160,12 @@ export default function EventPage({ params }: { params: { id: string } }) {
                         </Badge>
                       )}
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               </TabsContent>
               <TabsContent value="speakers" className="mt-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {event.speakers.map((speaker) => (
+                {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {eventDetails.speakers.map((speaker) => (
                     <Card key={speaker.id}>
                       <CardContent className="p-6">
                         <div className="flex items-center gap-4 mb-4">
@@ -256,7 +200,7 @@ export default function EventPage({ params }: { params: { id: string } }) {
                       </CardContent>
                     </Card>
                   ))}
-                </div>
+                </div> */}
               </TabsContent>
             </Tabs>
           </div>
@@ -269,11 +213,13 @@ export default function EventPage({ params }: { params: { id: string } }) {
               <CardContent className="space-y-4">
                 <div className="flex justify-between py-2">
                   <span className="font-medium">قیمت:</span>
-                  <span>{event.price}</span>
+                  <span>{eventDetails.price}</span>
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="font-medium">ظرفیت باقیمانده:</span>
-                  <span>{event.capacity - event.attendees} نفر</span>
+                  <span>
+                    {eventDetails.capacity - eventDetails.attendees} نفر
+                  </span>
                 </div>
                 <Button className="w-full" size="lg">
                   ثبت‌نام در رویداد
@@ -289,17 +235,21 @@ export default function EventPage({ params }: { params: { id: string } }) {
                 <div className="flex items-center gap-4">
                   <Avatar className="h-12 w-12">
                     <AvatarImage
-                      src={event.organizer.image || "/placeholder.svg"}
-                      alt={event.organizer.name}
+                      src={
+                        eventDetails.organization.image || "/placeholder.svg"
+                      }
+                      alt={eventDetails.organization?.name}
                     />
                     <AvatarFallback>
-                      {event.organizer.name.charAt(0)}
+                      {eventDetails.organization?.name.charAt(0)}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <h3 className="font-bold">{event.organizer.name}</h3>
+                    <h3 className="font-bold">
+                      {eventDetails.organization?.name}
+                    </h3>
                     <Link
-                      href={`/organizations/${event.organizer.id}`}
+                      href={`/organizations/${eventDetails.organization?.id}`}
                       className="text-sm text-primary hover:underline"
                     >
                       مشاهده پروفایل
@@ -307,17 +257,21 @@ export default function EventPage({ params }: { params: { id: string } }) {
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  {event.organizer.description}
+                  {eventDetails.organization?.description}
                 </p>
                 <Separator />
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">{event.organizer.email}</span>
+                    <span className="text-sm">
+                      {eventDetails.organization?.email}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Globe className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">{event.organizer.website}</span>
+                    <span className="text-sm">
+                      {eventDetails.organization?.website}
+                    </span>
                   </div>
                 </div>
               </CardContent>
