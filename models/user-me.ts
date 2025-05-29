@@ -28,14 +28,6 @@ export interface UserME {
     id?: number;
 
     /**
-     * Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-     *
-     * @type {string}
-     * @memberof UserME
-     */
-    username: string;
-
-    /**
      * @type {string}
      * @memberof UserME
      */

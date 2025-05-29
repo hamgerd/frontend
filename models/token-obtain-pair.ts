@@ -24,7 +24,7 @@ export interface TokenObtainPair {
      * @type {string}
      * @memberof TokenObtainPair
      */
-    username: string;
+    email: string;
 
     /**
      * @type {string}

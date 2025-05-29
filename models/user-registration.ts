@@ -21,14 +21,6 @@
 export interface UserRegistration {
 
     /**
-     * Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-     *
-     * @type {string}
-     * @memberof UserRegistration
-     */
-    username: string;
-
-    /**
      * @type {string}
      * @memberof UserRegistration
      */

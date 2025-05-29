@@ -43,4 +43,10 @@ export interface TicketType {
      * @memberof TicketType
      */
     max_participants?: number | null;
+
+    /**
+     * @type {number}
+     * @memberof TicketType
+     */
+    price: number;
 }

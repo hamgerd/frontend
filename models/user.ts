@@ -27,14 +27,6 @@ export interface User {
     id?: number;
 
     /**
-     * Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-     *
-     * @type {string}
-     * @memberof User
-     */
-    username: string;
-
-    /**
      * @type {string}
      * @memberof User
      */
