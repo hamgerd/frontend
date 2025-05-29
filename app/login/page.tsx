@@ -22,8 +22,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
-  email: z.string().email({
-    message: "لطفا یک ایمیل معتبر وارد کنید.",
+  username: z.string().min(3, {
+    message: "نام کاربری باید حداقل ۳ کاراکتر باشد.",
   }),
   password: z.string().min(8, {
     message: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
@@ -38,7 +38,7 @@ export default function LoginPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
       // rememberMe: false,
     },
@@ -48,7 +48,7 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       const res = await api.post("/users/auth/token/", {
-        email: values.email,
+        username: values.username,
         password: values.password,
       });
 
@@ -114,7 +114,7 @@ export default function LoginPage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
-                name="email"
+                name="username"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>ایمیل</FormLabel>
