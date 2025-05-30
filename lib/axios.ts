@@ -1,9 +1,8 @@
-import { Value } from '@radix-ui/react-select';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { useEffect } from 'react';
 
-let accessToken: string | null = null;
-let refreshToken: string | null = null;
+// Initialize tokens from localStorage if available
+let accessToken: string | null = typeof localStorage !== 'undefined' ? localStorage.getItem("token") : null;
+let refreshToken: string | null = typeof localStorage !== 'undefined' ? localStorage.getItem("refreshToken") : null;
 
 export const setAccessToken = (token: string) => {
     accessToken = token;
@@ -12,6 +11,7 @@ export const setAccessToken = (token: string) => {
 
 export const setRefreshToken = (token: string) => {
     refreshToken = token;
+    localStorage.setItem("refreshToken", token);
 };
 
 const api = axios.create({
@@ -50,7 +50,7 @@ api.interceptors.response.use(
                     throw new Error('No refresh token available');
                 }
 
-                const res = await authApi.post<{ access: string }>('/users/auth/token/refresh/', {
+                const res = await authApi.post<{ access: string }>('api/v1/users/auth/token/refresh/', {
                     refresh: refreshToken,
                 });
 
