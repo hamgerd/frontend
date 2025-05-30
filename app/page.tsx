@@ -14,9 +14,7 @@ export default function Home() {
   useEffect(() => {
     const fetchFeaturedEvents = async () => {
       try {
-        const res = await api.get(
-          "http://localhost:8000/api/v1/events/featured/"
-        );
+        const res = await api.get("api/v1/events/featured/");
         if (res.data) {
           setFeaturedEvents(res.data);
         }
