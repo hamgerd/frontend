@@ -16,13 +16,27 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import api from "@/lib/axios";
 
 export default function Header() {
   const { setTheme } = useTheme();
   const [Token, setToken] = useState<boolean>();
+  const [userData, setUserData] = useState<any>(null);
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     setToken(!!storedToken);
+
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get("/api/v1/users/me/");
+        console.log(response.data.image);
+        setUserData(response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
   }, []);
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center">
@@ -94,8 +108,10 @@ export default function Header() {
           {Token ? (
             <a href="/dashboard">
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarImage
+                  src={userData?.image || "https://github.com/shadcn.png"}
+                />
+                <AvatarFallback>HAM</AvatarFallback>
               </Avatar>
             </a>
           ) : (
