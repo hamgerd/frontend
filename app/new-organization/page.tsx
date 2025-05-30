@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Upload } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import api from "@/lib/axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -39,27 +40,38 @@ const organizationFormSchema = z.object({
   name: z.string().min(3, {
     message: "نام سازمان باید حداقل ۳ کاراکتر باشد.",
   }),
-  description: z.string().min(20, {
-    message: "توضیحات باید حداقل ۲۰ کاراکتر باشد.",
-  }),
-  category: z.string({
-    required_error: "لطفا یک دسته‌بندی انتخاب کنید.",
-  }),
-  foundedYear: z.string({
-    required_error: "لطفا سال تاسیس را وارد کنید.",
-  }),
-  location: z.string().min(2, {
-    message: "شهر باید حداقل ۲ کاراکتر باشد.",
-  }),
-  address: z.string().min(10, {
-    message: "آدرس باید حداقل ۱۰ کاراکتر باشد.",
-  }),
+  description: z.string().optional(),
+  category: z
+    .string({
+      required_error: "لطفا یک دسته‌بندی انتخاب کنید.",
+    })
+    .optional(),
+  foundedYear: z
+    .string({
+      required_error: "لطفا سال تاسیس را وارد کنید.",
+    })
+    .optional(),
+  location: z.string().optional(),
+  address: z.string().optional(),
   phone: z.string().min(10, {
     message: "شماره تلفن باید حداقل ۱۰ کاراکتر باشد.",
   }),
-  email: z.string().email({
-    message: "لطفا یک ایمیل معتبر وارد کنید.",
-  }),
+  email: z
+    .string()
+    .email({
+      message: "لطفا یک ایمیل معتبر وارد کنید.",
+    })
+    .or(z.literal(""))
+    .optional(),
+  username: z
+    .string()
+    .min(3, { message: "نام کاربری باید حداقل ۳ حرف باشد" })
+    .max(20, { message: "نام کاربری باید حداکثر ۲۰ حرف باشد" })
+    .regex(/^[A-Za-z0-9_]+$/, {
+      message:
+        "نام کاربری فقط می‌تواند شامل حروف انگلیسی، اعداد و زیرخط (_) باشد",
+    }),
+
   website: z.string().optional(),
   facebook: z.string().optional(),
   twitter: z.string().optional(),
@@ -91,23 +103,53 @@ export default function NewOrganizationPage() {
       linkedin: "",
     },
   });
-
-  function onSubmit(values: z.infer<typeof organizationFormSchema>) {
+  async function onSubmit(values: z.infer<typeof organizationFormSchema>) {
     setIsLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      await api.post("/api/v1/organization/", {
+        name: values.name,
+        username: values.username,
+        email: values.email,
+        description: values.description,
+        address: values.address,
+        website: values.website,
+        phone: values.phone,
+        location: values.location,
+        linkedin: values.linkedin,
+        instagram: values.instagram,
+        category: values.category,
+        foundedYear: values.foundedYear,
+        twitter: values.twitter,
+      });
+
+      // Log successful submission
       console.log(values);
       console.log("Logo file:", logoFile);
       console.log("Cover file:", coverFile);
-      setIsLoading(false);
+
       toast({
         title: "سازمان با موفقیت ایجاد شد",
         description: "سازمان شما ایجاد شد و برای بررسی ارسال شد.",
       });
-    }, 1000);
+    } catch (error) {
+      console.error("Error submitting organization:", error);
+      toast({
+        title: "خطا در ایجاد سازمان",
+        description:
+          "مشکلی در ایجاد سازمان به وجود آمد. لطفا دوباره تلاش کنید.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/login";
+    }
+  }, []);
   return (
     <div className="container mx-auto py-10">
       <div className="flex items-center mb-6">
@@ -154,6 +196,19 @@ export default function NewOrganizationPage() {
                       نام سازمان خود را وارد کنید. این نام در همه جا نمایش داده
                       می‌شود.
                     </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>یوزنیم</FormLabel>
+                    <FormControl>
+                      <Input placeholder="programming_inc" {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
