@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,10 +15,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Header() {
   const { setTheme } = useTheme();
-
+  const [Token, setToken] = useState<boolean>();
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(!!storedToken);
+  }, []);
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center">
       <div className="container flex h-20 items-center justify-between lg:space-x-4 ;g:px-6 py-4 mx-auto">
@@ -85,14 +91,25 @@ export default function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Link href="/login">
-            <Button variant="outline" size="default" className="">
-              ورود
-            </Button>
-          </Link>
-          <Link href="/signup">
-            <Button size="default">ثبت نام</Button>
-          </Link>
+          {Token ? (
+            <a href="/dashboard">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </a>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button variant="outline" size="default" className="">
+                  ورود
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button size="default">ثبت نام</Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

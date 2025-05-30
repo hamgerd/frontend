@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().min(3, {
@@ -28,19 +28,18 @@ const formSchema = z.object({
   password: z.string().min(8, {
     message: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
   }),
-  // rememberMe: z.boolean().default(false),
+  rememberMe: z.boolean().default(false),
 });
 
 export default function LoginPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
-      // rememberMe: false,
+      rememberMe: false,
     },
   });
 
@@ -63,16 +62,21 @@ export default function LoginPage() {
       );
 
       setAccessToken(accessRes.data.access);
-
+      if (res.status == 200) {
+        window.location.href = "/";
+      }
       toast({
         title: "ورود موفقیت‌آمیز",
         description: "شما با موفقیت وارد شدید.",
+        variant: "default",
       });
     } catch (err) {
       console.log(err);
+      console.log("Toast error being called");
       toast({
         title: "ورود ناموفق",
         description: "ورود شما ناموفق بود. لطفاً دوباره تلاش کنید.",
+        variant: "destructive",
       });
     } finally {
       setIsLoading(false);

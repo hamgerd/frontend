@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -20,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useEffect } from "react";
 
 export default function Dashboard() {
   // Mock data for dashboard
@@ -83,7 +85,12 @@ export default function Dashboard() {
       time: "۱ روز پیش",
     },
   ];
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/login";
+    }
+  }, []);
   return (
     <div className="container py-10 mx-auto">
       <div className="mx-4">

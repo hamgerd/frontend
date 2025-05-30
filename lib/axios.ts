@@ -1,10 +1,13 @@
+import { Value } from '@radix-ui/react-select';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { useEffect } from 'react';
 
 let accessToken: string | null = null;
 let refreshToken: string | null = null;
 
 export const setAccessToken = (token: string) => {
     accessToken = token;
+    localStorage.setItem("token", token);
 };
 
 export const setRefreshToken = (token: string) => {
