@@ -15,17 +15,17 @@ export const setRefreshToken = (token: string) => {
 };
 
 const api = axios.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     withCredentials: true,
 });
 
 // Separate instance for refreshing tokens (no interceptors)
 const authApi = axios.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     withCredentials: true,
 });
 
-// Request interceptor
+// Request interceptor  
 api.interceptors.request.use(
     (config) => {
         if (accessToken && config.headers) {
