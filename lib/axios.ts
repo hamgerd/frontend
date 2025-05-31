@@ -15,7 +15,7 @@ export const setRefreshToken = (token: string) => {
 };
 
 const api = axios.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: 'http://api.stage.hamgerd.ir/',
     withCredentials: true,
 });
 

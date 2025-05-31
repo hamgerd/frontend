@@ -96,12 +96,6 @@ export default function Dashboard() {
       <div className="mx-4">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold">داشبورد</h1>
-          <Button asChild variant="outline">
-            <Link href="/settings">
-              <Settings className="mr-2 h-4 w-4" />
-              تنظیمات
-            </Link>
-          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
