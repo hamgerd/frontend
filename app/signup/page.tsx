@@ -154,10 +154,17 @@ export default function SignupPage() {
                       <FormLabel>
                         با{" "}
                         <Link
+                          href="/tos"
+                          className="text-primary hover:underline"
+                        >
+                          شرایط استفاده
+                        </Link>{" "}
+                        و{" "}
+                        <Link
                           href="/terms"
                           className="text-primary hover:underline"
                         >
-                          قوانین و مقررات
+                          حریم خصوصی
                         </Link>{" "}
                         موافقم
                       </FormLabel>
