@@ -20,22 +20,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-
-const formSchema = z.object({
-  email: z.string().min(3, {
-    message: "نام کاربری باید حداقل ۳ کاراکتر باشد.",
-  }),
-  password: z.string().min(8, {
-    message: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
-  }),
-  rememberMe: z.boolean().default(false),
-});
+import { loginSchema } from "@/validator/login-schema";
 
 export default function LoginPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -43,11 +34,11 @@ export default function LoginPage() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
     setIsLoading(true);
     try {
       const res = await api.post("api/v1/users/auth/token/", {
-        email: values.email,
+        email: values.email.toLowerCase(),
         password: values.password,
       });
 

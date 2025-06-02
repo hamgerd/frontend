@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar, MapPin, Search, Users } from "lucide-react";
@@ -12,83 +13,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
+import api from "@/lib/axios";
+import { Organization } from "@/models/organization";
 
 export default function OrganizationsPage() {
-  // Mock organizations data
-  const organizations = [
-    {
-      id: 1,
-      name: "انجمن برنامه‌نویسان ایران",
-      description:
-        "انجمن برنامه‌نویسان ایران یک سازمان غیرانتفاعی است که با هدف توسعه دانش برنامه‌نویسی و فناوری‌های مرتبط در ایران فعالیت می‌کند.",
-      logo: "/placeholder.svg?height=200&width=200",
-      location: "تهران",
-      eventCount: 12,
-      memberCount: 1500,
-      category: "فناوری",
-      verified: true,
-    },
-    {
-      id: 2,
-      name: "موسسه آموزشی نوآوران",
-      description:
-        "موسسه آموزشی نوآوران با هدف ارائه آموزش‌های کاربردی و تخصصی در حوزه‌های مختلف فعالیت می‌کند.",
-      logo: "/placeholder.svg?height=200&width=200",
-      location: "اصفهان",
-      eventCount: 8,
-      memberCount: 800,
-      category: "آموزشی",
-      verified: true,
-    },
-    {
-      id: 3,
-      name: "انجمن مدیران کسب و کار",
-      description:
-        "انجمن مدیران کسب و کار با هدف توسعه مهارت‌های مدیریتی و کارآفرینی در ایران فعالیت می‌کند.",
-      logo: "/placeholder.svg?height=200&width=200",
-      location: "مشهد",
-      eventCount: 15,
-      memberCount: 1200,
-      category: "کسب و کار",
-      verified: false,
-    },
-    {
-      id: 4,
-      name: "گروه طراحان خلاق",
-      description:
-        "گروه طراحان خلاق متشکل از طراحان و هنرمندان حرفه‌ای است که در زمینه طراحی گرافیک و تجربه کاربری فعالیت می‌کنند.",
-      logo: "/placeholder.svg?height=200&width=200",
-      location: "شیراز",
-      eventCount: 6,
-      memberCount: 500,
-      category: "طراحی",
-      verified: true,
-    },
-    {
-      id: 5,
-      name: "انجمن بازاریابی دیجیتال",
-      description:
-        "انجمن بازاریابی دیجیتال با هدف توسعه دانش و مهارت‌های بازاریابی دیجیتال در ایران فعالیت می‌کند.",
-      logo: "/placeholder.svg?height=200&width=200",
-      location: "تهران",
-      eventCount: 10,
-      memberCount: 900,
-      category: "بازاریابی",
-      verified: true,
-    },
-    {
-      id: 6,
-      name: "مرکز نوآوری و کارآفرینی",
-      description:
-        "مرکز نوآوری و کارآفرینی با هدف حمایت از استارتاپ‌ها و ایده‌های نوآورانه فعالیت می‌کند.",
-      logo: "/placeholder.svg?height=200&width=200",
-      location: "تبریز",
-      eventCount: 7,
-      memberCount: 600,
-      category: "کارآفرینی",
-      verified: false,
-    },
-  ];
+  const [organizations, setOrganizations] = useState<Organization[]>([]);
+
+  useEffect(() => {
+    const fetchOrganizations = async () => {
+      try {
+        const res = await api.get("/api/v1/organization/");
+        setOrganizations(res.data);
+      } catch (err) {
+        console.log("error massage is: " + err);
+      }
+    };
+
+    fetchOrganizations();
+  }, []);
 
   return (
     <div className="container py-10 mx-auto">
@@ -147,7 +90,7 @@ export default function OrganizationsPage() {
             <div className="p-6 flex flex-col items-center">
               <div className="relative h-24 w-24 rounded-full overflow-hidden mb-4 bg-muted">
                 <Image
-                  src={org.logo || "/placeholder.svg"}
+                  src={org.image || "/placeholder.svg"}
                   alt={org.name}
                   fill
                   className="object-cover"
@@ -178,7 +121,7 @@ export default function OrganizationsPage() {
                 </div>
                 <div className="flex items-center gap-1 text-muted-foreground text-sm">
                   <Users className="h-4 w-4" />
-                  <span>{org.memberCount.toLocaleString("fa-IR")} عضو</span>
+                  {/* <span>{org.memberCount.toLocaleString("fa-IR")} عضو</span> */}
                 </div>
               </div>
             </div>
@@ -194,7 +137,7 @@ export default function OrganizationsPage() {
         ))}
       </div>
 
-      <div className="flex justify-center my-8">
+      {/* <div className="flex justify-center my-8">
         <div className="flex space-x-1 space-x-reverse">
           <Button variant="outline" size="icon">
             <span className="sr-only">صفحه قبل</span>
@@ -240,7 +183,7 @@ export default function OrganizationsPage() {
             </svg>
           </Button>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
         <h2 className="text-2xl font-bold">

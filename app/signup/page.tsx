@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { signupSchema } from "@/validator/signup-schema";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -21,32 +22,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import api from "@/lib/axios";
 
-const formSchema = z
-  .object({
-    email: z.string().email({
-      message: "لطفا یک ایمیل معتبر وارد کنید.",
-    }),
-    password: z.string().min(8, {
-      message: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
-    }),
-    confirmPassword: z.string().min(8, {
-      message: "تکرار رمز عبور باید حداقل ۸ کاراکتر باشد.",
-    }),
-    terms: z.boolean().refine((val) => val === true, {
-      message: "شما باید با قوانین و مقررات موافقت کنید.",
-    }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "رمز عبور و تکرار آن باید یکسان باشند.",
-    path: ["confirmPassword"],
-  });
-
 export default function SignupPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof signupSchema>>({
+    resolver: zodResolver(signupSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -55,24 +36,19 @@ export default function SignupPage() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof signupSchema>) {
     setIsLoading(true);
-
     try {
       await api.post("/api/v1/users/register/", {
-        email: values.email,
+        email: values.email.toLowerCase(),
         password: values.password,
       });
-      // FIXME
+
       toast({
         title: "ثبت‌نام موفقیت‌آمیز",
         description: "حساب کاربری شما با موفقیت ایجاد شد.",
       });
-
-      console.log(values);
     } catch (err) {
-      console.error(err);
-
       toast({
         title: "خطا در ثبت‌نام",
         description: "لطفاً دوباره تلاش کنید.",
@@ -178,10 +154,17 @@ export default function SignupPage() {
                       <FormLabel>
                         با{" "}
                         <Link
+                          href="/tos"
+                          className="text-primary hover:underline"
+                        >
+                          شرایط استفاده
+                        </Link>{" "}
+                        و{" "}
+                        <Link
                           href="/terms"
                           className="text-primary hover:underline"
                         >
-                          قوانین و مقررات
+                          حریم خصوصی
                         </Link>{" "}
                         موافقم
                       </FormLabel>

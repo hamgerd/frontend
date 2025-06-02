@@ -28,6 +28,18 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen w-full">
+      {process.env.NEXT_PUBLIC_DEV_MODE === "true" && (
+        <div className="w-full bg-yellow-100 text-yellow-800 px-6 py-4 border-b border-yellow-300">
+          <div className="max-w-4xl mx-auto flex items-center justify-between">
+            <div className="text-sm font-medium">
+              🧪 <span className="font-bold">Debug Mode</span> is enabled
+            </div>
+            <div className="text-xs text-yellow-700">
+              Environment: <code>{process.env.NODE_ENV}</code>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Hero Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted flex items-center justify-center">
         <div className="container px-4 md:px-6 mx-auto">

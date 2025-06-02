@@ -12,6 +12,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";
@@ -106,14 +108,39 @@ export default function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           {Token ? (
-            <a href="/dashboard">
-              <Avatar>
-                <AvatarImage
-                  src={userData?.image || "https://github.com/shadcn.png"}
-                />
-                <AvatarFallback>HAM</AvatarFallback>
-              </Avatar>
-            </a>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                {" "}
+                <a href="/dashboard">
+                  <Avatar>
+                    <AvatarImage
+                      src={userData?.image || "https://github.com/shadcn.png"}
+                    />
+                    <AvatarFallback>HAM</AvatarFallback>
+                  </Avatar>
+                </a>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <Link href="/dashboard">
+                  <DropdownMenuLabel className="cursor-pointer">
+                    داشبورد
+                  </DropdownMenuLabel>
+                </Link>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("refreshToken");
+                    window.location.reload();
+                  }}
+                >
+                  خروج
+                </DropdownMenuItem>
+                <Link href="/dashboard/tickets">
+                  <DropdownMenuItem>بلیط های من</DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <>
               <Link href="/login">
