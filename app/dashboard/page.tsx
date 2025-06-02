@@ -1,3 +1,4 @@
+"use client";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
@@ -7,7 +8,22 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import data from "./data.json";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { useEffect, useState } from "react";
 export default function Dashboard() {
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/";
+    } else {
+      setAuthorized(true);
+    }
+  }, []);
+
+  if (authorized === null) {
+    return null;
+  }
   return (
     <SidebarProvider>
       <AppSidebar variant="inset" />
