@@ -1,9 +1,19 @@
-"use client"
+"use client";
 
-import { FolderIcon, MoreHorizontalIcon, ShareIcon, type LucideIcon } from "lucide-react"
-import Link from "next/link"
+import {
+  FolderIcon,
+  MoreHorizontalIcon,
+  ShareIcon,
+  type LucideIcon,
+} from "lucide-react";
+import Link from "next/link";
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -12,62 +22,62 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export function NavDocuments({
   items,
 }: {
   items: {
-    name: string
-    url: string
-    icon: LucideIcon
-  }[]
+    name: string;
+    url: string;
+    icon: LucideIcon;
+  }[];
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
 
-  return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>ابزارها</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <Link href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
-              </Link>
-            </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover className="rounded-sm data-[state=open]:bg-accent">
-                  <MoreHorizontalIcon />
-                  <span className="sr-only">بیشتر</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-24 rounded-lg"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                <DropdownMenuItem>
-                  <FolderIcon />
-                  <span>باز کردن</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <ShareIcon />
-                  <span>اشتراک</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        ))}
-        <SidebarMenuItem>
-          <SidebarMenuButton className="text-sidebar-foreground/70">
-            <MoreHorizontalIcon className="text-sidebar-foreground/70" />
-            <span>بیشتر</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
-    </SidebarGroup>
-  )
+  // return (
+  //   <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+  //     <SidebarGroupLabel>ابزارها</SidebarGroupLabel>
+  //     <SidebarMenu>
+  //       {items.map((item) => (
+  //         <SidebarMenuItem key={item.name}>
+  //           <SidebarMenuButton asChild>
+  //             <Link href={item.url}>
+  //               <item.icon />
+  //               <span>{item.name}</span>
+  //             </Link>
+  //           </SidebarMenuButton>
+  //           <DropdownMenu>
+  //             <DropdownMenuTrigger asChild>
+  //               <SidebarMenuAction showOnHover className="rounded-sm data-[state=open]:bg-accent">
+  //                 <MoreHorizontalIcon />
+  //                 <span className="sr-only">بیشتر</span>
+  //               </SidebarMenuAction>
+  //             </DropdownMenuTrigger>
+  //             <DropdownMenuContent
+  //               className="w-24 rounded-lg"
+  //               side={isMobile ? "bottom" : "right"}
+  //               align={isMobile ? "end" : "start"}
+  //             >
+  //               <DropdownMenuItem>
+  //                 <FolderIcon />
+  //                 <span>باز کردن</span>
+  //               </DropdownMenuItem>
+  //               <DropdownMenuItem>
+  //                 <ShareIcon />
+  //                 <span>اشتراک</span>
+  //               </DropdownMenuItem>
+  //             </DropdownMenuContent>
+  //           </DropdownMenu>
+  //         </SidebarMenuItem>
+  //       ))}
+  //       <SidebarMenuItem>
+  //         <SidebarMenuButton className="text-sidebar-foreground/70">
+  //           <MoreHorizontalIcon className="text-sidebar-foreground/70" />
+  //           <span>بیشتر</span>
+  //         </SidebarMenuButton>
+  //       </SidebarMenuItem>
+  //     </SidebarMenu>
+  //   </SidebarGroup>
+  // )
 }
