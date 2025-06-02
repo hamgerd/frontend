@@ -38,7 +38,7 @@ export default function LoginPage() {
     setIsLoading(true);
     try {
       const res = await api.post("api/v1/users/auth/token/", {
-        email: values.email,
+        email: values.email.toLowerCase(),
         password: values.password,
       });
 

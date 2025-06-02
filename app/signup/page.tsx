@@ -40,7 +40,7 @@ export default function SignupPage() {
     setIsLoading(true);
     try {
       await api.post("/api/v1/users/register/", {
-        email: values.email,
+        email: values.email.toLowerCase(),
         password: values.password,
       });
 
