@@ -29,7 +29,7 @@ export interface TicketType {
    * @type {string}
    * @memberof TicketType
    */
-  title: string;
+  public_id?: string;
 
   /**
    * @type {string}

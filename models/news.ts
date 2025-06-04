@@ -16,36 +16,37 @@
  *
  *
  * @export
- * @interface User
+ * @interface News
  */
-export interface User {
+export interface News {
+
   /**
    * @type {number}
-   * @memberof User
+   * @memberof News
    */
   id?: number;
 
   /**
    * @type {string}
-   * @memberof User
+   * @memberof News
    */
-  email: string;
+  title: string;
 
   /**
    * @type {string}
-   * @memberof User
+   * @memberof News
    */
-  first_name?: string;
+  slug?: string;
 
   /**
    * @type {string}
-   * @memberof User
+   * @memberof News
    */
-  last_name?: string;
+  content: string;
 
   /**
-   * @type {Array<number>}
-   * @memberof User
+   * @type {Date}
+   * @memberof News
    */
-  organizations: Array<number>;
+  created_at?: Date;
 }

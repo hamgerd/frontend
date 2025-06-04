@@ -12,9 +12,16 @@
  * Do not edit the class manually.
  */
 
+<<<<<<< HEAD
 import { Organization } from "./organization";
 /**
  *
+=======
+import { Organization } from './organization';
+import { TicketType } from './ticket-type';
+ /**
+ * 
+>>>>>>> 8c14cf2 (update models)
  *
  * @export
  * @interface Event
@@ -26,11 +33,19 @@ export interface Event {
    */
   id?: number;
 
+<<<<<<< HEAD
   /**
    * @type {string}
    * @memberof Event
    */
   title: string;
+=======
+    /**
+     * @type {string}
+     * @memberof Event
+     */
+    public_id?: string;
+>>>>>>> 8c14cf2 (update models)
 
   /**
    * @type {string}
@@ -51,10 +66,16 @@ export interface Event {
   image?: string | null;
 
   /**
-   * @type {number}
+   * @type {Array<TicketType>}
    * @memberof Event
    */
-  category?: number | null;
+  ticket_types: Array<TicketType>;
+
+  /**
+   * @type {string}
+   * @memberof Event
+   */
+  image?: string | null;
 
   /**
    * @type {Date}
@@ -78,7 +99,7 @@ export interface Event {
    * @type {string}
    * @memberof Event
    */
-  max_participants?: string;
+  location?: string | null;
 
   /**
    * @type {boolean}

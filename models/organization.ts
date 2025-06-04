@@ -12,13 +12,12 @@
  * Do not edit the class manually.
  */
 
-import { User } from "./user";
 /**
- *
- *
- * @export
- * @interface Organization
- */
+* 
+*
+* @export
+* @interface Organization
+*/
 export interface Organization {
   /**
    * @type {number}
@@ -30,7 +29,7 @@ export interface Organization {
    * @type {string}
    * @memberof Organization
    */
-  name: string;
+  public_id?: string;
 
   /**
    * @type {string}
@@ -42,7 +41,19 @@ export interface Organization {
    * @type {string}
    * @memberof Organization
    */
-  email?: string | null;
+  username: string;
+
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  image?: string;
+
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  description?: string;
 
   /**
    * @type {User}
@@ -61,16 +72,4 @@ export interface Organization {
    * @memberof Organization
    */
   website?: string | null;
-
-  /**
-   * @type {Date}
-   * @memberof Organization
-   */
-  created_at?: Date;
-
-  /**
-   * @type {Date}
-   * @memberof Organization
-   */
-  updated_at?: Date;
 }

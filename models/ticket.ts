@@ -12,13 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { TicketType } from "./ticket-type";
+import { TicketTransactionSerializerPublic } from './ticket-transaction-serializer-public';
+import { TicketType } from './ticket-type';
 /**
- *
- *
- * @export
- * @interface Ticket
- */
+* 
+*
+* @export
+* @interface Ticket
+*/
 export interface Ticket {
   /**
    * @type {number}
@@ -27,10 +28,10 @@ export interface Ticket {
   id?: number;
 
   /**
-   * @type {TicketType}
+   * @type {string}
    * @memberof Ticket
    */
-  ticket_type?: TicketType;
+  public_id?: string;
 
   /**
    * @type {string}
@@ -66,7 +67,19 @@ export interface Ticket {
    * @type {Date}
    * @memberof Ticket
    */
+  created_at?: Date;
+
+  /**
+   * @type {Date}
+   * @memberof Ticket
+   */
   updated_at?: Date;
+
+  /**
+   * @type {TicketTransactionSerializerPublic}
+   * @memberof Ticket
+   */
+  transactions?: TicketTransactionSerializerPublic;
 }
 
 /**

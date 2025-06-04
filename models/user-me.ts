@@ -30,7 +30,7 @@ export interface UserME {
    * @type {string}
    * @memberof UserME
    */
-  email: string;
+  public_id?: string;
 
   /**
    * @type {string}
@@ -43,6 +43,18 @@ export interface UserME {
    * @memberof UserME
    */
   last_name?: string;
+
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  last_name?: string;
+
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  image?: string;
 
   /**
    * @type {Array<Organization>}
