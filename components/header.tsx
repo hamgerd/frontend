@@ -110,7 +110,6 @@ export default function Header() {
           {Token ? (
             <DropdownMenu>
               <DropdownMenuTrigger>
-                {" "}
                 <a href="/dashboard">
                   <Avatar>
                     <AvatarImage
@@ -122,12 +121,13 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <Link href="/dashboard">
-                  <DropdownMenuLabel className="cursor-pointer">
+                  <DropdownMenuLabel className="cursor-pointer text-end">
                     داشبورد
                   </DropdownMenuLabel>
                 </Link>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
+                  dir="rtl"
                   onClick={() => {
                     localStorage.removeItem("token");
                     localStorage.removeItem("refreshToken");
@@ -137,11 +137,12 @@ export default function Header() {
                   خروج
                 </DropdownMenuItem>
                 <Link href="/dashboard/tickets">
-                  <DropdownMenuItem>بلیط های من</DropdownMenuItem>
+                  <DropdownMenuItem dir="rtl">بلیط های من</DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
+            // </div>
             <>
               <Link href="/login">
                 <Button variant="outline" size="default" className="">
