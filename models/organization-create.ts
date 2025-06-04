@@ -36,6 +36,12 @@ export interface OrganizationCreate {
      * @type {string}
      * @memberof OrganizationCreate
      */
+    image?: string;
+
+    /**
+     * @type {string}
+     * @memberof OrganizationCreate
+     */
     description?: string;
 
     /**

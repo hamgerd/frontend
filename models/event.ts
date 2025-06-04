@@ -13,6 +13,7 @@
  */
 
 import { Organization } from './organization';
+import { TicketType } from './ticket-type';
  /**
  * 
  *
@@ -22,10 +23,10 @@ import { Organization } from './organization';
 export interface Event {
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof Event
      */
-    id?: number;
+    public_id?: string;
 
     /**
      * @type {string}
@@ -44,6 +45,12 @@ export interface Event {
      * @memberof Event
      */
     organization?: Organization;
+
+    /**
+     * @type {Array<TicketType>}
+     * @memberof Event
+     */
+    ticket_types: Array<TicketType>;
 
     /**
      * @type {string}
@@ -73,7 +80,7 @@ export interface Event {
      * @type {string}
      * @memberof Event
      */
-    location: string;
+    location?: string | null;
 
     /**
      * @type {string}

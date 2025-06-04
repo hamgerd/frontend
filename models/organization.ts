@@ -12,7 +12,6 @@
  * Do not edit the class manually.
  */
 
-import { User } from './user';
  /**
  * 
  *
@@ -22,16 +21,28 @@ import { User } from './user';
 export interface Organization {
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof Organization
      */
-    id?: number;
+    public_id?: string;
 
     /**
      * @type {string}
      * @memberof Organization
      */
     name: string;
+
+    /**
+     * @type {string}
+     * @memberof Organization
+     */
+    username: string;
+
+    /**
+     * @type {string}
+     * @memberof Organization
+     */
+    image?: string;
 
     /**
      * @type {string}
@@ -46,12 +57,6 @@ export interface Organization {
     email?: string | null;
 
     /**
-     * @type {User}
-     * @memberof Organization
-     */
-    owner?: User;
-
-    /**
      * @type {string}
      * @memberof Organization
      */
@@ -62,16 +67,4 @@ export interface Organization {
      * @memberof Organization
      */
     website?: string | null;
-
-    /**
-     * @type {Date}
-     * @memberof Organization
-     */
-    created_at?: Date;
-
-    /**
-     * @type {Date}
-     * @memberof Organization
-     */
-    updated_at?: Date;
 }

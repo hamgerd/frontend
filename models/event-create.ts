@@ -25,6 +25,12 @@ export interface EventCreate {
      * @type {string}
      * @memberof EventCreate
      */
+    public_id?: string;
+
+    /**
+     * @type {string}
+     * @memberof EventCreate
+     */
     title: string;
 
     /**
@@ -67,7 +73,7 @@ export interface EventCreate {
      * @type {string}
      * @memberof EventCreate
      */
-    location: string;
+    location?: string | null;
 
     /**
      * @type {Array<TicketType>}

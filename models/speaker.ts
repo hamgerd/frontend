@@ -16,37 +16,37 @@
  * 
  *
  * @export
- * @interface User
+ * @interface Speaker
  */
-export interface User {
-
-    /**
-     * @type {number}
-     * @memberof User
-     */
-    id?: number;
+export interface Speaker {
 
     /**
      * @type {string}
-     * @memberof User
+     * @memberof Speaker
      */
-    email: string;
+    public_id?: string;
 
     /**
      * @type {string}
-     * @memberof User
+     * @memberof Speaker
      */
-    first_name?: string;
+    name: string;
 
     /**
      * @type {string}
-     * @memberof User
+     * @memberof Speaker
      */
-    last_name?: string;
+    image?: string | null;
 
     /**
-     * @type {Array<number>}
-     * @memberof User
+     * @type {Date}
+     * @memberof Speaker
      */
-    organizations: Array<number>;
+    created_at?: Date;
+
+    /**
+     * @type {Date}
+     * @memberof Speaker
+     */
+    updated_at?: Date;
 }

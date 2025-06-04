@@ -21,10 +21,10 @@
 export interface TicketType {
 
     /**
-     * @type {number}
+     * @type {string}
      * @memberof TicketType
      */
-    id?: number;
+    public_id?: string;
 
     /**
      * @type {string}
