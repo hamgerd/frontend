@@ -17,10 +17,18 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  applicationName: siteConfig.applicationName,
+  category: siteConfig.category,
+  viewport: siteConfig.viewport,
+  alternates: siteConfig.alternates,
+  openGraph: siteConfig.openGraph,
+  robots: siteConfig.robots,
+  twitter: siteConfig.twitter,
 };
 
 const vazir = localFont({
