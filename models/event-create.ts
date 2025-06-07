@@ -20,7 +20,6 @@ import { TicketType } from "./ticket-type";
  * @interface EventCreate
  */
 export interface EventCreate {
-
   /**
    * @type {string}
    * @memberof EventCreate

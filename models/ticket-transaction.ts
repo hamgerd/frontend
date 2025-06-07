@@ -12,67 +12,66 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TicketTransaction
  */
 export interface TicketTransaction {
+  /**
+   * @type {string}
+   * @memberof TicketTransaction
+   */
+  public_id?: string;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransaction
-     */
-    public_id?: string;
+  /**
+   * @type {string}
+   * @memberof TicketTransaction
+   */
+  amount?: string;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransaction
-     */
-    amount?: string;
+  /**
+   * @type {string}
+   * @memberof TicketTransaction
+   */
+  currency?: TicketTransactionCurrencyEnum;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransaction
-     */
-    currency?: TicketTransactionCurrencyEnum;
+  /**
+   * @type {string}
+   * @memberof TicketTransaction
+   */
+  authority?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransaction
-     */
-    authority?: string | null;
+  /**
+   * @type {string}
+   * @memberof TicketTransaction
+   */
+  status?: TicketTransactionStatusEnum;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransaction
-     */
-    status?: TicketTransactionStatusEnum;
+  /**
+   * @type {Date}
+   * @memberof TicketTransaction
+   */
+  created_at?: Date;
 
-    /**
-     * @type {Date}
-     * @memberof TicketTransaction
-     */
-    created_at?: Date;
+  /**
+   * @type {string}
+   * @memberof TicketTransaction
+   */
+  transaction_id?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransaction
-     */
-    transaction_id?: string | null;
+  /**
+   * @type {Date}
+   * @memberof TicketTransaction
+   */
+  paid_at?: Date | null;
 
-    /**
-     * @type {Date}
-     * @memberof TicketTransaction
-     */
-    paid_at?: Date | null;
-
-    /**
-     * @type {number}
-     * @memberof TicketTransaction
-     */
-    ticket?: number | null;
+  /**
+   * @type {number}
+   * @memberof TicketTransaction
+   */
+  ticket?: number | null;
 }
 
 /**
@@ -80,16 +79,15 @@ export interface TicketTransaction {
  * @enum {string}
  */
 export enum TicketTransactionCurrencyEnum {
-    IRR = 'IRR',
-    IRT = 'IRT'
+  IRR = "IRR",
+  IRT = "IRT",
 }
 /**
  * @export
  * @enum {string}
  */
 export enum TicketTransactionStatusEnum {
-    PENDING = 'PENDING',
-    CONFIRMED = 'CONFIRMED',
-    CANCELLED = 'CANCELLED'
+  PENDING = "PENDING",
+  CONFIRMED = "CONFIRMED",
+  CANCELLED = "CANCELLED",
 }
-

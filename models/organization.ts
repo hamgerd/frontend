@@ -13,11 +13,11 @@
  */
 
 /**
-* 
-*
-* @export
-* @interface Organization
-*/
+ *
+ *
+ * @export
+ * @interface Organization
+ */
 export interface Organization {
   /**
    * @type {number}

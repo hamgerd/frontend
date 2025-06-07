@@ -12,41 +12,40 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface Speaker
  */
 export interface Speaker {
+  /**
+   * @type {string}
+   * @memberof Speaker
+   */
+  public_id?: string;
 
-    /**
-     * @type {string}
-     * @memberof Speaker
-     */
-    public_id?: string;
+  /**
+   * @type {string}
+   * @memberof Speaker
+   */
+  name: string;
 
-    /**
-     * @type {string}
-     * @memberof Speaker
-     */
-    name: string;
+  /**
+   * @type {string}
+   * @memberof Speaker
+   */
+  image?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof Speaker
-     */
-    image?: string | null;
+  /**
+   * @type {Date}
+   * @memberof Speaker
+   */
+  created_at?: Date;
 
-    /**
-     * @type {Date}
-     * @memberof Speaker
-     */
-    created_at?: Date;
-
-    /**
-     * @type {Date}
-     * @memberof Speaker
-     */
-    updated_at?: Date;
+  /**
+   * @type {Date}
+   * @memberof Speaker
+   */
+  updated_at?: Date;
 }

@@ -12,23 +12,22 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TicketCreate
  */
 export interface TicketCreate {
+  /**
+   * @type {number}
+   * @memberof TicketCreate
+   */
+  ticket_type: number;
 
-    /**
-     * @type {number}
-     * @memberof TicketCreate
-     */
-    ticket_type: number;
-
-    /**
-     * @type {string}
-     * @memberof TicketCreate
-     */
-    notes?: string;
+  /**
+   * @type {string}
+   * @memberof TicketCreate
+   */
+  notes?: string;
 }

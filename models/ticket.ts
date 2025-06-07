@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { TicketTransactionSerializerPublic } from './ticket-transaction-serializer-public';
-import { TicketType } from './ticket-type';
+import { TicketTransactionSerializerPublic } from "./ticket-transaction-serializer-public";
+import { TicketType } from "./ticket-type";
 /**
-* 
-*
-* @export
-* @interface Ticket
-*/
+ *
+ *
+ * @export
+ * @interface Ticket
+ */
 export interface Ticket {
   /**
    * @type {number}

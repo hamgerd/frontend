@@ -12,49 +12,48 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TicketTransactionSerializerPublic
  */
 export interface TicketTransactionSerializerPublic {
+  /**
+   * @type {string}
+   * @memberof TicketTransactionSerializerPublic
+   */
+  public_id?: string;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransactionSerializerPublic
-     */
-    public_id?: string;
+  /**
+   * @type {string}
+   * @memberof TicketTransactionSerializerPublic
+   */
+  amount?: string;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransactionSerializerPublic
-     */
-    amount?: string;
+  /**
+   * @type {string}
+   * @memberof TicketTransactionSerializerPublic
+   */
+  currency?: TicketTransactionSerializerPublicCurrencyEnum;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransactionSerializerPublic
-     */
-    currency?: TicketTransactionSerializerPublicCurrencyEnum;
+  /**
+   * @type {string}
+   * @memberof TicketTransactionSerializerPublic
+   */
+  status?: TicketTransactionSerializerPublicStatusEnum;
 
-    /**
-     * @type {string}
-     * @memberof TicketTransactionSerializerPublic
-     */
-    status?: TicketTransactionSerializerPublicStatusEnum;
+  /**
+   * @type {Date}
+   * @memberof TicketTransactionSerializerPublic
+   */
+  created_at?: Date;
 
-    /**
-     * @type {Date}
-     * @memberof TicketTransactionSerializerPublic
-     */
-    created_at?: Date;
-
-    /**
-     * @type {Date}
-     * @memberof TicketTransactionSerializerPublic
-     */
-    paid_at?: Date | null;
+  /**
+   * @type {Date}
+   * @memberof TicketTransactionSerializerPublic
+   */
+  paid_at?: Date | null;
 }
 
 /**
@@ -62,16 +61,15 @@ export interface TicketTransactionSerializerPublic {
  * @enum {string}
  */
 export enum TicketTransactionSerializerPublicCurrencyEnum {
-    IRR = 'IRR',
-    IRT = 'IRT'
+  IRR = "IRR",
+  IRT = "IRT",
 }
 /**
  * @export
  * @enum {string}
  */
 export enum TicketTransactionSerializerPublicStatusEnum {
-    PENDING = 'PENDING',
-    CONFIRMED = 'CONFIRMED',
-    CANCELLED = 'CANCELLED'
+  PENDING = "PENDING",
+  CONFIRMED = "CONFIRMED",
+  CANCELLED = "CANCELLED",
 }
-

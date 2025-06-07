@@ -19,7 +19,6 @@
  * @interface News
  */
 export interface News {
-
   /**
    * @type {number}
    * @memberof News
