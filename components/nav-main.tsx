@@ -44,7 +44,7 @@ export function NavMain({
           </SidebarMenuItem>
         </SidebarMenu>
         <SidebarMenu>
-          {items.map((item) => {
+          {items.map(item => {
             const isActive = pathname === item.url;
 
             return (

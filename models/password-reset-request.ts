@@ -12,19 +12,18 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface PasswordResetRequest
  */
 export interface PasswordResetRequest {
-
-    /**
-     * The email address of the user requesting a password reset
-     *
-     * @type {string}
-     * @memberof PasswordResetRequest
-     */
-    email: string;
+  /**
+   * The email address of the user requesting a password reset
+   *
+   * @type {string}
+   * @memberof PasswordResetRequest
+   */
+  email: string;
 }

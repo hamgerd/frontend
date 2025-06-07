@@ -1,10 +1,10 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ShareIcon, FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ShareIcon, FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon } from "lucide-react";
 
 const socialNetworks = [
   {
@@ -43,10 +43,10 @@ const socialNetworks = [
     followers: null,
     color: "bg-blue-700",
   },
-]
+];
 
 export default function SocialConnectPage() {
-  const connectedCount = socialNetworks.filter((network) => network.connected).length
+  const connectedCount = socialNetworks.filter(network => network.connected).length;
 
   return (
     <div dir="rtl" className="font-sans dark">
@@ -64,7 +64,8 @@ export default function SocialConnectPage() {
                       مدیریت شبکه‌های اجتماعی
                     </CardTitle>
                     <CardDescription>
-                      حساب‌های شبکه‌های اجتماعی خود را متصل کنید تا بتوانید رویدادها را به راحتی اشتراک‌گذاری کنید
+                      حساب‌های شبکه‌های اجتماعی خود را متصل کنید تا بتوانید رویدادها را به راحتی
+                      اشتراک‌گذاری کنید
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -74,7 +75,9 @@ export default function SocialConnectPage() {
                         <p className="text-sm text-muted-foreground">شبکه متصل شده</p>
                       </div>
                       <div className="text-center p-4 border rounded-lg">
-                        <div className="text-2xl font-bold">{socialNetworks.length - connectedCount}</div>
+                        <div className="text-2xl font-bold">
+                          {socialNetworks.length - connectedCount}
+                        </div>
                         <p className="text-sm text-muted-foreground">شبکه در انتظار اتصال</p>
                       </div>
                     </div>
@@ -82,7 +85,7 @@ export default function SocialConnectPage() {
                 </Card>
 
                 <div className="grid gap-6 md:grid-cols-2">
-                  {socialNetworks.map((network) => (
+                  {socialNetworks.map(network => (
                     <Card key={network.id}>
                       <CardHeader>
                         <div className="flex items-center justify-between">
@@ -125,7 +128,8 @@ export default function SocialConnectPage() {
                         ) : (
                           <div className="space-y-3">
                             <p className="text-sm text-muted-foreground">
-                              با اتصال {network.name} می‌توانید رویدادهای خود را به راحتی اشتراک‌گذاری کنید
+                              با اتصال {network.name} می‌توانید رویدادهای خود را به راحتی
+                              اشتراک‌گذاری کنید
                             </p>
                             <Button className="w-full">اتصال به {network.name}</Button>
                           </div>
@@ -145,7 +149,9 @@ export default function SocialConnectPage() {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="font-medium">اشتراک‌گذاری خودکار خریدها</p>
-                          <p className="text-sm text-muted-foreground">اشتراک‌گذاری خودکار هنگام خرید بلیط</p>
+                          <p className="text-sm text-muted-foreground">
+                            اشتراک‌گذاری خودکار هنگام خرید بلیط
+                          </p>
                         </div>
                         <Button size="sm" variant="outline">
                           غیرفعال
@@ -154,7 +160,9 @@ export default function SocialConnectPage() {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="font-medium">اشتراک‌گذاری علاقه‌مندی‌ها</p>
-                          <p className="text-sm text-muted-foreground">اشتراک‌گذاری رویدادهای مورد علاقه</p>
+                          <p className="text-sm text-muted-foreground">
+                            اشتراک‌گذاری رویدادهای مورد علاقه
+                          </p>
                         </div>
                         <Button size="sm" variant="outline">
                           فعال
@@ -163,7 +171,9 @@ export default function SocialConnectPage() {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="font-medium">اشتراک‌گذاری نظرات</p>
-                          <p className="text-sm text-muted-foreground">اشتراک‌گذاری نظرات و امتیازات</p>
+                          <p className="text-sm text-muted-foreground">
+                            اشتراک‌گذاری نظرات و امتیازات
+                          </p>
                         </div>
                         <Button size="sm" variant="outline">
                           فعال
@@ -178,5 +188,5 @@ export default function SocialConnectPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

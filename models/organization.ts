@@ -12,66 +12,65 @@
  * Do not edit the class manually.
  */
 
-import { User } from './user';
- /**
- * 
+import { User } from "./user";
+/**
+ *
  *
  * @export
  * @interface Organization
  */
 export interface Organization {
+  /**
+   * @type {number}
+   * @memberof Organization
+   */
+  id?: number;
 
-    /**
-     * @type {number}
-     * @memberof Organization
-     */
-    id?: number;
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  name: string;
 
-    /**
-     * @type {string}
-     * @memberof Organization
-     */
-    name: string;
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  description?: string;
 
-    /**
-     * @type {string}
-     * @memberof Organization
-     */
-    description?: string;
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  email?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof Organization
-     */
-    email?: string | null;
+  /**
+   * @type {User}
+   * @memberof Organization
+   */
+  owner?: User;
 
-    /**
-     * @type {User}
-     * @memberof Organization
-     */
-    owner?: User;
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  address?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof Organization
-     */
-    address?: string | null;
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  website?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof Organization
-     */
-    website?: string | null;
+  /**
+   * @type {Date}
+   * @memberof Organization
+   */
+  created_at?: Date;
 
-    /**
-     * @type {Date}
-     * @memberof Organization
-     */
-    created_at?: Date;
-
-    /**
-     * @type {Date}
-     * @memberof Organization
-     */
-    updated_at?: Date;
+  /**
+   * @type {Date}
+   * @memberof Organization
+   */
+  updated_at?: Date;
 }

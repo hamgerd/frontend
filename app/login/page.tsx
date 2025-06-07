@@ -45,12 +45,9 @@ export default function LoginPage() {
       const refresh = res.data.refresh;
       setRefreshToken(refresh);
 
-      const accessRes = await api.post<{ access: string }>(
-        "/api/v1/users/auth/token/refresh/",
-        {
-          refresh,
-        }
-      );
+      const accessRes = await api.post<{ access: string }>("/api/v1/users/auth/token/refresh/", {
+        refresh,
+      });
 
       setAccessToken(accessRes.data.access);
       if (res.status == 200) {
@@ -86,24 +83,18 @@ export default function LoginPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "این پلتفرم به ما کمک کرد تا سمینارهای آموزشی خود را به شکل
-              حرفه‌ای و با کیفیت عالی برگزار کنیم."
+              "این پلتفرم به ما کمک کرد تا سمینارهای آموزشی خود را به شکل حرفه‌ای و با کیفیت عالی
+              برگزار کنیم."
             </p>
-            <footer className="text-sm">
-              محمد علوی - مدیر آموزش شرکت فناوری نوین
-            </footer>
+            <footer className="text-sm">محمد علوی - مدیر آموزش شرکت فناوری نوین</footer>
           </blockquote>
         </div>
       </div>
       <div className="p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              ورود به حساب کاربری
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              اطلاعات حساب کاربری خود را وارد کنید
-            </p>
+            <h1 className="text-2xl font-semibold tracking-tight">ورود به حساب کاربری</h1>
+            <p className="text-sm text-muted-foreground">اطلاعات حساب کاربری خود را وارد کنید</p>
           </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -127,11 +118,7 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>رمز عبور</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="********"
-                        {...field}
-                      />
+                      <Input type="password" placeholder="********" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -143,10 +130,7 @@ export default function LoginPage() {
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
                     {/* FIXME */}
                     <div className="space-y-1 leading-none">
@@ -162,10 +146,7 @@ export default function LoginPage() {
           </Form>
           <div className="text-center text-sm">
             {/* FIXME */}
-            <Link
-              href="/forgot-password"
-              className="text-primary hover:underline"
-            >
+            <Link href="/forgot-password" className="text-primary hover:underline">
               رمز عبور خود را فراموش کرده‌اید؟
             </Link>
           </div>
@@ -174,9 +155,7 @@ export default function LoginPage() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                یا
-              </span>
+              <span className="bg-background px-2 text-muted-foreground">یا</span>
             </div>
           </div>
           <div className="text-center text-sm">

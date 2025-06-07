@@ -12,23 +12,22 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TokenRefresh
  */
 export interface TokenRefresh {
+  /**
+   * @type {string}
+   * @memberof TokenRefresh
+   */
+  refresh: string;
 
-    /**
-     * @type {string}
-     * @memberof TokenRefresh
-     */
-    refresh: string;
-
-    /**
-     * @type {string}
-     * @memberof TokenRefresh
-     */
-    access?: string;
+  /**
+   * @type {string}
+   * @memberof TokenRefresh
+   */
+  access?: string;
 }

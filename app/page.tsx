@@ -73,7 +73,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {featuredEvents.map((event) => (
+            {featuredEvents.map(event => (
               <Card key={event.id} className="overflow-hidden w-full max-w-sm">
                 <div className="relative h-48">
                   <Image

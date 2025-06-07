@@ -1,9 +1,9 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ActivityIcon, ShoppingCartIcon, TicketIcon, HeartIcon, EyeIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ActivityIcon, ShoppingCartIcon, TicketIcon, HeartIcon, EyeIcon } from "lucide-react";
 
 const activities = [
   {
@@ -46,14 +46,14 @@ const activities = [
     icon: TicketIcon,
     color: "text-yellow-500",
   },
-]
+];
 
 const stats = [
   { label: "کل فعالیت‌ها", value: "۱۲۸", change: "+۱۲%" },
   { label: "خریدهای این ماه", value: "۸", change: "+۲۵%" },
   { label: "رویدادهای مشاهده شده", value: "۴۵", change: "+۸%" },
   { label: "علاقه‌مندی‌های جدید", value: "۱۵", change: "+۳۰%" },
-]
+];
 
 export default function ActivitiesPage() {
   return (
@@ -89,8 +89,11 @@ export default function ActivitiesPage() {
                       <CardDescription>آخرین فعالیت‌های شما در سایت</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      {activities.map((activity) => (
-                        <div key={activity.id} className="flex items-center space-x-4 space-x-reverse">
+                      {activities.map(activity => (
+                        <div
+                          key={activity.id}
+                          className="flex items-center space-x-4 space-x-reverse"
+                        >
                           <div className={`p-2 rounded-full bg-muted ${activity.color}`}>
                             <activity.icon className="h-4 w-4" />
                           </div>
@@ -158,5 +161,5 @@ export default function ActivitiesPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

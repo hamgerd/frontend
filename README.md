@@ -1,10 +1,13 @@
+# dev
 
-# dev 
-make sure you have install npm and pnpm 
+make sure you have install npm and pnpm
+
 ```
 pnpm i
 ```
-than 
+
+than
+
 ```
 pnpm run dev
 ```

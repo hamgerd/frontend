@@ -12,17 +12,16 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TokenRefreshResponse
  */
 export interface TokenRefreshResponse {
-
-    /**
-     * @type {string}
-     * @memberof TokenRefreshResponse
-     */
-    access: string;
+  /**
+   * @type {string}
+   * @memberof TokenRefreshResponse
+   */
+  access: string;
 }

@@ -1,14 +1,14 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { DataTable } from "@/components/data-table"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { TicketIcon, CalendarIcon, MapPinIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { DataTable } from "@/components/data-table";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TicketIcon, CalendarIcon, MapPinIcon } from "lucide-react";
 
-import data from "../data.json"
+import data from "../data.json";
 
 export default function TicketsPage() {
-  const ticketData = data.filter((item) => item.eventName)
+  const ticketData = data.filter(item => item.eventName);
 
   return (
     <div dir="rtl" className="font-sans dark">
@@ -66,5 +66,5 @@ export default function TicketsPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

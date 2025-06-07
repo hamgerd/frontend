@@ -1,10 +1,10 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { MessageSquareIcon, MailIcon, BellIcon, AlertCircleIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { MessageSquareIcon, MailIcon, BellIcon, AlertCircleIcon } from "lucide-react";
 
 const messages = [
   {
@@ -52,10 +52,10 @@ const messages = [
     read: true,
     priority: "low",
   },
-]
+];
 
 export default function MessagesPage() {
-  const unreadCount = messages.filter((msg) => !msg.read).length
+  const unreadCount = messages.filter(msg => !msg.read).length;
 
   return (
     <div dir="rtl" className="font-sans dark">
@@ -114,7 +114,7 @@ export default function MessagesPage() {
                   <CardDescription>آخرین پیام‌های دریافتی</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {messages.map((message) => (
+                  {messages.map(message => (
                     <div
                       key={message.id}
                       className={`p-4 border rounded-lg ${!message.read ? "bg-muted/50 border-primary/50" : ""}`}
@@ -122,7 +122,9 @@ export default function MessagesPage() {
                       <div className="flex items-start justify-between">
                         <div className="flex-1 space-y-2">
                           <div className="flex items-center gap-2">
-                            <h4 className={`font-medium ${!message.read ? "font-bold" : ""}`}>{message.subject}</h4>
+                            <h4 className={`font-medium ${!message.read ? "font-bold" : ""}`}>
+                              {message.subject}
+                            </h4>
                             {!message.read && (
                               <Badge variant="destructive" className="text-xs">
                                 جدید
@@ -160,5 +162,5 @@ export default function MessagesPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

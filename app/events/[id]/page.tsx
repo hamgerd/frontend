@@ -129,9 +129,7 @@ export default function EventPage() {
                 <TabsTrigger value="speakers">سخنرانان</TabsTrigger>
               </TabsList>
               <TabsContent value="about" className="mt-6">
-                <p className="mb-6 whitespace-pre-line">
-                  {eventDetails.description}
-                </p>
+                <p className="mb-6 whitespace-pre-line">{eventDetails.description}</p>
 
                 <h3 className="text-lg font-bold mb-2">محل برگزاری</h3>
                 <p className="mb-6">{eventDetails.location}</p>
@@ -217,9 +215,7 @@ export default function EventPage() {
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="font-medium">ظرفیت باقیمانده:</span>
-                  <span>
-                    {eventDetails.capacity - eventDetails.attendees} نفر
-                  </span>
+                  <span>{eventDetails.capacity - eventDetails.attendees} نفر</span>
                 </div>
                 <Button className="w-full" size="lg">
                   ثبت‌نام در رویداد
@@ -235,19 +231,13 @@ export default function EventPage() {
                 <div className="flex items-center gap-4">
                   <Avatar className="h-12 w-12">
                     <AvatarImage
-                      src={
-                        eventDetails.organization.image || "/placeholder.svg"
-                      }
+                      src={eventDetails.organization.image || "/placeholder.svg"}
                       alt={eventDetails.organization?.name}
                     />
-                    <AvatarFallback>
-                      {eventDetails.organization?.name.charAt(0)}
-                    </AvatarFallback>
+                    <AvatarFallback>{eventDetails.organization?.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <h3 className="font-bold">
-                      {eventDetails.organization?.name}
-                    </h3>
+                    <h3 className="font-bold">{eventDetails.organization?.name}</h3>
                     <Link
                       href={`/organizations/${eventDetails.organization?.id}`}
                       className="text-sm text-primary hover:underline"
@@ -263,15 +253,11 @@ export default function EventPage() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">
-                      {eventDetails.organization?.email}
-                    </span>
+                    <span className="text-sm">{eventDetails.organization?.email}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Globe className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">
-                      {eventDetails.organization?.website}
-                    </span>
+                    <span className="text-sm">{eventDetails.organization?.website}</span>
                   </div>
                 </div>
               </CardContent>

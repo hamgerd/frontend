@@ -12,42 +12,41 @@
  * Do not edit the class manually.
  */
 
-import { Organization } from './organization';
- /**
- * 
+import { Organization } from "./organization";
+/**
+ *
  *
  * @export
  * @interface UserME
  */
 export interface UserME {
+  /**
+   * @type {number}
+   * @memberof UserME
+   */
+  id?: number;
 
-    /**
-     * @type {number}
-     * @memberof UserME
-     */
-    id?: number;
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  email: string;
 
-    /**
-     * @type {string}
-     * @memberof UserME
-     */
-    email: string;
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  first_name?: string;
 
-    /**
-     * @type {string}
-     * @memberof UserME
-     */
-    first_name?: string;
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  last_name?: string;
 
-    /**
-     * @type {string}
-     * @memberof UserME
-     */
-    last_name?: string;
-
-    /**
-     * @type {Array<Organization>}
-     * @memberof UserME
-     */
-    organizations?: Array<Organization>;
+  /**
+   * @type {Array<Organization>}
+   * @memberof UserME
+   */
+  organizations?: Array<Organization>;
 }

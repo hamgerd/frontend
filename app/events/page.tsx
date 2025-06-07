@@ -41,9 +41,7 @@ export default function EventsPage() {
     <div className="container flex mx-auto flex-col py-10">
       <div className="mx-4">
         <div className="flex flex-col items-center gap-4 text-center mb-10 ">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            رویدادها
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">رویدادها</h1>
           <p className="max-w-[700px] text-muted-foreground md:text-xl">
             تمام رویدادهای در حال برگزاری را مشاهده و در آن‌ها شرکت کنید
           </p>
@@ -107,12 +105,10 @@ export default function EventsPage() {
               </Card>
             ))
         ) : events.length > 0 ? (
-          events.map((event) => <EventCard key={event.id} event={event} />)
+          events.map(event => <EventCard key={event.id} event={event} />)
         ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-12">
-            <p className="text-xl text-muted-foreground mb-4">
-              هیچ رویدادی یافت نشد
-            </p>
+            <p className="text-xl text-muted-foreground mb-4">هیچ رویدادی یافت نشد</p>
             <Button asChild>
               <Link href="/new-event">ایجاد رویداد جدید</Link>
             </Button>
@@ -174,9 +170,7 @@ export default function EventsPage() {
         </div> */}
       </div>
       <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
-        <h2 className="text-2xl font-bold">
-          می‌خواهید رویداد خود را ایجاد کنید؟
-        </h2>
+        <h2 className="text-2xl font-bold">می‌خواهید رویداد خود را ایجاد کنید؟</h2>
         <p className="text-muted-foreground">
           به سادگی می‌توانید رویداد خود را ایجاد کرده و مدیریت کنید
         </p>

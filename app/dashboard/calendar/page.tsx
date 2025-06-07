@@ -1,10 +1,10 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { CalendarIcon, ClockIcon, MapPinIcon, TicketIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CalendarIcon, ClockIcon, MapPinIcon, TicketIcon } from "lucide-react";
 
 const calendarEvents = [
   {
@@ -43,14 +43,14 @@ const calendarEvents = [
     status: "تایید شده",
     type: "سینما",
   },
-]
+];
 
 const upcomingEvents = [
   { date: "15", month: "آذر", day: "جمعه", events: 2 },
   { date: "20", month: "آذر", day: "چهارشنبه", events: 1 },
   { date: "25", month: "آذر", day: "دوشنبه", events: 3 },
   { date: "30", month: "آذر", day: "شنبه", events: 1 },
-]
+];
 
 export default function CalendarPage() {
   return (
@@ -112,8 +112,11 @@ export default function CalendarPage() {
                       <CardDescription>لیست کامل رویدادهای شما</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      {calendarEvents.map((event) => (
-                        <div key={event.id} className="flex items-center justify-between p-4 border rounded-lg">
+                      {calendarEvents.map(event => (
+                        <div
+                          key={event.id}
+                          className="flex items-center justify-between p-4 border rounded-lg"
+                        >
                           <div className="space-y-2">
                             <h4 className="font-medium">{event.name}</h4>
                             <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -132,7 +135,9 @@ export default function CalendarPage() {
                             </div>
                             <div className="flex items-center gap-2">
                               <Badge variant="outline">{event.type}</Badge>
-                              <Badge variant={event.status === "تایید شده" ? "default" : "secondary"}>
+                              <Badge
+                                variant={event.status === "تایید شده" ? "default" : "secondary"}
+                              >
                                 {event.status}
                               </Badge>
                             </div>
@@ -161,7 +166,9 @@ export default function CalendarPage() {
                           </div>
                           <div>
                             <div className="font-medium">{event.day}</div>
-                            <div className="text-sm text-muted-foreground">{event.events} رویداد</div>
+                            <div className="text-sm text-muted-foreground">
+                              {event.events} رویداد
+                            </div>
                           </div>
                         </div>
                         <Badge variant="outline">{event.events}</Badge>
@@ -175,5 +182,5 @@ export default function CalendarPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

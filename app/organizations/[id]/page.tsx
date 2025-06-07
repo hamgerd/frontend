@@ -27,8 +27,7 @@ import { Organization } from "@/models/organization";
 
 export default function OrganizationPage() {
   const params = useParams();
-  const [organizationDetails, setOrganizationDetails] =
-    useState<Organization>();
+  const [organizationDetails, setOrganizationDetails] = useState<Organization>();
   const organization = {
     name: "انجمن برنامه‌نویسان ایران",
     description:
@@ -38,8 +37,7 @@ export default function OrganizationPage() {
     logo: "/placeholder.svg?height=200&width=200",
     coverImage: "/placeholder.svg?height=400&width=1200",
     location: "تهران",
-    address:
-      "تهران، خیابان ولیعصر، بالاتر از میدان ونک، برج نگار، طبقه ۸، واحد ۸۰۴",
+    address: "تهران، خیابان ولیعصر، بالاتر از میدان ونک، برج نگار، طبقه ۸، واحد ۸۰۴",
     phone: "۰۲۱-۸۸۶۶۵۵۴۴",
     email: "info@iranprogrammers.org",
     website: "www.iranprogrammers.org",
@@ -157,9 +155,7 @@ export default function OrganizationPage() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-2">
-              <h1 className="text-3xl font-bold">
-                {organizationDetails?.name}
-              </h1>
+              <h1 className="text-3xl font-bold">{organizationDetails?.name}</h1>
               {organization.verified && (
                 <Badge variant="outline" className="bg-primary/10 text-primary">
                   تایید شده
@@ -178,9 +174,7 @@ export default function OrganizationPage() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Users className="h-4 w-4" />
-                <span>
-                  {organization.memberCount.toLocaleString("fa-IR")} عضو
-                </span>
+                <span>{organization.memberCount.toLocaleString("fa-IR")} عضو</span>
               </div>
             </div>
 
@@ -191,9 +185,7 @@ export default function OrganizationPage() {
                 <TabsTrigger value="team">تیم</TabsTrigger>
               </TabsList>
               <TabsContent value="about" className="mt-6">
-                <p className="mb-6 whitespace-pre-line">
-                  {organizationDetails?.description}
-                </p>
+                <p className="mb-6 whitespace-pre-line">{organizationDetails?.description}</p>
 
                 <h3 className="text-lg font-bold mb-2">آدرس</h3>
                 <p className="mb-6">{organizationDetails?.address}</p>
@@ -208,7 +200,7 @@ export default function OrganizationPage() {
               <TabsContent value="events" className="mt-6">
                 <h3 className="text-lg font-bold mb-4">رویدادهای آینده</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                  {organization.upcomingEvents.map((event) => (
+                  {organization.upcomingEvents.map(event => (
                     <Card key={event.id} className="overflow-hidden">
                       <div className="relative h-40">
                         <Image
@@ -219,9 +211,7 @@ export default function OrganizationPage() {
                         />
                       </div>
                       <CardContent className="p-4">
-                        <h4 className="font-bold mb-2 line-clamp-1">
-                          {event.title}
-                        </h4>
+                        <h4 className="font-bold mb-2 line-clamp-1">{event.title}</h4>
                         <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
                           <Calendar className="h-3 w-3" />
                           <span>{event.date}</span>
@@ -234,15 +224,8 @@ export default function OrganizationPage() {
                           <MapPin className="h-3 w-3" />
                           <span>{event.location}</span>
                         </div>
-                        <Button
-                          asChild
-                          variant="outline"
-                          size="sm"
-                          className="w-full mt-3"
-                        >
-                          <Link href={`/events/${event.id}`}>
-                            مشاهده جزئیات
-                          </Link>
+                        <Button asChild variant="outline" size="sm" className="w-full mt-3">
+                          <Link href={`/events/${event.id}`}>مشاهده جزئیات</Link>
                         </Button>
                       </CardContent>
                     </Card>
@@ -251,7 +234,7 @@ export default function OrganizationPage() {
 
                 <h3 className="text-lg font-bold mb-4">رویدادهای گذشته</h3>
                 <div className="space-y-4">
-                  {organization.pastEvents.map((event) => (
+                  {organization.pastEvents.map(event => (
                     <Card key={event.id}>
                       <CardContent className="p-4 flex justify-between items-center">
                         <div>
@@ -391,9 +374,7 @@ export default function OrganizationPage() {
               <CardContent className="space-y-4">
                 <div className="flex justify-between py-2">
                   <span className="font-medium">تعداد اعضا:</span>
-                  <span>
-                    {organization.memberCount.toLocaleString("fa-IR")} نفر
-                  </span>
+                  <span>{organization.memberCount.toLocaleString("fa-IR")} نفر</span>
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="font-medium">تعداد رویدادها:</span>

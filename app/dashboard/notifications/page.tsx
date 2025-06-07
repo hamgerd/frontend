@@ -1,11 +1,11 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
-import { MailIcon, MessageSquareIcon, SmartphoneIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { MailIcon, MessageSquareIcon, SmartphoneIcon } from "lucide-react";
 
 const notificationSettings = [
   {
@@ -57,12 +57,12 @@ const notificationSettings = [
     enabled: false,
     type: "push",
   },
-]
+];
 
 export default function NotificationsPage() {
-  const emailNotifications = notificationSettings.filter((n) => n.type === "email")
-  const smsNotifications = notificationSettings.filter((n) => n.type === "sms")
-  const pushNotifications = notificationSettings.filter((n) => n.type === "push")
+  const emailNotifications = notificationSettings.filter(n => n.type === "email");
+  const smsNotifications = notificationSettings.filter(n => n.type === "sms");
+  const pushNotifications = notificationSettings.filter(n => n.type === "push");
 
   return (
     <div dir="rtl" className="font-sans dark">
@@ -82,13 +82,18 @@ export default function NotificationsPage() {
                     <CardDescription>تنظیم اعلان‌های ارسالی به ایمیل شما</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {emailNotifications.map((notification) => (
-                      <div key={notification.id} className="flex items-center justify-between space-y-0">
+                    {emailNotifications.map(notification => (
+                      <div
+                        key={notification.id}
+                        className="flex items-center justify-between space-y-0"
+                      >
                         <div className="space-y-1">
                           <Label htmlFor={notification.id} className="text-sm font-medium">
                             {notification.title}
                           </Label>
-                          <p className="text-sm text-muted-foreground">{notification.description}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {notification.description}
+                          </p>
                         </div>
                         <Switch id={notification.id} defaultChecked={notification.enabled} />
                       </div>
@@ -105,13 +110,18 @@ export default function NotificationsPage() {
                     <CardDescription>تنظیم اعلان‌های ارسالی به شماره تلفن شما</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {smsNotifications.map((notification) => (
-                      <div key={notification.id} className="flex items-center justify-between space-y-0">
+                    {smsNotifications.map(notification => (
+                      <div
+                        key={notification.id}
+                        className="flex items-center justify-between space-y-0"
+                      >
                         <div className="space-y-1">
                           <Label htmlFor={notification.id} className="text-sm font-medium">
                             {notification.title}
                           </Label>
-                          <p className="text-sm text-muted-foreground">{notification.description}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {notification.description}
+                          </p>
                         </div>
                         <Switch id={notification.id} defaultChecked={notification.enabled} />
                       </div>
@@ -128,13 +138,18 @@ export default function NotificationsPage() {
                     <CardDescription>تنظیم اعلان‌های push در اپلیکیشن موبایل</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {pushNotifications.map((notification) => (
-                      <div key={notification.id} className="flex items-center justify-between space-y-0">
+                    {pushNotifications.map(notification => (
+                      <div
+                        key={notification.id}
+                        className="flex items-center justify-between space-y-0"
+                      >
                         <div className="space-y-1">
                           <Label htmlFor={notification.id} className="text-sm font-medium">
                             {notification.title}
                           </Label>
-                          <p className="text-sm text-muted-foreground">{notification.description}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {notification.description}
+                          </p>
                         </div>
                         <Switch id={notification.id} defaultChecked={notification.enabled} />
                       </div>
@@ -151,14 +166,18 @@ export default function NotificationsPage() {
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">حالت مزاحم نشوید</Label>
-                        <p className="text-sm text-muted-foreground">غیرفعال کردن تمام اعلان‌ها از ساعت ۲۲ تا ۸ صبح</p>
+                        <p className="text-sm text-muted-foreground">
+                          غیرفعال کردن تمام اعلان‌ها از ساعت ۲۲ تا ۸ صبح
+                        </p>
                       </div>
                       <Switch />
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">خلاصه هفتگی</Label>
-                        <p className="text-sm text-muted-foreground">دریافت گزارش هفتگی فعالیت‌ها</p>
+                        <p className="text-sm text-muted-foreground">
+                          دریافت گزارش هفتگی فعالیت‌ها
+                        </p>
                       </div>
                       <Switch defaultChecked />
                     </div>
@@ -171,5 +190,5 @@ export default function NotificationsPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

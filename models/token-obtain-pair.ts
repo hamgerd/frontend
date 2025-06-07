@@ -12,23 +12,22 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TokenObtainPair
  */
 export interface TokenObtainPair {
+  /**
+   * @type {string}
+   * @memberof TokenObtainPair
+   */
+  email: string;
 
-    /**
-     * @type {string}
-     * @memberof TokenObtainPair
-     */
-    email: string;
-
-    /**
-     * @type {string}
-     * @memberof TokenObtainPair
-     */
-    password: string;
+  /**
+   * @type {string}
+   * @memberof TokenObtainPair
+   */
+  password: string;
 }

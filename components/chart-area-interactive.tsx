@@ -1,13 +1,24 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import * as React from "react";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import { useIsMobile } from "@/hooks/use-mobile"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  type ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const chartData = [
   { date: "1403/01/01", tickets: 12, events: 3 },
@@ -25,7 +36,7 @@ const chartData = [
   { date: "1403/01/13", tickets: 32, events: 8 },
   { date: "1403/01/14", tickets: 19, events: 5 },
   { date: "1403/01/15", tickets: 27, events: 7 },
-]
+];
 
 const chartConfig = {
   visitors: {
@@ -39,27 +50,27 @@ const chartConfig = {
     label: "رویدادها",
     color: "hsl(160 60% 45%)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function ChartAreaInteractive() {
-  const isMobile = useIsMobile()
-  const [timeRange, setTimeRange] = React.useState("30d")
+  const isMobile = useIsMobile();
+  const [timeRange, setTimeRange] = React.useState("30d");
 
   React.useEffect(() => {
     if (isMobile) {
-      setTimeRange("7d")
+      setTimeRange("7d");
     }
-  }, [isMobile])
+  }, [isMobile]);
 
   const filteredData = chartData.filter((item, index) => {
-    let itemsToShow = 15
+    let itemsToShow = 15;
     if (timeRange === "30d") {
-      itemsToShow = 15
+      itemsToShow = 15;
     } else if (timeRange === "7d") {
-      itemsToShow = 7
+      itemsToShow = 7;
     }
-    return index < itemsToShow
-  })
+    return index < itemsToShow;
+  });
 
   return (
     <Card className="@container/card hamgerd-card">
@@ -88,7 +99,10 @@ export function ChartAreaInteractive() {
             </ToggleGroupItem>
           </ToggleGroup>
           <Select value={timeRange} onValueChange={setTimeRange}>
-            <SelectTrigger className="@[767px]/card:hidden flex w-40" aria-label="انتخاب بازه زمانی">
+            <SelectTrigger
+              className="@[767px]/card:hidden flex w-40"
+              aria-label="انتخاب بازه زمانی"
+            >
               <SelectValue placeholder="۳ ماه گذشته" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
@@ -125,26 +139,38 @@ export function ChartAreaInteractive() {
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
-              tickFormatter={(value) => {
-                return value.split("/").slice(1).join("/")
+              tickFormatter={value => {
+                return value.split("/").slice(1).join("/");
               }}
             />
             <ChartTooltip
               cursor={false}
               content={
                 <ChartTooltipContent
-                  labelFormatter={(value) => {
-                    return value
+                  labelFormatter={value => {
+                    return value;
                   }}
                   indicator="dot"
                 />
               }
             />
-            <Area dataKey="events" type="natural" fill="url(#fillEvents)" stroke="var(--color-events)" stackId="a" />
-            <Area dataKey="tickets" type="natural" fill="url(#fillTickets)" stroke="var(--color-tickets)" stackId="a" />
+            <Area
+              dataKey="events"
+              type="natural"
+              fill="url(#fillEvents)"
+              stroke="var(--color-events)"
+              stackId="a"
+            />
+            <Area
+              dataKey="tickets"
+              type="natural"
+              fill="url(#fillTickets)"
+              stroke="var(--color-tickets)"
+              stackId="a"
+            />
           </AreaChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

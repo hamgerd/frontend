@@ -12,25 +12,24 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface PasswordReset
  */
 export interface PasswordReset {
+  /**
+   * Password reset token send by email
+   *
+   * @type {string}
+   * @memberof PasswordReset
+   */
+  token: string;
 
-    /**
-     * Password reset token send by email
-     *
-     * @type {string}
-     * @memberof PasswordReset
-     */
-    token: string;
-
-    /**
-     * @type {string}
-     * @memberof PasswordReset
-     */
-    password: string;
+  /**
+   * @type {string}
+   * @memberof PasswordReset
+   */
+  password: string;
 }

@@ -1,8 +1,8 @@
-import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 interface SiteHeaderProps {
-  title?: string
+  title?: string;
 }
 
 export function SiteHeader({ title = "داشبورد من" }: SiteHeaderProps) {
@@ -14,5 +14,5 @@ export function SiteHeader({ title = "داشبورد من" }: SiteHeaderProps) {
         <h1 className="text-base font-medium">{title}</h1>
       </div>
     </header>
-  )
+  );
 }

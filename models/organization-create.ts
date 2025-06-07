@@ -12,47 +12,46 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface OrganizationCreate
  */
 export interface OrganizationCreate {
+  /**
+   * @type {string}
+   * @memberof OrganizationCreate
+   */
+  name: string;
 
-    /**
-     * @type {string}
-     * @memberof OrganizationCreate
-     */
-    name: string;
+  /**
+   * @type {string}
+   * @memberof OrganizationCreate
+   */
+  username: string;
 
-    /**
-     * @type {string}
-     * @memberof OrganizationCreate
-     */
-    username: string;
+  /**
+   * @type {string}
+   * @memberof OrganizationCreate
+   */
+  description?: string;
 
-    /**
-     * @type {string}
-     * @memberof OrganizationCreate
-     */
-    description?: string;
+  /**
+   * @type {string}
+   * @memberof OrganizationCreate
+   */
+  email?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof OrganizationCreate
-     */
-    email?: string | null;
+  /**
+   * @type {string}
+   * @memberof OrganizationCreate
+   */
+  address?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof OrganizationCreate
-     */
-    address?: string | null;
-
-    /**
-     * @type {string}
-     * @memberof OrganizationCreate
-     */
-    website?: string | null;
+  /**
+   * @type {string}
+   * @memberof OrganizationCreate
+   */
+  website?: string | null;
 }

@@ -12,29 +12,28 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface UserRegistration
  */
 export interface UserRegistration {
+  /**
+   * @type {string}
+   * @memberof UserRegistration
+   */
+  email: string;
 
-    /**
-     * @type {string}
-     * @memberof UserRegistration
-     */
-    email: string;
+  /**
+   * @type {string}
+   * @memberof UserRegistration
+   */
+  password: string;
 
-    /**
-     * @type {string}
-     * @memberof UserRegistration
-     */
-    password: string;
-
-    /**
-     * @type {string}
-     * @memberof UserRegistration
-     */
-    refresh_token?: string;
+  /**
+   * @type {string}
+   * @memberof UserRegistration
+   */
+  refresh_token?: string;
 }
