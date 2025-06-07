@@ -10,12 +10,13 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import localFont from "next/font/local";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hamgerd.ir"),
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`,

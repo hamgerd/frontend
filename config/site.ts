@@ -5,7 +5,6 @@ export const siteConfig = {
   keywords: ["رویداد", "برگزاری رویداد", "همایش", "کنفرانس", "همگرد"],
   applicationName: "هم‌گرد",
   category: "technology",
-  viewport: "width=device-width, initial-scale=1",
   alternates: {
     canonical: "https://hamgerd.ir",
     languages: {
