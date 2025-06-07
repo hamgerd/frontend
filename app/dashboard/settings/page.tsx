@@ -1,12 +1,18 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { SettingsIcon, ShieldIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { SettingsIcon, ShieldIcon } from "lucide-react";
 
 export default function SettingsPage() {
   return (
@@ -30,7 +36,9 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">حالت تاریک</Label>
-                        <p className="text-sm text-muted-foreground">تغییر ظاهر سایت به حالت تاریک</p>
+                        <p className="text-sm text-muted-foreground">
+                          تغییر ظاهر سایت به حالت تاریک
+                        </p>
                       </div>
                       <Switch defaultChecked />
                     </div>
@@ -52,7 +60,9 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">منطقه زمانی</Label>
-                        <p className="text-sm text-muted-foreground">تنظیم منطقه زمانی برای نمایش تاریخ و ساعت</p>
+                        <p className="text-sm text-muted-foreground">
+                          تنظیم منطقه زمانی برای نمایش تاریخ و ساعت
+                        </p>
                       </div>
                       <Select defaultValue="tehran">
                         <SelectTrigger className="w-40">
@@ -79,21 +89,27 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">نمایش پروفایل عمومی</Label>
-                        <p className="text-sm text-muted-foreground">اجازه مشاهده پروفایل توسط سایر کاربران</p>
+                        <p className="text-sm text-muted-foreground">
+                          اجازه مشاهده پروفایل توسط سایر کاربران
+                        </p>
                       </div>
                       <Switch />
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">نمایش فعالیت‌ها</Label>
-                        <p className="text-sm text-muted-foreground">نمایش فعالیت‌های شما به دوستان</p>
+                        <p className="text-sm text-muted-foreground">
+                          نمایش فعالیت‌های شما به دوستان
+                        </p>
                       </div>
                       <Switch defaultChecked />
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">ورود دو مرحله‌ای</Label>
-                        <p className="text-sm text-muted-foreground">افزایش امنیت حساب با تایید دو مرحله‌ای</p>
+                        <p className="text-sm text-muted-foreground">
+                          افزایش امنیت حساب با تایید دو مرحله‌ای
+                        </p>
                       </div>
                       <Button size="sm" variant="outline">
                         تنظیم
@@ -111,21 +127,27 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">ذخیره تاریخچه جستجو</Label>
-                        <p className="text-sm text-muted-foreground">ذخیره جستجوهای انجام شده برای پیشنهادات بهتر</p>
+                        <p className="text-sm text-muted-foreground">
+                          ذخیره جستجوهای انجام شده برای پیشنهادات بهتر
+                        </p>
                       </div>
                       <Switch defaultChecked />
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">پیشنهادات هوشمند</Label>
-                        <p className="text-sm text-muted-foreground">دریافت پیشنهادات رویداد بر اساس علاقه‌مندی‌ها</p>
+                        <p className="text-sm text-muted-foreground">
+                          دریافت پیشنهادات رویداد بر اساس علاقه‌مندی‌ها
+                        </p>
                       </div>
                       <Switch defaultChecked />
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
                         <Label className="text-sm font-medium">حذف خودکار داده‌ها</Label>
-                        <p className="text-sm text-muted-foreground">حذف خودکار داده‌های قدیمی پس از مدت زمان مشخص</p>
+                        <p className="text-sm text-muted-foreground">
+                          حذف خودکار داده‌های قدیمی پس از مدت زمان مشخص
+                        </p>
                       </div>
                       <Select defaultValue="never">
                         <SelectTrigger className="w-32">
@@ -150,21 +172,27 @@ export default function SettingsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">دانلود داده‌های شخصی</p>
-                        <p className="text-sm text-muted-foreground">دریافت کپی از تمام داده‌های شما</p>
+                        <p className="text-sm text-muted-foreground">
+                          دریافت کپی از تمام داده‌های شما
+                        </p>
                       </div>
                       <Button variant="outline">دانلود</Button>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">غیرفعال کردن حساب</p>
-                        <p className="text-sm text-muted-foreground">غیرفعال کردن موقت حساب کاربری</p>
+                        <p className="text-sm text-muted-foreground">
+                          غیرفعال کردن موقت حساب کاربری
+                        </p>
                       </div>
                       <Button variant="outline">غیرفعال</Button>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium text-red-600">حذف حساب</p>
-                        <p className="text-sm text-muted-foreground">حذف دائمی حساب و تمام داده‌ها</p>
+                        <p className="text-sm text-muted-foreground">
+                          حذف دائمی حساب و تمام داده‌ها
+                        </p>
                       </div>
                       <Button variant="destructive">حذف</Button>
                     </div>
@@ -176,5 +204,5 @@ export default function SettingsPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

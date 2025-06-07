@@ -1,10 +1,10 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { BookmarkIcon, CalendarIcon, MapPinIcon, TicketIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { BookmarkIcon, CalendarIcon, MapPinIcon, TicketIcon } from "lucide-react";
 
 const bookmarkedEvents = [
   {
@@ -47,7 +47,7 @@ const bookmarkedEvents = [
     image: "/placeholder.svg?height=200&width=300",
     category: "هنری",
   },
-]
+];
 
 export default function BookmarksPage() {
   return (
@@ -102,7 +102,7 @@ export default function BookmarksPage() {
               </div>
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {bookmarkedEvents.map((event) => (
+                {bookmarkedEvents.map(event => (
                   <Card key={event.id} className="overflow-hidden">
                     <div className="aspect-video relative">
                       <img
@@ -146,5 +146,5 @@ export default function BookmarksPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

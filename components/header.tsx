@@ -96,15 +96,9 @@ export default function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                روشن
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                تاریک
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                سیستم
-              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("light")}>روشن</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>تاریک</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>سیستم</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           {Token ? (
@@ -112,18 +106,14 @@ export default function Header() {
               <DropdownMenuTrigger>
                 <a href="/dashboard">
                   <Avatar>
-                    <AvatarImage
-                      src={userData?.image || "https://github.com/shadcn.png"}
-                    />
+                    <AvatarImage src={userData?.image || "https://github.com/shadcn.png"} />
                     <AvatarFallback>HAM</AvatarFallback>
                   </Avatar>
                 </a>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <Link href="/dashboard">
-                  <DropdownMenuLabel className="cursor-pointer text-end">
-                    داشبورد
-                  </DropdownMenuLabel>
+                  <DropdownMenuLabel className="cursor-pointer text-end">داشبورد</DropdownMenuLabel>
                 </Link>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem

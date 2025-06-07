@@ -12,40 +12,60 @@
  * Do not edit the class manually.
  */
 
+<<<<<<< HEAD
 import { Organization } from './organization';
 import { TicketType } from './ticket-type';
  /**
  * 
+=======
+import { Organization } from "./organization";
+/**
+ *
+>>>>>>> ba26cb3 (chore: format code with Prettier)
  *
  * @export
  * @interface Event
  */
 export interface Event {
+  /**
+   * @type {number}
+   * @memberof Event
+   */
+  id?: number;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof Event
      */
     public_id?: string;
+=======
+  /**
+   * @type {string}
+   * @memberof Event
+   */
+  title: string;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {string}
-     * @memberof Event
-     */
-    title: string;
+  /**
+   * @type {string}
+   * @memberof Event
+   */
+  description: string;
 
-    /**
-     * @type {string}
-     * @memberof Event
-     */
-    description: string;
+  /**
+   * @type {Organization}
+   * @memberof Event
+   */
+  organization?: Organization;
 
-    /**
-     * @type {Organization}
-     * @memberof Event
-     */
-    organization?: Organization;
+  /**
+   * @type {string}
+   * @memberof Event
+   */
+  image?: string | null;
 
+<<<<<<< HEAD
     /**
      * @type {Array<TicketType>}
      * @memberof Event
@@ -57,52 +77,61 @@ export interface Event {
      * @memberof Event
      */
     image?: string | null;
+=======
+  /**
+   * @type {number}
+   * @memberof Event
+   */
+  category?: number | null;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {number}
-     * @memberof Event
-     */
-    category?: number | null;
+  /**
+   * @type {Date}
+   * @memberof Event
+   */
+  start_date: Date;
 
-    /**
-     * @type {Date}
-     * @memberof Event
-     */
-    start_date: Date;
+  /**
+   * @type {Date}
+   * @memberof Event
+   */
+  end_date: Date;
 
-    /**
-     * @type {Date}
-     * @memberof Event
-     */
-    end_date: Date;
+  /**
+   * @type {string}
+   * @memberof Event
+   */
+  location: string;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof Event
      */
     location?: string | null;
+=======
+  /**
+   * @type {string}
+   * @memberof Event
+   */
+  max_participants?: string;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {string}
-     * @memberof Event
-     */
-    max_participants?: string;
+  /**
+   * @type {boolean}
+   * @memberof Event
+   */
+  is_active?: boolean;
 
-    /**
-     * @type {boolean}
-     * @memberof Event
-     */
-    is_active?: boolean;
+  /**
+   * @type {Date}
+   * @memberof Event
+   */
+  created_at?: Date;
 
-    /**
-     * @type {Date}
-     * @memberof Event
-     */
-    created_at?: Date;
-
-    /**
-     * @type {Date}
-     * @memberof Event
-     */
-    updated_at?: Date;
+  /**
+   * @type {Date}
+   * @memberof Event
+   */
+  updated_at?: Date;
 }

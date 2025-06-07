@@ -71,21 +71,17 @@ export default function SignupPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "ثبت‌نام در این پلتفرم به ما امکان داد تا کارگاه‌های آموزشی خود را
-              به آسانی مدیریت کنیم."
+              "ثبت‌نام در این پلتفرم به ما امکان داد تا کارگاه‌های آموزشی خود را به آسانی مدیریت
+              کنیم."
             </p>
-            <footer className="text-sm">
-              سارا محمدی - مدیر آموزش موسسه فناوری اطلاعات
-            </footer>
+            <footer className="text-sm">سارا محمدی - مدیر آموزش موسسه فناوری اطلاعات</footer>
           </blockquote>
         </div>
       </div>
       <div className="p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              ایجاد حساب کاربری
-            </h1>
+            <h1 className="text-2xl font-semibold tracking-tight">ایجاد حساب کاربری</h1>
             <p className="text-sm text-muted-foreground">
               اطلاعات خود را وارد کنید تا حساب کاربری جدید ایجاد شود
             </p>
@@ -112,11 +108,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>رمز عبور</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="********"
-                        {...field}
-                      />
+                      <Input type="password" placeholder="********" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -129,11 +121,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>تکرار رمز عبور</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="********"
-                        {...field}
-                      />
+                      <Input type="password" placeholder="********" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -145,25 +133,16 @@ export default function SignupPage() {
                 render={({ field }) => (
                   <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
                         با{" "}
-                        <Link
-                          href="/tos"
-                          className="text-primary hover:underline"
-                        >
+                        <Link href="/tos" className="text-primary hover:underline">
                           شرایط استفاده
                         </Link>{" "}
                         و{" "}
-                        <Link
-                          href="/terms"
-                          className="text-primary hover:underline"
-                        >
+                        <Link href="/terms" className="text-primary hover:underline">
                           حریم خصوصی
                         </Link>{" "}
                         موافقم
@@ -182,9 +161,7 @@ export default function SignupPage() {
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                یا
-              </span>
+              <span className="bg-background px-2 text-muted-foreground">یا</span>
             </div>
           </div>
           <div className="text-center text-sm">

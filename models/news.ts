@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface News
  */
+<<<<<<< HEAD:models/news.ts
 export interface News {
 
     /**
@@ -49,4 +50,36 @@ export interface News {
      * @memberof News
      */
     created_at?: Date;
+=======
+export interface User {
+  /**
+   * @type {number}
+   * @memberof User
+   */
+  id?: number;
+
+  /**
+   * @type {string}
+   * @memberof User
+   */
+  email: string;
+
+  /**
+   * @type {string}
+   * @memberof User
+   */
+  first_name?: string;
+
+  /**
+   * @type {string}
+   * @memberof User
+   */
+  last_name?: string;
+
+  /**
+   * @type {Array<number>}
+   * @memberof User
+   */
+  organizations: Array<number>;
+>>>>>>> ba26cb3 (chore: format code with Prettier):models/user.ts
 }

@@ -12,26 +12,46 @@
  * Do not edit the class manually.
  */
 
+<<<<<<< HEAD
  /**
  * 
+=======
+import { User } from "./user";
+/**
+ *
+>>>>>>> ba26cb3 (chore: format code with Prettier)
  *
  * @export
  * @interface Organization
  */
 export interface Organization {
+  /**
+   * @type {number}
+   * @memberof Organization
+   */
+  id?: number;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof Organization
      */
     public_id?: string;
+=======
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  name: string;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {string}
-     * @memberof Organization
-     */
-    name: string;
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  description?: string;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof Organization
@@ -49,13 +69,21 @@ export interface Organization {
      * @memberof Organization
      */
     description?: string;
+=======
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  email?: string | null;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {string}
-     * @memberof Organization
-     */
-    email?: string | null;
+  /**
+   * @type {User}
+   * @memberof Organization
+   */
+  owner?: User;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof Organization
@@ -67,4 +95,29 @@ export interface Organization {
      * @memberof Organization
      */
     website?: string | null;
+=======
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  address?: string | null;
+
+  /**
+   * @type {string}
+   * @memberof Organization
+   */
+  website?: string | null;
+
+  /**
+   * @type {Date}
+   * @memberof Organization
+   */
+  created_at?: Date;
+
+  /**
+   * @type {Date}
+   * @memberof Organization
+   */
+  updated_at?: Date;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 }

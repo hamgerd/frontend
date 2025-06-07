@@ -12,15 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { TicketType } from './ticket-type';
- /**
- * 
+import { TicketType } from "./ticket-type";
+/**
+ *
  *
  * @export
  * @interface EventCreate
  */
 export interface EventCreate {
+  /**
+   * @type {string}
+   * @memberof EventCreate
+   */
+  title: string;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof EventCreate
@@ -32,43 +38,51 @@ export interface EventCreate {
      * @memberof EventCreate
      */
     title: string;
+=======
+  /**
+   * @type {string}
+   * @memberof EventCreate
+   */
+  description: string;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {string}
-     * @memberof EventCreate
-     */
-    description: string;
+  /**
+   * @type {number}
+   * @memberof EventCreate
+   */
+  organization: number;
 
-    /**
-     * @type {number}
-     * @memberof EventCreate
-     */
-    organization: number;
+  /**
+   * @type {string}
+   * @memberof EventCreate
+   */
+  image?: string | null;
 
-    /**
-     * @type {string}
-     * @memberof EventCreate
-     */
-    image?: string | null;
+  /**
+   * @type {number}
+   * @memberof EventCreate
+   */
+  category?: number | null;
 
-    /**
-     * @type {number}
-     * @memberof EventCreate
-     */
-    category?: number | null;
+  /**
+   * @type {Date}
+   * @memberof EventCreate
+   */
+  start_date: Date;
 
-    /**
-     * @type {Date}
-     * @memberof EventCreate
-     */
-    start_date: Date;
+  /**
+   * @type {Date}
+   * @memberof EventCreate
+   */
+  end_date: Date;
 
-    /**
-     * @type {Date}
-     * @memberof EventCreate
-     */
-    end_date: Date;
+  /**
+   * @type {string}
+   * @memberof EventCreate
+   */
+  location: string;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof EventCreate
@@ -80,4 +94,11 @@ export interface EventCreate {
      * @memberof EventCreate
      */
     ticket_types: Array<TicketType>;
+=======
+  /**
+   * @type {Array<TicketType>}
+   * @memberof EventCreate
+   */
+  ticket_types: Array<TicketType>;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 }

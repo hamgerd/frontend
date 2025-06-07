@@ -12,41 +12,48 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TicketType
  */
 export interface TicketType {
+  /**
+   * @type {number}
+   * @memberof TicketType
+   */
+  id?: number;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof TicketType
      */
     public_id?: string;
+=======
+  /**
+   * @type {string}
+   * @memberof TicketType
+   */
+  title: string;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {string}
-     * @memberof TicketType
-     */
-    title: string;
+  /**
+   * @type {string}
+   * @memberof TicketType
+   */
+  description?: string;
 
-    /**
-     * @type {string}
-     * @memberof TicketType
-     */
-    description?: string;
+  /**
+   * @type {number}
+   * @memberof TicketType
+   */
+  max_participants?: number | null;
 
-    /**
-     * @type {number}
-     * @memberof TicketType
-     */
-    max_participants?: number | null;
-
-    /**
-     * @type {number}
-     * @memberof TicketType
-     */
-    price: number;
+  /**
+   * @type {number}
+   * @memberof TicketType
+   */
+  price: number;
 }

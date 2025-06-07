@@ -1,19 +1,61 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { PlusIcon, ArrowUpIcon, ArrowDownIcon, WalletIcon } from "lucide-react"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { PlusIcon, ArrowUpIcon, ArrowDownIcon, WalletIcon } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const transactions = [
-  { id: 1, type: "خرید", description: "کنسرت محمدرضا گلزار", amount: -500000, date: "1403/09/15", status: "تکمیل شده" },
-  { id: 2, type: "شارژ", description: "شارژ کیف پول", amount: 1000000, date: "1403/09/10", status: "تکمیل شده" },
-  { id: 3, type: "خرید", description: "نمایش شب یلدا", amount: -150000, date: "1403/09/08", status: "تکمیل شده" },
-  { id: 4, type: "بازگشت", description: "لغو بلیط سمینار", amount: 300000, date: "1403/09/05", status: "تکمیل شده" },
-  { id: 5, type: "خرید", description: "جشنواره فیلم فجر", amount: -80000, date: "1403/09/01", status: "تکمیل شده" },
-]
+  {
+    id: 1,
+    type: "خرید",
+    description: "کنسرت محمدرضا گلزار",
+    amount: -500000,
+    date: "1403/09/15",
+    status: "تکمیل شده",
+  },
+  {
+    id: 2,
+    type: "شارژ",
+    description: "شارژ کیف پول",
+    amount: 1000000,
+    date: "1403/09/10",
+    status: "تکمیل شده",
+  },
+  {
+    id: 3,
+    type: "خرید",
+    description: "نمایش شب یلدا",
+    amount: -150000,
+    date: "1403/09/08",
+    status: "تکمیل شده",
+  },
+  {
+    id: 4,
+    type: "بازگشت",
+    description: "لغو بلیط سمینار",
+    amount: 300000,
+    date: "1403/09/05",
+    status: "تکمیل شده",
+  },
+  {
+    id: 5,
+    type: "خرید",
+    description: "جشنواره فیلم فجر",
+    amount: -80000,
+    date: "1403/09/01",
+    status: "تکمیل شده",
+  },
+];
 
 export default function WalletPage() {
   return (
@@ -86,18 +128,28 @@ export default function WalletPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {transactions.map((transaction) => (
+                      {transactions.map(transaction => (
                         <TableRow key={transaction.id}>
                           <TableCell>
-                            <Badge variant={transaction.type === "خرید" ? "destructive" : "default"}>
-                              {transaction.type === "خرید" && <ArrowDownIcon className="h-3 w-3 ml-1" />}
-                              {transaction.type === "شارژ" && <ArrowUpIcon className="h-3 w-3 ml-1" />}
-                              {transaction.type === "بازگشت" && <ArrowUpIcon className="h-3 w-3 ml-1" />}
+                            <Badge
+                              variant={transaction.type === "خرید" ? "destructive" : "default"}
+                            >
+                              {transaction.type === "خرید" && (
+                                <ArrowDownIcon className="h-3 w-3 ml-1" />
+                              )}
+                              {transaction.type === "شارژ" && (
+                                <ArrowUpIcon className="h-3 w-3 ml-1" />
+                              )}
+                              {transaction.type === "بازگشت" && (
+                                <ArrowUpIcon className="h-3 w-3 ml-1" />
+                              )}
                               {transaction.type}
                             </Badge>
                           </TableCell>
                           <TableCell>{transaction.description}</TableCell>
-                          <TableCell className={transaction.amount > 0 ? "text-green-500" : "text-red-500"}>
+                          <TableCell
+                            className={transaction.amount > 0 ? "text-green-500" : "text-red-500"}
+                          >
                             {transaction.amount > 0 ? "+" : ""}
                             {transaction.amount.toLocaleString("fa-IR")} تومان
                           </TableCell>
@@ -116,5 +168,5 @@ export default function WalletPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

@@ -12,25 +12,24 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface InlineResponse4001
  */
 export interface InlineResponse4001 {
+  /**
+   * Error message
+   *
+   * @type {string}
+   * @memberof InlineResponse4001
+   */
+  error?: string;
 
-    /**
-     * Error message
-     *
-     * @type {string}
-     * @memberof InlineResponse4001
-     */
-    error?: string;
-
-    /**
-     * @type {{ [key: string]: string; }}
-     * @memberof InlineResponse4001
-     */
-    errors?: { [key: string]: string; };
+  /**
+   * @type {{ [key: string]: string; }}
+   * @memberof InlineResponse4001
+   */
+  errors?: { [key: string]: string };
 }

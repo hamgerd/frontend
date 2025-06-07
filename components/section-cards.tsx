@@ -1,7 +1,7 @@
-import { TrendingUpIcon, TicketIcon, CreditCardIcon, CalendarIcon, HeartIcon } from "lucide-react"
+import { TrendingUpIcon, TicketIcon, CreditCardIcon, CalendarIcon, HeartIcon } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge"
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function SectionCards() {
   return (
@@ -64,7 +64,10 @@ export function SectionCards() {
             ۱,۲۳۰
           </CardTitle>
           <div className="absolute left-4 top-4">
-            <Badge variant="outline" className="flex gap-1 rounded-lg text-xs border-emerald-500 text-emerald-400">
+            <Badge
+              variant="outline"
+              className="flex gap-1 rounded-lg text-xs border-emerald-500 text-emerald-400"
+            >
               <TrendingUpIcon className="size-3" />
               +۴.۵٪
             </Badge>
@@ -78,5 +81,5 @@ export function SectionCards() {
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }

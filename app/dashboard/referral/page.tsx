@@ -1,29 +1,29 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { UsersIcon, GiftIcon, ShareIcon, CopyIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { UsersIcon, GiftIcon, ShareIcon, CopyIcon } from "lucide-react";
 
 const referralStats = [
   { label: "دوستان معرفی شده", value: "12", change: "+3 این ماه" },
   { label: "پاداش دریافتی", value: "240,000", change: "تومان" },
   { label: "تخفیف استفاده شده", value: "8", change: "از 12 تخفیف" },
   { label: "امتیاز کسب شده", value: "1,200", change: "امتیاز" },
-]
+];
 
 const referralHistory = [
   { name: "محمد رضایی", date: "1403/09/10", status: "تایید شده", reward: "20,000" },
   { name: "فاطمه احمدی", date: "1403/09/05", status: "تایید شده", reward: "20,000" },
   { name: "حسین محمدی", date: "1403/08/28", status: "در انتظار", reward: "20,000" },
   { name: "مریم کریمی", date: "1403/08/20", status: "تایید شده", reward: "20,000" },
-]
+];
 
 export default function ReferralPage() {
-  const referralCode = "ALI2024"
-  const referralLink = `https://eventticket.com/ref/${referralCode}`
+  const referralCode = "ALI2024";
+  const referralLink = `https://eventticket.com/ref/${referralCode}`;
 
   return (
     <div dir="rtl" className="font-sans dark">
@@ -40,7 +40,9 @@ export default function ReferralPage() {
                       <GiftIcon className="h-5 w-5" />
                       برنامه معرفی دوستان
                     </CardTitle>
-                    <CardDescription>با معرفی دوستان خود، هم شما و هم دوستانتان ۲۰% تخفیف دریافت کنید!</CardDescription>
+                    <CardDescription>
+                      با معرفی دوستان خود، هم شما و هم دوستانتان ۲۰% تخفیف دریافت کنید!
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -118,7 +120,9 @@ export default function ReferralPage() {
                         </div>
                         <div>
                           <p className="font-medium">دوست شما ثبت‌نام کند</p>
-                          <p className="text-sm text-muted-foreground">دوست شما با کد معرفی در سایت ثبت‌نام کند</p>
+                          <p className="text-sm text-muted-foreground">
+                            دوست شما با کد معرفی در سایت ثبت‌نام کند
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-start space-x-3 space-x-reverse">
@@ -147,10 +151,15 @@ export default function ReferralPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {referralHistory.map((referral, index) => (
-                        <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                        <div
+                          key={index}
+                          className="flex items-center justify-between p-4 border rounded-lg"
+                        >
                           <div className="flex items-center space-x-4 space-x-reverse">
                             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                              <span className="text-white font-medium text-sm">{referral.name.charAt(0)}</span>
+                              <span className="text-white font-medium text-sm">
+                                {referral.name.charAt(0)}
+                              </span>
                             </div>
                             <div>
                               <h4 className="font-medium">{referral.name}</h4>
@@ -158,7 +167,9 @@ export default function ReferralPage() {
                             </div>
                           </div>
                           <div className="text-left space-y-1">
-                            <Badge variant={referral.status === "تایید شده" ? "default" : "secondary"}>
+                            <Badge
+                              variant={referral.status === "تایید شده" ? "default" : "secondary"}
+                            >
                               {referral.status}
                             </Badge>
                             <p className="text-sm font-medium">
@@ -176,5 +187,5 @@ export default function ReferralPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

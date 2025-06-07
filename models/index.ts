@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export * from './event';
 export * from './event-create';
 export * from './inline-response200';
@@ -20,3 +21,23 @@ export * from './token-refresh';
 export * from './token-refresh-response';
 export * from './user-me';
 export * from './user-registration';
+=======
+export * from "./event";
+export * from "./event-create";
+export * from "./inline-response200";
+export * from "./inline-response400";
+export * from "./inline-response4001";
+export * from "./organization";
+export * from "./organization-create";
+export * from "./password-reset";
+export * from "./password-reset-request";
+export * from "./ticket";
+export * from "./ticket-type";
+export * from "./token-obtain-pair";
+export * from "./token-obtain-pair-response";
+export * from "./token-refresh";
+export * from "./token-refresh-response";
+export * from "./user";
+export * from "./user-me";
+export * from "./user-registration";
+>>>>>>> ba26cb3 (chore: format code with Prettier)

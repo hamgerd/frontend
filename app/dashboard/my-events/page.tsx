@@ -1,10 +1,10 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { CalendarIcon, MapPinIcon, UsersIcon, ClockIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { CalendarIcon, MapPinIcon, UsersIcon, ClockIcon } from "lucide-react";
 
 const myEvents = [
   {
@@ -40,11 +40,11 @@ const myEvents = [
     status: "تمام شده",
     image: "/placeholder.svg?height=200&width=300",
   },
-]
+];
 
 export default function MyEventsPage() {
-  const activeEvents = myEvents.filter((event) => event.status === "فعال").length
-  const totalAttendees = myEvents.reduce((sum, event) => sum + event.attendees, 0)
+  const activeEvents = myEvents.filter(event => event.status === "فعال").length;
+  const totalAttendees = myEvents.reduce((sum, event) => sum + event.attendees, 0);
 
   return (
     <div dir="rtl" className="font-sans dark">
@@ -81,7 +81,9 @@ export default function MyEventsPage() {
                     <UsersIcon className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">{totalAttendees.toLocaleString("fa-IR")}</div>
+                    <div className="text-2xl font-bold">
+                      {totalAttendees.toLocaleString("fa-IR")}
+                    </div>
                     <p className="text-xs text-muted-foreground">نفر</p>
                   </CardContent>
                 </Card>
@@ -98,7 +100,7 @@ export default function MyEventsPage() {
               </div>
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {myEvents.map((event) => (
+                {myEvents.map(event => (
                   <Card key={event.id} className="overflow-hidden">
                     <div className="aspect-video relative">
                       <img
@@ -131,7 +133,8 @@ export default function MyEventsPage() {
                         <div className="flex items-center justify-between text-sm">
                           <span>شرکت‌کنندگان:</span>
                           <span className="font-medium">
-                            {event.attendees.toLocaleString("fa-IR")} / {event.capacity.toLocaleString("fa-IR")}
+                            {event.attendees.toLocaleString("fa-IR")} /{" "}
+                            {event.capacity.toLocaleString("fa-IR")}
                           </span>
                         </div>
                         <div className="w-full bg-muted rounded-full h-2">
@@ -161,8 +164,11 @@ export default function MyEventsPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {myEvents.map((event) => (
-                      <div key={event.id} className="flex items-center justify-between p-4 border rounded-lg">
+                    {myEvents.map(event => (
+                      <div
+                        key={event.id}
+                        className="flex items-center justify-between p-4 border rounded-lg"
+                      >
                         <div className="flex items-center space-x-4 space-x-reverse">
                           <img
                             src={event.image || "/placeholder.svg"}
@@ -192,5 +198,5 @@ export default function MyEventsPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

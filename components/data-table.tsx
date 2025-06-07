@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -14,7 +14,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 import {
   CheckCircle2Icon,
   ChevronDownIcon,
@@ -27,12 +27,12 @@ import {
   PlusIcon,
   XCircleIcon,
   ClockIcon,
-} from "lucide-react"
-import { z } from "zod"
+} from "lucide-react";
+import { z } from "zod";
 
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -40,11 +40,24 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+} from "@/components/ui/dropdown-menu";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const schema = z.object({
   id: z.number(),
@@ -56,7 +69,7 @@ export const schema = z.object({
   price: z.string(),
   status: z.string(),
   qrCode: z.string(),
-})
+});
 
 const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
@@ -64,8 +77,11 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     header: ({ table }) => (
       <div className="flex items-center justify-center">
         <Checkbox
-          checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
           aria-label="انتخاب همه"
         />
       </div>
@@ -74,7 +90,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
       <div className="flex items-center justify-center">
         <Checkbox
           checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
+          onCheckedChange={value => row.toggleSelected(!!value)}
           aria-label="انتخاب ردیف"
         />
       </div>
@@ -86,7 +102,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     accessorKey: "eventName",
     header: "نام رویداد",
     cell: ({ row }) => {
-      return <div className="font-medium">{row.original.eventName}</div>
+      return <div className="font-medium">{row.original.eventName}</div>;
     },
     enableHiding: false,
   },
@@ -120,31 +136,36 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     accessorKey: "price",
     header: () => <div className="w-full text-right">قیمت (تومان)</div>,
     cell: ({ row }) => (
-      <div className="text-right font-medium">{Number.parseInt(row.original.price).toLocaleString("fa-IR")}</div>
+      <div className="text-right font-medium">
+        {Number.parseInt(row.original.price).toLocaleString("fa-IR")}
+      </div>
     ),
   },
   {
     accessorKey: "status",
     header: "وضعیت",
     cell: ({ row }) => {
-      const status = row.original.status
-      let icon = <ClockIcon />
-      let colorClass = "text-yellow-500 dark:text-yellow-400"
+      const status = row.original.status;
+      let icon = <ClockIcon />;
+      let colorClass = "text-yellow-500 dark:text-yellow-400";
 
       if (status === "فعال") {
-        icon = <CheckCircle2Icon className="text-green-500 dark:text-green-400" />
-        colorClass = "text-green-500 dark:text-green-400"
+        icon = <CheckCircle2Icon className="text-green-500 dark:text-green-400" />;
+        colorClass = "text-green-500 dark:text-green-400";
       } else if (status === "لغو شده") {
-        icon = <XCircleIcon className="text-red-500 dark:text-red-400" />
-        colorClass = "text-red-500 dark:text-red-400"
+        icon = <XCircleIcon className="text-red-500 dark:text-red-400" />;
+        colorClass = "text-red-500 dark:text-red-400";
       }
 
       return (
-        <Badge variant="outline" className={`flex gap-1 px-1.5 text-muted-foreground [&_svg]:size-3 ${colorClass}`}>
+        <Badge
+          variant="outline"
+          className={`flex gap-1 px-1.5 text-muted-foreground [&_svg]:size-3 ${colorClass}`}
+        >
           {icon}
           {status}
         </Badge>
-      )
+      );
     },
   },
   {
@@ -152,7 +173,11 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     cell: () => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="flex size-8 text-muted-foreground data-[state=open]:bg-muted" size="icon">
+          <Button
+            variant="ghost"
+            className="flex size-8 text-muted-foreground data-[state=open]:bg-muted"
+            size="icon"
+          >
             <MoreVerticalIcon />
             <span className="sr-only">باز کردن منو</span>
           </Button>
@@ -167,22 +192,18 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
       </DropdownMenu>
     ),
   },
-]
+];
 
-export function DataTable({
-  data: initialData,
-}: {
-  data: z.infer<typeof schema>[]
-}) {
-  const [data] = React.useState(() => initialData)
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [sorting, setSorting] = React.useState<SortingState>([])
+export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[] }) {
+  const [data] = React.useState(() => initialData);
+  const [rowSelection, setRowSelection] = React.useState({});
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
     pageSize: 10,
-  })
+  });
 
   const table = useReactTable({
     data,
@@ -194,7 +215,7 @@ export function DataTable({
       columnFilters,
       pagination,
     },
-    getRowId: (row) => row.id.toString(),
+    getRowId: row => row.id.toString(),
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
@@ -207,7 +228,7 @@ export function DataTable({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  })
+  });
 
   return (
     <Tabs defaultValue="tickets" className="flex w-full flex-col justify-start gap-6">
@@ -261,18 +282,18 @@ export function DataTable({
             <DropdownMenuContent align="end" className="w-56">
               {table
                 .getAllColumns()
-                .filter((column) => typeof column.accessorFn !== "undefined" && column.getCanHide())
-                .map((column) => {
+                .filter(column => typeof column.accessorFn !== "undefined" && column.getCanHide())
+                .map(column => {
                   return (
                     <DropdownMenuCheckboxItem
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                      onCheckedChange={value => column.toggleVisibility(!!value)}
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
-                  )
+                  );
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
@@ -282,28 +303,35 @@ export function DataTable({
           </Button>
         </div>
       </div>
-      <TabsContent value="tickets" className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6">
+      <TabsContent
+        value="tickets"
+        className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
+      >
         <div className="overflow-hidden rounded-lg border">
           <Table>
             <TableHeader className="sticky top-0 z-10 bg-muted">
-              {table.getHeaderGroups().map((headerGroup) => (
+              {table.getHeaderGroups().map(headerGroup => (
                 <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
+                  {headerGroup.headers.map(header => {
                     return (
                       <TableHead key={header.id} colSpan={header.colSpan}>
-                        {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(header.column.columnDef.header, header.getContext())}
                       </TableHead>
-                    )
+                    );
                   })}
                 </TableRow>
               ))}
             </TableHeader>
             <TableBody>
               {table.getRowModel().rows?.length ? (
-                table.getRowModel().rows.map((row) => (
+                table.getRowModel().rows.map(row => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    {row.getVisibleCells().map(cell => (
+                      <TableCell key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
                     ))}
                   </TableRow>
                 ))
@@ -319,8 +347,8 @@ export function DataTable({
         </div>
         <div className="flex items-center justify-between px-4">
           <div className="hidden flex-1 text-sm text-muted-foreground lg:flex">
-            {table.getFilteredSelectedRowModel().rows.length} از {table.getFilteredRowModel().rows.length} ردیف انتخاب
-            شده.
+            {table.getFilteredSelectedRowModel().rows.length} از{" "}
+            {table.getFilteredRowModel().rows.length} ردیف انتخاب شده.
           </div>
           <div className="flex w-full items-center gap-8 lg:w-fit">
             <div className="hidden items-center gap-2 lg:flex">
@@ -329,15 +357,15 @@ export function DataTable({
               </Label>
               <Select
                 value={`${table.getState().pagination.pageSize}`}
-                onValueChange={(value) => {
-                  table.setPageSize(Number(value))
+                onValueChange={value => {
+                  table.setPageSize(Number(value));
                 }}
               >
                 <SelectTrigger className="w-20" id="rows-per-page">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
                 <SelectContent side="top">
-                  {[10, 20, 30, 40, 50].map((pageSize) => (
+                  {[10, 20, 30, 40, 50].map(pageSize => (
                     <SelectItem key={pageSize} value={`${pageSize}`}>
                       {pageSize}
                     </SelectItem>
@@ -408,5 +436,5 @@ export function DataTable({
         </div>
       </TabsContent>
     </Tabs>
-  )
+  );
 }

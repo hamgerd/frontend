@@ -27,13 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { newOrganizationFormSchema } from "@/validator/new-organization-schema";
 
@@ -94,8 +88,7 @@ export default function NewOrganizationPage() {
       console.error("Error submitting organization:", error);
       toast({
         title: "خطا در ایجاد سازمان",
-        description:
-          "مشکلی در ایجاد سازمان به وجود آمد. لطفا دوباره تلاش کنید.",
+        description: "مشکلی در ایجاد سازمان به وجود آمد. لطفا دوباره تلاش کنید.",
         variant: "destructive",
       });
     } finally {
@@ -120,9 +113,7 @@ export default function NewOrganizationPage() {
       </div>
 
       <div className="flex flex-col items-center gap-4 text-center mb-10">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-          ثبت سازمان جدید
-        </h1>
+        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">ثبت سازمان جدید</h1>
         <p className="max-w-[700px] text-muted-foreground md:text-xl">
           اطلاعات سازمان خود را وارد کنید تا آن را برای کاربران منتشر کنیم
         </p>
@@ -133,9 +124,7 @@ export default function NewOrganizationPage() {
           <Card>
             <CardHeader>
               <CardTitle>اطلاعات اصلی</CardTitle>
-              <CardDescription>
-                اطلاعات اصلی سازمان خود را وارد کنید
-              </CardDescription>
+              <CardDescription>اطلاعات اصلی سازمان خود را وارد کنید</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <FormField
@@ -145,14 +134,10 @@ export default function NewOrganizationPage() {
                   <FormItem>
                     <FormLabel>نام سازمان</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="مثال: انجمن برنامه‌نویسان ایران"
-                        {...field}
-                      />
+                      <Input placeholder="مثال: انجمن برنامه‌نویسان ایران" {...field} />
                     </FormControl>
                     <FormDescription>
-                      نام سازمان خود را وارد کنید. این نام در همه جا نمایش داده
-                      می‌شود.
+                      نام سازمان خود را وارد کنید. این نام در همه جا نمایش داده می‌شود.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -185,8 +170,7 @@ export default function NewOrganizationPage() {
                       />
                     </FormControl>
                     <FormDescription>
-                      توضیحات کاملی درباره سازمان، اهداف و فعالیت‌های آن
-                      بنویسید.
+                      توضیحات کاملی درباره سازمان، اهداف و فعالیت‌های آن بنویسید.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -199,10 +183,7 @@ export default function NewOrganizationPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>دسته‌بندی</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
@@ -218,8 +199,7 @@ export default function NewOrganizationPage() {
                         </SelectContent>
                       </Select>
                       <FormDescription>
-                        دسته‌بندی سازمان به کاربران کمک می‌کند تا سازمان شما را
-                        راحت‌تر پیدا کنند.
+                        دسته‌بندی سازمان به کاربران کمک می‌کند تا سازمان شما را راحت‌تر پیدا کنند.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -234,9 +214,7 @@ export default function NewOrganizationPage() {
                       <FormControl>
                         <Input placeholder="مثال: ۱۳۹۰" {...field} />
                       </FormControl>
-                      <FormDescription>
-                        سال تاسیس سازمان خود را وارد کنید.
-                      </FormDescription>
+                      <FormDescription>سال تاسیس سازمان خود را وارد کنید.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -260,7 +238,7 @@ export default function NewOrganizationPage() {
                             type="file"
                             className="sr-only"
                             accept="image/*"
-                            onChange={(e) => {
+                            onChange={e => {
                               if (e.target.files && e.target.files[0]) {
                                 setLogoFile(e.target.files[0]);
                               }
@@ -272,11 +250,7 @@ export default function NewOrganizationPage() {
                       <p className="text-xs leading-5 text-muted-foreground">
                         PNG, JPG تا ۲ مگابایت
                       </p>
-                      {logoFile && (
-                        <p className="mt-2 text-xs text-primary">
-                          {logoFile.name}
-                        </p>
-                      )}
+                      {logoFile && <p className="mt-2 text-xs text-primary">{logoFile.name}</p>}
                     </div>
                   </div>
                 </div>
@@ -297,7 +271,7 @@ export default function NewOrganizationPage() {
                             type="file"
                             className="sr-only"
                             accept="image/*"
-                            onChange={(e) => {
+                            onChange={e => {
                               if (e.target.files && e.target.files[0]) {
                                 setCoverFile(e.target.files[0]);
                               }
@@ -309,11 +283,7 @@ export default function NewOrganizationPage() {
                       <p className="text-xs leading-5 text-muted-foreground">
                         PNG, JPG تا ۵ مگابایت
                       </p>
-                      {coverFile && (
-                        <p className="mt-2 text-xs text-primary">
-                          {coverFile.name}
-                        </p>
-                      )}
+                      {coverFile && <p className="mt-2 text-xs text-primary">{coverFile.name}</p>}
                     </div>
                   </div>
                 </div>
@@ -324,9 +294,7 @@ export default function NewOrganizationPage() {
           <Card>
             <CardHeader>
               <CardTitle>اطلاعات تماس</CardTitle>
-              <CardDescription>
-                اطلاعات تماس سازمان خود را وارد کنید
-              </CardDescription>
+              <CardDescription>اطلاعات تماس سازمان خود را وارد کنید</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -381,11 +349,7 @@ export default function NewOrganizationPage() {
                   <FormItem>
                     <FormLabel>ایمیل</FormLabel>
                     <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="example@domain.com"
-                        {...field}
-                      />
+                      <Input type="email" placeholder="example@domain.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

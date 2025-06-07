@@ -12,52 +12,72 @@
  * Do not edit the class manually.
  */
 
+<<<<<<< HEAD
 import { TicketTransactionSerializerPublic } from './ticket-transaction-serializer-public';
 import { TicketType } from './ticket-type';
  /**
  * 
+=======
+import { TicketType } from "./ticket-type";
+/**
+ *
+>>>>>>> ba26cb3 (chore: format code with Prettier)
  *
  * @export
  * @interface Ticket
  */
 export interface Ticket {
+  /**
+   * @type {number}
+   * @memberof Ticket
+   */
+  id?: number;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof Ticket
      */
     public_id?: string;
+=======
+  /**
+   * @type {TicketType}
+   * @memberof Ticket
+   */
+  ticket_type?: TicketType;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {TicketType}
-     * @memberof Ticket
-     */
-    ticket_type?: TicketType;
+  /**
+   * @type {string}
+   * @memberof Ticket
+   */
+  status?: TicketStatusEnum;
 
-    /**
-     * @type {string}
-     * @memberof Ticket
-     */
-    status?: TicketStatusEnum;
+  /**
+   * @type {string}
+   * @memberof Ticket
+   */
+  ticket_number: string;
 
-    /**
-     * @type {string}
-     * @memberof Ticket
-     */
-    ticket_number: string;
+  /**
+   * @type {string}
+   * @memberof Ticket
+   */
+  notes?: string;
 
-    /**
-     * @type {string}
-     * @memberof Ticket
-     */
-    notes?: string;
+  /**
+   * @type {string}
+   * @memberof Ticket
+   */
+  event?: string;
 
-    /**
-     * @type {string}
-     * @memberof Ticket
-     */
-    event?: string;
+  /**
+   * @type {Date}
+   * @memberof Ticket
+   */
+  created_at?: Date;
 
+<<<<<<< HEAD
     /**
      * @type {Date}
      * @memberof Ticket
@@ -75,6 +95,13 @@ export interface Ticket {
      * @memberof Ticket
      */
     transactions?: TicketTransactionSerializerPublic;
+=======
+  /**
+   * @type {Date}
+   * @memberof Ticket
+   */
+  updated_at?: Date;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 }
 
 /**
@@ -82,9 +109,8 @@ export interface Ticket {
  * @enum {string}
  */
 export enum TicketStatusEnum {
-    Pending = 'pending',
-    Confirmed = 'confirmed',
-    Cancelled = 'cancelled',
-    Expired = 'expired'
+  Pending = "pending",
+  Confirmed = "confirmed",
+  Cancelled = "cancelled",
+  Expired = "expired",
 }
-

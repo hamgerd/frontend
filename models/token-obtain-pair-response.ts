@@ -12,23 +12,22 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface TokenObtainPairResponse
  */
 export interface TokenObtainPairResponse {
+  /**
+   * @type {string}
+   * @memberof TokenObtainPairResponse
+   */
+  access: string;
 
-    /**
-     * @type {string}
-     * @memberof TokenObtainPairResponse
-     */
-    access: string;
-
-    /**
-     * @type {string}
-     * @memberof TokenObtainPairResponse
-     */
-    refresh: string;
+  /**
+   * @type {string}
+   * @memberof TokenObtainPairResponse
+   */
+  refresh: string;
 }

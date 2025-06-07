@@ -37,12 +37,9 @@ export default function OrganizationsPage() {
     <div className="container py-10 mx-auto">
       <div className="mx-4">
         <div className="flex flex-col items-center gap-4 text-center mb-10">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            سازمان‌ها
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">سازمان‌ها</h1>
           <p className="max-w-[700px] text-muted-foreground md:text-xl">
-            با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها
-            شرکت کنید
+            با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها شرکت کنید
           </p>
         </div>
 
@@ -85,7 +82,7 @@ export default function OrganizationsPage() {
 
       {/* Organizations Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 mx-6">
-        {organizations.map((org) => (
+        {organizations.map(org => (
           <Card key={org.id} className="overflow-hidden">
             <div className="p-6 flex flex-col items-center">
               <div className="relative h-24 w-24 rounded-full overflow-hidden mb-4 bg-muted">
@@ -99,10 +96,7 @@ export default function OrganizationsPage() {
               <div className="flex items-center gap-2 mb-2">
                 <h3 className="font-bold text-xl text-center">{org.name}</h3>
                 {org.verified && (
-                  <Badge
-                    variant="outline"
-                    className="bg-primary/10 text-primary"
-                  >
+                  <Badge variant="outline" className="bg-primary/10 text-primary">
                     تایید شده
                   </Badge>
                 )}
@@ -186,12 +180,9 @@ export default function OrganizationsPage() {
       </div> */}
 
       <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
-        <h2 className="text-2xl font-bold">
-          می‌خواهید سازمان خود را ثبت کنید؟
-        </h2>
+        <h2 className="text-2xl font-bold">می‌خواهید سازمان خود را ثبت کنید؟</h2>
         <p className="text-muted-foreground">
-          به سادگی می‌توانید سازمان خود را ثبت کرده و رویدادهای خود را مدیریت
-          کنید
+          به سادگی می‌توانید سازمان خود را ثبت کرده و رویدادهای خود را مدیریت کنید
         </p>
         <Button asChild size="lg" className="mt-2">
           <Link href="/new-organization">ثبت سازمان جدید</Link>

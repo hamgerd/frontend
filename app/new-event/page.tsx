@@ -26,13 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -130,12 +124,9 @@ export default function NewEventPage() {
         </div>
 
         <div className="flex flex-col items-center gap-4 text-center mb-10">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-            ایجاد رویداد جدید
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">ایجاد رویداد جدید</h1>
           <p className="max-w-[700px] text-muted-foreground md:text-xl">
-            اطلاعات رویداد خود را وارد کنید تا آن را برای شرکت‌کنندگان منتشر
-            کنیم
+            اطلاعات رویداد خود را وارد کنید تا آن را برای شرکت‌کنندگان منتشر کنیم
           </p>
         </div>
 
@@ -144,9 +135,7 @@ export default function NewEventPage() {
             <Card>
               <CardHeader>
                 <CardTitle>اطلاعات اصلی</CardTitle>
-                <CardDescription>
-                  اطلاعات اصلی رویداد خود را وارد کنید
-                </CardDescription>
+                <CardDescription>اطلاعات اصلی رویداد خود را وارد کنید</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <FormField
@@ -156,14 +145,10 @@ export default function NewEventPage() {
                     <FormItem>
                       <FormLabel>عنوان رویداد</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="مثال: کنفرانس فناوری‌های نوین وب"
-                          {...field}
-                        />
+                        <Input placeholder="مثال: کنفرانس فناوری‌های نوین وب" {...field} />
                       </FormControl>
                       <FormDescription>
-                        عنوان رویداد خود را وارد کنید. این عنوان در همه جا نمایش
-                        داده می‌شود.
+                        عنوان رویداد خود را وارد کنید. این عنوان در همه جا نمایش داده می‌شود.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -183,8 +168,7 @@ export default function NewEventPage() {
                         />
                       </FormControl>
                       <FormDescription>
-                        توضیحات کاملی درباره رویداد، هدف آن و مخاطبان آن
-                        بنویسید.
+                        توضیحات کاملی درباره رویداد، هدف آن و مخاطبان آن بنویسید.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -196,10 +180,7 @@ export default function NewEventPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>دسته‌بندی</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
@@ -215,8 +196,7 @@ export default function NewEventPage() {
                         </SelectContent>
                       </Select>
                       <FormDescription>
-                        دسته‌بندی رویداد به کاربران کمک می‌کند تا رویداد شما را
-                        راحت‌تر پیدا کنند.
+                        دسته‌بندی رویداد به کاربران کمک می‌کند تا رویداد شما را راحت‌تر پیدا کنند.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -224,13 +204,10 @@ export default function NewEventPage() {
                 />
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader>
                 <CardTitle>زمان و مکان</CardTitle>
-                <CardDescription>
-                  زمان و مکان برگزاری رویداد را مشخص کنید
-                </CardDescription>
+                <CardDescription>زمان و مکان برگزاری رویداد را مشخص کنید</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -297,14 +274,9 @@ export default function NewEventPage() {
                     <FormItem>
                       <FormLabel>مکان برگزاری</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="مثال: سالن همایش‌های برج میلاد"
-                          {...field}
-                        />
+                        <Input placeholder="مثال: سالن همایش‌های برج میلاد" {...field} />
                       </FormControl>
-                      <FormDescription>
-                        نام مکان برگزاری رویداد را وارد کنید.
-                      </FormDescription>
+                      <FormDescription>نام مکان برگزاری رویداد را وارد کنید.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -328,14 +300,12 @@ export default function NewEventPage() {
                 />
               </CardContent>
             </Card>
-            //
-            // TODO make ticket section as a list of tickets with delete and add button also with a title | startDate and end date for each ticket
+            // // TODO make ticket section as a list of tickets with delete and add button also with
+            a title | startDate and end date for each ticket
             <Card>
               <CardHeader>
                 <CardTitle>ظرفیت و قیمت</CardTitle>
-                <CardDescription>
-                  تعداد شرکت‌کنندگان و قیمت بلیت را مشخص کنید
-                </CardDescription>
+                <CardDescription>تعداد شرکت‌کنندگان و قیمت بلیت را مشخص کنید</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -367,16 +337,10 @@ export default function NewEventPage() {
                       <FormItem>
                         <FormLabel>قیمت (تومان)</FormLabel>
                         <FormControl>
-                          <Input
-                            type="number"
-                            min="0"
-                            placeholder="مثال: 100000"
-                            {...field}
-                          />
+                          <Input type="number" min="0" placeholder="مثال: 100000" {...field} />
                         </FormControl>
                         <FormDescription>
-                          قیمت بلیت رویداد را وارد کنید. اگر رویداد رایگان است،
-                          عدد ۰ را وارد کنید.
+                          قیمت بلیت رویداد را وارد کنید. اگر رویداد رایگان است، عدد ۰ را وارد کنید.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -385,13 +349,10 @@ export default function NewEventPage() {
                 </div>
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader>
                 <CardTitle>اطلاعات برگزارکننده</CardTitle>
-                <CardDescription>
-                  اطلاعات تماس برگزارکننده را وارد کنید
-                </CardDescription>
+                <CardDescription>اطلاعات تماس برگزارکننده را وارد کنید</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <FormField
@@ -401,10 +362,7 @@ export default function NewEventPage() {
                     <FormItem>
                       <FormLabel>نام برگزارکننده</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="نام شخص یا سازمان برگزارکننده"
-                          {...field}
-                        />
+                        <Input placeholder="نام شخص یا سازمان برگزارکننده" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -418,11 +376,7 @@ export default function NewEventPage() {
                       <FormItem>
                         <FormLabel>ایمیل</FormLabel>
                         <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="example@domain.com"
-                            {...field}
-                          />
+                          <Input type="email" placeholder="example@domain.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -444,7 +398,6 @@ export default function NewEventPage() {
                 </div>
               </CardContent>
             </Card>
-
             <div className="flex justify-center gap-4">
               <Button variant="outline" size="lg" asChild>
                 <Link href="/dashboard">انصراف</Link>

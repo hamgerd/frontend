@@ -1,10 +1,10 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { HeartIcon, CalendarIcon, TicketIcon, StarIcon } from "lucide-react"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { HeartIcon, CalendarIcon, TicketIcon, StarIcon } from "lucide-react";
 
 const favoriteEvents = [
   {
@@ -40,14 +40,14 @@ const favoriteEvents = [
     category: "موزیکال",
     rating: 4.9,
   },
-]
+];
 
 const favoriteArtists = [
   { id: 1, name: "محمدرضا گلزار", category: "بازیگر", followers: "2.3M" },
   { id: 2, name: "حمید هیراد", category: "خواننده", followers: "1.8M" },
   { id: 3, name: "پرویز پرستویی", category: "بازیگر", followers: "1.2M" },
   { id: 4, name: "محسن چاوشی", category: "خواننده", followers: "3.1M" },
-]
+];
 
 export default function FavoritesPage() {
   return (
@@ -108,7 +108,7 @@ export default function FavoritesPage() {
                     <CardDescription>رویدادهایی که دنبال می‌کنید</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {favoriteEvents.map((event) => (
+                    {favoriteEvents.map(event => (
                       <div key={event.id} className="flex items-center space-x-4 space-x-reverse">
                         <img
                           src={event.image || "/placeholder.svg"}
@@ -140,11 +140,13 @@ export default function FavoritesPage() {
                     <CardDescription>هنرمندانی که دنبال می‌کنید</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {favoriteArtists.map((artist) => (
+                    {favoriteArtists.map(artist => (
                       <div key={artist.id} className="flex items-center justify-between">
                         <div className="flex items-center space-x-4 space-x-reverse">
                           <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center">
-                            <span className="text-white font-medium text-sm">{artist.name.charAt(0)}</span>
+                            <span className="text-white font-medium text-sm">
+                              {artist.name.charAt(0)}
+                            </span>
                           </div>
                           <div>
                             <h4 className="text-sm font-medium">{artist.name}</h4>
@@ -166,5 +168,5 @@ export default function FavoritesPage() {
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

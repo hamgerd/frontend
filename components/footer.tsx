@@ -36,34 +36,22 @@ export default function Footer() {
             <h3 className="font-bold text-lg">دسترسی سریع</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="/" className="text-muted-foreground hover:text-foreground">
                   صفحه اصلی
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/events"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="/events" className="text-muted-foreground hover:text-foreground">
                   رویدادها
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/organizations"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="/organizations" className="text-muted-foreground hover:text-foreground">
                   سازمان‌ها
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/about"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="/about" className="text-muted-foreground hover:text-foreground">
                   درباره ما
                 </Link>
               </li>
@@ -75,10 +63,7 @@ export default function Footer() {
             <h3 className="font-bold text-lg">خدمات</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/new-event"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="/new-event" className="text-muted-foreground hover:text-foreground">
                   ایجاد رویداد
                 </Link>
               </li>
@@ -91,10 +76,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/dashboard"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="/dashboard" className="text-muted-foreground hover:text-foreground">
                   داشبورد کاربری
                 </Link>
               </li>

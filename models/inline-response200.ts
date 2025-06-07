@@ -12,19 +12,18 @@
  * Do not edit the class manually.
  */
 
- /**
- * 
+/**
+ *
  *
  * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
-
-    /**
-     * Success message
-     *
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    message?: string;
+  /**
+   * Success message
+   *
+   * @type {string}
+   * @memberof InlineResponse200
+   */
+  message?: string;
 }

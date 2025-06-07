@@ -12,33 +12,47 @@
  * Do not edit the class manually.
  */
 
-import { Organization } from './organization';
- /**
- * 
+import { Organization } from "./organization";
+/**
+ *
  *
  * @export
  * @interface UserME
  */
 export interface UserME {
+  /**
+   * @type {number}
+   * @memberof UserME
+   */
+  id?: number;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof UserME
      */
     public_id?: string;
+=======
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  email: string;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 
-    /**
-     * @type {string}
-     * @memberof UserME
-     */
-    email: string;
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  first_name?: string;
 
-    /**
-     * @type {string}
-     * @memberof UserME
-     */
-    first_name?: string;
+  /**
+   * @type {string}
+   * @memberof UserME
+   */
+  last_name?: string;
 
+<<<<<<< HEAD
     /**
      * @type {string}
      * @memberof UserME
@@ -56,4 +70,11 @@ export interface UserME {
      * @memberof UserME
      */
     organizations?: Array<Organization>;
+=======
+  /**
+   * @type {Array<Organization>}
+   * @memberof UserME
+   */
+  organizations?: Array<Organization>;
+>>>>>>> ba26cb3 (chore: format code with Prettier)
 }
