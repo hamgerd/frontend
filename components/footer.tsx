@@ -122,7 +122,7 @@ export default function Footer() {
       <div className="container mt-12 pt-8 border-t px-6  mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-muted-foreground">
-            <span className="flex items-center gap-1 text-sm " dir="ltr">
+            <span className="flex items-center gap-1 text-sm" dir="ltr">
               <a href="https://hamgerd.ir" className="hover:underline">
                 هم‌گرد
               </a>
@@ -133,19 +133,25 @@ export default function Footer() {
                 className="flex items-center hover:underline"
               >
                 CC BY-SA 4.0
-                <img
+                <Image
                   src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
-                  className="inline-block w-4 h-4 mx-0.5"
+                  width={16}
+                  height={16}
+                  className="inline-block mx-0.5"
                   alt="CC"
                 />
-                <img
+                <Image
                   src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
-                  className="inline-block w-4 h-4 mx-0.5"
+                  width={16}
+                  height={16}
+                  className="inline-block mx-0.5"
                   alt="BY"
                 />
-                <img
+                <Image
                   src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
-                  className="inline-block w-4 h-4 mx-0.5"
+                  width={16}
+                  height={16}
+                  className="inline-block mx-0.5"
                   alt="SA"
                 />
               </a>

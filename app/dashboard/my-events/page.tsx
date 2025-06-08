@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CalendarIcon, MapPinIcon, UsersIcon, ClockIcon } from "lucide-react";
+import Image from "next/image";
 
 const myEvents = [
   {
@@ -103,10 +104,12 @@ export default function MyEventsPage() {
                 {myEvents.map(event => (
                   <Card key={event.id} className="overflow-hidden">
                     <div className="aspect-video relative">
-                      <img
+                      <Image
                         src={event.image || "/placeholder.svg"}
                         alt={event.name}
                         className="object-cover w-full h-full"
+                        width={10}
+                        height={10}
                       />
                       <Badge
                         className="absolute top-2 right-2"
@@ -170,10 +173,12 @@ export default function MyEventsPage() {
                         className="flex items-center justify-between p-4 border rounded-lg"
                       >
                         <div className="flex items-center space-x-4 space-x-reverse">
-                          <img
+                          <Image
                             src={event.image || "/placeholder.svg"}
                             alt={event.name}
                             className="w-12 h-12 rounded-lg object-cover"
+                            width={10}
+                            height={10}
                           />
                           <div>
                             <h4 className="font-medium">{event.name}</h4>

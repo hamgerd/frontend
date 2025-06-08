@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookmarkIcon, CalendarIcon, MapPinIcon, TicketIcon } from "lucide-react";
+import Image from "next/image";
 
 const bookmarkedEvents = [
   {
@@ -105,10 +106,12 @@ export default function BookmarksPage() {
                 {bookmarkedEvents.map(event => (
                   <Card key={event.id} className="overflow-hidden">
                     <div className="aspect-video relative">
-                      <img
+                      <Image
                         src={event.image || "/placeholder.svg"}
                         alt={event.name}
                         className="object-cover w-full h-full"
+                        width={300}
+                        height={300}
                       />
                       <Badge className="absolute top-2 right-2">{event.category}</Badge>
                     </div>
