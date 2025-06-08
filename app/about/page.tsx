@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Calendar, Globe, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 

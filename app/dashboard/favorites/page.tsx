@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { HeartIcon, CalendarIcon, TicketIcon, StarIcon } from "lucide-react";
+import Image from "next/image";
 
 const favoriteEvents = [
   {
@@ -110,10 +111,12 @@ export default function FavoritesPage() {
                   <CardContent className="space-y-4">
                     {favoriteEvents.map(event => (
                       <div key={event.id} className="flex items-center space-x-4 space-x-reverse">
-                        <img
+                        <Image
                           src={event.image || "/placeholder.svg"}
                           alt={event.name}
                           className="w-16 h-16 rounded-lg object-cover"
+                          height={10}
+                          width={10}
                         />
                         <div className="flex-1 space-y-1">
                           <h4 className="text-sm font-medium">{event.name}</h4>

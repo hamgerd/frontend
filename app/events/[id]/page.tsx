@@ -3,21 +3,21 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowLeft,
-  Calendar,
+  // Calendar,
   CalendarDays,
   Clock,
   Globe,
   Mail,
   MapPin,
   Share2,
-  User,
+  // User,
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+// import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useEffect, useState } from "react";
 import api from "@/lib/axios";

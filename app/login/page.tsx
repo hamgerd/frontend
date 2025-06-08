@@ -83,8 +83,8 @@ export default function LoginPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "این پلتفرم به ما کمک کرد تا سمینارهای آموزشی خود را به شکل حرفه‌ای و با کیفیت عالی
-              برگزار کنیم."
+              این پلتفرم به ما کمک کرد تا سمینارهای آموزشی خود را به شکل حرفه‌ای و با کیفیت عالی
+              برگزار کنیم.
             </p>
             <footer className="text-sm">محمد علوی - مدیر آموزش شرکت فناوری نوین</footer>
           </blockquote>

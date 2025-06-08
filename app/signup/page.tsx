@@ -49,6 +49,7 @@ export default function SignupPage() {
         description: "حساب کاربری شما با موفقیت ایجاد شد.",
       });
     } catch (err) {
+      console.log("error message is:" + err);
       toast({
         title: "خطا در ثبت‌نام",
         description: "لطفاً دوباره تلاش کنید.",
@@ -71,8 +72,8 @@ export default function SignupPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              "ثبت‌نام در این پلتفرم به ما امکان داد تا کارگاه‌های آموزشی خود را به آسانی مدیریت
-              کنیم."
+              ثبت‌نام در این پلتفرم به ما امکان داد تا کارگاه‌های آموزشی خود را به آسانی مدیریت
+              کنیم.
             </p>
             <footer className="text-sm">سارا محمدی - مدیر آموزش موسسه فناوری اطلاعات</footer>
           </blockquote>
