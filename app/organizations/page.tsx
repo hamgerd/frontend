@@ -24,7 +24,7 @@ export default function OrganizationsPage() {
     const fetchOrganizations = async () => {
       try {
         const res = await api.get("/api/v1/organization/");
-        setOrganizations(res.data);
+        setOrganizations(res.data.results);
       } catch (err) {
         console.log("error massage is: " + err);
       }
@@ -103,7 +103,7 @@ export default function OrganizationsPage() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
                 <MapPin className="h-4 w-4" />
-                <span>{org.location}</span>
+                <span>{org.address}</span>
               </div>
               <p className="text-muted-foreground text-sm text-center line-clamp-2 mb-4">
                 {org.description}
@@ -121,7 +121,7 @@ export default function OrganizationsPage() {
             </div>
             <CardFooter className="p-6 pt-0">
               <Button asChild className="w-full">
-                <Link href={`/organizations/${org.id}`}>
+                <Link href={`/organizations/${org.username}`}>
                   مشاهده پروفایل
                   <ArrowRight className="mr-2 h-4 w-4" />
                 </Link>

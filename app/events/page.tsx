@@ -26,7 +26,7 @@ export default function EventsPage() {
       try {
         const response = await api.get("/api/v1/events/");
         if (response.data) {
-          setEvents(response.data);
+          setEvents(response.data.results);
         }
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -105,7 +105,7 @@ export default function EventsPage() {
               </Card>
             ))
         ) : events.length > 0 ? (
-          events.map(event => <EventCard key={event.id} event={event} />)
+          events.map(event => <EventCard key={event.public_id} event={event} />)
         ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-12">
             <p className="text-xl text-muted-foreground mb-4">هیچ رویدادی یافت نشد</p>

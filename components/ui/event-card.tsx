@@ -12,7 +12,7 @@ type EventCardProps = {
 
 const EventCard = ({ event }: EventCardProps) => {
   return (
-    <Card key={event.id} className="overflow-hidden">
+    <Card key={event.public_id} className="overflow-hidden">
       <div className="relative h-48">
         <Image
           src={event.image || "/placeholder.svg"}
@@ -42,7 +42,7 @@ const EventCard = ({ event }: EventCardProps) => {
       </CardContent>
       <CardFooter className="p-6 pt-0">
         <Button asChild className="w-full">
-          <Link href={`/events/${event.id}`}>مشاهده جزئیات</Link>
+          <Link href={`/events/${event.public_id}`}>مشاهده جزئیات</Link>
         </Button>
       </CardFooter>
     </Card>

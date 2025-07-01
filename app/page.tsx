@@ -100,7 +100,7 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
                   <Button asChild className="w-full">
-                    <Link href={`/events/${event.id}`}>
+                    <Link href={`/events/${event.public_id}`}>
                       مشاهده جزئیات
                       <ArrowLeft className="mr-2 h-4 w-4" />
                     </Link>
