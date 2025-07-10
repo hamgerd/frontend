@@ -83,11 +83,11 @@ export default function OrganizationsPage() {
       {/* Organizations Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 mx-6">
         {organizations.map(org => (
-          <Card key={org.id} className="overflow-hidden">
+          <Card key={org.public_id} className="overflow-hidden">
             <div className="p-6 flex flex-col items-center">
               <div className="relative h-24 w-24 rounded-full overflow-hidden mb-4 bg-muted">
                 <Image
-                  src={org.image || "/placeholder.svg"}
+                  src={org.logo || "/placeholder.svg"}
                   alt={org.name}
                   fill
                   className="object-cover"
@@ -111,12 +111,12 @@ export default function OrganizationsPage() {
               <div className="flex justify-between w-full mb-4">
                 <div className="flex items-center gap-1 text-muted-foreground text-sm">
                   <Calendar className="h-4 w-4" />
-                  <span>{org.eventCount} رویداد</span>
+                  <span>{org.event_count} رویداد</span>
                 </div>
-                <div className="flex items-center gap-1 text-muted-foreground text-sm">
+                {/* <div className="flex items-center gap-1 text-muted-foreground text-sm">
                   <Users className="h-4 w-4" />
-                  {/* <span>{org.memberCount.toLocaleString("fa-IR")} عضو</span> */}
-                </div>
+                  <span>{org.event_count.toLocaleString("fa-IR")} عضو</span>
+                </div> */}
               </div>
             </div>
             <CardFooter className="p-6 pt-0">

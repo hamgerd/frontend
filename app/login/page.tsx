@@ -30,7 +30,7 @@ export default function LoginPage() {
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: false,
+      // rememberMe: false,
     },
   });
 
@@ -77,17 +77,11 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-primary" />
         <div className="relative z-20 flex items-center gap-2 text-lg font-medium">
           <Link href="/" className="flex items-center text-white">
-            رویداد فارسی
+            هم‌گرد
           </Link>
         </div>
         <div className="relative z-20 mt-auto">
-          <blockquote className="space-y-2">
-            <p className="text-lg">
-              این پلتفرم به ما کمک کرد تا سمینارهای آموزشی خود را به شکل حرفه‌ای و با کیفیت عالی
-              برگزار کنیم.
-            </p>
-            <footer className="text-sm">محمد علوی - مدیر آموزش شرکت فناوری نوین</footer>
-          </blockquote>
+          <blockquote className="space-y-2"></blockquote>
         </div>
       </div>
       <div className="p-8">
@@ -124,21 +118,21 @@ export default function LoginPage() {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="rememberMe"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4">
-                    <FormControl>
+              {/* <FormField */}
+              {/* // control={form.control} */}
+              {/* // name="rememberMe" */}
+              {/* render={({ field }) => ( */}
+              {/* // <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4"> */}
+              {/* <FormControl>
                       <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    {/* FIXME */}
-                    <div className="space-y-1 leading-none">
+                    </FormControl> */}
+              {/* FIXME */}
+              {/* <div className="space-y-1 leading-none">
                       <FormLabel>مرا به خاطر بسپار</FormLabel>
-                    </div>
-                  </FormItem>
-                )}
-              />
+                    </div> */}
+              {/* </FormItem> */}
+              {/* )} */}
+              {/* /> */}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "در حال ورود..." : "ورود"}
               </Button>

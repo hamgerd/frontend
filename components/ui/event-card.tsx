@@ -5,6 +5,7 @@ import { CalendarDays, MapPin, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Event } from "@/models/event";
+import moment from "jalali-moment";
 
 type EventCardProps = {
   event: Event;
@@ -29,7 +30,7 @@ const EventCard = ({ event }: EventCardProps) => {
         <div className="flex items-center gap-2 text-muted-foreground mb-2">
           <CalendarDays className="h-4 w-4" />
           {/*  // FIXME */}
-          <span>{event.start_date}</span>
+          <span>{(event.start_date = moment().locale("fa").format(" شروع YYYY/MM/DD"))}</span>
         </div>
         <div className="flex items-center gap-2 text-muted-foreground mb-2">
           <MapPin className="h-4 w-4" />

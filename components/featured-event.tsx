@@ -41,7 +41,7 @@ export default function FeaturedEvent() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {featuredEvents.map(event => (
-            <Card key={event.id} className="overflow-hidden w-full max-w-sm">
+            <Card key={event.public_id} className="overflow-hidden w-full max-w-sm">
               <div className="relative h-48">
                 <Image
                   src={event.image || "/placeholder.svg"}
@@ -62,7 +62,7 @@ export default function FeaturedEvent() {
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Users className="h-4 w-4" />
-                  <span>{event.max_participants} شرکت‌کننده</span>
+                  <span> ظرفیت {event.max_participants}</span>
                 </div>
               </CardContent>
               <CardFooter className="p-6 pt-0">

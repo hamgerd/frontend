@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import api from "@/lib/axios";
 
 export default function SignupPage() {
@@ -66,7 +66,7 @@ export default function SignupPage() {
         <div className="absolute inset-0 bg-primary" />
         <div className="relative z-20 flex items-center gap-2 text-lg font-medium">
           <Link href="/" className="flex items-center text-white">
-            رویداد فارسی
+            هم‌گرد
           </Link>
         </div>
         <div className="relative z-20 mt-auto">
@@ -75,7 +75,6 @@ export default function SignupPage() {
               ثبت‌نام در این پلتفرم به ما امکان داد تا کارگاه‌های آموزشی خود را به آسانی مدیریت
               کنیم.
             </p>
-            <footer className="text-sm">سارا محمدی - مدیر آموزش موسسه فناوری اطلاعات</footer>
           </blockquote>
         </div>
       </div>

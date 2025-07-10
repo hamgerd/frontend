@@ -141,14 +141,9 @@ export default function OrganizationPage() {
 
         {/* Cover Image and Logo */}
         <div className="relative mb-8">
-          <div className="relative h-64 rounded-lg overflow-hidden"></div>
+          <div className="relative h-20 rounded-lg overflow-hidden"></div>
           <div className="absolute -bottom-12 right-8 h-24 w-24 rounded-full overflow-hidden border-4 border-background bg-background">
-            <Image
-              src={organization.logo || "/placeholder.svg"}
-              alt={organization.name}
-              fill
-              className="object-cover"
-            />
+            <Image src={organization.logo} alt={organization.name} fill className="object-cover" />
           </div>
         </div>
 
@@ -162,7 +157,6 @@ export default function OrganizationPage() {
                 </Badge>
               )}
             </div>
-
             <div className="flex flex-wrap gap-4 mb-6">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4" />
@@ -179,12 +173,12 @@ export default function OrganizationPage() {
             </div>
 
             <Tabs defaultValue="about">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="about">درباره</TabsTrigger>
                 <TabsTrigger value="events">رویدادها</TabsTrigger>
-                <TabsTrigger value="team">تیم</TabsTrigger>
+                {/* <TabsTrigger value="team">تیم</TabsTrigger> */}
               </TabsList>
-              <TabsContent value="about" className="mt-6">
+              <TabsContent value="about" className="mt-6" dir="rtl">
                 <p className="mb-6 whitespace-pre-line">{organizationDetails?.description}</p>
 
                 <h3 className="text-lg font-bold mb-2">آدرس</h3>
@@ -367,7 +361,7 @@ export default function OrganizationPage() {
               </CardContent>
             </Card>
 
-            <Card className="mt-6">
+            {/* <Card className="mt-6">
               <CardHeader>
                 <CardTitle>آمار</CardTitle>
               </CardHeader>
@@ -390,7 +384,7 @@ export default function OrganizationPage() {
                 </div>
                 <Button className="w-full mt-4">عضویت در سازمان</Button>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </div>
