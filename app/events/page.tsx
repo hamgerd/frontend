@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -15,6 +14,8 @@ import EventCard from "@/components/ui/event-card";
 import { useEffect, useState } from "react";
 import api from "@/lib/axios";
 import { Event } from "@/models/event";
+import CardLoading from "@/components/card-loading";
+import CreatePromptCard from "@/components/create-prompt-card";
 
 export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -87,23 +88,7 @@ export default function EventsPage() {
       {/* Events Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-6 gap-6 mb-10">
         {isLoading ? (
-          // Loading skeleton
-          Array(6)
-            .fill(0)
-            .map((_, index) => (
-              <Card key={`loading-${index}`} className="overflow-hidden">
-                <div className="relative h-48 bg-muted animate-pulse"></div>
-                <CardContent className="p-6">
-                  <div className="h-6 w-3/4 bg-muted animate-pulse mb-2"></div>
-                  <div className="h-4 w-1/2 bg-muted animate-pulse mb-2"></div>
-                  <div className="h-4 w-2/3 bg-muted animate-pulse mb-2"></div>
-                  <div className="h-4 w-1/2 bg-muted animate-pulse"></div>
-                </CardContent>
-                <CardFooter className="p-6 pt-0">
-                  <div className="h-10 w-full bg-muted animate-pulse"></div>
-                </CardFooter>
-              </Card>
-            ))
+          <CardLoading />
         ) : events.length > 0 ? (
           events.map(event => <EventCard key={event.public_id} event={event} />)
         ) : (
@@ -169,15 +154,12 @@ export default function EventsPage() {
           </Button>
         </div> */}
       </div>
-      <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
-        <h2 className="text-2xl font-bold">می‌خواهید رویداد خود را ایجاد کنید؟</h2>
-        <p className="text-muted-foreground">
-          به سادگی می‌توانید رویداد خود را ایجاد کرده و مدیریت کنید
-        </p>
-        <Button asChild size="lg" className="mt-2">
-          <Link href="/new-event">ایجاد رویداد جدید</Link>
-        </Button>
-      </div>
+      <CreatePromptCard
+        title="می‌خواهید رویداد خود را ایجاد کنید؟"
+        description="به سادگی می‌توانید رویداد خود را ایجاد کرده و مدیریت کنید"
+        buttonText="ایجاد رویداد جدید"
+        buttonHref="/new-event"
+      />
     </div>
   );
 }
