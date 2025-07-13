@@ -1,9 +1,6 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Calendar, MapPin, Search, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardFooter } from "@/components/ui/card";
+
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -12,21 +9,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import api from "@/lib/axios";
 import { Organization } from "@/models/organization";
+import OrganizationCard from "@/components/organization-card";
+import CardLoading from "@/components/card-loading";
+import CreatePromptCard from "@/components/create-prompt-card";
 
 export default function OrganizationsPage() {
   const [organizations, setOrganizations] = useState<Organization[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchOrganizations = async () => {
+      setIsLoading(true);
       try {
         const res = await api.get("/api/v1/organization/");
         setOrganizations(res.data.results);
       } catch (err) {
         console.log("error massage is: " + err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -34,104 +37,67 @@ export default function OrganizationsPage() {
   }, []);
 
   return (
-    <div className="container py-10 mx-auto">
-      <div className="mx-4">
-        <div className="flex flex-col items-center gap-4 text-center mb-10">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">سازمان‌ها</h1>
-          <p className="max-w-[700px] text-muted-foreground md:text-xl">
-            با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها شرکت کنید
-          </p>
-        </div>
+    <>
+      <div className="container flex mx-auto flex-col py-10">
+        <div className="mx-4">
+          <div className="flex flex-col items-center gap-4 text-center mb-10">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              سازمان‌ها
+            </h1>
+            <p className="max-w-[700px] text-muted-foreground md:text-xl">
+              با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها شرکت کنید
+            </p>
+          </div>
 
-        {/* Search and Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
-          <div className="md:col-span-2 relative">
-            <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
-            <Input placeholder="جستجوی سازمان..." className="pr-10" />
-          </div>
-          <div>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="دسته‌بندی" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">همه</SelectItem>
-                <SelectItem value="technology">فناوری</SelectItem>
-                <SelectItem value="business">کسب و کار</SelectItem>
-                <SelectItem value="education">آموزشی</SelectItem>
-                <SelectItem value="design">طراحی</SelectItem>
-                <SelectItem value="marketing">بازاریابی</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="مرتب‌سازی" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="newest">جدیدترین</SelectItem>
-                <SelectItem value="popular">محبوب‌ترین</SelectItem>
-                <SelectItem value="mostEvents">بیشترین رویداد</SelectItem>
-                <SelectItem value="mostMembers">بیشترین اعضا</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-      </div>
-
-      {/* Organizations Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 mx-6">
-        {organizations.map(org => (
-          <Card key={org.public_id} className="overflow-hidden">
-            <div className="p-6 flex flex-col items-center">
-              <div className="relative h-24 w-24 rounded-full overflow-hidden mb-4 bg-muted">
-                <Image
-                  src={org.logo || "/placeholder.svg"}
-                  alt={org.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex items-center gap-2 mb-2">
-                <h3 className="font-bold text-xl text-center">{org.name}</h3>
-                {org.verified && (
-                  <Badge variant="outline" className="bg-primary/10 text-primary">
-                    تایید شده
-                  </Badge>
-                )}
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <MapPin className="h-4 w-4" />
-                <span>{org.address}</span>
-              </div>
-              <p className="text-muted-foreground text-sm text-center line-clamp-2 mb-4">
-                {org.description}
-              </p>
-              <div className="flex justify-between w-full mb-4">
-                <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                  <Calendar className="h-4 w-4" />
-                  <span>{org.event_count} رویداد</span>
-                </div>
-                {/* <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                  <Users className="h-4 w-4" />
-                  <span>{org.event_count.toLocaleString("fa-IR")} عضو</span>
-                </div> */}
-              </div>
+          {/* Search and Filters */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+            <div className="md:col-span-2 relative">
+              <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Input placeholder="جستجوی سازمان..." className="pr-10" />
             </div>
-            <CardFooter className="p-6 pt-0">
-              <Button asChild className="w-full">
-                <Link href={`/organizations/${org.username}`}>
-                  مشاهده پروفایل
-                  <ArrowRight className="mr-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+            <div>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="دسته‌بندی" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">همه</SelectItem>
+                  <SelectItem value="technology">فناوری</SelectItem>
+                  <SelectItem value="business">کسب و کار</SelectItem>
+                  <SelectItem value="education">آموزشی</SelectItem>
+                  <SelectItem value="design">طراحی</SelectItem>
+                  <SelectItem value="marketing">بازاریابی</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="مرتب‌سازی" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="newest">جدیدترین</SelectItem>
+                  <SelectItem value="popular">محبوب‌ترین</SelectItem>
+                  <SelectItem value="mostEvents">بیشترین رویداد</SelectItem>
+                  <SelectItem value="mostMembers">بیشترین اعضا</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
 
-      {/* <div className="flex justify-center my-8">
+        {/* Organizations Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 mx-6">
+          {isLoading ? (
+            <CardLoading />
+          ) : (
+            organizations.map((organization, index) => (
+              <OrganizationCard organization={organization} key={index} />
+            ))
+          )}
+        </div>
+
+        {/* <div className="flex justify-center my-8">
         <div className="flex space-x-1 space-x-reverse">
           <Button variant="outline" size="icon">
             <span className="sr-only">صفحه قبل</span>
@@ -178,16 +144,13 @@ export default function OrganizationsPage() {
           </Button>
         </div>
       </div> */}
-
-      <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
-        <h2 className="text-2xl font-bold">می‌خواهید سازمان خود را ثبت کنید؟</h2>
-        <p className="text-muted-foreground">
-          به سادگی می‌توانید سازمان خود را ثبت کرده و رویدادهای خود را مدیریت کنید
-        </p>
-        <Button asChild size="lg" className="mt-2">
-          <Link href="/new-organization">ثبت سازمان جدید</Link>
-        </Button>
+        <CreatePromptCard
+          title="می‌خواهید سازمان خود را ثبت کنید؟"
+          description="به سادگی می‌توانید سازمان خود را ایجاد کرده و مدیریت کنید"
+          buttonText="ایجاد سازمان جدید"
+          buttonHref="/new-organization"
+        />
       </div>
-    </div>
+    </>
   );
 }
