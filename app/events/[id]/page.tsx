@@ -210,7 +210,7 @@ export default function EventPage() {
                     <div>
                       <h3 className="font-bold">{eventDetails.organization?.name}</h3>
                       <Link
-                        href={`/organizations/${eventDetails.organization?.public_id}`}
+                        href={`/organizations/${eventDetails.organization?.username}`}
                         className="text-sm text-primary hover:underline"
                       >
                         مشاهده پروفایل
