@@ -29,7 +29,6 @@ const EventCard = ({ event }: EventCardProps) => {
         <h3 className="font-bold text-xl mb-2">{event.title}</h3>
         <div className="flex items-center gap-2 text-muted-foreground mb-2">
           <CalendarDays className="h-4 w-4" />
-          {/*  // FIXME */}
           <span>{(event.start_date = moment().locale("fa").format(" شروع YYYY/MM/DD"))}</span>
         </div>
         <div className="flex items-center gap-2 text-muted-foreground mb-2">
@@ -38,7 +37,7 @@ const EventCard = ({ event }: EventCardProps) => {
         </div>
         <div className="flex items-center gap-2 text-muted-foreground">
           <Users className="h-4 w-4" />
-          <span>{event.max_participants} شرکت‌کننده</span>
+          <span>ظرفیت {event.max_participants}</span>
         </div>
       </CardContent>
       <CardFooter className="p-6 pt-0">

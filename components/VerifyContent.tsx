@@ -13,12 +13,14 @@ export function VerifyContent() {
   const Status = searchParams.get("Status");
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState<boolean | null>(null);
+  const [paymentResponse, setPaymentResponse] = useState<number | null | string>();
 
   useEffect(() => {
     const sendAuthority = async () => {
       try {
         const res = await api.get(`api/v1/payment/verify/${Authority}/`);
         setSuccess(res.data.message === "Payment verified");
+        setPaymentResponse(res.data);
       } catch {
         setSuccess(false);
       } finally {
@@ -26,7 +28,7 @@ export function VerifyContent() {
       }
     };
 
-    if (Authority && Status) {
+    if (Authority && Status === "OK") {
       sendAuthority();
     } else {
       setLoading(false);
@@ -45,7 +47,9 @@ export function VerifyContent() {
           <>
             <CheckCircle2 className="text-green-500 w-16 h-16 mb-2" />
             <span className="text-lg font-semibold">پرداخت با موفقیت انجام شد</span>
-            <span className="text-sm text-muted-foreground">کد پیگیری: {Authority}</span>
+            <span className="text-sm text-muted-foreground">
+              کد پیگیری: {paymentResponse?.ref_id}
+            </span>
             <Button asChild className="mt-4 w-full">
               <a href="/dashboard">بازگشت به داشبورد</a>
             </Button>
@@ -55,10 +59,10 @@ export function VerifyContent() {
             <XCircle className="text-destructive w-16 h-16 mb-2" />
             <span className="text-lg font-semibold">پرداخت ناموفق بود</span>
             <span className="text-sm text-muted-foreground">
-              کد پیگیری: {Authority || "نامشخص"}
+              کد پیگیری: {paymentResponse?.ref_id || "نامشخص"}
             </span>
             <Button asChild variant="outline" className="mt-4 w-full">
-              <a href="/dashboard">بازگشت به داشبورد</a>
+              <a href="/dashboard/tickets">بازگشت به داشبورد</a>
             </Button>
           </>
         )}
