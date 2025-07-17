@@ -30,7 +30,7 @@ export default function Header() {
 
     const fetchUserData = async () => {
       try {
-        if (storedToken) {
+        if (!storedToken) {
           const response = await api.get("/api/v1/users/me/");
           setUserData(response.data);
         }
