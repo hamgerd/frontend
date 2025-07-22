@@ -27,8 +27,9 @@ import {
   PlusIcon,
   XCircleIcon,
   ClockIcon,
+  AlertCircleIcon,
+  RefreshCwIcon,
 } from "lucide-react";
-import { z } from "zod";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -59,19 +60,152 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export const schema = z.object({
-  id: z.number(),
-  eventName: z.string(),
-  ticketType: z.string(),
-  date: z.string(),
-  time: z.string(),
-  venue: z.string(),
-  price: z.string(),
-  status: z.string(),
-  qrCode: z.string(),
-});
+// Types
+interface TicketType {
+  public_id: string;
+  title: string;
+  description: string;
+  price: number;
+  max_participants: number;
+}
 
-const columns: ColumnDef<z.infer<typeof schema>>[] = [
+interface Ticket {
+  public_id: string;
+  created_at: string;
+  updated_at: string;
+  notes: string;
+  status: string;
+  ticket_number: number;
+  ticket_type: TicketType;
+}
+
+interface TransformedTicket {
+  id: string;
+  eventName: string;
+  ticketType: string;
+  date: string;
+  time: string;
+  venue: string;
+  price: string;
+  status: string;
+  notes: string;
+  ticketNumber: number;
+  maxParticipants: number;
+}
+
+// Utility functions
+function transformTicketData(tickets: Ticket[]): TransformedTicket[] {
+  return tickets.map(ticket => {
+    const createdDate = new Date(ticket.created_at);
+
+    // Format date in Persian/Farsi format
+    const date = createdDate.toLocaleDateString("fa-IR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    // Format time
+    const time = createdDate.toLocaleTimeString("fa-IR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    // Map status codes to Persian labels
+    const statusMap: Record<string, string> = {
+      p: "در انتظار",
+      a: "فعال",
+      c: "لغو شده",
+      e: "منقضی شده",
+    };
+
+    return {
+      id: ticket.public_id,
+      eventName: ticket.ticket_type.title,
+      ticketType:
+        ticket.ticket_type.description.length > 50
+          ? ticket.ticket_type.description.substring(0, 50) + "..."
+          : ticket.ticket_type.description,
+      date,
+      time,
+      venue: "مکان رویداد", // This would come from event data if available
+      price: ticket.ticket_type.price.toString(),
+      status: statusMap[ticket.status] || "نامشخص",
+      notes: ticket.notes,
+      ticketNumber: ticket.ticket_number,
+      maxParticipants: ticket.ticket_type.max_participants,
+    };
+  });
+}
+
+function formatPrice(price: number): string {
+  return new Intl.NumberFormat("fa-IR").format(price);
+}
+
+// API function to fetch tickets
+async function fetchTickets(): Promise<Ticket[]> {
+  try {
+    const response = await fetch("/api/v1/ticket/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching tickets:", error);
+    throw error;
+  }
+}
+
+// Custom hook for managing tickets
+function useTickets(initialData?: Ticket[]) {
+  const [tickets, setTickets] = React.useState<TransformedTicket[]>([]);
+  const [isLoading, setIsLoading] = React.useState(!initialData);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (initialData) {
+      try {
+        const transformedTickets = transformTicketData(initialData);
+        setTickets(transformedTickets);
+        setIsLoading(false);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "خطا در پردازش داده‌ها");
+        setIsLoading(false);
+      }
+    }
+  }, [initialData]);
+
+  const updateTickets = (newTickets: Ticket[]) => {
+    try {
+      setIsLoading(true);
+      const transformedTickets = transformTicketData(newTickets);
+      setTickets(transformedTickets);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "خطا در پردازش داده‌ها");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    tickets,
+    isLoading,
+    error,
+    updateTickets,
+  };
+}
+
+// Table columns definition
+const createColumns = (): ColumnDef<TransformedTicket>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -110,12 +244,17 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     accessorKey: "ticketType",
     header: "نوع بلیط",
     cell: ({ row }) => (
-      <div className="w-24">
+      <div className="max-w-[200px]">
         <Badge variant="outline" className="px-1.5 text-muted-foreground">
           {row.original.ticketType}
         </Badge>
       </div>
     ),
+  },
+  {
+    accessorKey: "ticketNumber",
+    header: "شماره بلیط",
+    cell: ({ row }) => <div className="text-sm font-mono">#{row.original.ticketNumber}</div>,
   },
   {
     accessorKey: "date",
@@ -128,16 +267,18 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     cell: ({ row }) => <div className="text-sm">{row.original.time}</div>,
   },
   {
-    accessorKey: "venue",
-    header: "مکان",
-    cell: ({ row }) => <div className="text-sm text-muted-foreground">{row.original.venue}</div>,
+    accessorKey: "maxParticipants",
+    header: "ظرفیت",
+    cell: ({ row }) => (
+      <div className="text-sm">{formatPrice(row.original.maxParticipants)} نفر</div>
+    ),
   },
   {
     accessorKey: "price",
     header: () => <div className="w-full text-right">قیمت (تومان)</div>,
     cell: ({ row }) => (
       <div className="text-right font-medium">
-        {Number.parseInt(row.original.price).toLocaleString("fa-IR")}
+        {formatPrice(Number.parseInt(row.original.price))}
       </div>
     ),
   },
@@ -146,21 +287,24 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     header: "وضعیت",
     cell: ({ row }) => {
       const status = row.original.status;
-      let icon = <ClockIcon />;
+      let icon = <ClockIcon className="h-3 w-3" />;
       let colorClass = "text-yellow-500 dark:text-yellow-400";
 
       if (status === "فعال") {
-        icon = <CheckCircle2Icon className="text-green-500 dark:text-green-400" />;
+        icon = <CheckCircle2Icon className="h-3 w-3 text-green-500 dark:text-green-400" />;
         colorClass = "text-green-500 dark:text-green-400";
       } else if (status === "لغو شده") {
-        icon = <XCircleIcon className="text-red-500 dark:text-red-400" />;
+        icon = <XCircleIcon className="h-3 w-3 text-red-500 dark:text-red-400" />;
         colorClass = "text-red-500 dark:text-red-400";
+      } else if (status === "منقضی شده") {
+        icon = <AlertCircleIcon className="h-3 w-3 text-gray-500 dark:text-gray-400" />;
+        colorClass = "text-gray-500 dark:text-gray-400";
       }
 
       return (
         <Badge
           variant="outline"
-          className={`flex gap-1 px-1.5 text-muted-foreground [&_svg]:size-3 ${colorClass}`}
+          className={`flex gap-1 px-1.5 text-muted-foreground ${colorClass}`}
         >
           {icon}
           {status}
@@ -170,7 +314,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     id: "actions",
-    cell: () => (
+    cell: ({ row }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -194,8 +338,19 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
 ];
 
-export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[] }) {
-  const [data] = React.useState(() => initialData);
+// Main DataTable component
+interface DataTableProps {
+  data?: Ticket[];
+  isLoading?: boolean;
+  onRefresh?: () => void;
+}
+
+export function DataTable({
+  data = [],
+  isLoading: externalLoading = false,
+  onRefresh,
+}: DataTableProps) {
+  const { tickets, isLoading: internalLoading, error, updateTickets } = useTickets(data);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -205,8 +360,11 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
     pageSize: 10,
   });
 
+  const columns = React.useMemo(() => createColumns(), []);
+  const isLoading = externalLoading || internalLoading;
+
   const table = useReactTable({
-    data,
+    data: tickets,
     columns,
     state: {
       sorting,
@@ -215,7 +373,6 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
       columnFilters,
       pagination,
     },
-    getRowId: row => row.id.toString(),
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
@@ -229,6 +386,37 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
+
+  // Update tickets when data prop changes
+  React.useEffect(() => {
+    if (data && data.length > 0) {
+      updateTickets(data);
+    }
+  }, [data]);
+
+  if (error) {
+    return (
+      <div className="container mx-auto py-8">
+        <div className="flex flex-col items-center justify-center gap-4 text-center">
+          <div className="text-red-500">خطا: {error}</div>
+          {onRefresh && (
+            <Button onClick={onRefresh} variant="outline">
+              <RefreshCwIcon className="mr-2 h-4 w-4" />
+              تلاش مجدد
+            </Button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-muted-foreground">در حال بارگذاری...</div>
+      </div>
+    );
+  }
 
   return (
     <Tabs defaultValue="tickets" className="flex w-full flex-col justify-start gap-6">
@@ -301,6 +489,12 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
             <PlusIcon />
             <span className="hidden lg:inline">خرید بلیط جدید</span>
           </Button>
+          {onRefresh && (
+            <Button variant="outline" size="sm" onClick={onRefresh}>
+              <RefreshCwIcon />
+              <span className="hidden lg:inline">بروزرسانی</span>
+            </Button>
+          )}
         </div>
       </div>
       <TabsContent
@@ -379,7 +573,7 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
             <div className="ml-auto flex items-center gap-2 lg:ml-0">
               <Button
                 variant="outline"
-                className="hidden h-8 w-8 p-0 lg:flex"
+                className="hidden h-8 w-8 p-0 lg:flex bg-transparent"
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
               >
@@ -388,7 +582,7 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
               </Button>
               <Button
                 variant="outline"
-                className="size-8"
+                className="size-8 bg-transparent"
                 size="icon"
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
@@ -398,7 +592,7 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
               </Button>
               <Button
                 variant="outline"
-                className="size-8"
+                className="size-8 bg-transparent"
                 size="icon"
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
@@ -408,7 +602,7 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
               </Button>
               <Button
                 variant="outline"
-                className="hidden size-8 lg:flex"
+                className="hidden size-8 lg:flex bg-transparent"
                 size="icon"
                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                 disabled={!table.getCanNextPage()}
@@ -436,5 +630,47 @@ export function DataTable({ data: initialData }: { data: z.infer<typeof schema>[
         </div>
       </TabsContent>
     </Tabs>
+  );
+}
+
+// Main component with API integration
+export default function TicketManagement() {
+  const [tickets, setTickets] = React.useState<Ticket[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+
+  // Function to load tickets from API
+  const loadTickets = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const data = await fetchTickets();
+      setTickets(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "خطا در دریافت داده‌ها");
+      console.error("Error loading tickets:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Load tickets on component mount
+  React.useEffect(() => {
+    loadTickets();
+  }, []);
+
+  // Handle refresh
+  const handleRefresh = () => {
+    loadTickets();
+  };
+
+  return (
+    <div className="container mx-auto py-8">
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold">مدیریت بلیط‌ها</h1>
+        <p className="text-muted-foreground">مشاهده و مدیریت بلیط‌های خریداری شده</p>
+      </div>
+      <DataTable data={tickets} isLoading={isLoading} onRefresh={handleRefresh} />
+    </div>
   );
 }
