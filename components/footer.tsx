@@ -76,7 +76,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="text-muted-foreground hover:text-foreground">
+                <Link
+                  href="/dashboard/tickets"
+                  className="text-muted-foreground hover:text-foreground"
+                >
                   داشبورد کاربری
                 </Link>
               </li>

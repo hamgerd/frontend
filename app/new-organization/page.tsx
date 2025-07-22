@@ -105,7 +105,7 @@ export default function NewOrganizationPage() {
     <div className="container mx-auto py-10">
       <div className="flex items-center mb-6">
         <Button variant="outline" size="sm" asChild>
-          <Link href="/dashboard">
+          <Link href="/dashboard/tickets">
             <ArrowLeft className="mr-2 h-4 w-4" />
             بازگشت به داشبورد
           </Link>
@@ -440,7 +440,7 @@ export default function NewOrganizationPage() {
 
           <div className="flex justify-center gap-4">
             <Button variant="outline" size="lg" asChild>
-              <Link href="/dashboard">انصراف</Link>
+              <Link href="/dashboard/tickets">انصراف</Link>
             </Button>
             <Button type="submit" size="lg" disabled={isLoading}>
               {isLoading ? "در حال ایجاد..." : "ثبت سازمان"}

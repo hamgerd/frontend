@@ -51,7 +51,7 @@ export function VerifyContent() {
               کد پیگیری: {paymentResponse?.ref_id}
             </span>
             <Button asChild className="mt-4 w-full">
-              <a href="/dashboard">بازگشت به داشبورد</a>
+              <a href="/dashboard/tickets">بازگشت به داشبورد</a>
             </Button>
           </>
         ) : (

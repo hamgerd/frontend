@@ -58,7 +58,7 @@ export default function EventPage() {
         const data = ticketTypeResponse.data;
         setTicketId(data.ticket_data[0].ticket_public_ids[0]);
         setTransactionsId(data.transaction_public_id);
-        await handleTicket();
+        handleTicket();
         setShowConfirmationDialog(true);
       } catch (error) {
         console.log("error message is: " + error);
@@ -159,9 +159,8 @@ export default function EventPage() {
                 <div className="flex items-center gap-2">
                   <Clock className="h-5 w-5" />
                   <span>
-                    زمان برگزاری{" "}
-                    {moment(eventDetails.start_date).locale("fa").format("YYYY/MM/DD HH:mm")} تا{" "}
-                    {moment(eventDetails.end_date).locale("fa").format("YYYY/MM/DD HH:mm")}
+                    زمان برگزاری {moment(eventDetails.start_date).locale("fa").format("HH:mm")} تا{" "}
+                    {moment(eventDetails.end_date).locale("fa").format("HH:mm")}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -170,7 +169,7 @@ export default function EventPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Users className="h-5 w-5" />
-                  <span>{eventDetails.max_participants} شرکت‌کننده</span>
+                  <span>ظرفیت {eventDetails.max_participants} </span>
                 </div>
               </div>
 
@@ -178,17 +177,17 @@ export default function EventPage() {
             </div>
 
             <div>
-              <Card className="sticky top-20">
+              <Card className="sticky top-20 z-[10]">
                 <CardHeader>
                   <CardTitle>ثبت‌نام در رویداد</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between py-2">
                     <span className="font-medium">قیمت:</span>
-                    <span>{eventDetails.ticket_types[0].price.toLocaleString()} تومان</span>
+                    <span>{eventDetails.ticket_types[0]?.price.toLocaleString()} تومان</span>
                   </div>
                   <div className="flex justify-between py-2">
-                    <span className="font-medium">ظرفیت باقیمانده:</span>
+                    <span className="font-medium">ظرفیت :</span>
                     <span>{eventDetails.ticket_types[0].max_participants} نفر</span>
                   </div>
                   <Button className="w-full" size="lg" onClick={createTicket}>
@@ -202,7 +201,7 @@ export default function EventPage() {
                   <CardTitle>برگزارکننده</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 static z-1">
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={eventDetails.organization.logo || "/placeholder.svg"} />
                       <AvatarFallback>{eventDetails.organization?.name?.charAt(0)}</AvatarFallback>

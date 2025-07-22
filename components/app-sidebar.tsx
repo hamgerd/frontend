@@ -40,21 +40,21 @@ const data = {
   //   avatar: "/placeholder.svg?height=32&width=32",
   // },
   navMain: [
+    // {
+    //   title: "داشبورد",
+    //   url: "/dashboard",
+    //   icon: HomeIcon,
+    // },
     {
-      title: "داشبورد",
-      url: "/dashboard",
-      icon: HomeIcon,
+      title: " خانه",
+      url: "/",
+      icon: CreditCardIcon,
     },
     {
       title: "بلیت‌های من",
       url: "/dashboard/tickets",
       icon: TicketIcon,
     },
-    // {
-    //   title: "اعتبار من",
-    //   url: "/dashboard/wallet",
-    //   icon: CreditCardIcon,
-    // },
     // {
     //   title: "رویدادهای نشان‌شده",
     //   url: "/dashboard/bookmarks",

@@ -105,7 +105,7 @@ export default function Header() {
           {Token ? (
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <a href="/dashboard">
+                <a href="/dashboard/tickets">
                   <Avatar>
                     <AvatarImage src={userData?.image || "https://github.com/shadcn.png"} />
                     <AvatarFallback>HAM</AvatarFallback>
@@ -113,7 +113,7 @@ export default function Header() {
                 </a>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <Link href="/dashboard">
+                <Link href="/dashboard/tickets">
                   <DropdownMenuLabel className="cursor-pointer text-end">داشبورد</DropdownMenuLabel>
                 </Link>
                 <DropdownMenuSeparator />
