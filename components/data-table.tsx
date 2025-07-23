@@ -114,7 +114,7 @@ function transformTicketData(tickets: Ticket[]): TransformedTicket[] {
     // Map status codes to Persian labels
     const statusMap: Record<string, string> = {
       p: "در انتظار",
-      a: "فعال",
+      s: "فعال",
       c: "لغو شده",
       e: "منقضی شده",
     };
@@ -251,28 +251,23 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
       </div>
     ),
   },
-  {
-    accessorKey: "ticketNumber",
-    header: "شماره بلیط",
-    cell: ({ row }) => <div className="text-sm font-mono">#{row.original.ticketNumber}</div>,
-  },
-  {
-    accessorKey: "date",
-    header: "تاریخ",
-    cell: ({ row }) => <div className="text-sm">{row.original.date}</div>,
-  },
-  {
-    accessorKey: "time",
-    header: "ساعت",
-    cell: ({ row }) => <div className="text-sm">{row.original.time}</div>,
-  },
-  {
-    accessorKey: "maxParticipants",
-    header: "ظرفیت",
-    cell: ({ row }) => (
-      <div className="text-sm">{formatPrice(row.original.maxParticipants)} نفر</div>
-    ),
-  },
+  // {
+  //   accessorKey: "ticketNumber",
+  //   header: "شماره بلیط",
+  //   cell: ({ row }) => <div className="text-sm font-mono">#{row.original.ticketNumber}</div>,
+  // },
+  // {
+  //   accessorKey: "time",
+  //   header: "ساعت",
+  //   cell: ({ row }) => <div className="text-sm">{row.original.time}</div>,
+  // },
+  // {
+  //   accessorKey: "maxParticipants",
+  //   header: "ظرفیت",
+  //   cell: ({ row }) => (
+  //     <div className="text-sm">{formatPrice(row.original.maxParticipants)} نفر</div>
+  //   ),
+  // },
   {
     accessorKey: "price",
     header: () => <div className="w-full text-right">قیمت (تومان)</div>,
@@ -460,12 +455,12 @@ export function DataTable({
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm">
+              {/* <Button variant="outline" size="sm">
                 <ColumnsIcon />
                 <span className="hidden lg:inline">تنظیم ستون‌ها</span>
                 <span className="lg:hidden">ستون‌ها</span>
                 <ChevronDownIcon />
-              </Button>
+              </Button> */}
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
               {table
@@ -485,16 +480,16 @@ export function DataTable({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button variant="outline" size="sm">
+          {/* <Button variant="outline" size="sm">
             <PlusIcon />
             <span className="hidden lg:inline">خرید بلیط جدید</span>
-          </Button>
-          {onRefresh && (
+          </Button> */}
+          {/* {onRefresh && (
             <Button variant="outline" size="sm" onClick={onRefresh}>
               <RefreshCwIcon />
               <span className="hidden lg:inline">بروزرسانی</span>
             </Button>
-          )}
+          )} */}
         </div>
       </div>
       <TabsContent
@@ -540,12 +535,12 @@ export function DataTable({
           </Table>
         </div>
         <div className="flex items-center justify-between px-4">
-          <div className="hidden flex-1 text-sm text-muted-foreground lg:flex">
+          {/* <div className="hidden flex-1 text-sm text-muted-foreground lg:flex">
             {table.getFilteredSelectedRowModel().rows.length} از{" "}
             {table.getFilteredRowModel().rows.length} ردیف انتخاب شده.
-          </div>
+          </div> */}
           <div className="flex w-full items-center gap-8 lg:w-fit">
-            <div className="hidden items-center gap-2 lg:flex">
+            {/* <div className="hidden items-center gap-2 lg:flex">
               <Label htmlFor="rows-per-page" className="text-sm font-medium">
                 ردیف در هر صفحه
               </Label>
@@ -566,11 +561,11 @@ export function DataTable({
                   ))}
                 </SelectContent>
               </Select>
-            </div>
-            <div className="flex w-fit items-center justify-center text-sm font-medium">
+            </div> */}
+            {/* <div className="flex w-fit items-center justify-center text-sm font-medium">
               صفحه {table.getState().pagination.pageIndex + 1} از {table.getPageCount()}
-            </div>
-            <div className="ml-auto flex items-center gap-2 lg:ml-0">
+            </div> */}
+            {/* <div className="ml-auto flex items-center gap-2 lg:ml-0">
               <Button
                 variant="outline"
                 className="hidden h-8 w-8 p-0 lg:flex bg-transparent"
@@ -610,7 +605,7 @@ export function DataTable({
                 <span className="sr-only">رفتن به صفحه آخر</span>
                 <ChevronsLeftIcon />
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </TabsContent>
