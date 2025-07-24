@@ -29,28 +29,24 @@ export default function OrganizationPage() {
   const params = useParams();
   const [organizationDetails, setOrganizationDetails] = useState<Organization>();
   const organization = {
-    name: "انجمن برنامه‌نویسان ایران",
-    description:
-      "انجمن برنامه‌نویسان ایران یک سازمان غیرانتفاعی است که با هدف توسعه دانش برنامه‌نویسی و فناوری‌های مرتبط در ایران فعالیت می‌کند.",
-    longDescription:
-      "انجمن برنامه‌نویسان ایران یک سازمان غیرانتفاعی است که با هدف توسعه دانش برنامه‌نویسی و فناوری‌های مرتبط در ایران فعالیت می‌کند. این انجمن در سال ۱۳۹۰ تاسیس شده و تاکنون بیش از ۱۰۰ رویداد آموزشی و تخصصی در زمینه‌های مختلف برنامه‌نویسی و فناوری اطلاعات برگزار کرده است. انجمن برنامه‌نویسان ایران با همکاری دانشگاه‌ها، شرکت‌های فناوری و متخصصان حوزه IT، سعی در ارتقای سطح دانش و مهارت‌های برنامه‌نویسی در کشور دارد. این انجمن همچنین با برگزاری دوره‌های آموزشی، کارگاه‌ها، سمینارها و همایش‌های تخصصی، فرصتی برای یادگیری و تبادل تجربیات بین برنامه‌نویسان فراهم می‌کند.",
-    logo: "/placeholder.svg?height=200&width=200",
-    coverImage: "/placeholder.svg?height=400&width=1200",
-    location: "تهران",
-    address: "تهران، خیابان ولیعصر، بالاتر از میدان ونک، برج نگار، طبقه ۸، واحد ۸۰۴",
-    phone: "۰۲۱-۸۸۶۶۵۵۴۴",
-    email: "info@iranprogrammers.org",
-    website: "www.iranprogrammers.org",
-    socialMedia: {
-      facebook: "iranprogrammers",
-      twitter: "iranprogrammers",
-      instagram: "iranprogrammers",
-      linkedin: "iranprogrammers",
-    },
-    foundedYear: "۱۳۹۰",
-    memberCount: 1500,
-    eventCount: 12,
-    category: "فناوری",
+    //   longDescription:
+    //     "انجمن برنامه‌نویسان ایران یک سازمان غیرانتفاعی است که با هدف توسعه دانش برنامه‌نویسی و فناوری‌های مرتبط در ایران فعالیت می‌کند. این انجمن در سال ۱۳۹۰ تاسیس شده و تاکنون بیش از ۱۰۰ رویداد آموزشی و تخصصی در زمینه‌های مختلف برنامه‌نویسی و فناوری اطلاعات برگزار کرده است. انجمن برنامه‌نویسان ایران با همکاری دانشگاه‌ها، شرکت‌های فناوری و متخصصان حوزه IT، سعی در ارتقای سطح دانش و مهارت‌های برنامه‌نویسی در کشور دارد. این انجمن همچنین با برگزاری دوره‌های آموزشی، کارگاه‌ها، سمینارها و همایش‌های تخصصی، فرصتی برای یادگیری و تبادل تجربیات بین برنامه‌نویسان فراهم می‌کند.",
+    //   coverImage: "/placeholder.svg?height=400&width=1200",
+    //   location: "تهران",
+    //   address: "تهران، خیابان ولیعصر، بالاتر از میدان ونک، برج نگار، طبقه ۸، واحد ۸۰۴",
+    //   phone: "۰۲۱-۸۸۶۶۵۵۴۴",
+    //   email: "info@iranprogrammers.org",
+    //   website: "www.iranprogrammers.org",
+    //   socialMedia: {
+    //     facebook: "iranprogrammers",
+    //     twitter: "iranprogrammers",
+    //     instagram: "iranprogrammers",
+    //     linkedin: "iranprogrammers",
+    //   },
+    //   foundedYear: "۱۳۹۰",
+    //   memberCount: 1500,
+    //   eventCount: 12,
+    //   category: "فناوری",
     verified: true,
     team: [
       {
@@ -143,7 +139,12 @@ export default function OrganizationPage() {
         <div className="relative mb-8">
           <div className="relative h-20 rounded-lg overflow-hidden"></div>
           <div className="absolute -bottom-12 right-8 h-24 w-24 rounded-full overflow-hidden border-4 border-background bg-background">
-            <Image src={organization.logo} alt={organization.name} fill className="object-cover" />
+            <Image
+              src={organizationDetails?.logo || "/placeholder.svg?height=200&width=200"}
+              alt={""}
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
 
@@ -162,14 +163,14 @@ export default function OrganizationPage() {
                 <MapPin className="h-4 w-4" />
                 <span>{organizationDetails?.address}</span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
+              {/* <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="h-4 w-4" />
                 <span>تاسیس: {organization.foundedYear}</span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
+              </div> */}
+              {/* <div className="flex items-center gap-2 text-muted-foreground">
                 <Users className="h-4 w-4" />
                 <span>{organization.memberCount.toLocaleString("fa-IR")} عضو</span>
-              </div>
+              </div> */}
             </div>
 
             <Tabs defaultValue="about">
@@ -181,9 +182,7 @@ export default function OrganizationPage() {
               <TabsContent value="about" className="mt-6" dir="rtl">
                 <p className="mb-6 whitespace-pre-line">{organizationDetails?.description}</p>
 
-                <h3 className="text-lg font-bold mb-2">آدرس</h3>
-                <p className="mb-6">{organizationDetails?.address}</p>
-
+                <h3 className="text-lg font-bold mb-2">آدرس: {organizationDetails?.address}</h3>
                 <div className="rounded-lg overflow-hidden h-64 bg-muted">
                   {/* Google Map would go here in a real application */}
                   <div className="w-full h-full flex items-center justify-center text-muted-foreground">
@@ -286,12 +285,12 @@ export default function OrganizationPage() {
                 <CardTitle>اطلاعات تماس</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {organization.phone && (
+                {/* {organization.phone && (
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-muted-foreground" />
                     <span>{organization.phone}</span>
                   </div>
-                )}
+                )} */}
                 {organizationDetails?.email && (
                   <div className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-muted-foreground" />
@@ -307,12 +306,12 @@ export default function OrganizationPage() {
                       rel="noopener noreferrer"
                       className="hover:underline"
                     >
-                      {organization.website}
+                      {organizationDetails.website}
                     </a>
                   </div>
                 )}
                 <Separator />
-                <div className="flex justify-between">
+                {/* <div className="flex justify-between">
                   {organization.socialMedia.facebook && (
                     <a
                       href={`https://facebook.com/${organization.socialMedia.facebook}`}
@@ -357,7 +356,7 @@ export default function OrganizationPage() {
                       <span className="sr-only">لینکدین</span>
                     </a>
                   )}
-                </div>
+                </div> */}
               </CardContent>
             </Card>
 
