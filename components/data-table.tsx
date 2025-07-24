@@ -113,8 +113,8 @@ function transformTicketData(tickets: Ticket[]): TransformedTicket[] {
 
     // Map status codes to Persian labels
     const statusMap: Record<string, string> = {
-      p: "در انتظار",
-      s: "فعال",
+      p: "در انتظار پرداخت",
+      s: "موفق",
       c: "لغو شده",
       e: "منقضی شده",
     };
@@ -245,7 +245,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
     header: "نوع بلیط",
     cell: ({ row }) => (
       <div className="max-w-[200px]">
-        <Badge variant="outline" className="px-1.5 text-muted-foreground">
+        <Badge variant="outline" className="px-1 text-muted-foreground">
           {row.original.ticketType}
         </Badge>
       </div>
@@ -270,7 +270,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
   // },
   {
     accessorKey: "price",
-    header: () => <div className="w-full text-right">قیمت (تومان)</div>,
+    header: () => <div className="w-full  text-right">قیمت (تومان)</div>,
     cell: ({ row }) => (
       <div className="text-right font-medium">
         {formatPrice(Number.parseInt(row.original.price))}
@@ -282,10 +282,10 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
     header: "وضعیت",
     cell: ({ row }) => {
       const status = row.original.status;
-      let icon = <ClockIcon className="h-3 w-3" />;
+      let icon = <ClockIcon className="h-3 w-1" />;
       let colorClass = "text-yellow-500 dark:text-yellow-400";
 
-      if (status === "فعال") {
+      if (status === "موفق") {
         icon = <CheckCircle2Icon className="h-3 w-3 text-green-500 dark:text-green-400" />;
         colorClass = "text-green-500 dark:text-green-400";
       } else if (status === "لغو شده") {
@@ -307,30 +307,30 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
       );
     },
   },
-  {
-    id: "actions",
-    cell: ({ row }) => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="flex size-8 text-muted-foreground data-[state=open]:bg-muted"
-            size="icon"
-          >
-            <MoreVerticalIcon />
-            <span className="sr-only">باز کردن منو</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>مشاهده جزئیات</DropdownMenuItem>
-          <DropdownMenuItem>دانلود بلیط</DropdownMenuItem>
-          <DropdownMenuItem>اشتراک‌گذاری</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-red-600">لغو بلیط</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ),
-  },
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => (
+  //     <DropdownMenu>
+  //       <DropdownMenuTrigger asChild>
+  //         <Button
+  //           variant="ghost"
+  //           className="flex size-8 text-muted-foreground data-[state=open]:bg-muted"
+  //           size="icon"
+  //         >
+  //           <MoreVerticalIcon />
+  //           <span className="sr-only">باز کردن منو</span>
+  //         </Button>
+  //       </DropdownMenuTrigger>
+  //       <DropdownMenuContent align="end" className="w-32">
+  //         <DropdownMenuItem>مشاهده جزئیات</DropdownMenuItem>
+  //         <DropdownMenuItem>دانلود بلیط</DropdownMenuItem>
+  //         <DropdownMenuItem>اشتراک‌گذاری</DropdownMenuItem>
+  //         <DropdownMenuSeparator />
+  //         <DropdownMenuItem className="text-red-600">لغو بلیط</DropdownMenuItem>
+  //       </DropdownMenuContent>
+  //     </DropdownMenu>
+  //   ),
+  // },
 ];
 
 // Main DataTable component
@@ -352,7 +352,7 @@ export function DataTable({
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 40,
   });
 
   const columns = React.useMemo(() => createColumns(), []);
