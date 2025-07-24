@@ -26,7 +26,7 @@ export default function EventPage() {
   const [ticketId, setTicketId] = useState("");
   const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
   const [transactionsId, setTransactionsId] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   function handleTicket() {
     const patchTicketId = async () => {
       try {
@@ -62,6 +62,7 @@ export default function EventPage() {
         setShowConfirmationDialog(true);
       } catch (error) {
         console.log("error message is: " + error);
+        return redirect("/login");
       }
     };
     postTicketId();
@@ -69,6 +70,7 @@ export default function EventPage() {
 
   function startTransactionPayment() {
     const postTransactionId = async () => {
+      setIsLoading(true);
       try {
         const transactionResponse = await api.post(`api/v1/payment/pay/${transactionsId}/`);
         console.log(transactionResponse.data);
@@ -116,6 +118,13 @@ export default function EventPage() {
             <p>در حال بارگذاری اطلاعات رویداد...</p>
           </div>
         </div>
+      </div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-[100] bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="text-white text-lg">در حال بارگذاری...</div>
       </div>
     );
   }
