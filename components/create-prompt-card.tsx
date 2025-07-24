@@ -18,7 +18,7 @@ export default function CreatePromptCard({
     <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
       <h2 className="text-2xl font-bold">{title}</h2>
       <p className="text-muted-foreground">{description}</p>
-      <Button asChild size="lg" className="mt-2">
+      <Button size="lg" className="mt-2" disabled={true}>
         <Link href={buttonHref}>{buttonText}</Link>
       </Button>
     </div>
