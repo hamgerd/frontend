@@ -11,7 +11,7 @@ import api from "@/lib/axios";
 
 type Ticket = {
   id: number;
-  status: "p" | "c" | "x";
+  status: "p" | "s" | "c" | "e";
   created_at: string;
   ticket_type: {
     price: number;
@@ -45,13 +45,16 @@ export default function TicketsPage() {
 
   const totalTickets = tickets.length;
   // FIXME
-  const activeTickets = tickets.filter(t => t.status === "p").length;
+  const activeTickets = tickets.filter(t => t.status === "s").length;
   const futureEvents = tickets.filter(t => {
     const futureDate = t.event?.start_time || t.created_at; // fallback to created_at if no event
     return new Date(futureDate) > new Date();
   }).length;
   const uniqueLocations = new Set(tickets.map(t => t.ticket_type?.description || "")).size;
-  const totalValue = tickets.reduce((sum, t) => sum + (t.ticket_type?.price || 0), 0);
+  const totalValue = tickets.reduce(
+    (sum, t) => sum + ((t.status == "s" && t.ticket_type?.price) || 0),
+    0
+  );
 
   return (
     <div dir="rtl" className="font-sans dark w-full max-w-full overflow-x-hidden">
