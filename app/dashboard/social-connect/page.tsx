@@ -14,7 +14,7 @@ const socialNetworks = [
     connected: true,
     username: "@ali_ahmadi",
     followers: "1.2K",
-    color: "bg-gradient-to-r from-purple-500 to-pink-500",
+    color: "bg-linear-to-r from-purple-500 to-pink-500",
   },
   {
     id: "twitter",

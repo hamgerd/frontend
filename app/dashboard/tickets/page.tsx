@@ -75,7 +75,7 @@ export default function TicketsPage() {
                       <Card className="min-w-0">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                           <CardTitle className="text-sm font-medium truncate">کل بلیت‌ها</CardTitle>
-                          <TicketIcon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                          <TicketIcon className="h-4 w-4 text-muted-foreground shrink-0" />
                         </CardHeader>
                         <CardContent>
                           <div className="text-2xl font-bold">{totalTickets}</div>
@@ -88,7 +88,7 @@ export default function TicketsPage() {
                           <CardTitle className="text-sm font-medium truncate">
                             رویدادهای آینده
                           </CardTitle>
-                          <CalendarIcon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                          <CalendarIcon className="h-4 w-4 text-muted-foreground shrink-0" />
                         </CardHeader>
                         <CardContent>
                           <div className="text-2xl font-bold">{futureEvents}</div>
@@ -101,7 +101,7 @@ export default function TicketsPage() {
                           <CardTitle className="text-sm font-medium truncate">
                             مکان‌های مختلف
                           </CardTitle>
-                          <MapPinIcon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                          <MapPinIcon className="h-4 w-4 text-muted-foreground shrink-0" />
                         </CardHeader>
                         <CardContent>
                           <div className="text-2xl font-bold">{uniqueLocations}</div>
@@ -112,7 +112,7 @@ export default function TicketsPage() {
                       <Card className="min-w-0">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                           <CardTitle className="text-sm font-medium truncate">ارزش کل</CardTitle>
-                          <TicketIcon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                          <TicketIcon className="h-4 w-4 text-muted-foreground shrink-0" />
                         </CardHeader>
                         <CardContent>
                           <div className="text-2xl font-bold">

@@ -24,7 +24,7 @@ export default function PaymentConfirm({
   ticketName,
 }: PaymentConfirmProps) {
   return (
-    <div className="z-[100]">
+    <div className="z-100">
       <Dialog open={open} onOpenChange={onCancel}>
         <DialogContent className="sm:max-w-md text-right">
           <DialogHeader className="text-right">

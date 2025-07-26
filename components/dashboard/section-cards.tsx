@@ -5,7 +5,7 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/comp
 
 export function SectionCards() {
   return (
-    <div className="*:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4 grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:from-emerald-500/10 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card lg:px-6">
+    <div className="data-[slot=card]:*:shadow-2xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4 grid grid-cols-1 gap-4 px-4 data-[slot=card]:*:bg-linear-to-t data-[slot=card]:*:from-emerald-500/10 data-[slot=card]:*:to-card dark:data-[slot=card]:*:bg-card lg:px-6">
       <Card className="@container/card hamgerd-card">
         <CardHeader className="relative">
           <CardDescription>اعتبار کیف پول</CardDescription>

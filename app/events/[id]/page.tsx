@@ -123,7 +123,7 @@ export default function EventPage() {
   }
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-[100] bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="fixed inset-0 z-100 bg-black bg-opacity-50 flex items-center justify-center">
         <div className="text-white text-lg">در حال بارگذاری...</div>
       </div>
     );
@@ -186,7 +186,7 @@ export default function EventPage() {
             </div>
 
             <div>
-              <Card className="sticky top-20 z-[10]">
+              <Card className="sticky top-20 z-10">
                 <CardHeader>
                   <CardTitle>ثبت‌نام در رویداد</CardTitle>
                 </CardHeader>

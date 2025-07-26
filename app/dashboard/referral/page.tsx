@@ -156,7 +156,7 @@ export default function ReferralPage() {
                           className="flex items-center justify-between p-4 border rounded-lg"
                         >
                           <div className="flex items-center space-x-4 space-x-reverse">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-full bg-linear-to-r from-blue-500 to-purple-500 flex items-center justify-center">
                               <span className="text-white font-medium text-sm">
                                 {referral.name.charAt(0)}
                               </span>

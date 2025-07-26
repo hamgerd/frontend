@@ -42,7 +42,7 @@ export default function Header() {
     fetchUserData();
   }, []);
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex items-center">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 flex items-center">
       <div className="container flex h-20 items-center justify-between lg:space-x-4 ;g:px-6 py-4 mx-auto">
         <div className="flex items-center gap-2 md:gap-6">
           <Sheet>

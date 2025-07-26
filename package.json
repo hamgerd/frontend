@@ -2,6 +2,7 @@
   "name": "neshast",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -64,6 +65,7 @@
     "zod": "^4.0.10"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "24.1.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -71,7 +73,7 @@
     "eslint-config-next": "15.4.4",
     "husky": "^9.1.7",
     "postcss": "^8",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3"
   }
 }

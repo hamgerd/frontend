@@ -146,7 +146,7 @@ export default function FavoritesPage() {
                     {favoriteArtists.map(artist => (
                       <div key={artist.id} className="flex items-center justify-between">
                         <div className="flex items-center space-x-4 space-x-reverse">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-full bg-linear-to-r from-purple-400 to-pink-400 flex items-center justify-center">
                             <span className="text-white font-medium text-sm">
                               {artist.name.charAt(0)}
                             </span>
