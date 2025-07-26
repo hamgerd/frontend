@@ -1,4 +1,4 @@
-import TokenVerify from "@/components/verify-user";
+import TokenVerify from "@/components/email/verify-email";
 import { Suspense } from "react";
 
 export default function EmailVerify() {

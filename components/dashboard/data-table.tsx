@@ -245,7 +245,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
     header: "نوع بلیط",
     cell: ({ row }) => (
       <div className="max-w-[200px]">
-        <Badge variant="outline" className="px-1 text-muted-foreground">
+        <Badge variant="outline" className="px-1.5 text-muted-foreground">
           {row.original.ticketType}
         </Badge>
       </div>
@@ -270,7 +270,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
   // },
   {
     accessorKey: "price",
-    header: () => <div className="w-full  text-right">قیمت (تومان)</div>,
+    header: () => <div className="w-full text-right">قیمت (تومان)</div>,
     cell: ({ row }) => (
       <div className="text-right font-medium">
         {formatPrice(Number.parseInt(row.original.price))}
@@ -282,7 +282,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
     header: "وضعیت",
     cell: ({ row }) => {
       const status = row.original.status;
-      let icon = <ClockIcon className="h-3 w-1" />;
+      let icon = <ClockIcon className="h-3 w-3" />;
       let colorClass = "text-yellow-500 dark:text-yellow-400";
 
       if (status === "موفق") {

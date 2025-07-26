@@ -2,11 +2,11 @@ import type React from "react";
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import { siteConfig } from "@/config/site";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import { siteConfig } from "@/const/site";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 import localFont from "next/font/local";
 
 export const viewport = {

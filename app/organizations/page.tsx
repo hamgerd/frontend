@@ -12,9 +12,9 @@ import {
 import { useEffect, useState } from "react";
 import api from "@/lib/axios";
 import { Organization } from "@/models/organization";
-import OrganizationCard from "@/components/organization-card";
-import CardLoading from "@/components/card-loading";
-import CreatePromptCard from "@/components/create-prompt-card";
+import OrganizationCard from "@/components/feature-parts/organization-card";
+import CardLoading from "@/components/shared/card-loading";
+import CreatePromptCard from "@/components/shared/create-prompt-card";
 
 export default function OrganizationsPage() {
   const [organizations, setOrganizations] = useState<Organization[]>([]);

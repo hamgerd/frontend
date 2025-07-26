@@ -30,6 +30,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 
+// FIXME move to validator
 const eventFormSchema = z.object({
   title: z.string().min(5, {
     message: "عنوان باید حداقل ۵ کاراکتر باشد.",
@@ -77,6 +78,8 @@ export default function NewEventPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
+  // FIXME make request
+
   const form = useForm<z.infer<typeof eventFormSchema>>({
     resolver: zodResolver(eventFormSchema),
     defaultValues: {
@@ -116,7 +119,7 @@ export default function NewEventPage() {
       <div className="mx-6">
         <div className="flex items-center mb-6">
           <Button variant="outline" size="sm" asChild>
-            <Link href="/dashboard">
+            <Link href="/dashboard/tickets">
               <ArrowLeft className="mr-2 h-4 w-4" />
               بازگشت به داشبورد
             </Link>
@@ -301,7 +304,6 @@ export default function NewEventPage() {
               </CardContent>
             </Card>
             {/* //  FIXME make ticket section as a list of tickets with delete and add button also with */}
-            a title | startDate and end date for each ticket
             <Card>
               <CardHeader>
                 <CardTitle>ظرفیت و قیمت</CardTitle>
@@ -400,7 +402,7 @@ export default function NewEventPage() {
             </Card>
             <div className="flex justify-center gap-4">
               <Button variant="outline" size="lg" asChild>
-                <Link href="/dashboard">انصراف</Link>
+                <Link href="/dashboard/tickets">انصراف</Link>
               </Button>
               <Button type="submit" size="lg" disabled={isLoading}>
                 {isLoading ? "در حال ایجاد..." : "ایجاد رویداد"}

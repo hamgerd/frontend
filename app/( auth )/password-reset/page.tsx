@@ -3,7 +3,7 @@ import { Suspense, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PasswordResetForm } from "@/components/PasswordResetForm";
+import { PasswordResetForm } from "@/components/auth/password-reset-form";
 
 export default function PasswordResetPage() {
   const [success, setSuccess] = useState(false);

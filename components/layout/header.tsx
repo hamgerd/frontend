@@ -16,7 +16,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/const/site";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import api from "@/lib/axios";
 

@@ -15,8 +15,8 @@ import { PatchedTicket } from "@/models/patched-ticket";
 import moment from "jalali-moment";
 import { redirect, useParams } from "next/navigation";
 import { TicketCreateResponse } from "@/models/ticket-create-response";
-import EventTabs from "@/components/event-tabs";
-import PaymentConfirm from "@/components/payment-confirm";
+import EventTabs from "@/components/events/event-tabs";
+import PaymentConfirm from "@/components/payment/payment-confirm";
 
 export default function EventPage() {
   const params = useParams();

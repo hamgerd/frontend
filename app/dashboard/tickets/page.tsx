@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { TicketIcon, CalendarIcon, MapPinIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SiteHeader } from "@/components/site-header";
+import { AppSidebar } from "@/components/shared/app-sidebar";
+import { SiteHeader } from "@/components/dashboard/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { DataTable } from "@/components/data-table";
+import { DataTable } from "@/components/dashboard/data-table";
 import api from "@/lib/axios";
 
 type Ticket = {

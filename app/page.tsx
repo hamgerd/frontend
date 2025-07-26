@@ -1,9 +1,9 @@
 "use client";
-import FeaturedEvent from "@/components/featured-event";
-import DevAlert from "@/components/dev-alert";
-import HeroSection from "@/components/hero-section";
-import PlatformFeatures from "@/components/platform-features";
-import CallToAction from "@/components/call-to-action";
+import FeaturedEvent from "@/components/events/featured-event";
+import DevAlert from "@/components/shared/dev-alert";
+import HeroSection from "@/components/feature-parts/hero-section";
+import PlatformFeatures from "@/components/feature-parts/platform-features";
+import CallToAction from "@/components/shared/call-to-action";
 
 export default function Home() {
   return (
