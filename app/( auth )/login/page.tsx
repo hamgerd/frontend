@@ -118,28 +118,12 @@ export default function LoginPage() {
                   </FormItem>
                 )}
               />
-              {/* <FormField */}
-              {/* // control={form.control} */}
-              {/* // name="rememberMe" */}
-              {/* render={({ field }) => ( */}
-              {/* // <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4"> */}
-              {/* <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl> */}
-              {/* FIXME */}
-              {/* <div className="space-y-1 leading-none">
-                      <FormLabel>مرا به خاطر بسپار</FormLabel>
-                    </div> */}
-              {/* </FormItem> */}
-              {/* )} */}
-              {/* /> */}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "در حال ورود..." : "ورود"}
               </Button>
             </form>
           </Form>
           <div className="text-center text-sm">
-            {/* FIXME */}
             <Link href="/forgot-password" className="text-primary hover:underline">
               رمز عبور خود را فراموش کرده‌اید؟
             </Link>

@@ -193,11 +193,15 @@ export default function EventPage() {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between py-2">
                     <span className="font-medium">قیمت:</span>
-                    <span>{eventDetails.ticket_types[0]?.price.toLocaleString()} تومان</span>
+                    <span>
+                      {eventDetails.ticket_types[0]?.price === 0
+                        ? "رایگان"
+                        : `${eventDetails.ticket_types[0]?.price.toLocaleString()} تومان`}
+                    </span>
                   </div>
                   <div className="flex justify-between py-2">
                     <span className="font-medium">ظرفیت :</span>
-                    <span>{eventDetails.ticket_types[0].max_participants} نفر</span>
+                    <span>{eventDetails.ticket_types[0]?.max_participants} نفر</span>
                   </div>
                   <Button className="w-full" size="lg" onClick={createTicket}>
                     ثبت‌نام در رویداد
@@ -249,7 +253,7 @@ export default function EventPage() {
       {/* Confirmation Dialog */}
       <PaymentConfirm
         ticketName={eventDetails.title}
-        ticketPrice={eventDetails.ticket_types[0].price.toLocaleString()}
+        ticketPrice={eventDetails.ticket_types[0]?.price.toLocaleString()}
         open={showConfirmationDialog}
         onCancel={() => setShowConfirmationDialog(false)}
         onConfirm={() => {
