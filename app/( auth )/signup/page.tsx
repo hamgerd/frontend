@@ -162,7 +162,7 @@ export default function SignupPage() {
                       <FormControl>
                         <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
-                      <div className="space-y-1 leading-none">
+                      <div className="mr-1 leading-none">
                         <FormLabel>
                           با{" "}
                           <Link href="/tos" className="text-primary hover:underline">

@@ -207,32 +207,6 @@ function useTickets(initialData?: Ticket[]) {
 // Table columns definition
 const createColumns = (): ColumnDef<TransformedTicket>[] => [
   {
-    id: "select",
-    header: ({ table }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="انتخاب همه"
-        />
-      </div>
-    ),
-    cell: ({ row }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={value => row.toggleSelected(!!value)}
-          aria-label="انتخاب ردیف"
-        />
-      </div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: "eventName",
     header: "نام رویداد",
     cell: ({ row }) => {
@@ -244,8 +218,8 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
     accessorKey: "ticketType",
     header: "نوع بلیط",
     cell: ({ row }) => (
-      <div className="max-w-[200px]">
-        <Badge variant="outline" className="px-1.5 text-muted-foreground">
+      <div className="max-w-[300px]">
+        <Badge variant="outline" className="px-1.5 text-muted-foreground ">
           {row.original.ticketType}
         </Badge>
       </div>
@@ -414,7 +388,11 @@ export function DataTable({
   }
 
   return (
-    <Tabs defaultValue="tickets" className="flex w-full flex-col justify-start gap-6">
+    <Tabs
+      defaultValue="tickets"
+      className="flex w-full flex-col justify-start gap-6 text-right"
+      dir="rtl"
+    >
       <div className="flex items-center justify-between px-4 lg:px-6">
         <Label htmlFor="view-selector" className="sr-only">
           نمایش
@@ -498,7 +476,7 @@ export function DataTable({
       >
         <div className="overflow-hidden rounded-lg border">
           <Table>
-            <TableHeader className="sticky top-0 z-10 bg-muted">
+            <TableHeader className="sticky top-0 z-10 bg-muted ">
               {table.getHeaderGroups().map(headerGroup => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map(header => {
@@ -660,7 +638,7 @@ export default function TicketManagement() {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8" dir="rtl">
       <div className="mb-6">
         <h1 className="text-3xl font-bold">مدیریت بلیط‌ها</h1>
         <p className="text-muted-foreground">مشاهده و مدیریت بلیط‌های خریداری شده</p>

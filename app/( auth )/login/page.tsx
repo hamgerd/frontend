@@ -18,7 +18,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { loginSchema } from "@/validator/login-schema";
 
@@ -30,7 +29,6 @@ export default function LoginPage() {
     defaultValues: {
       email: "",
       password: "",
-      // rememberMe: false,
     },
   });
 

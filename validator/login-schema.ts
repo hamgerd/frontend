@@ -7,5 +7,4 @@ export const loginSchema = z.object({
   password: z.string().min(8, {
     message: "رمز عبور باید حداقل ۸ کاراکتر باشد.",
   }),
-  rememberMe: z.boolean().default(false),
 });

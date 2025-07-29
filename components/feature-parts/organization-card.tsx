@@ -33,7 +33,7 @@ export default function OrganizationCard({ organization }) {
           {organization.description}
         </p>
         <div className="flex justify-between w-full mb-4">
-          <div className="flex items-center gap-1 text-muted-foreground text-sm">
+          <div className="flex items-start gap-1 text-muted-foreground text-sm">
             <Calendar className="h-4 w-4" />
             <span>{organization.event_count} رویداد</span>
           </div>
