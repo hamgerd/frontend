@@ -1,11 +1,12 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 import { MailIcon, MessageSquareIcon, SmartphoneIcon } from "lucide-react";
+
+import { SiteHeader } from "@/components/dashboard/site-header";
+import { AppSidebar } from "@/components/shared/app-sidebar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Switch } from "@/components/ui/switch";
 
 const notificationSettings = [
   {
@@ -84,18 +85,18 @@ export default function NotificationsPage() {
                   <CardContent className="space-y-4">
                     {emailNotifications.map(notification => (
                       <div
-                        key={notification.id}
                         className="flex items-center justify-between space-y-0"
+                        key={notification.id}
                       >
                         <div className="space-y-1">
-                          <Label htmlFor={notification.id} className="text-sm font-medium">
+                          <Label className="text-sm font-medium" htmlFor={notification.id}>
                             {notification.title}
                           </Label>
                           <p className="text-sm text-muted-foreground">
                             {notification.description}
                           </p>
                         </div>
-                        <Switch id={notification.id} defaultChecked={notification.enabled} />
+                        <Switch defaultChecked={notification.enabled} id={notification.id} />
                       </div>
                     ))}
                   </CardContent>
@@ -112,18 +113,18 @@ export default function NotificationsPage() {
                   <CardContent className="space-y-4">
                     {smsNotifications.map(notification => (
                       <div
-                        key={notification.id}
                         className="flex items-center justify-between space-y-0"
+                        key={notification.id}
                       >
                         <div className="space-y-1">
-                          <Label htmlFor={notification.id} className="text-sm font-medium">
+                          <Label className="text-sm font-medium" htmlFor={notification.id}>
                             {notification.title}
                           </Label>
                           <p className="text-sm text-muted-foreground">
                             {notification.description}
                           </p>
                         </div>
-                        <Switch id={notification.id} defaultChecked={notification.enabled} />
+                        <Switch defaultChecked={notification.enabled} id={notification.id} />
                       </div>
                     ))}
                   </CardContent>
@@ -140,18 +141,18 @@ export default function NotificationsPage() {
                   <CardContent className="space-y-4">
                     {pushNotifications.map(notification => (
                       <div
-                        key={notification.id}
                         className="flex items-center justify-between space-y-0"
+                        key={notification.id}
                       >
                         <div className="space-y-1">
-                          <Label htmlFor={notification.id} className="text-sm font-medium">
+                          <Label className="text-sm font-medium" htmlFor={notification.id}>
                             {notification.title}
                           </Label>
                           <p className="text-sm text-muted-foreground">
                             {notification.description}
                           </p>
                         </div>
-                        <Switch id={notification.id} defaultChecked={notification.enabled} />
+                        <Switch defaultChecked={notification.enabled} id={notification.id} />
                       </div>
                     ))}
                   </CardContent>

@@ -1,11 +1,12 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { HeartIcon, CalendarIcon, TicketIcon, StarIcon } from "lucide-react";
+import { CalendarIcon, HeartIcon, StarIcon, TicketIcon } from "lucide-react";
 import Image from "next/image";
+
+import { SiteHeader } from "@/components/dashboard/site-header";
+import { AppSidebar } from "@/components/shared/app-sidebar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const favoriteEvents = [
   {
@@ -110,13 +111,13 @@ export default function FavoritesPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {favoriteEvents.map(event => (
-                      <div key={event.id} className="flex items-center space-x-4 space-x-reverse">
+                      <div className="flex items-center space-x-4 space-x-reverse" key={event.id}>
                         <Image
-                          src={event.image || "/placeholder.svg"}
-                          alt={event.name}
-                          className="w-16 h-16 rounded-lg object-cover"
                           height={10}
                           width={10}
+                          alt={event.name}
+                          className="w-16 h-16 rounded-lg object-cover"
+                          src={event.image || "/placeholder.svg"}
                         />
                         <div className="flex-1 space-y-1">
                           <h4 className="text-sm font-medium">{event.name}</h4>
@@ -144,7 +145,7 @@ export default function FavoritesPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {favoriteArtists.map(artist => (
-                      <div key={artist.id} className="flex items-center justify-between">
+                      <div className="flex items-center justify-between" key={artist.id}>
                         <div className="flex items-center space-x-4 space-x-reverse">
                           <div className="w-10 h-10 rounded-full bg-linear-to-r from-purple-400 to-pink-400 flex items-center justify-center">
                             <span className="text-white font-medium text-sm">

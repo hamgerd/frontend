@@ -1,11 +1,12 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { BookmarkIcon, CalendarIcon, MapPinIcon, TicketIcon } from "lucide-react";
 import Image from "next/image";
+
+import { SiteHeader } from "@/components/dashboard/site-header";
+import { AppSidebar } from "@/components/shared/app-sidebar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const bookmarkedEvents = [
   {
@@ -104,14 +105,14 @@ export default function BookmarksPage() {
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {bookmarkedEvents.map(event => (
-                  <Card key={event.id} className="overflow-hidden">
+                  <Card className="overflow-hidden" key={event.id}>
                     <div className="aspect-video relative">
                       <Image
-                        src={event.image || "/placeholder.svg"}
+                        height={300}
+                        width={300}
                         alt={event.name}
                         className="object-cover w-full h-full"
-                        width={300}
-                        height={300}
+                        src={event.image || "/placeholder.svg"}
                       />
                       <Badge className="absolute top-2 right-2">{event.category}</Badge>
                     </div>

@@ -1,4 +1,5 @@
 import { Calendar, Globe, Users } from "lucide-react";
+
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function AboutPage() {

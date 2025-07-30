@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
 export default function CallToAction() {
@@ -14,7 +15,7 @@ export default function CallToAction() {
             <Button asChild size="lg">
               <Link href="/signup">ثبت‌نام رایگان</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild size="lg" variant="outline">
               <Link href="/about">درباره ما</Link>
             </Button>
           </div>

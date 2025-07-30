@@ -1,7 +1,14 @@
 "use client";
-import Link from "next/link";
 import { Search } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+import type { Event } from "@/models/event";
+
+import CardLoading from "@/components/shared/card-loading";
+import CreatePromptCard from "@/components/shared/create-prompt-card";
 import { Button } from "@/components/ui/button";
+import EventCard from "@/components/ui/event-card";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -10,12 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import EventCard from "@/components/ui/event-card";
-import { useEffect, useState } from "react";
 import api from "@/lib/axios";
-import { Event } from "@/models/event";
-import CardLoading from "@/components/shared/card-loading";
-import CreatePromptCard from "@/components/shared/create-prompt-card";
 
 export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -53,7 +55,7 @@ export default function EventsPage() {
           <div className="md:col-span-2 relative">
             <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
             {/* FIXME */}
-            <Input placeholder="جستجوی رویداد..." className="pr-10" />
+            <Input className="pr-10" placeholder="جستجوی رویداد..." />
           </div>
           <div>
             <Select>
@@ -90,7 +92,7 @@ export default function EventsPage() {
         {isLoading ? (
           <CardLoading />
         ) : events.length > 0 ? (
-          events.map(event => <EventCard key={event.public_id} event={event} />)
+          events.map(event => <EventCard event={event} key={event.public_id} />)
         ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-12">
             <p className="text-xl text-muted-foreground mb-4">هیچ رویدادی یافت نشد</p>
@@ -156,9 +158,9 @@ export default function EventsPage() {
       </div>
       <CreatePromptCard
         title="می‌خواهید رویداد خود را ایجاد کنید؟"
-        description="به سادگی می‌توانید رویداد خود را ایجاد کرده و مدیریت کنید"
-        buttonText="ایجاد رویداد جدید"
         buttonHref="/new-event"
+        buttonText="ایجاد رویداد جدید"
+        description="به سادگی می‌توانید رویداد خود را ایجاد کرده و مدیریت کنید"
       />
     </div>
   );

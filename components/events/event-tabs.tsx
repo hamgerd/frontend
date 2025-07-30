@@ -1,15 +1,15 @@
 "use client";
+import type { Event } from "@/models/event";
+import type { Speaker } from "@/models/speaker";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import { Speaker } from "@/models/speaker";
-import { Event } from "@/models/event";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-type EventTabsProps = {
+interface EventTabsProps {
   speakers: Speaker[];
   eventDetails: Event;
-};
+}
 
 export default function EventTabs({ speakers, eventDetails }: EventTabsProps) {
   return (
@@ -19,7 +19,7 @@ export default function EventTabs({ speakers, eventDetails }: EventTabsProps) {
         <TabsTrigger value="speakers">سخنرانان</TabsTrigger>
       </TabsList>
 
-      <TabsContent value="about" className="mt-6" dir="rtl">
+      <TabsContent dir="rtl" className="mt-6" value="about">
         <p className="mb-6 whitespace-pre-line">{eventDetails.description}</p>
         <h3 className="text-lg font-bold mb-2">محل برگزاری: </h3>
         <p className="mb-6">{eventDetails.location}</p>
@@ -28,7 +28,7 @@ export default function EventTabs({ speakers, eventDetails }: EventTabsProps) {
         </div>
       </TabsContent>
 
-      <TabsContent value="speakers" className="mt-6" dir="rtl">
+      <TabsContent dir="rtl" className="mt-6" value="speakers">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {speakers.map(speaker => (
             <Card key={speaker.public_id}>

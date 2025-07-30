@@ -1,9 +1,10 @@
 "use client";
-import { Suspense, useState } from "react";
-import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Suspense, useState } from "react";
+
 import { PasswordResetForm } from "@/components/auth/password-reset-form";
+import { Button } from "@/components/ui/button";
 
 export default function PasswordResetPage() {
   const [success, setSuccess] = useState(false);
@@ -13,7 +14,7 @@ export default function PasswordResetPage() {
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex">
         <div className="absolute inset-0 bg-primary" />
         <div className="relative z-20 flex items-center gap-2 text-lg font-medium">
-          <Link href="/" className="flex items-center text-white">
+          <Link className="flex items-center text-white" href="/">
             هم‌گرد
           </Link>
         </div>
@@ -39,7 +40,7 @@ export default function PasswordResetPage() {
             </Suspense>
           )}
 
-          <Button variant="outline" className="mt-4" asChild>
+          <Button asChild className="mt-4" variant="outline">
             <Link href="/login">
               <ArrowLeft className="mr-2 h-4 w-4" />
               بازگشت به ورود

@@ -1,25 +1,27 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
+import moment from "jalali-moment";
 import { CalendarDays, MapPin, Users } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+import type { Event } from "@/models/event";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Event } from "@/models/event";
-import moment from "jalali-moment";
 
-type EventCardProps = {
+interface EventCardProps {
   event: Event;
-};
+}
 
 const EventCard = ({ event }: EventCardProps) => {
   return (
-    <Card key={event.public_id} className="overflow-hidden">
+    <Card className="overflow-hidden" key={event.public_id}>
       <div className="relative h-48">
         <Image
-          src={event.image || "/placeholder.svg"}
-          alt={event.title}
           fill
+          alt={event.title}
           className="object-cover"
+          src={event.image || "/placeholder.svg"}
         />
         <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded-md text-xs">
           {event.category}

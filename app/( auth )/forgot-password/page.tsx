@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import api from "@/lib/axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import api from "@/lib/axios";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email({ message: "ایمیل معتبر وارد کنید" }),
@@ -63,7 +63,7 @@ export default function ForgotPasswordPage() {
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex">
         <div className="absolute inset-0 bg-primary" />
         <div className="relative z-20 flex items-center gap-2 text-lg font-medium">
-          <Link href="/" className="flex items-center text-white">
+          <Link className="flex items-center text-white" href="/">
             هم‌گرد
           </Link>
         </div>
@@ -85,10 +85,10 @@ export default function ForgotPasswordPage() {
             </div>
           ) : (
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
-                  control={form.control}
                   name="email"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>ایمیل</FormLabel>
@@ -99,13 +99,13 @@ export default function ForgotPasswordPage() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button className="w-full" disabled={isLoading} type="submit">
                   {isLoading ? "در حال ارسال..." : "ارسال لینک بازیابی"}
                 </Button>
               </form>
             </Form>
           )}
-          <Button variant="outline" className="mt-4" asChild>
+          <Button asChild className="mt-4" variant="outline">
             <Link href="/login">
               <ArrowLeft className="mr-2 h-4 w-4" />
               بازگشت به ورود

@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { FaTelegram } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link";
+import { FaTelegram } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -11,11 +11,11 @@ export default function Footer() {
           <div className="space-y-4 flex justify-center flex-col">
             <div className="flex items-center gap-2">
               <Image
-                src={"/hamgerd-logo.svg"}
-                alt="logo"
-                width={60}
                 height={60}
+                width={60}
+                alt="logo"
                 className="ml-2 dark:invert"
+                src="/hamgerd-logo.svg"
               />
             </div>
             <p className="text-sm text-muted-foreground">
@@ -23,8 +23,8 @@ export default function Footer() {
             </p>
             <div className="flex justify-center gap-6">
               <Link
-                href="https://t.me/hamgerd_ir"
                 className="text-muted-foreground hover:text-foreground"
+                href="https://t.me/hamgerd_ir"
               >
                 <FaTelegram className="h-5 w-5" />
                 <span className="sr-only">تلگرام</span>
@@ -36,22 +36,22 @@ export default function Footer() {
             <h3 className="font-bold text-lg">دسترسی سریع</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-muted-foreground hover:text-foreground">
+                <Link className="text-muted-foreground hover:text-foreground" href="/">
                   صفحه اصلی
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="text-muted-foreground hover:text-foreground">
+                <Link className="text-muted-foreground hover:text-foreground" href="/events">
                   رویدادها
                 </Link>
               </li>
               <li>
-                <Link href="/organizations" className="text-muted-foreground hover:text-foreground">
+                <Link className="text-muted-foreground hover:text-foreground" href="/organizations">
                   سازمان‌ها
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-foreground">
+                <Link className="text-muted-foreground hover:text-foreground" href="/about">
                   درباره ما
                 </Link>
               </li>
@@ -63,22 +63,22 @@ export default function Footer() {
             <h3 className="font-bold text-lg">خدمات</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/new-event" className="text-muted-foreground hover:text-foreground">
+                <Link className="text-muted-foreground hover:text-foreground" href="/new-event">
                   ایجاد رویداد
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/new-organization"
                   className="text-muted-foreground hover:text-foreground"
+                  href="/new-organization"
                 >
                   ثبت سازمان
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/dashboard/tickets"
                   className="text-muted-foreground hover:text-foreground"
+                  href="/dashboard/tickets"
                 >
                   داشبورد کاربری
                 </Link>
@@ -107,16 +107,16 @@ export default function Footer() {
           </div>
           <div className="flex justify-center items-center">
             <a
-              referrerPolicy="origin"
-              target="_blank"
               href="https://trustseal.enamad.ir/?id=615587&Code=Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
+              target="_blank"
+              referrerPolicy="origin"
             >
               <img
-                referrerPolicy="origin"
-                src="https://trustseal.enamad.ir/logo.aspx?id=615587&Code=Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
                 alt=""
-                code="Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
                 className="h-20 w-20"
+                src="https://trustseal.enamad.ir/logo.aspx?id=615587&Code=Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
+                code="Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
+                referrerPolicy="origin"
               />
             </a>
           </div>
@@ -125,57 +125,57 @@ export default function Footer() {
       <div className="container mt-12 pt-8 border-t px-6  mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-muted-foreground">
-            <span className="flex items-center gap-1 text-sm" dir="ltr">
-              <a href="https://hamgerd.ir" className="hover:underline">
+            <span dir="ltr" className="flex items-center gap-1 text-sm">
+              <a className="hover:underline" href="https://hamgerd.ir">
                 هم‌گرد
               </a>
               © 2025
               <span className="mx-1">licensed under</span>
               <a
-                href="https://creativecommons.org/licenses/by-sa/4.0/"
                 className="flex items-center hover:underline"
+                href="https://creativecommons.org/licenses/by-sa/4.0/"
               >
                 CC BY-SA 4.0
                 <Image
-                  src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
-                  width={16}
                   height={16}
-                  className="inline-block mx-0.5"
+                  width={16}
                   alt="CC"
+                  className="inline-block mx-0.5"
+                  src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
                 />
                 <Image
-                  src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
-                  width={16}
                   height={16}
-                  className="inline-block mx-0.5"
+                  width={16}
                   alt="BY"
+                  className="inline-block mx-0.5"
+                  src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
                 />
                 <Image
-                  src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
-                  width={16}
                   height={16}
-                  className="inline-block mx-0.5"
+                  width={16}
                   alt="SA"
+                  className="inline-block mx-0.5"
+                  src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
                 />
               </a>
             </span>
           </p>
           <div className="flex gap-6">
             <Link
-              href="/tos"
               className="text-sm text-muted-foreground hover:underline underline-offset-4"
+              href="/tos"
             >
               شرایط استفاده
             </Link>
             <Link
-              href="/privacy"
               className="text-sm text-muted-foreground hover:underline underline-offset-4"
+              href="/privacy"
             >
               حریم خصوصی
             </Link>
             <Link
-              href="/faq"
               className="text-sm text-muted-foreground hover:underline underline-offset-4"
+              href="/faq"
             >
               سوالات متداول
             </Link>

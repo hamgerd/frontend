@@ -1,11 +1,12 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
+import { KeyIcon, LockIcon, ShieldIcon } from "lucide-react";
+
 import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { AppSidebar } from "@/components/shared/app-sidebar";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LockIcon, ShieldIcon, KeyIcon } from "lucide-react";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default function ChangePasswordPage() {
   return (

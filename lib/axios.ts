@@ -1,4 +1,6 @@
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import type { AxiosError, AxiosRequestConfig } from "axios";
+
+import axios from "axios";
 
 // Initialize tokens from localStorage if available
 let accessToken: string | null =

@@ -1,14 +1,15 @@
 "use client";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import api from "@/lib/axios";
 
 export default function TokenVerify() {
   const searchParams = useSearchParams();
   const Token = searchParams.get("token");
-  const [verifyStatus, setVerifyStatus] = useState<"pending" | "success" | "error">("pending");
+  const [verifyStatus, setVerifyStatus] = useState<"error" | "pending" | "success">("pending");
 
   useEffect(() => {
     if (!Token) {
@@ -50,7 +51,7 @@ export default function TokenVerify() {
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
             <h2 className="text-lg font-semibold mb-1">ایمیل شما با موفقیت تایید شد!</h2>
@@ -72,7 +73,7 @@ export default function TokenVerify() {
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
             <h2 className="text-lg font-semibold mb-1">تایید ایمیل ناموفق بود</h2>

@@ -1,21 +1,22 @@
 "use client";
 
 import type * as React from "react";
+
 import {
+  ActivityIcon,
+  BellIcon,
+  BookmarkIcon,
   CalendarIcon,
   CreditCardIcon,
   HeartIcon,
+  HomeIcon,
+  LockIcon,
   MessageSquareIcon,
   SettingsIcon,
+  ShareIcon,
   TicketIcon,
   UserIcon,
-  BellIcon,
-  ShareIcon,
-  LockIcon,
-  ActivityIcon,
-  BookmarkIcon,
   UsersIcon,
-  HomeIcon,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -157,7 +158,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" side="right" {...props}>
+    <Sidebar side="right" collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -172,7 +173,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavSecondary className="mt-auto" items={data.navSecondary} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

@@ -1,10 +1,11 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
+import { FacebookIcon, InstagramIcon, LinkedinIcon, ShareIcon, TwitterIcon } from "lucide-react";
+
 import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { AppSidebar } from "@/components/shared/app-sidebar";
 import { Badge } from "@/components/ui/badge";
-import { ShareIcon, FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const socialNetworks = [
   {
@@ -117,10 +118,10 @@ export default function SocialConnectPage() {
                               <span className="text-muted-foreground">۲ روز پیش</span>
                             </div>
                             <div className="flex gap-2">
-                              <Button size="sm" variant="outline" className="flex-1">
+                              <Button size="sm" className="flex-1" variant="outline">
                                 تنظیمات
                               </Button>
-                              <Button size="sm" variant="destructive" className="flex-1">
+                              <Button size="sm" className="flex-1" variant="destructive">
                                 قطع اتصال
                               </Button>
                             </div>

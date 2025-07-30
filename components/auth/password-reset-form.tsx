@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import api from "@/lib/axios";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import api from "@/lib/axios";
 
 const passwordResetSchema = z
   .object({
@@ -77,10 +78,10 @@ export function PasswordResetForm({ setSuccess }: { setSuccess: (v: boolean) => 
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
-          control={form.control}
           name="password"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>رمز عبور جدید</FormLabel>
@@ -92,8 +93,8 @@ export function PasswordResetForm({ setSuccess }: { setSuccess: (v: boolean) => 
           )}
         />
         <FormField
-          control={form.control}
           name="confirmPassword"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>تکرار رمز عبور</FormLabel>
@@ -104,7 +105,7 @@ export function PasswordResetForm({ setSuccess }: { setSuccess: (v: boolean) => 
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <Button className="w-full" disabled={isLoading} type="submit">
           {isLoading ? "در حال ارسال..." : "تغییر رمز عبور"}
         </Button>
       </form>

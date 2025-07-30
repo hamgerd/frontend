@@ -1,23 +1,23 @@
 "use client";
 
-import Link from "next/link";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/const/site";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import api from "@/lib/axios";
 
 export default function Header() {
@@ -47,7 +47,7 @@ export default function Header() {
         <div className="flex items-center gap-2 md:gap-6">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button size="icon" className="md:hidden" variant="ghost">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">منو</span>
               </Button>
@@ -56,9 +56,9 @@ export default function Header() {
               <nav className="grid gap-6 text-lg font-medium">
                 {siteConfig.mainNav.map((item, index) => (
                   <Link
-                    key={index}
-                    href={item.href}
                     className="flex w-full items-center py-2 text-sm font-medium"
+                    href={item.href}
+                    key={index}
                   >
                     {item.title}
                   </Link>
@@ -66,21 +66,21 @@ export default function Header() {
               </nav>
             </SheetContent>
           </Sheet>
-          <Link href="/" className="flex items-center space-x-2">
+          <Link className="flex items-center space-x-2" href="/">
             <Image
-              src={"/hamgerd-logo.svg"}
-              alt="logo"
-              width={60}
               height={60}
+              width={60}
+              alt="logo"
               className=" ml-2 dark:invert"
+              src="/hamgerd-logo.svg"
             />
           </Link>
           <nav className="hidden md:flex gap-8 px-6">
             {siteConfig.mainNav.map((item, index) => (
               <Link
-                key={index}
-                href={item.href}
                 className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                href={item.href}
+                key={index}
               >
                 {item.title}
               </Link>
@@ -90,7 +90,7 @@ export default function Header() {
         <div className="flex items-center gap-4 px-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button size="icon" variant="ghost">
                 <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">تغییر تم</span>
@@ -136,7 +136,7 @@ export default function Header() {
             // </div>
             <>
               <Link href="/login">
-                <Button variant="outline" size="default" className="">
+                <Button size="default" className="" variant="outline">
                   ورود
                 </Button>
               </Link>

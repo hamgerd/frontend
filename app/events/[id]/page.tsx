@@ -1,22 +1,24 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, CalendarDays, Clock, Globe, Mail, MapPin, Users } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { useEffect, useState } from "react";
-import api from "@/lib/axios";
-import { Event } from "@/models/event";
-import { Speaker } from "@/models/speaker";
-import { PatchedTicket } from "@/models/patched-ticket";
 import moment from "jalali-moment";
+import { ArrowLeft, CalendarDays, Clock, Globe, Mail, MapPin, Users } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { redirect, useParams } from "next/navigation";
-import { TicketCreateResponse } from "@/models/ticket-create-response";
+import { useEffect, useState } from "react";
+
+import type { Event } from "@/models/event";
+import type { PatchedTicket } from "@/models/patched-ticket";
+import type { Speaker } from "@/models/speaker";
+import type { TicketCreateResponse } from "@/models/ticket-create-response";
+
 import EventTabs from "@/components/events/event-tabs";
 import PaymentConfirm from "@/components/payment/payment-confirm";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import api from "@/lib/axios";
 
 export default function EventPage() {
   const params = useParams();
@@ -37,7 +39,7 @@ export default function EventPage() {
           }
         );
       } catch (error) {
-        console.log("error message is: " + error);
+        console.log(`error message is: ${error}`);
       }
     };
     patchTicketId();
@@ -50,7 +52,7 @@ export default function EventPage() {
           `/api/v1/events/${params.id}/tickets/create_by_type/`,
           [
             {
-              ticket_type_public_id: `${ticketType}`,
+              ticket_type_public_id: ticketType,
               count: 1,
             },
           ]
@@ -61,7 +63,7 @@ export default function EventPage() {
         handleTicket();
         setShowConfirmationDialog(true);
       } catch (error) {
-        console.log("error message is: " + error);
+        console.log(`error message is: ${error}`);
         return redirect("/login");
       }
     };
@@ -78,7 +80,7 @@ export default function EventPage() {
           window.location.href = transactionResponse.data.url;
         }
       } catch (error) {
-        console.log("error message is: " + error);
+        console.log(`error message is: ${error}`);
       }
     };
     postTransactionId();
@@ -93,7 +95,7 @@ export default function EventPage() {
         setSpeakers(speakersRes.data.results);
         setTicketType(res.data.ticket_types[0].public_id);
       } catch (error) {
-        console.log("error message is: " + error);
+        console.log(`error message is: ${error}`);
       }
     };
 
@@ -107,7 +109,7 @@ export default function EventPage() {
       <div className="container flex lg:mx-auto flex-col py-10">
         <div className="mx-4">
           <div className="flex items-center mb-6">
-            <Button variant="outline" size="sm" asChild>
+            <Button asChild size="sm" variant="outline">
               <Link href="/events">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 بازگشت به رویدادها
@@ -134,7 +136,7 @@ export default function EventPage() {
       <div className="container flex lg:mx-auto flex-col py-10">
         <div className="mx-4">
           <div className="flex items-center mb-6">
-            <Button variant="outline" size="sm" asChild>
+            <Button asChild size="sm" variant="outline">
               <Link href="/events">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 بازگشت به رویدادها
@@ -146,10 +148,10 @@ export default function EventPage() {
             <div className="md:col-span-2">
               <div className="relative h-72 sm:h-96 rounded-lg overflow-hidden mb-6">
                 <Image
-                  src={eventDetails.image || "/placeholder.svg"}
-                  alt={eventDetails.title}
                   fill
+                  alt={eventDetails.title}
                   className="object-cover"
+                  src={eventDetails.image || "/placeholder.svg"}
                 />
                 <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-md">
                   {eventDetails.category || null}
@@ -182,7 +184,7 @@ export default function EventPage() {
                 </div>
               </div>
 
-              <EventTabs speakers={speakers} eventDetails={eventDetails} />
+              <EventTabs eventDetails={eventDetails} speakers={speakers} />
             </div>
 
             <div>
@@ -203,7 +205,7 @@ export default function EventPage() {
                     <span className="font-medium">ظرفیت :</span>
                     <span>{eventDetails.ticket_types[0]?.max_participants} نفر</span>
                   </div>
-                  <Button className="w-full" size="lg" onClick={createTicket}>
+                  <Button size="lg" className="w-full" onClick={createTicket}>
                     ثبت‌نام در رویداد
                   </Button>
                 </CardContent>
@@ -222,8 +224,8 @@ export default function EventPage() {
                     <div>
                       <h3 className="font-bold">{eventDetails.organization?.name}</h3>
                       <Link
-                        href={`/organizations/${eventDetails.organization?.username}`}
                         className="text-sm text-primary hover:underline"
+                        href={`/organizations/${eventDetails.organization?.username}`}
                       >
                         مشاهده پروفایل
                       </Link>
@@ -233,7 +235,7 @@ export default function EventPage() {
                     {eventDetails.organization?.description}
                   </p>
                   <Separator />
-                  <div className="space-y-2" dir="ltr">
+                  <div dir="ltr" className="space-y-2">
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-muted-foreground" />
                       <span className="text-sm">{eventDetails.organization?.email}</span>
@@ -254,12 +256,12 @@ export default function EventPage() {
       <PaymentConfirm
         ticketName={eventDetails.title}
         ticketPrice={eventDetails.ticket_types[0]?.price.toLocaleString()}
-        open={showConfirmationDialog}
         onCancel={() => setShowConfirmationDialog(false)}
         onConfirm={() => {
           setShowConfirmationDialog(false);
           startTransactionPayment();
         }}
+        open={showConfirmationDialog}
       />
     </div>
   );

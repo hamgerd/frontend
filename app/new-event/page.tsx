@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -18,7 +19,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -26,8 +26,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 
 // FIXME move to validator
@@ -118,7 +118,7 @@ export default function NewEventPage() {
     <div className="container py-10 mx-auto">
       <div className="mx-6">
         <div className="flex items-center mb-6">
-          <Button variant="outline" size="sm" asChild>
+          <Button asChild size="sm" variant="outline">
             <Link href="/dashboard/tickets">
               <ArrowLeft className="mr-2 h-4 w-4" />
               بازگشت به داشبورد
@@ -134,7 +134,7 @@ export default function NewEventPage() {
         </div>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+          <form className="space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
             <Card>
               <CardHeader>
                 <CardTitle>اطلاعات اصلی</CardTitle>
@@ -142,8 +142,8 @@ export default function NewEventPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <FormField
-                  control={form.control}
                   name="title"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>عنوان رویداد</FormLabel>
@@ -158,15 +158,15 @@ export default function NewEventPage() {
                   )}
                 />
                 <FormField
-                  control={form.control}
                   name="description"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>توضیحات</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="توضیحاتی درباره رویداد خود بنویسید..."
                           className="min-h-32 resize-none"
+                          placeholder="توضیحاتی درباره رویداد خود بنویسید..."
                           {...field}
                         />
                       </FormControl>
@@ -178,12 +178,12 @@ export default function NewEventPage() {
                   )}
                 />
                 <FormField
-                  control={form.control}
                   name="category"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>دسته‌بندی</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select defaultValue={field.value} onValueChange={field.onChange}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
@@ -215,8 +215,8 @@ export default function NewEventPage() {
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
-                    control={form.control}
                     name="startDate"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>تاریخ شروع</FormLabel>
@@ -228,8 +228,8 @@ export default function NewEventPage() {
                     )}
                   />
                   <FormField
-                    control={form.control}
                     name="endDate"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>تاریخ پایان</FormLabel>
@@ -243,8 +243,8 @@ export default function NewEventPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
-                    control={form.control}
                     name="startTime"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>زمان شروع</FormLabel>
@@ -256,8 +256,8 @@ export default function NewEventPage() {
                     )}
                   />
                   <FormField
-                    control={form.control}
                     name="endTime"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>زمان پایان</FormLabel>
@@ -271,8 +271,8 @@ export default function NewEventPage() {
                 </div>
                 <Separator />
                 <FormField
-                  control={form.control}
                   name="location"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>مکان برگزاری</FormLabel>
@@ -285,15 +285,15 @@ export default function NewEventPage() {
                   )}
                 />
                 <FormField
-                  control={form.control}
                   name="address"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>آدرس دقیق</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="آدرس کامل محل برگزاری رویداد را وارد کنید..."
                           className="resize-none"
+                          placeholder="آدرس کامل محل برگزاری رویداد را وارد کنید..."
                           {...field}
                         />
                       </FormControl>
@@ -312,15 +312,15 @@ export default function NewEventPage() {
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
-                    control={form.control}
                     name="capacity"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>ظرفیت</FormLabel>
                         <FormControl>
                           <Input
-                            type="number"
                             min="1"
+                            type="number"
                             placeholder="تعداد شرکت‌کنندگان"
                             {...field}
                           />
@@ -333,13 +333,13 @@ export default function NewEventPage() {
                     )}
                   />
                   <FormField
-                    control={form.control}
                     name="price"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>قیمت (تومان)</FormLabel>
                         <FormControl>
-                          <Input type="number" min="0" placeholder="مثال: 100000" {...field} />
+                          <Input min="0" type="number" placeholder="مثال: 100000" {...field} />
                         </FormControl>
                         <FormDescription>
                           قیمت بلیت رویداد را وارد کنید. اگر رویداد رایگان است، عدد ۰ را وارد کنید.
@@ -358,8 +358,8 @@ export default function NewEventPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <FormField
-                  control={form.control}
                   name="organizerName"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>نام برگزارکننده</FormLabel>
@@ -372,8 +372,8 @@ export default function NewEventPage() {
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
-                    control={form.control}
                     name="organizerEmail"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>ایمیل</FormLabel>
@@ -385,8 +385,8 @@ export default function NewEventPage() {
                     )}
                   />
                   <FormField
-                    control={form.control}
                     name="organizerPhone"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>شماره تماس</FormLabel>
@@ -401,10 +401,10 @@ export default function NewEventPage() {
               </CardContent>
             </Card>
             <div className="flex justify-center gap-4">
-              <Button variant="outline" size="lg" asChild>
+              <Button asChild size="lg" variant="outline">
                 <Link href="/dashboard/tickets">انصراف</Link>
               </Button>
-              <Button type="submit" size="lg" disabled={isLoading}>
+              <Button size="lg" disabled={isLoading} type="submit">
                 {isLoading ? "در حال ایجاد..." : "ایجاد رویداد"}
               </Button>
             </div>

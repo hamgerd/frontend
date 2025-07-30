@@ -33,7 +33,7 @@ export default function PrivacyPage() {
             </li>
             <li>
               <span className="font-semibold">خدمت:</span> به معنای وبگاه هم‌گرد به نشانی{" "}
-              <a href="https://hamgerd.ir" className="text-blue-600 underline">
+              <a className="text-blue-600 underline" href="https://hamgerd.ir">
                 hamgerd.ir
               </a>{" "}
               و خدمات ارائه شده در این سایت است
@@ -130,8 +130,8 @@ export default function PrivacyPage() {
           <p className="text-gray-800 dark:text-gray-100 leading-7 font-semibold">
             ایمیل:{" "}
             <a
-              href="mailto:support@hamgerd.ir"
               className="text-blue-600 dark:text-blue-400 underline"
+              href="mailto:support@hamgerd.ir"
             >
               support@hamgerd.ir
             </a>

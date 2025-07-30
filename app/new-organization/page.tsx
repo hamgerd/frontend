@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowLeft, Upload } from "lucide-react";
+import type * as z from "zod";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft, Upload } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-import api from "@/lib/axios";
 
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -19,7 +20,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -27,8 +27,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import api from "@/lib/axios";
 import { newOrganizationFormSchema } from "@/validator/new-organization-schema";
 
 export default function NewOrganizationPage() {
@@ -104,7 +105,7 @@ export default function NewOrganizationPage() {
   return (
     <div className="container mx-auto py-10">
       <div className="flex items-center mb-6">
-        <Button variant="outline" size="sm" asChild>
+        <Button asChild size="sm" variant="outline">
           <Link href="/dashboard/tickets">
             <ArrowLeft className="mr-2 h-4 w-4" />
             بازگشت به داشبورد
@@ -120,7 +121,7 @@ export default function NewOrganizationPage() {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+        <form className="space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
           <Card>
             <CardHeader>
               <CardTitle>اطلاعات اصلی</CardTitle>
@@ -128,8 +129,8 @@ export default function NewOrganizationPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <FormField
-                control={form.control}
                 name="name"
+                control={form.control}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>نام سازمان</FormLabel>
@@ -144,8 +145,8 @@ export default function NewOrganizationPage() {
                 )}
               />
               <FormField
-                control={form.control}
                 name="username"
+                control={form.control}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>یوزنیم</FormLabel>
@@ -157,15 +158,15 @@ export default function NewOrganizationPage() {
                 )}
               />
               <FormField
-                control={form.control}
                 name="description"
+                control={form.control}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>توضیحات</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="توضیحاتی درباره سازمان خود بنویسید..."
                         className="min-h-32 resize-none"
+                        placeholder="توضیحاتی درباره سازمان خود بنویسید..."
                         {...field}
                       />
                     </FormControl>
@@ -178,12 +179,12 @@ export default function NewOrganizationPage() {
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
-                  control={form.control}
                   name="category"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>دسته‌بندی</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select defaultValue={field.value} onValueChange={field.onChange}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
@@ -206,8 +207,8 @@ export default function NewOrganizationPage() {
                   )}
                 />
                 <FormField
-                  control={form.control}
                   name="foundedYear"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>سال تاسیس</FormLabel>
@@ -228,16 +229,16 @@ export default function NewOrganizationPage() {
                       <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
                       <div className="mt-4 flex text-sm leading-6 text-muted-foreground">
                         <label
-                          htmlFor="logo-upload"
                           className="relative cursor-pointer rounded-md bg-background font-semibold text-primary hover:text-primary/80"
+                          htmlFor="logo-upload"
                         >
                           <span>آپلود فایل</span>
                           <input
+                            accept="image/*"
+                            className="sr-only"
                             id="logo-upload"
                             name="logo-upload"
                             type="file"
-                            className="sr-only"
-                            accept="image/*"
                             onChange={e => {
                               if (e.target.files && e.target.files[0]) {
                                 setLogoFile(e.target.files[0]);
@@ -261,16 +262,16 @@ export default function NewOrganizationPage() {
                       <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
                       <div className="mt-4 flex text-sm leading-6 text-muted-foreground">
                         <label
-                          htmlFor="cover-upload"
                           className="relative cursor-pointer rounded-md bg-background font-semibold text-primary hover:text-primary/80"
+                          htmlFor="cover-upload"
                         >
                           <span>آپلود فایل</span>
                           <input
+                            accept="image/*"
+                            className="sr-only"
                             id="cover-upload"
                             name="cover-upload"
                             type="file"
-                            className="sr-only"
-                            accept="image/*"
                             onChange={e => {
                               if (e.target.files && e.target.files[0]) {
                                 setCoverFile(e.target.files[0]);
@@ -299,8 +300,8 @@ export default function NewOrganizationPage() {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
-                  control={form.control}
                   name="location"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>شهر</FormLabel>
@@ -312,8 +313,8 @@ export default function NewOrganizationPage() {
                   )}
                 />
                 <FormField
-                  control={form.control}
                   name="phone"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>شماره تماس</FormLabel>
@@ -326,15 +327,15 @@ export default function NewOrganizationPage() {
                 />
               </div>
               <FormField
-                control={form.control}
                 name="address"
+                control={form.control}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>آدرس دقیق</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="آدرس کامل سازمان را وارد کنید..."
                         className="resize-none"
+                        placeholder="آدرس کامل سازمان را وارد کنید..."
                         {...field}
                       />
                     </FormControl>
@@ -343,8 +344,8 @@ export default function NewOrganizationPage() {
                 )}
               />
               <FormField
-                control={form.control}
                 name="email"
+                control={form.control}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>ایمیل</FormLabel>
@@ -356,8 +357,8 @@ export default function NewOrganizationPage() {
                 )}
               />
               <FormField
-                control={form.control}
                 name="website"
+                control={form.control}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>وب‌سایت (اختیاری)</FormLabel>
@@ -381,8 +382,8 @@ export default function NewOrganizationPage() {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
-                  control={form.control}
                   name="facebook"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>فیسبوک</FormLabel>
@@ -394,8 +395,8 @@ export default function NewOrganizationPage() {
                   )}
                 />
                 <FormField
-                  control={form.control}
                   name="twitter"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>توییتر</FormLabel>
@@ -409,8 +410,8 @@ export default function NewOrganizationPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
-                  control={form.control}
                   name="instagram"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>اینستاگرام</FormLabel>
@@ -422,8 +423,8 @@ export default function NewOrganizationPage() {
                   )}
                 />
                 <FormField
-                  control={form.control}
                   name="linkedin"
+                  control={form.control}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>لینکدین</FormLabel>
@@ -439,10 +440,10 @@ export default function NewOrganizationPage() {
           </Card>
 
           <div className="flex justify-center gap-4">
-            <Button variant="outline" size="lg" asChild>
+            <Button asChild size="lg" variant="outline">
               <Link href="/dashboard/tickets">انصراف</Link>
             </Button>
-            <Button type="submit" size="lg" disabled={isLoading}>
+            <Button size="lg" disabled={isLoading} type="submit">
               {isLoading ? "در حال ایجاد..." : "ثبت سازمان"}
             </Button>
           </div>

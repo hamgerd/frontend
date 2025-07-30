@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import api from "@/lib/axios";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import moment from "jalali-moment";
+import { ArrowLeft, CalendarDays, MapPin, Users } from "lucide-react";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
-import { Event } from "@/models/event";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CalendarDays, MapPin, Users } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import type { Event } from "@/models/event";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import api from "@/lib/axios";
 
 export default function FeaturedEvent() {
   const [featuredEvents, setFeaturedEvents] = useState<Event[]>([]);
@@ -41,13 +42,13 @@ export default function FeaturedEvent() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {featuredEvents.map(event => (
-            <Card key={event.public_id} className="overflow-hidden w-full max-w-sm">
+            <Card className="overflow-hidden w-full max-w-sm" key={event.public_id}>
               <div className="relative h-48">
                 <Image
-                  src={event.image || "/placeholder.svg"}
-                  alt={event.title}
                   fill
+                  alt={event.title}
                   className="object-cover"
+                  src={event.image || "/placeholder.svg"}
                 />
               </div>
               <CardContent className="p-12">

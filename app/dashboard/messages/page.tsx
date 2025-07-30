@@ -1,10 +1,11 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
+import { AlertCircleIcon, BellIcon, MailIcon, MessageSquareIcon } from "lucide-react";
+
 import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { AppSidebar } from "@/components/shared/app-sidebar";
 import { Badge } from "@/components/ui/badge";
-import { MessageSquareIcon, MailIcon, BellIcon, AlertCircleIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const messages = [
   {
@@ -128,15 +129,15 @@ export default function MessagesPage() {
                               {message.subject}
                             </h4>
                             {!message.read && (
-                              <Badge variant="destructive" className="text-xs">
+                              <Badge className="text-xs" variant="destructive">
                                 جدید
                               </Badge>
                             )}
-                            <Badge variant="outline" className="text-xs">
+                            <Badge className="text-xs" variant="outline">
                               {message.type}
                             </Badge>
                             {message.priority === "high" && (
-                              <Badge variant="destructive" className="text-xs">
+                              <Badge className="text-xs" variant="destructive">
                                 مهم
                               </Badge>
                             )}

@@ -1,11 +1,12 @@
 "use client";
 
+import { CheckCircle2, XCircle } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import api from "@/lib/axios";
-import { CheckCircle2, XCircle } from "lucide-react";
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { Button } from "@/components/ui/button";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import api from "@/lib/axios";
 
 export function VerifyContent() {
   const searchParams = useSearchParams();
@@ -13,7 +14,7 @@ export function VerifyContent() {
   const Status = searchParams.get("Status");
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState<boolean | null>(null);
-  const [paymentResponse, setPaymentResponse] = useState<number | null | string>();
+  const [paymentResponse, setPaymentResponse] = useState<number | string | null>();
 
   useEffect(() => {
     const sendAuthority = async () => {
@@ -61,7 +62,7 @@ export function VerifyContent() {
             <span className="text-sm text-muted-foreground">
               کد پیگیری: {paymentResponse?.ref_id || "نامشخص"}
             </span>
-            <Button asChild variant="outline" className="mt-4 w-full">
+            <Button asChild className="mt-4 w-full" variant="outline">
               <a href="/dashboard/tickets">بازگشت به داشبورد</a>
             </Button>
           </>

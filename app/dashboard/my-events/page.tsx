@@ -1,11 +1,12 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CalendarIcon, MapPinIcon, UsersIcon, ClockIcon } from "lucide-react";
+import { CalendarIcon, ClockIcon, MapPinIcon, UsersIcon } from "lucide-react";
 import Image from "next/image";
+
+import { SiteHeader } from "@/components/dashboard/site-header";
+import { AppSidebar } from "@/components/shared/app-sidebar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const myEvents = [
   {
@@ -102,14 +103,14 @@ export default function MyEventsPage() {
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {myEvents.map(event => (
-                  <Card key={event.id} className="overflow-hidden">
+                  <Card className="overflow-hidden" key={event.id}>
                     <div className="aspect-video relative">
                       <Image
-                        src={event.image || "/placeholder.svg"}
+                        height={10}
+                        width={10}
                         alt={event.name}
                         className="object-cover w-full h-full"
-                        width={10}
-                        height={10}
+                        src={event.image || "/placeholder.svg"}
                       />
                       <Badge
                         className="absolute top-2 right-2"
@@ -150,7 +151,7 @@ export default function MyEventsPage() {
                           <Button size="sm" className="flex-1">
                             مدیریت
                           </Button>
-                          <Button size="sm" variant="outline" className="flex-1">
+                          <Button size="sm" className="flex-1" variant="outline">
                             آمار
                           </Button>
                         </div>
@@ -169,16 +170,16 @@ export default function MyEventsPage() {
                   <div className="space-y-4">
                     {myEvents.map(event => (
                       <div
-                        key={event.id}
                         className="flex items-center justify-between p-4 border rounded-lg"
+                        key={event.id}
                       >
                         <div className="flex items-center space-x-4 space-x-reverse">
                           <Image
-                            src={event.image || "/placeholder.svg"}
+                            height={10}
+                            width={10}
                             alt={event.name}
                             className="w-12 h-12 rounded-lg object-cover"
-                            width={10}
-                            height={10}
+                            src={event.image || "/placeholder.svg"}
                           />
                           <div>
                             <h4 className="font-medium">{event.name}</h4>

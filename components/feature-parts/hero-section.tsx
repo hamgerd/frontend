@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
@@ -16,7 +17,7 @@ export default function HeroSection() {
             <Button asChild size="lg">
               <Link href="/events">مشاهده رویدادها</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild size="lg" variant="outline">
               <Link href="/new-event">ایجاد رویداد جدید</Link>
             </Button>
           </div>

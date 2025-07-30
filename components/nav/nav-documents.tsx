@@ -1,6 +1,8 @@
 "use client";
 
-import { FolderIcon, MoreHorizontalIcon, ShareIcon, type LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+import { FolderIcon, MoreHorizontalIcon, ShareIcon } from "lucide-react";
 import Link from "next/link";
 
 import {

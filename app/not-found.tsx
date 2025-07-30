@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { CalendarDays } from "lucide-react";
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
@@ -14,7 +15,7 @@ export default function NotFound() {
         <Button asChild size="lg">
           <Link href="/">بازگشت به صفحه اصلی</Link>
         </Button>
-        <Button asChild variant="outline" size="lg">
+        <Button asChild size="lg" variant="outline">
           <Link href="/events">مشاهده رویدادها</Link>
         </Button>
       </div>

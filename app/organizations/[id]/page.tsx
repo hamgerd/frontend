@@ -1,6 +1,4 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowLeft,
   Calendar,
@@ -15,15 +13,19 @@ import {
   Twitter,
   Users,
 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import type { Organization } from "@/models/organization";
+
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { useEffect, useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import api from "@/lib/axios";
-import { useParams } from "next/navigation";
-import { Organization } from "@/models/organization";
 
 export default function OrganizationPage() {
   const params = useParams();
@@ -127,7 +129,7 @@ export default function OrganizationPage() {
     <div className="container py-10 flex flex-col mx-auto">
       <div>
         <div className="flex items-center mb-6">
-          <Button variant="outline" size="sm" asChild>
+          <Button asChild size="sm" variant="outline">
             <Link href="/organizations">
               <ArrowLeft className="mr-2 h-4 w-4" />
               بازگشت به سازمان‌ها
@@ -140,10 +142,10 @@ export default function OrganizationPage() {
           <div className="relative h-20 rounded-lg overflow-hidden"></div>
           <div className="absolute -bottom-12 right-8 h-24 w-24 rounded-full overflow-hidden border-4 border-background bg-background">
             <Image
-              src={organizationDetails?.logo || "/placeholder.svg?height=200&width=200"}
-              alt={""}
               fill
+              alt=""
               className="object-cover"
+              src={organizationDetails?.logo || "/placeholder.svg?height=200&width=200"}
             />
           </div>
         </div>
@@ -153,7 +155,7 @@ export default function OrganizationPage() {
             <div className="flex items-center gap-2 mb-2">
               <h1 className="text-3xl font-bold">{organizationDetails?.name}</h1>
               {organization.verified && (
-                <Badge variant="outline" className="bg-primary/10 text-primary">
+                <Badge className="bg-primary/10 text-primary" variant="outline">
                   تایید شده
                 </Badge>
               )}
@@ -179,7 +181,7 @@ export default function OrganizationPage() {
                 <TabsTrigger value="events">رویدادها</TabsTrigger>
                 {/* <TabsTrigger value="team">تیم</TabsTrigger> */}
               </TabsList>
-              <TabsContent value="about" className="mt-6" dir="rtl">
+              <TabsContent dir="rtl" className="mt-6" value="about">
                 <p className="mb-6 whitespace-pre-line">{organizationDetails?.description}</p>
 
                 <h3 className="text-lg font-bold mb-2">آدرس: {organizationDetails?.address}</h3>
@@ -190,17 +192,17 @@ export default function OrganizationPage() {
                   </div>
                 </div>
               </TabsContent>
-              <TabsContent value="events" className="mt-6">
+              <TabsContent className="mt-6" value="events">
                 <h3 className="text-lg font-bold mb-4">رویدادهای آینده</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                   {organization.upcomingEvents.map(event => (
-                    <Card key={event.id} className="overflow-hidden">
+                    <Card className="overflow-hidden" key={event.id}>
                       <div className="relative h-40">
                         <Image
-                          src={event.image || "/placeholder.svg"}
-                          alt={event.title}
                           fill
+                          alt={event.title}
                           className="object-cover"
+                          src={event.image || "/placeholder.svg"}
                         />
                       </div>
                       <CardContent className="p-4">
@@ -217,7 +219,7 @@ export default function OrganizationPage() {
                           <MapPin className="h-3 w-3" />
                           <span>{event.location}</span>
                         </div>
-                        <Button asChild variant="outline" size="sm" className="w-full mt-3">
+                        <Button asChild size="sm" className="w-full mt-3" variant="outline">
                           <Link href={`/events/${event.id}`}>مشاهده جزئیات</Link>
                         </Button>
                       </CardContent>
@@ -247,7 +249,7 @@ export default function OrganizationPage() {
                             </div>
                           </div>
                         </div>
-                        <Button asChild variant="outline" size="sm">
+                        <Button asChild size="sm" variant="outline">
                           <Link href={`/events/${event.id}`}>مشاهده</Link>
                         </Button>
                       </CardContent>
@@ -255,7 +257,7 @@ export default function OrganizationPage() {
                   ))}
                 </div>
               </TabsContent>
-              <TabsContent value="team" className="mt-6">
+              <TabsContent className="mt-6" value="team">
                 <h3 className="text-lg font-bold mb-4">تیم مدیریت</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {organization.team.map((member, index) => (
@@ -263,10 +265,10 @@ export default function OrganizationPage() {
                       <CardContent className="p-6 flex flex-col items-center">
                         <div className="relative h-24 w-24 rounded-full overflow-hidden mb-4">
                           <Image
-                            src={member.image || "/placeholder.svg"}
-                            alt={member.name}
                             fill
+                            alt={member.name}
                             className="object-cover"
+                            src={member.image || "/placeholder.svg"}
                           />
                         </div>
                         <h4 className="font-bold text-lg">{member.name}</h4>
@@ -301,10 +303,10 @@ export default function OrganizationPage() {
                   <div className="flex items-center gap-2">
                     <Globe className="h-4 w-4 text-muted-foreground" />
                     <a
-                      href={`https://${organizationDetails?.website}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="hover:underline"
+                      href={`https://${organizationDetails?.website}`}
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
                       {organizationDetails.website}
                     </a>

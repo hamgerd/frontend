@@ -1,13 +1,14 @@
 "use client";
-import { AppSidebar } from "@/components/shared/app-sidebar";
-import { ChartAreaInteractive } from "@/components/shared/chart-area-interactive";
 import { DataTable } from "@/components/dashboard/data-table";
 import { SectionCards } from "@/components/dashboard/section-cards";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import { AppSidebar } from "@/components/shared/app-sidebar";
+import { ChartAreaInteractive } from "@/components/shared/chart-area-interactive";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 import data from "./data.json";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
+
 export default function Dashboard() {
   return (
     <SidebarProvider>

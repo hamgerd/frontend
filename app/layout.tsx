@@ -1,13 +1,17 @@
-import type React from "react";
-import "@/app/globals.css";
 import type { Metadata } from "next";
-import { cn } from "@/lib/utils";
+
+import "@/app/globals.css";
+
+import type React from "react";
+
+import localFont from "next/font/local";
+
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/const/site";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
-import localFont from "next/font/local";
+import { cn } from "@/lib/utils";
 
 export const viewport = {
   width: "device-width",
@@ -37,9 +41,9 @@ const vazir = localFont({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning>
+    <html dir="rtl" lang="fa" suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased", vazir.className)}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <div className="flex-1">{children}</div>

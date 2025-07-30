@@ -11,7 +11,7 @@ export const signupSchema = z
     confirmPassword: z.string().min(8, {
       message: "تکرار رمز عبور باید حداقل ۸ کاراکتر باشد.",
     }),
-    terms: z.boolean().refine(val => val === true, {
+    terms: z.boolean().refine(val => val, {
       message: "شما باید با قوانین و مقررات موافقت کنید.",
     }),
   })

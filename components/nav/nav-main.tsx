@@ -1,6 +1,8 @@
 "use client";
 
-import { MailIcon, PlusCircleIcon, type LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+import { MailIcon, PlusCircleIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -50,8 +52,8 @@ export function NavMain({
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
-                  tooltip={item.title}
                   asChild
+                  tooltip={item.title}
                   className={cn(
                     isActive
                       ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"

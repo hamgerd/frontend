@@ -3,14 +3,10 @@
 import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import { useIsMobile } from "@/hooks/use-mobile";
+import type { ChartConfig } from "@/components/ui/chart";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  type ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import {
   Select,
   SelectContent,
@@ -19,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const chartData = [
   { date: "1403/01/01", tickets: 12, events: 3 },
@@ -82,37 +79,37 @@ export function ChartAreaInteractive() {
         </CardDescription>
         <div className="absolute left-4 top-4">
           <ToggleGroup
+            className="@[767px]/card:flex hidden"
             type="single"
             value={timeRange}
-            onValueChange={setTimeRange}
             variant="outline"
-            className="@[767px]/card:flex hidden"
+            onValueChange={setTimeRange}
           >
-            <ToggleGroupItem value="90d" className="h-8 px-2.5">
+            <ToggleGroupItem className="h-8 px-2.5" value="90d">
               ۳ ماه گذشته
             </ToggleGroupItem>
-            <ToggleGroupItem value="30d" className="h-8 px-2.5">
+            <ToggleGroupItem className="h-8 px-2.5" value="30d">
               ۳۰ روز گذشته
             </ToggleGroupItem>
-            <ToggleGroupItem value="7d" className="h-8 px-2.5">
+            <ToggleGroupItem className="h-8 px-2.5" value="7d">
               ۷ روز گذشته
             </ToggleGroupItem>
           </ToggleGroup>
           <Select value={timeRange} onValueChange={setTimeRange}>
             <SelectTrigger
-              className="@[767px]/card:hidden flex w-40"
               aria-label="انتخاب بازه زمانی"
+              className="@[767px]/card:hidden flex w-40"
             >
               <SelectValue placeholder="۳ ماه گذشته" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
-              <SelectItem value="90d" className="rounded-lg">
+              <SelectItem className="rounded-lg" value="90d">
                 ۳ ماه گذشته
               </SelectItem>
-              <SelectItem value="30d" className="rounded-lg">
+              <SelectItem className="rounded-lg" value="30d">
                 ۳۰ روز گذشته
               </SelectItem>
-              <SelectItem value="7d" className="rounded-lg">
+              <SelectItem className="rounded-lg" value="7d">
                 ۷ روز گذشته
               </SelectItem>
             </SelectContent>
@@ -120,53 +117,53 @@ export function ChartAreaInteractive() {
         </div>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
-        <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
+        <ChartContainer className="aspect-auto h-[250px] w-full" config={chartConfig}>
           <AreaChart data={filteredData}>
             <defs>
-              <linearGradient id="fillTickets" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillTickets" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="5%" stopColor="var(--color-tickets)" stopOpacity={1.0} />
                 <stop offset="95%" stopColor="var(--color-tickets)" stopOpacity={0.1} />
               </linearGradient>
-              <linearGradient id="fillEvents" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillEvents" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="5%" stopColor="var(--color-events)" stopOpacity={0.8} />
                 <stop offset="95%" stopColor="var(--color-events)" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="date"
-              tickLine={false}
               axisLine={false}
-              tickMargin={8}
+              dataKey="date"
               minTickGap={32}
+              tickLine={false}
+              tickMargin={8}
               tickFormatter={value => {
                 return value.split("/").slice(1).join("/");
               }}
             />
             <ChartTooltip
-              cursor={false}
               content={
                 <ChartTooltipContent
+                  indicator="dot"
                   labelFormatter={value => {
                     return value;
                   }}
-                  indicator="dot"
                 />
               }
+              cursor={false}
             />
             <Area
               dataKey="events"
-              type="natural"
               fill="url(#fillEvents)"
-              stroke="var(--color-events)"
               stackId="a"
+              type="natural"
+              stroke="var(--color-events)"
             />
             <Area
               dataKey="tickets"
-              type="natural"
               fill="url(#fillTickets)"
-              stroke="var(--color-tickets)"
               stackId="a"
+              type="natural"
+              stroke="var(--color-tickets)"
             />
           </AreaChart>
         </ChartContainer>

@@ -1,11 +1,13 @@
 "use client";
 
-import * as React from "react";
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+} from "@tanstack/react-table";
+
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
-  type SortingState,
-  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -16,20 +18,21 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import {
+  AlertCircleIcon,
   CheckCircle2Icon,
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   ChevronsLeftIcon,
   ChevronsRightIcon,
+  ClockIcon,
   ColumnsIcon,
   MoreVerticalIcon,
   PlusIcon,
-  XCircleIcon,
-  ClockIcon,
-  AlertCircleIcon,
   RefreshCwIcon,
+  XCircleIcon,
 } from "lucide-react";
+import * as React from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -124,7 +127,7 @@ function transformTicketData(tickets: Ticket[]): TransformedTicket[] {
       eventName: ticket.ticket_type.title,
       ticketType:
         ticket.ticket_type.description.length > 50
-          ? ticket.ticket_type.description.substring(0, 50) + "..."
+          ? `${ticket.ticket_type.description.substring(0, 50)}...`
           : ticket.ticket_type.description,
       date,
       time,
@@ -219,7 +222,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
     header: "نوع بلیط",
     cell: ({ row }) => (
       <div className="max-w-[300px]">
-        <Badge variant="outline" className="px-1.5 text-muted-foreground ">
+        <Badge className="px-1.5 text-muted-foreground " variant="outline">
           {row.original.ticketType}
         </Badge>
       </div>
@@ -272,8 +275,8 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
 
       return (
         <Badge
-          variant="outline"
           className={`flex gap-1 px-1.5 text-muted-foreground ${colorClass}`}
+          variant="outline"
         >
           {icon}
           {status}
@@ -369,7 +372,7 @@ export function DataTable({
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <div className="text-red-500">خطا: {error}</div>
           {onRefresh && (
-            <Button onClick={onRefresh} variant="outline">
+            <Button variant="outline" onClick={onRefresh}>
               <RefreshCwIcon className="mr-2 h-4 w-4" />
               تلاش مجدد
             </Button>
@@ -389,12 +392,12 @@ export function DataTable({
 
   return (
     <Tabs
-      defaultValue="tickets"
-      className="flex w-full flex-col justify-start gap-6 text-right"
       dir="rtl"
+      className="flex w-full flex-col justify-start gap-6 text-right"
+      defaultValue="tickets"
     >
       <div className="flex items-center justify-between px-4 lg:px-6">
-        <Label htmlFor="view-selector" className="sr-only">
+        <Label className="sr-only" htmlFor="view-selector">
           نمایش
         </Label>
         <Select defaultValue="tickets">
@@ -410,20 +413,20 @@ export function DataTable({
         </Select>
         <TabsList className="@4xl/main:flex hidden">
           <TabsTrigger value="tickets">بلیط‌های من</TabsTrigger>
-          <TabsTrigger value="favorites" className="gap-1">
+          <TabsTrigger className="gap-1" value="favorites">
             علاقه‌مندی‌ها{" "}
             <Badge
-              variant="secondary"
               className="flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30"
+              variant="secondary"
             >
               ۸
             </Badge>
           </TabsTrigger>
-          <TabsTrigger value="bookmarks" className="gap-1">
+          <TabsTrigger className="gap-1" value="bookmarks">
             نشان‌شده‌ها{" "}
             <Badge
-              variant="secondary"
               className="flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30"
+              variant="secondary"
             >
               ۵
             </Badge>
@@ -447,9 +450,9 @@ export function DataTable({
                 .map(column => {
                   return (
                     <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
                       checked={column.getIsVisible()}
+                      className="capitalize"
+                      key={column.id}
                       onCheckedChange={value => column.toggleVisibility(!!value)}
                     >
                       {column.id}
@@ -471,8 +474,8 @@ export function DataTable({
         </div>
       </div>
       <TabsContent
-        value="tickets"
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
+        value="tickets"
       >
         <div className="overflow-hidden rounded-lg border">
           <Table>
@@ -494,7 +497,7 @@ export function DataTable({
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map(row => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow data-state={row.getIsSelected() && "selected"} key={row.id}>
                     {row.getVisibleCells().map(cell => (
                       <TableCell key={cell.id}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -504,7 +507,7 @@ export function DataTable({
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell className="h-24 text-center" colSpan={columns.length}>
                     هیچ نتیجه‌ای یافت نشد.
                   </TableCell>
                 </TableRow>
@@ -587,17 +590,17 @@ export function DataTable({
           </div>
         </div>
       </TabsContent>
-      <TabsContent value="favorites" className="flex flex-col px-4 lg:px-6">
+      <TabsContent className="flex flex-col px-4 lg:px-6" value="favorites">
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground">
           علاقه‌مندی‌های شما در اینجا نمایش داده می‌شود
         </div>
       </TabsContent>
-      <TabsContent value="bookmarks" className="flex flex-col px-4 lg:px-6">
+      <TabsContent className="flex flex-col px-4 lg:px-6" value="bookmarks">
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground">
           رویدادهای نشان‌شده در اینجا نمایش داده می‌شود
         </div>
       </TabsContent>
-      <TabsContent value="calendar" className="flex flex-col px-4 lg:px-6">
+      <TabsContent className="flex flex-col px-4 lg:px-6" value="calendar">
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground">
           تقویم رویدادهای شما در اینجا نمایش داده می‌شود
         </div>
@@ -638,7 +641,7 @@ export default function TicketManagement() {
   };
 
   return (
-    <div className="container mx-auto py-8" dir="rtl">
+    <div dir="rtl" className="container mx-auto py-8">
       <div className="mb-6">
         <h1 className="text-3xl font-bold">مدیریت بلیط‌ها</h1>
         <p className="text-muted-foreground">مشاهده و مدیریت بلیط‌های خریداری شده</p>

@@ -1,10 +1,11 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
-import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { CalendarIcon, ClockIcon, MapPinIcon, TicketIcon } from "lucide-react";
+
+import { SiteHeader } from "@/components/dashboard/site-header";
+import { AppSidebar } from "@/components/shared/app-sidebar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const calendarEvents = [
   {
@@ -114,8 +115,8 @@ export default function CalendarPage() {
                     <CardContent className="space-y-4">
                       {calendarEvents.map(event => (
                         <div
-                          key={event.id}
                           className="flex items-center justify-between p-4 border rounded-lg"
+                          key={event.id}
                         >
                           <div className="space-y-2">
                             <h4 className="font-medium">{event.name}</h4>
@@ -158,7 +159,7 @@ export default function CalendarPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {upcomingEvents.map((event, index) => (
-                      <div key={index} className="flex items-center justify-between">
+                      <div className="flex items-center justify-between" key={index}>
                         <div className="flex items-center space-x-3 space-x-reverse">
                           <div className="text-center">
                             <div className="text-2xl font-bold">{event.date}</div>

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -6,15 +7,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 
-type PaymentConfirmProps = {
+interface PaymentConfirmProps {
   open: boolean;
   onCancel: () => void;
   onConfirm: () => void;
-  ticketPrice: string | number;
+  ticketPrice: number | string;
   ticketName: string;
-};
+}
 
 export default function PaymentConfirm({
   open,
@@ -28,7 +28,7 @@ export default function PaymentConfirm({
   }
   return (
     <div className="z-100">
-      <Dialog open={open} onOpenChange={onCancel}>
+      <Dialog onOpenChange={onCancel} open={open}>
         <DialogContent className=" text-right">
           <DialogHeader className="text-right">
             <DialogTitle className="text-right font-bold mt-4">تایید پرداخت</DialogTitle>

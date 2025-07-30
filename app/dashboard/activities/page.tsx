@@ -1,9 +1,10 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
+import { ActivityIcon, EyeIcon, HeartIcon, ShoppingCartIcon, TicketIcon } from "lucide-react";
+
 import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { AppSidebar } from "@/components/shared/app-sidebar";
 import { Badge } from "@/components/ui/badge";
-import { ActivityIcon, ShoppingCartIcon, TicketIcon, HeartIcon, EyeIcon } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const activities = [
   {
@@ -91,8 +92,8 @@ export default function ActivitiesPage() {
                     <CardContent className="space-y-4">
                       {activities.map(activity => (
                         <div
-                          key={activity.id}
                           className="flex items-center space-x-4 space-x-reverse"
+                          key={activity.id}
                         >
                           <div className={`p-2 rounded-full bg-muted ${activity.color}`}>
                             <activity.icon className="h-4 w-4" />

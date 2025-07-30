@@ -31,7 +31,7 @@ export const newOrganizationFormSchema = z.object({
     .string()
     .min(3, { message: "نام کاربری باید حداقل ۳ حرف باشد" })
     .max(20, { message: "نام کاربری باید حداکثر ۲۰ حرف باشد" })
-    .regex(/^[A-Za-z0-9_]+$/, {
+    .regex(/^\w+$/, {
       message: "نام کاربری فقط می‌تواند شامل حروف انگلیسی، اعداد و زیرخط (_) باشد",
     }),
 

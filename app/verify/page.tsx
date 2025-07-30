@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import { Card } from "@/components/ui/card";
+
 import { VerifyContent } from "@/components/payment/payment-status";
+import { Card } from "@/components/ui/card";
 
 export default function VerifyPage() {
   return (

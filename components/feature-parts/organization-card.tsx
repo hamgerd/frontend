@@ -1,26 +1,27 @@
-import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 export default function OrganizationCard({ organization }) {
   return (
-    <Card key={organization.public_id} className="overflow-hidden">
+    <Card className="overflow-hidden" key={organization.public_id}>
       <div className="p-6 flex flex-col items-center">
         <div className="relative h-24 w-24 rounded-full overflow-hidden mb-4 bg-muted">
           <Image
-            src={organization.logo || "/placeholder.svg"}
-            alt={organization.name}
             fill
+            alt={organization.name}
             className="object-cover"
+            src={organization.logo || "/placeholder.svg"}
           />
         </div>
         <div className="flex items-center gap-2 mb-2">
           <h3 className="font-bold text-xl text-center">{organization.name}</h3>
           {organization.verified && (
-            <Badge variant="outline" className="bg-primary/10 text-primary">
+            <Badge className="bg-primary/10 text-primary" variant="outline">
               تایید شده
             </Badge>
           )}

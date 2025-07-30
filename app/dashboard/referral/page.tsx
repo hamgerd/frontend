@@ -1,11 +1,12 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
+import { CopyIcon, GiftIcon, ShareIcon, UsersIcon } from "lucide-react";
+
 import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { AppSidebar } from "@/components/shared/app-sidebar";
 import { Badge } from "@/components/ui/badge";
-import { UsersIcon, GiftIcon, ShareIcon, CopyIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const referralStats = [
   { label: "دوستان معرفی شده", value: "12", change: "+3 این ماه" },
@@ -47,7 +48,7 @@ export default function ReferralPage() {
                   <CardContent>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                       {referralStats.map((stat, index) => (
-                        <div key={index} className="text-center p-4 border rounded-lg">
+                        <div className="text-center p-4 border rounded-lg" key={index}>
                           <div className="text-2xl font-bold">{stat.value}</div>
                           <p className="text-sm font-medium">{stat.label}</p>
                           <p className="text-xs text-muted-foreground">{stat.change}</p>
@@ -70,7 +71,7 @@ export default function ReferralPage() {
                       <div className="space-y-2">
                         <label className="text-sm font-medium">کد معرفی</label>
                         <div className="flex gap-2">
-                          <Input value={referralCode} readOnly className="font-mono" />
+                          <Input readOnly className="font-mono" value={referralCode} />
                           <Button size="icon" variant="outline">
                             <CopyIcon className="h-4 w-4" />
                           </Button>
@@ -79,7 +80,7 @@ export default function ReferralPage() {
                       <div className="space-y-2">
                         <label className="text-sm font-medium">لینک معرفی</label>
                         <div className="flex gap-2">
-                          <Input value={referralLink} readOnly className="text-xs" />
+                          <Input readOnly className="text-xs" value={referralLink} />
                           <Button size="icon" variant="outline">
                             <CopyIcon className="h-4 w-4" />
                           </Button>
@@ -90,7 +91,7 @@ export default function ReferralPage() {
                           <ShareIcon className="h-4 w-4 ml-2" />
                           اشتراک‌گذاری
                         </Button>
-                        <Button variant="outline" className="flex-1">
+                        <Button className="flex-1" variant="outline">
                           دعوت از مخاطبین
                         </Button>
                       </div>
@@ -152,8 +153,8 @@ export default function ReferralPage() {
                     <div className="space-y-4">
                       {referralHistory.map((referral, index) => (
                         <div
-                          key={index}
                           className="flex items-center justify-between p-4 border rounded-lg"
+                          key={index}
                         >
                           <div className="flex items-center space-x-4 space-x-reverse">
                             <div className="w-10 h-10 rounded-full bg-linear-to-r from-blue-500 to-purple-500 flex items-center justify-center">

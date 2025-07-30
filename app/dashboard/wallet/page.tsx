@@ -1,10 +1,11 @@
-import { AppSidebar } from "@/components/shared/app-sidebar";
+import { ArrowDownIcon, ArrowUpIcon, PlusIcon, WalletIcon } from "lucide-react";
+
 import { SiteHeader } from "@/components/dashboard/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { AppSidebar } from "@/components/shared/app-sidebar";
 import { Badge } from "@/components/ui/badge";
-import { PlusIcon, ArrowUpIcon, ArrowDownIcon, WalletIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import {
   Table,
   TableBody,
