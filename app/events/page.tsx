@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 
 import type { Event } from "@/models/event";
 
+import EventCard from "@/components/events/event-card";
 import CardLoading from "@/components/shared/card-loading";
 import CreatePromptCard from "@/components/shared/create-prompt-card";
 import { Button } from "@/components/ui/button";
-import EventCard from "@/components/ui/event-card";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -38,7 +38,7 @@ export default function EventsPage() {
       }
     };
 
-    fetchEventData();
+    void fetchEventData();
   }, []);
   return (
     <div className="container flex mx-auto flex-col py-10">
