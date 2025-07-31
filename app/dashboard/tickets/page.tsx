@@ -34,7 +34,7 @@ export default function TicketsPage() {
         const res = await api.get("/api/v1/events/tickets/me/");
         const data = Array.isArray(res.data) ? res.data : [res.data];
         setTickets(data);
-      } catch (err) {
+      } catch (_error) {
         setError("خطا در دریافت اطلاعات بلیت‌ها");
       } finally {
         setLoading(false);
@@ -45,15 +45,14 @@ export default function TicketsPage() {
   }, []);
 
   const totalTickets = tickets.length;
-  // FIXME
   const activeTickets = tickets.filter(t => t.status === "s").length;
   const futureEvents = tickets.filter(t => {
-    const futureDate = t.event?.start_time || t.created_at; // fallback to created_at if no event
+    const futureDate = t.event?.start_time ?? t.created_at; // fallback to created_at if no event
     return new Date(futureDate) > new Date();
   }).length;
   const uniqueLocations = new Set(tickets.map(t => t.ticket_type?.description || "")).size;
   const totalValue = tickets.reduce(
-    (sum, t) => sum + ((t.status == "s" && t.ticket_type?.price) || 0),
+    (sum, t) => sum + ((t.status === "s" && t.ticket_type?.price) || 0),
     0
   );
 
