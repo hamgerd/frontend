@@ -19,8 +19,8 @@ export function VerifyContent() {
   useEffect(() => {
     const sendAuthority = async () => {
       try {
-        const res = await api.get(`api/v1/payment/verify/${Authority}/`);
-        setSuccess(res.data.message === "Payment verified");
+        const res = await api.get(`api/v1/payment/verify/${String(Authority)}/`);
+        setSuccess(res.data.message === "transaction successful");
         setPaymentResponse(res.data);
       } catch {
         setSuccess(false);
