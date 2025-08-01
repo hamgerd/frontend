@@ -75,6 +75,7 @@ const SidebarProvider = React.forwardRef<
 
     // This is the internal state of the sidebar.
     // We use openProp and setOpenProp for control from outside the component.
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     const [_open, _setOpen] = React.useState(defaultOpen);
     const open = openProp ?? _open;
     const setOpen = React.useCallback(
@@ -94,6 +95,7 @@ const SidebarProvider = React.forwardRef<
 
     // Helper to toggle the sidebar.
     const toggleSidebar = React.useCallback(() => {
+      // eslint-disable-next-line @typescript-eslint/no-shadow
       return isMobile ? setOpenMobile(open => !open) : setOpen(open => !open);
     }, [isMobile, setOpen, setOpenMobile]);
 
@@ -292,6 +294,7 @@ const SidebarRail = React.forwardRef<HTMLButtonElement, React.ComponentProps<"bu
     const { toggleSidebar } = useSidebar();
 
     return (
+      // eslint-disable-next-line @eslint-react/dom/no-missing-button-type
       <button
         aria-label="Toggle Sidebar"
         data-sidebar="rail"
@@ -566,6 +569,7 @@ const SidebarMenuButton = React.forwardRef<
     }
 
     if (typeof tooltip === "string") {
+      // eslint-disable-next-line no-param-reassign
       tooltip = {
         children: tooltip,
       };
@@ -644,6 +648,7 @@ const SidebarMenuSkeleton = React.forwardRef<
   }
 >(({ className, showIcon = false, ...props }, ref) => {
   // Random width between 50 to 90%.
+  // eslint-disable-next-line @eslint-react/hooks-extra/ensure-use-memo-has-non-empty-deps
   const width = React.useMemo(() => {
     return `${Math.floor(Math.random() * 40) + 50}%`;
   }, []);

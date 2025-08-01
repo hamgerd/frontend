@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 "use client";
 
 import type {
@@ -20,15 +21,7 @@ import {
 import {
   AlertCircleIcon,
   CheckCircle2Icon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
   ClockIcon,
-  ColumnsIcon,
-  MoreVerticalIcon,
-  PlusIcon,
   RefreshCwIcon,
   XCircleIcon,
 } from "lucide-react";
@@ -36,13 +29,10 @@ import * as React from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
@@ -72,7 +62,7 @@ interface TicketType {
   max_participants: number;
 }
 
-interface Ticket {
+interface Tickets {
   public_id: string;
   created_at: string;
   updated_at: string;
@@ -97,7 +87,7 @@ interface TransformedTicket {
 }
 
 // Utility functions
-function transformTicketData(tickets: Ticket[]): TransformedTicket[] {
+function transformTicketData(tickets: Tickets[]): TransformedTicket[] {
   return tickets.map(ticket => {
     const createdDate = new Date(ticket.created_at);
 
@@ -146,7 +136,7 @@ function formatPrice(price: number): string {
 }
 
 // API function to fetch tickets
-async function fetchTickets(): Promise<Ticket[]> {
+async function fetchTickets(): Promise<Tickets[]> {
   try {
     const response = await fetch("/api/v1/ticket/me", {
       method: "GET",
@@ -168,7 +158,7 @@ async function fetchTickets(): Promise<Ticket[]> {
 }
 
 // Custom hook for managing tickets
-function useTickets(initialData?: Ticket[]) {
+function useTickets(initialData?: Tickets[]) {
   const [tickets, setTickets] = React.useState<TransformedTicket[]>([]);
   const [isLoading, setIsLoading] = React.useState(!initialData);
   const [error, setError] = React.useState<string | null>(null);
@@ -186,7 +176,7 @@ function useTickets(initialData?: Ticket[]) {
     }
   }, [initialData]);
 
-  const updateTickets = (newTickets: Ticket[]) => {
+  const updateTickets = (newTickets: Tickets[]) => {
     try {
       setIsLoading(true);
       const transformedTickets = transformTicketData(newTickets);
@@ -228,29 +218,12 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
       </div>
     ),
   },
-  // {
-  //   accessorKey: "ticketNumber",
-  //   header: "شماره بلیط",
-  //   cell: ({ row }) => <div className="text-sm font-mono">#{row.original.ticketNumber}</div>,
-  // },
-  // {
-  //   accessorKey: "time",
-  //   header: "ساعت",
-  //   cell: ({ row }) => <div className="text-sm">{row.original.time}</div>,
-  // },
-  // {
-  //   accessorKey: "maxParticipants",
-  //   header: "ظرفیت",
-  //   cell: ({ row }) => (
-  //     <div className="text-sm">{formatPrice(row.original.maxParticipants)} نفر</div>
-  //   ),
-  // },
   {
     accessorKey: "price",
     header: () => <div className="w-full text-right">قیمت (تومان)</div>,
     cell: ({ row }) => (
       <div className="text-right font-medium">
-        {formatPrice(Number.parseInt(row.original.price))}
+        {formatPrice(Number.parseInt(row.original.price, 10))}
       </div>
     ),
   },
@@ -284,40 +257,17 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
       );
     },
   },
-  // {
-  //   id: "actions",
-  //   cell: ({ row }) => (
-  //     <DropdownMenu>
-  //       <DropdownMenuTrigger asChild>
-  //         <Button
-  //           variant="ghost"
-  //           className="flex size-8 text-muted-foreground data-[state=open]:bg-muted"
-  //           size="icon"
-  //         >
-  //           <MoreVerticalIcon />
-  //           <span className="sr-only">باز کردن منو</span>
-  //         </Button>
-  //       </DropdownMenuTrigger>
-  //       <DropdownMenuContent align="end" className="w-32">
-  //         <DropdownMenuItem>مشاهده جزئیات</DropdownMenuItem>
-  //         <DropdownMenuItem>دانلود بلیط</DropdownMenuItem>
-  //         <DropdownMenuItem>اشتراک‌گذاری</DropdownMenuItem>
-  //         <DropdownMenuSeparator />
-  //         <DropdownMenuItem className="text-red-600">لغو بلیط</DropdownMenuItem>
-  //       </DropdownMenuContent>
-  //     </DropdownMenu>
-  //   ),
-  // },
 ];
 
 // Main DataTable component
 interface DataTableProps {
-  data?: Ticket[];
+  data?: Tickets[];
   isLoading?: boolean;
   onRefresh?: () => void;
 }
 
 export function DataTable({
+  // eslint-disable-next-line @eslint-react/no-unstable-default-props
   data = [],
   isLoading: externalLoading = false,
   onRefresh,
@@ -364,7 +314,7 @@ export function DataTable({
     if (data && data.length > 0) {
       updateTickets(data);
     }
-  }, [data]);
+  }, [data, updateTickets]);
 
   if (error) {
     return (
@@ -435,14 +385,7 @@ export function DataTable({
         </TabsList>
         <div className="flex items-center gap-2">
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              {/* <Button variant="outline" size="sm">
-                <ColumnsIcon />
-                <span className="hidden lg:inline">تنظیم ستون‌ها</span>
-                <span className="lg:hidden">ستون‌ها</span>
-                <ChevronDownIcon />
-              </Button> */}
-            </DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild></DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
               {table
                 .getAllColumns()
@@ -461,16 +404,6 @@ export function DataTable({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          {/* <Button variant="outline" size="sm">
-            <PlusIcon />
-            <span className="hidden lg:inline">خرید بلیط جدید</span>
-          </Button> */}
-          {/* {onRefresh && (
-            <Button variant="outline" size="sm" onClick={onRefresh}>
-              <RefreshCwIcon />
-              <span className="hidden lg:inline">بروزرسانی</span>
-            </Button>
-          )} */}
         </div>
       </div>
       <TabsContent
@@ -611,9 +544,9 @@ export function DataTable({
 
 // Main component with API integration
 export default function TicketManagement() {
-  const [tickets, setTickets] = React.useState<Ticket[]>([]);
+  const [tickets, setTickets] = React.useState<Tickets[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
+  const [, setError] = React.useState<string | null>(null);
 
   // Function to load tickets from API
   const loadTickets = async () => {

@@ -28,6 +28,7 @@ const FormField = <
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
   return (
+    // eslint-disable-next-line @eslint-react/no-unstable-context-value
     <FormFieldContext.Provider value={{ name: props.name }}>
       <Controller {...props} />
     </FormFieldContext.Provider>
@@ -36,6 +37,7 @@ const FormField = <
 
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext);
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const itemContext = React.useContext(FormItemContext);
   const { getFieldState, formState } = useFormContext();
 
@@ -68,6 +70,7 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
     const id = React.useId();
 
     return (
+      // eslint-disable-next-line @eslint-react/no-unstable-context-value
       <FormItemContext.Provider value={{ id }}>
         <div className={cn("space-y-2", className)} ref={ref} {...props} />
       </FormItemContext.Provider>
