@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [tsconfigPaths(), react()],
   test: {
     environment: "jsdom",
+    exclude: ["e2e", "tests", "playwright.config.ts", "tests-examples", "node_modules"],
     coverage: {
       reporter: ["text", "json", "html"],
     },
