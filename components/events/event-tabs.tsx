@@ -35,8 +35,8 @@ export default function EventTabs({ speakers, eventDetails }: EventTabsProps) {
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
                   <Avatar className="h-16 w-16">
-                    <AvatarImage src={speaker.image || "/placeholder.svg"} />
-                    <AvatarFallback>{speaker.name?.charAt(0)}</AvatarFallback>
+                    <AvatarImage src={speaker.image ?? "/placeholder.svg"} />
+                    <AvatarFallback>{speaker.name.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
                     <h3 className="text-lg font-bold">{speaker.name}</h3>

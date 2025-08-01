@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaTelegram } from "react-icons/fa";
 
+import CopyRight from "../feature-parts/copyright-footer";
+import Enamad from "../feature-parts/enamad";
+
 export default function Footer() {
   return (
     <footer className="border-t py-10 bg-muted/30 w-full flex flex-col ">
@@ -105,82 +108,11 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="flex justify-center items-center">
-            <a
-              href="https://trustseal.enamad.ir/?id=615587&Code=Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
-              target="_blank"
-              referrerPolicy="origin"
-            >
-              <img
-                alt=""
-                className="h-20 w-20"
-                src="https://trustseal.enamad.ir/logo.aspx?id=615587&Code=Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
-                code="Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
-                referrerPolicy="origin"
-              />
-            </a>
-          </div>
+          <Enamad />
         </div>
       </div>
       <div className="container mt-12 pt-8 border-t px-6  mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-sm text-muted-foreground">
-            <span dir="ltr" className="flex items-center gap-1 text-sm">
-              <a className="hover:underline" href="https://hamgerd.ir">
-                هم‌گرد
-              </a>
-              © 2025
-              <span className="mx-1">licensed under</span>
-              <a
-                className="flex items-center hover:underline"
-                href="https://creativecommons.org/licenses/by-sa/4.0/"
-              >
-                CC BY-SA 4.0
-                <Image
-                  height={16}
-                  width={16}
-                  alt="CC"
-                  className="inline-block mx-0.5"
-                  src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
-                />
-                <Image
-                  height={16}
-                  width={16}
-                  alt="BY"
-                  className="inline-block mx-0.5"
-                  src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
-                />
-                <Image
-                  height={16}
-                  width={16}
-                  alt="SA"
-                  className="inline-block mx-0.5"
-                  src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
-                />
-              </a>
-            </span>
-          </p>
-          <div className="flex gap-6">
-            <Link
-              className="text-sm text-muted-foreground hover:underline underline-offset-4"
-              href="/tos"
-            >
-              شرایط استفاده
-            </Link>
-            <Link
-              className="text-sm text-muted-foreground hover:underline underline-offset-4"
-              href="/privacy"
-            >
-              حریم خصوصی
-            </Link>
-            <Link
-              className="text-sm text-muted-foreground hover:underline underline-offset-4"
-              href="/faq"
-            >
-              سوالات متداول
-            </Link>
-          </div>
-        </div>
+        <CopyRight />
       </div>
     </footer>
   );

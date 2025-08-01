@@ -54,7 +54,6 @@ export default function EventsPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
           <div className="md:col-span-2 relative">
             <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
-            {/* FIXME */}
             <Input className="pr-10" placeholder="جستجوی رویداد..." />
           </div>
           <div>
@@ -103,7 +102,6 @@ export default function EventsPage() {
         )}
       </div>
       <div className="flex justify-center my-8">
-        {/* FIXME */}
         {/* <div className="flex space-x-1 space-x-reverse">
           <Button variant="outline" size="icon">
             <span className="sr-only">صفحه قبل</span>

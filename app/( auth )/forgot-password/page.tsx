@@ -47,7 +47,7 @@ export default function ForgotPasswordPage() {
         description: "اگر ایمیل وارد شده معتبر باشد، لینک بازیابی ارسال خواهد شد.",
         variant: "default",
       });
-    } catch (err) {
+    } catch (_error) {
       toast({
         title: "خطا در ارسال درخواست",
         description: "ارسال درخواست بازیابی رمز عبور ناموفق بود.",

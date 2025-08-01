@@ -66,10 +66,10 @@ api.interceptors.response.use(
           Authorization: `Bearer ${newAccessToken}`,
         };
 
-        return api(originalRequest);
-      } catch (err) {
-        console.error("Token refresh failed:", err);
-        return Promise.reject(err);
+        return await api(originalRequest);
+      } catch (Error) {
+        console.error("Token refresh failed:", Error);
+        return Promise.reject(error);
       }
     }
 

@@ -49,7 +49,7 @@ export default function LoginPage() {
       });
 
       setAccessToken(accessRes.data.access);
-      if (res.status == 200) {
+      if (res.status === 200) {
         window.location.href = "/";
       }
       toast({

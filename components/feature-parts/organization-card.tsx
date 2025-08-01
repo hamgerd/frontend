@@ -2,11 +2,17 @@ import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import type { Organization } from "@/models/organization";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter } from "@/components/ui/card";
 
-export default function OrganizationCard({ organization }) {
+interface OrganizationCardProps {
+  organization: Organization;
+}
+
+export default function OrganizationCard({ organization }: OrganizationCardProps) {
   return (
     <Card className="overflow-hidden" key={organization.public_id}>
       <div className="p-6 flex flex-col items-center">
@@ -15,7 +21,7 @@ export default function OrganizationCard({ organization }) {
             fill
             alt={organization.name}
             className="object-cover"
-            src={organization.logo || "/placeholder.svg"}
+            src={organization.logo ?? "/placeholder.svg"}
           />
         </div>
         <div className="flex items-center gap-2 mb-2">

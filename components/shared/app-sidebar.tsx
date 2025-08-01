@@ -2,28 +2,10 @@
 
 import type * as React from "react";
 
-import {
-  ActivityIcon,
-  BellIcon,
-  BookmarkIcon,
-  CalendarIcon,
-  CreditCardIcon,
-  HeartIcon,
-  HomeIcon,
-  LockIcon,
-  MessageSquareIcon,
-  SettingsIcon,
-  ShareIcon,
-  TicketIcon,
-  UserIcon,
-  UsersIcon,
-} from "lucide-react";
+import { CreditCardIcon, TicketIcon } from "lucide-react";
 import Link from "next/link";
 
-import { NavDocuments } from "@/components/nav/nav-documents";
-import { NavMain } from "@/components/nav/nav-main";
-import { NavSecondary } from "@/components/nav/nav-secondary";
-import { NavUser } from "@/components/nav/nav-user";
+import { NavMain } from "@/components/dashboard/nav-main";
 import {
   Sidebar,
   SidebarContent,
@@ -35,17 +17,7 @@ import {
 } from "@/components/ui/sidebar";
 
 const data = {
-  // user: {
-  //   name: "علی احمدی",
-  //   email: "ali@example.com",
-  //   avatar: "/placeholder.svg?height=32&width=32",
-  // },
   navMain: [
-    // {
-    //   title: "داشبورد",
-    //   url: "/dashboard",
-    //   icon: HomeIcon,
-    // },
     {
       title: " خانه",
       url: "/",
@@ -55,103 +27,6 @@ const data = {
       title: "بلیت‌های من",
       url: "/dashboard/tickets",
       icon: TicketIcon,
-    },
-    // {
-    //   title: "رویدادهای نشان‌شده",
-    //   url: "/dashboard/bookmarks",
-    //   icon: BookmarkIcon,
-    // },
-    // {
-    //   title: "علاقه‌مندی‌های من",
-    //   url: "/dashboard/favorites",
-    //   icon: HeartIcon,
-    // },
-    // {
-    //   title: "تقویم من",
-    //   url: "/dashboard/calendar",
-    //   icon: CalendarIcon,
-    // },
-  ],
-  navClouds: [
-    {
-      title: "فعالیت‌های من",
-      icon: ActivityIcon,
-      isActive: true,
-      url: "/dashboard/activities",
-      items: [
-        {
-          title: "خریدهای اخیر",
-          url: "/dashboard/activities/recent",
-        },
-        {
-          title: "تاریخچه",
-          url: "/dashboard/activities/history",
-        },
-      ],
-    },
-    {
-      title: "صندوق پیام‌ها",
-      icon: MessageSquareIcon,
-      url: "/dashboard/messages",
-      items: [
-        {
-          title: "پیام‌های جدید",
-          url: "/dashboard/messages/new",
-        },
-        {
-          title: "آرشیو",
-          url: "/dashboard/messages/archive",
-        },
-      ],
-    },
-    {
-      title: "رویدادهای من",
-      icon: CalendarIcon,
-      url: "/dashboard/my-events",
-      items: [
-        {
-          title: "رویدادهای آینده",
-          url: "/dashboard/my-events/upcoming",
-        },
-        {
-          title: "رویدادهای گذشته",
-          url: "/dashboard/my-events/past",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    // {
-    //   title: "حساب کاربری",
-    //   url: "/dashboard/profile",
-    //   icon: UserIcon,
-    // },
-    // {
-    //   title: "تغییر رمز عبور",
-    //   url: "/dashboard/change-password",
-    //   icon: LockIcon,
-    // },
-    // {
-    //   title: "تنظیمات اعلان‌ها",
-    //   url: "/dashboard/notifications",
-    //   icon: BellIcon,
-    // },
-    // {
-    //   title: "اتصال شبکه‌های اجتماعی",
-    //   url: "/dashboard/social-connect",
-    //   icon: ShareIcon,
-    // },
-  ],
-  documents: [
-    {
-      name: "معرفی ایونت به دوستان",
-      url: "/dashboard/referral",
-      icon: UsersIcon,
-    },
-    {
-      name: "تنظیمات",
-      url: "/dashboard/settings",
-      icon: SettingsIcon,
     },
   ],
 };
@@ -172,12 +47,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary className="mt-auto" items={data.navSecondary} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      <SidebarFooter></SidebarFooter>
     </Sidebar>
   );
 }

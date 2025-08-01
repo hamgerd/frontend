@@ -24,7 +24,7 @@ export default function TokenVerify() {
         } else {
           setVerifyStatus("error");
         }
-      } catch (e) {
+      } catch (_erro) {
         setVerifyStatus("error");
       }
     };

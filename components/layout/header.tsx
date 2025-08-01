@@ -54,11 +54,11 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <nav className="grid gap-6 text-lg font-medium">
-                {siteConfig.mainNav.map((item, index) => (
+                {siteConfig.mainNav.map(item => (
                   <Link
                     className="flex w-full items-center py-2 text-sm font-medium"
                     href={item.href}
-                    key={index}
+                    key={item.title}
                   >
                     {item.title}
                   </Link>
@@ -76,11 +76,11 @@ export default function Header() {
             />
           </Link>
           <nav className="hidden md:flex gap-8 px-6">
-            {siteConfig.mainNav.map((item, index) => (
+            {siteConfig.mainNav.map(item => (
               <Link
                 className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 href={item.href}
-                key={index}
+                key={item.title}
               >
                 {item.title}
               </Link>

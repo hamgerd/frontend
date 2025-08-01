@@ -50,9 +50,9 @@ export default function TicketsPage() {
     const futureDate = t.event?.start_time ?? t.created_at; // fallback to created_at if no event
     return new Date(futureDate) > new Date();
   }).length;
-  const uniqueLocations = new Set(tickets.map(t => t.ticket_type?.description || "")).size;
+  const uniqueLocations = new Set(tickets.map(t => t.ticket_type.description || "")).size;
   const totalValue = tickets.reduce(
-    (sum, t) => sum + ((t.status === "s" && t.ticket_type?.price) || 0),
+    (sum, t) => sum + ((t.status === "s" && t.ticket_type.price) || 0),
     0
   );
 

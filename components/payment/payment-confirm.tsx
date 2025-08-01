@@ -23,22 +23,21 @@ export default function PaymentConfirm({
   ticketPrice,
   ticketName,
 }: PaymentConfirmProps) {
-  {
-    ticketPrice === "0" ? (ticketPrice = "رایگان") : ticketPrice;
-  }
+  const displayPrice = ticketPrice === "0" ? "رایگان" : ticketPrice;
+
   return (
     <div className="z-100">
       <Dialog onOpenChange={onCancel} open={open}>
-        <DialogContent className=" text-right">
+        <DialogContent className="text-right">
           <DialogHeader className="text-right">
             <DialogTitle className="text-right font-bold mt-4">تایید پرداخت</DialogTitle>
             <DialogDescription className="text-right text-muted-foreground py-4">
-              خرید بلیط {ticketName} به قیمت {ticketPrice}
+              خرید بلیط {ticketName} به قیمت {displayPrice}
             </DialogDescription>
           </DialogHeader>
 
           <DialogFooter className="sm:justify-end flex-row-reverse gap-2">
-            <Button onClick={onConfirm}>{ticketPrice === "رایگان" ? "تایید" : "پرداخت"}</Button>
+            <Button onClick={onConfirm}>{displayPrice === "رایگان" ? "تایید" : "پرداخت"}</Button>
             <Button variant="outline" onClick={onCancel}>
               لغو
             </Button>

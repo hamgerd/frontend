@@ -28,8 +28,8 @@ export default function OrganizationsPage() {
       try {
         const res = await api.get("/api/v1/organization/");
         setOrganizations(res.data.results);
-      } catch (err) {
-        console.log(`error massage is: ${err}`);
+      } catch (error) {
+        console.log(`error massage is: ${String(error)}`);
       } finally {
         setIsLoading(false);
       }
@@ -90,8 +90,8 @@ export default function OrganizationsPage() {
         {isLoading ? (
           <CardLoading />
         ) : (
-          organizations.map((organization, index) => (
-            <OrganizationCard key={index} organization={organization} />
+          organizations.map(organization => (
+            <OrganizationCard key={organization.public_id} organization={organization} />
           ))
         )}
       </div>

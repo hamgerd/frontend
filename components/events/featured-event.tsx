@@ -48,14 +48,14 @@ export default function FeaturedEvent() {
                   fill
                   alt={event.title}
                   className="object-cover"
-                  src={event.image || "/placeholder.svg"}
+                  src={event.image ?? "/placeholder.svg"}
                 />
               </div>
               <CardContent className="p-12">
                 <h3 className="font-bold text-xl mb-2">{event.title}</h3>
                 <div className="flex items-center gap-2 text-muted-foreground mb-2">
                   <CalendarDays className="h-4 w-4" />
-                  <span>{(event.start_date = moment().locale("fa").format("YYYY/M/D"))}</span>
+                  <span>{moment(event.start_date).locale("fa").format("YYYY/M/D")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground mb-2">
                   <MapPin className="h-4 w-4" />

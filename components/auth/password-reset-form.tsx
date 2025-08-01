@@ -65,7 +65,7 @@ export function PasswordResetForm({ setSuccess }: { setSuccess: (v: boolean) => 
         description: "اکنون می‌توانید وارد شوید.",
       });
       setTimeout(() => router.push("/login"), 2000);
-    } catch (err) {
+    } catch (_error) {
       toast({
         title: "خطا در تغییر رمز عبور",
         description: "لینک یا رمز عبور معتبر نیست.",

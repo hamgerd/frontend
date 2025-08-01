@@ -8,13 +8,19 @@ import { Button } from "@/components/ui/button";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import api from "@/lib/axios";
 
+interface PaymentResponse {
+  ref_id: number | string;
+  message: string;
+  [key: string]: any;
+}
+
 export function VerifyContent() {
   const searchParams = useSearchParams();
   const Authority = searchParams.get("Authority");
   const Status = searchParams.get("Status");
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState<boolean | null>(null);
-  const [paymentResponse, setPaymentResponse] = useState<number | string | null>();
+  const [paymentResponse, setPaymentResponse] = useState<PaymentResponse | null>();
 
   useEffect(() => {
     const sendAuthority = async () => {
@@ -60,7 +66,7 @@ export function VerifyContent() {
             <XCircle className="text-destructive w-16 h-16 mb-2" />
             <span className="text-lg font-semibold">پرداخت ناموفق بود</span>
             <span className="text-sm text-muted-foreground">
-              کد پیگیری: {paymentResponse?.ref_id || "نامشخص"}
+              کد پیگیری: {paymentResponse?.ref_id ?? "نامشخص"}
             </span>
             <Button asChild className="mt-4 w-full" variant="outline">
               <a href="/dashboard/tickets">بازگشت به داشبورد</a>

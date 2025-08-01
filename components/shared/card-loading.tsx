@@ -4,7 +4,7 @@ export default function CardLoading() {
   return Array(6)
     .fill(0)
     .map((_, index) => (
-      <Card className="overflow-hidden" key={`loading-${index}`}>
+      <Card className="overflow-hidden" key={`loading-${String(index)}`}>
         <div className="relative h-48 bg-muted animate-pulse"></div>
         <CardContent className="p-6">
           <div className="h-6 w-3/4 bg-muted animate-pulse mb-2"></div>

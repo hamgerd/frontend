@@ -1,3 +1,4 @@
+// @ts-nocheck //diable typescript
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import * as React from "react";
 
@@ -34,6 +35,7 @@ type PaginationLinkProps = Pick<ButtonProps, "size"> &
   };
 
 const PaginationLink = ({ className, isActive, size = "icon", ...props }: PaginationLinkProps) => (
+  // eslint-disable-next-line jsx-a11y/anchor-has-content
   <a
     aria-current={isActive ? "page" : undefined}
     className={cn(

@@ -2,11 +2,9 @@
 
 import type { LucideIcon } from "lucide-react";
 
-import { MailIcon, PlusCircleIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -30,21 +28,6 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
-        <SidebarMenu>
-          <SidebarMenuItem className="flex items-center gap-2">
-            {/* <SidebarMenuButton
-              tooltip="خرید سریع"
-              className="min-w-8 bg-emerald-500 text-white duration-200 ease-linear hover:bg-emerald-600 hover:text-white active:bg-emerald-600 active:text-white"
-            >
-              <PlusCircleIcon />
-              <span>خرید سریع</span>
-            </SidebarMenuButton>
-            <Button size="icon" className="h-9 w-9 shrink-0 group-data-[collapsible=icon]:opacity-0" variant="outline">
-              <MailIcon />
-              <span className="sr-only">پیام‌ها</span>
-            </Button> */}
-          </SidebarMenuItem>
-        </SidebarMenu>
         <SidebarMenu>
           {items.map(item => {
             const isActive = pathname === item.url;
