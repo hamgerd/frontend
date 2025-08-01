@@ -2,9 +2,9 @@ import moment from "jalali-moment";
 import { CalendarDays, Clock, MapPin, Users } from "lucide-react";
 
 interface EventMetaInfoProps {
-  startDate: string;
-  endDate: string;
-  location: string | undefined;
+  startDate: Date;
+  endDate: Date;
+  location: string | null | undefined;
   maxParticipants: number;
 }
 

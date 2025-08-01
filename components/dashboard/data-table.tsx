@@ -30,20 +30,6 @@ import * as React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Table,
   TableBody,
   TableCell,
@@ -51,7 +37,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 // Types
 interface TicketType {
@@ -346,66 +332,6 @@ export function DataTable({
       className="flex w-full flex-col justify-start gap-6 text-right"
       defaultValue="tickets"
     >
-      <div className="flex items-center justify-between px-4 lg:px-6">
-        <Label className="sr-only" htmlFor="view-selector">
-          نمایش
-        </Label>
-        <Select defaultValue="tickets">
-          <SelectTrigger className="@4xl/main:hidden flex w-fit" id="view-selector">
-            <SelectValue placeholder="انتخاب نمایش" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="tickets">بلیط‌های من</SelectItem>
-            <SelectItem value="favorites">علاقه‌مندی‌ها</SelectItem>
-            <SelectItem value="bookmarks">نشان‌شده‌ها</SelectItem>
-            <SelectItem value="calendar">تقویم</SelectItem>
-          </SelectContent>
-        </Select>
-        <TabsList className="@4xl/main:flex hidden">
-          <TabsTrigger value="tickets">بلیط‌های من</TabsTrigger>
-          <TabsTrigger className="gap-1" value="favorites">
-            علاقه‌مندی‌ها{" "}
-            <Badge
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30"
-              variant="secondary"
-            >
-              ۸
-            </Badge>
-          </TabsTrigger>
-          <TabsTrigger className="gap-1" value="bookmarks">
-            نشان‌شده‌ها{" "}
-            <Badge
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30"
-              variant="secondary"
-            >
-              ۵
-            </Badge>
-          </TabsTrigger>
-          <TabsTrigger value="calendar">تقویم من</TabsTrigger>
-        </TabsList>
-        <div className="flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild></DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              {table
-                .getAllColumns()
-                .filter(column => typeof column.accessorFn !== "undefined" && column.getCanHide())
-                .map(column => {
-                  return (
-                    <DropdownMenuCheckboxItem
-                      checked={column.getIsVisible()}
-                      className="capitalize"
-                      key={column.id}
-                      onCheckedChange={value => column.toggleVisibility(!!value)}
-                    >
-                      {column.id}
-                    </DropdownMenuCheckboxItem>
-                  );
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
       <TabsContent
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
         value="tickets"

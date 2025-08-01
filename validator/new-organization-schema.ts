@@ -6,10 +6,10 @@ export const newOrganizationFormSchema = z.object({
   }),
   description: z.string().optional(),
   category: z.string({
-    required_error: "لطفا یک دسته‌بندی انتخاب کنید.",
+    error: "لطفا یک دسته‌بندی انتخاب کنید.",
   }),
   foundedYear: z.string({
-    required_error: "لطفا سال تاسیس را وارد کنید.",
+    error: "لطفا سال تاسیس را وارد کنید.",
   }),
   location: z.string().optional(),
   address: z.string().optional(),

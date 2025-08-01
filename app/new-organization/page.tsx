@@ -101,8 +101,10 @@ export default function NewOrganizationPage() {
           اطلاعات سازمان خود را وارد کنید تا آن را برای کاربران منتشر کنیم
         </p>
         <NewOrganizationForm
+          coverFile={coverFile}
           form={form}
           isLoading={isLoading}
+          logoFile={logoFile}
           onSubmit={onSubmit}
           setCoverFile={setCoverFile}
           setLogoFile={setLogoFile}

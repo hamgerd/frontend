@@ -10,21 +10,26 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import api from "@/lib/axios";
 
-interface Ticket {
-  id: number;
-  status: "c" | "e" | "p" | "s";
+interface TicketType {
+  public_id: string;
+  title: string;
+  description: string;
+  price: number;
+  max_participants: number;
+}
+interface Tickets {
+  event: any;
+  public_id: string;
   created_at: string;
-  ticket_type: {
-    price: number;
-    description: string;
-  };
-  event?: {
-    start_time?: string;
-  };
+  updated_at: string;
+  notes: string;
+  status: string;
+  ticket_number: number;
+  ticket_type: TicketType;
 }
 
 export default function TicketsPage() {
-  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [tickets, setTickets] = useState<Tickets[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

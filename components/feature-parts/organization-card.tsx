@@ -26,11 +26,9 @@ export default function OrganizationCard({ organization }: OrganizationCardProps
         </div>
         <div className="flex items-center gap-2 mb-2">
           <h3 className="font-bold text-xl text-center">{organization.name}</h3>
-          {organization.verified && (
-            <Badge className="bg-primary/10 text-primary" variant="outline">
-              تایید شده
-            </Badge>
-          )}
+          <Badge className="bg-primary/10 text-primary" variant="outline">
+            تایید شده
+          </Badge>
         </div>
         <div className="flex items-center gap-2 text-muted-foreground mb-2">
           <MapPin className="h-4 w-4" />

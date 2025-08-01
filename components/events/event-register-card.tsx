@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface EventRegisterCardProps {
   price: number;
-  capacity: number;
+  capacity: number | null | undefined;
   onRegister: () => void;
 }
 

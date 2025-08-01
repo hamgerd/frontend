@@ -9,8 +9,8 @@ interface Organizer {
   logo?: string;
   name: string;
   username: string;
-  email?: string;
-  website?: string;
+  email?: string | null;
+  website?: string | null;
   description?: string;
 }
 

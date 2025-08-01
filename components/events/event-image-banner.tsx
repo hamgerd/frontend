@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 interface EventImageBannerProps {
-  image?: string;
+  image: string | null | undefined;
   title: string;
-  category?: string;
+  category?: number | null;
 }
 
 export default function EventImageBanner({ image, title, category }: EventImageBannerProps) {
