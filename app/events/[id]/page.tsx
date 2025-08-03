@@ -1,5 +1,4 @@
 "use client";
-
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -53,7 +52,7 @@ export default function EventPage() {
 
   return (
     <div>
-      <div className="container flex lg:mx-auto flex-col py-10">
+      <div className="container flex flex-col  lg:mx-auto py-10">
         <div className="mx-4">
           <div className="flex items-center mb-6">
             <Button asChild size="sm" variant="outline">
@@ -63,27 +62,32 @@ export default function EventPage() {
               </Link>
             </Button>
           </div>
+          <div className="flex flex-col lg:flex-row justify-between gap-10">
+            <div className="lg:w-8/12">
+              <EventImageBanner
+                image={eventDetails.image}
+                title={eventDetails.title}
+                category={eventDetails.category}
+              />
+              <h1 className="text-3xl font-bold flex mb-4">{eventDetails.title}</h1>
 
-          <EventImageBanner
-            image={eventDetails.image}
-            title={eventDetails.title}
-            category={eventDetails.category}
-          />
-          <h1 className="text-3xl font-bold mb-4">{eventDetails.title}</h1>
-
-          <EventMetaInfo
-            endDate={eventDetails.end_date}
-            maxParticipants={eventDetails.max_participants}
-            startDate={eventDetails.start_date}
-            location={eventDetails.location}
-          />
-          <EventTabs eventDetails={eventDetails} speakers={speakers} />
-          <EventRegisterCard
-            capacity={eventDetails.ticket_types[0].max_participants}
-            price={eventDetails.ticket_types[0].price}
-            onRegister={createTicket}
-          />
-          <EventOrganizerCard organization={eventDetails.organization} />
+              <EventMetaInfo
+                endDate={eventDetails.end_date}
+                maxParticipants={eventDetails.max_participants}
+                startDate={eventDetails.start_date}
+                location={eventDetails.location}
+              />
+              <EventTabs eventDetails={eventDetails} speakers={speakers} />
+            </div>
+            <div className="lg:w-4/12">
+              <EventRegisterCard
+                capacity={eventDetails.ticket_types[0].max_participants}
+                price={eventDetails.ticket_types[0].price}
+                onRegister={createTicket}
+              />
+              <EventOrganizerCard organization={eventDetails.organization} />
+            </div>
+          </div>
         </div>
       </div>
 

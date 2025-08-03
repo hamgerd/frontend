@@ -258,7 +258,7 @@ export function DataTable({
   isLoading: externalLoading = false,
   onRefresh,
 }: DataTableProps) {
-  const { tickets, isLoading: internalLoading, error, updateTickets } = useTickets(data);
+  const { tickets, isLoading: internalLoading, error } = useTickets(data);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -294,13 +294,6 @@ export function DataTable({
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
-
-  // Update tickets when data prop changes
-  React.useEffect(() => {
-    if (data && data.length > 0) {
-      updateTickets(data);
-    }
-  }, [data, updateTickets]);
 
   if (error) {
     return (

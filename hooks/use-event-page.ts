@@ -1,8 +1,7 @@
-import { redirect, useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import type { Event } from "@/models/event";
-import type { PatchedTicket } from "@/models/patched-ticket";
 import type { Speaker } from "@/models/speaker";
 import type { TicketCreateResponse } from "@/models/ticket-create-response";
 
@@ -10,10 +9,10 @@ import api from "@/lib/axios";
 
 export default function useEventPage() {
   const params = useParams();
+  const router = useRouter();
   const [eventDetails, setEventDetails] = useState<Event>();
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
   const [ticketType, setTicketType] = useState("");
-  const [ticketId, setTicketId] = useState("");
   const [transactionsId, setTransactionsId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
@@ -36,13 +35,11 @@ export default function useEventPage() {
     fetchData();
   }, [params.id]);
 
-  const handleTicket = async (ticketId: string) => {
+  const handleTicket = async (id: string) => {
     try {
-      await api.patch<PatchedTicket>(`/api/v1/events/${params.id}/tickets/${ticketId}/`, {
-        notes: "IDK",
-      });
-    } catch (err) {
-      console.log("Patch error:", err);
+      await api.patch(`/api/v1/events/${params.id}/tickets/${id}/`, { notes: "IDK" });
+    } catch (error) {
+      console.log("Patch error:", error);
     }
   };
 
@@ -54,13 +51,12 @@ export default function useEventPage() {
       );
       const data = res.data;
       const id = data.ticket_data[0].ticket_public_ids[0];
-      setTicketId(id);
       setTransactionsId(data.transaction_public_id);
+      console.log("Ticket ID to patch:", id);
       await handleTicket(id);
       setShowConfirmationDialog(true);
-    } catch (err) {
-      console.log("Ticket creation error:", err);
-      return redirect("/login");
+    } catch (error) {
+      console.log("Ticket creation error:", error);
     }
   };
 
@@ -68,13 +64,14 @@ export default function useEventPage() {
     setIsLoading(true);
     try {
       const res = await api.post(`api/v1/payment/pay/${transactionsId}/`);
+      console.log("API response:", res.data);
       if (res.data.url) {
         window.location.href = res.data.url;
       } else if (res.data.status === "s") {
-        return redirect("/dashboard/tickets");
+        router.push("/dashboard/tickets");
       }
-    } catch (err) {
-      console.log("Payment error:", err);
+    } catch (error) {
+      console.log("Payment error:", error);
     }
   };
 

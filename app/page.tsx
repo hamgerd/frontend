@@ -1,4 +1,3 @@
-"use client";
 import FeaturedEvent from "@/components/events/featured-event";
 import HeroSection from "@/components/feature-parts/hero-section";
 import PlatformFeatures from "@/components/feature-parts/platform-features";

@@ -41,7 +41,7 @@ export default function FeaturedEvent() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {featuredEvents.map(event => (
+          {featuredEvents.slice(0, 3).map(event => (
             <Card className="overflow-hidden w-full max-w-sm" key={event.public_id}>
               <div className="relative h-48">
                 <Image
