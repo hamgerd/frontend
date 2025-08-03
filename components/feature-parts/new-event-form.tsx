@@ -3,6 +3,8 @@ import type { UseFormReturn } from "react-hook-form";
 import type * as z from "zod";
 
 import Link from "next/link";
+import { useEffect } from "react";
+import { useFieldArray } from "react-hook-form";
 
 import type { newEventSchema } from "@/validator/new-event-schema";
 
@@ -35,6 +37,34 @@ interface NewEventFormProps {
 }
 
 export default function NewEventForm({ form, isLoading, onSubmit }: NewEventFormProps) {
+  const { control } = form;
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "tickets",
+  });
+
+  useEffect(() => {
+    if (fields.length === 0) {
+      append({ title: "", description: "", capacity: 0, price: 0 });
+    }
+  }, [append, fields]);
+
+  const handleTicketCountChange = (value: string) => {
+    const count = parseInt(value, 10);
+    const currentLength = fields.length;
+
+    if (count > currentLength) {
+      for (let i = currentLength; i < count; i++) {
+        append({ title: "", description: "", capacity: 0, price: 0 });
+      }
+    } else if (count < currentLength) {
+      for (let i = currentLength; i > count; i--) {
+        remove(i - 1);
+      }
+    }
+  };
+
   return (
     <Form {...form}>
       <form className="space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
@@ -47,11 +77,11 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             <FormField
               name="title"
               control={form.control}
-              render={({ field }) => (
+              render={({ field: titleField }) => (
                 <FormItem>
                   <FormLabel>عنوان رویداد</FormLabel>
                   <FormControl>
-                    <Input placeholder="مثال: کنفرانس فناوری‌های نوین وب" {...field} />
+                    <Input placeholder="مثال: کنفرانس فناوری‌های نوین وب" {...titleField} />
                   </FormControl>
                   <FormDescription>
                     عنوان رویداد خود را وارد کنید. این عنوان در همه جا نمایش داده می‌شود.
@@ -63,14 +93,14 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             <FormField
               name="description"
               control={form.control}
-              render={({ field }) => (
+              render={({ field: descriptionField }) => (
                 <FormItem>
                   <FormLabel>توضیحات</FormLabel>
                   <FormControl>
                     <Textarea
                       className="min-h-32 resize-none"
                       placeholder="توضیحاتی درباره رویداد خود بنویسید..."
-                      {...field}
+                      {...descriptionField}
                     />
                   </FormControl>
                   <FormDescription>
@@ -81,12 +111,26 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               )}
             />
             <FormField
+              name="organization"
+              control={form.control}
+              render={({ field: organizationField }) => (
+                <FormItem>
+                  <FormLabel> سازمان برگزار کننده</FormLabel>
+                  <FormControl>
+                    <Input placeholder="urmlog" {...organizationField} />
+                  </FormControl>
+                  <FormDescription>یوزرنیم سازمان برگزار کننده</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
               name="category"
               control={form.control}
-              render={({ field }) => (
+              render={({ field: categoryField }) => (
                 <FormItem>
                   <FormLabel>دسته‌بندی</FormLabel>
-                  <Select defaultValue={field.value} onValueChange={field.onChange}>
+                  <Select defaultValue={categoryField.value} onValueChange={categoryField.onChange}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
@@ -110,6 +154,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             />
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>زمان و مکان</CardTitle>
@@ -120,11 +165,11 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               <FormField
                 name="startDate"
                 control={form.control}
-                render={({ field }) => (
+                render={({ field: startDateField }) => (
                   <FormItem>
                     <FormLabel>تاریخ شروع</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <Input type="date" {...startDateField} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -133,11 +178,11 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               <FormField
                 name="endDate"
                 control={form.control}
-                render={({ field }) => (
+                render={({ field: endDateField }) => (
                   <FormItem>
                     <FormLabel>تاریخ پایان</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <Input type="date" {...endDateField} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -148,11 +193,11 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               <FormField
                 name="startTime"
                 control={form.control}
-                render={({ field }) => (
+                render={({ field: startTimeField }) => (
                   <FormItem>
                     <FormLabel>زمان شروع</FormLabel>
                     <FormControl>
-                      <Input type="time" {...field} />
+                      <Input type="time" {...startTimeField} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -161,11 +206,11 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               <FormField
                 name="endTime"
                 control={form.control}
-                render={({ field }) => (
+                render={({ field: endTimeField }) => (
                   <FormItem>
                     <FormLabel>زمان پایان</FormLabel>
                     <FormControl>
-                      <Input type="time" {...field} />
+                      <Input type="time" {...endTimeField} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -176,11 +221,11 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             <FormField
               name="location"
               control={form.control}
-              render={({ field }) => (
+              render={({ field: locationField }) => (
                 <FormItem>
                   <FormLabel>مکان برگزاری</FormLabel>
                   <FormControl>
-                    <Input placeholder="مثال: سالن همایش‌های برج میلاد" {...field} />
+                    <Input placeholder="مثال: سالن همایش‌های برج میلاد" {...locationField} />
                   </FormControl>
                   <FormDescription>نام مکان برگزاری رویداد را وارد کنید.</FormDescription>
                   <FormMessage />
@@ -190,14 +235,14 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             <FormField
               name="address"
               control={form.control}
-              render={({ field }) => (
+              render={({ field: addressField }) => (
                 <FormItem>
                   <FormLabel>آدرس دقیق</FormLabel>
                   <FormControl>
                     <Textarea
                       className="resize-none"
                       placeholder="آدرس کامل محل برگزاری رویداد را وارد کنید..."
-                      {...field}
+                      {...addressField}
                     />
                   </FormControl>
                   <FormMessage />
@@ -206,97 +251,110 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             />
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>ظرفیت و قیمت</CardTitle>
-            <CardDescription>تعداد شرکت‌کنندگان و قیمت بلیت را مشخص کنید</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                name="capacity"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>ظرفیت</FormLabel>
-                    <FormControl>
-                      <Input min="1" type="number" placeholder="تعداد شرکت‌کنندگان" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      حداکثر تعداد شرکت‌کنندگان در رویداد را وارد کنید.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="price"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>قیمت (تومان)</FormLabel>
-                    <FormControl>
-                      <Input min="0" type="number" placeholder="مثال: 100000" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      قیمت بلیت رویداد را وارد کنید. اگر رویداد رایگان است، عدد ۰ را وارد کنید.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>اطلاعات برگزارکننده</CardTitle>
-            <CardDescription>اطلاعات تماس برگزارکننده را وارد کنید</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <FormField
-              name="organizerName"
-              control={form.control}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>نام برگزارکننده</FormLabel>
-                  <FormControl>
-                    <Input placeholder="نام شخص یا سازمان برگزارکننده" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                name="organizerEmail"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>ایمیل</FormLabel>
-                    <FormControl>
-                      <Input type="email" placeholder="example@domain.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="organizerPhone"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>شماره تماس</FormLabel>
-                    <FormControl>
-                      <Input placeholder="مثال: ۰۹۱۲۳۴۵۶۷۸۹" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-          </CardContent>
-        </Card>
+
+        <div className="flex gap-3 items-center">
+          <p>ایونت شامل چند بخش می‌شود؟</p>
+          <Select onValueChange={handleTicketCountChange}>
+            <SelectTrigger className="w-20">
+              <SelectValue placeholder="1" />
+            </SelectTrigger>
+            <SelectContent>
+              {[1, 2, 3, 4, 5].map(n => (
+                <SelectItem key={n} value={n.toString()}>
+                  {n}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        {fields.map((field, index) => (
+          <Card key={field.id}>
+            <CardHeader>
+              <CardTitle>بخش بندی ایونت</CardTitle>
+              <CardDescription>تعداد شرکت‌کنندگان و قیمت بلیت را مشخص کنید</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex flex-col gap-6">
+                <FormField
+                  name={`tickets.${index}.title`}
+                  control={control}
+                  render={({ field: ticketTitleField }) => (
+                    <FormItem>
+                      <FormLabel>عنوان بخش {index + 1} رویداد</FormLabel>
+                      <FormControl>
+                        <Input placeholder="سخنرانی آقای احمدی" {...ticketTitleField} />
+                      </FormControl>
+                      <FormDescription>عنوانی برای بخش بنویسید</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name={`tickets.${index}.description`}
+                  control={control}
+                  render={({ field: ticketDescriptionField }) => (
+                    <FormItem>
+                      <FormLabel>توضیحات</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="min-h-32 resize-none"
+                          placeholder="توضیحاتی بنویسید..."
+                          {...ticketDescriptionField}
+                        />
+                      </FormControl>
+                      <FormDescription>توضیحاتی برای این بخش بنویسید</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                  name={`tickets.${index}.capacity`}
+                  control={control}
+                  render={({ field: ticketCapacityField }) => (
+                    <FormItem>
+                      <FormLabel>ظرفیت</FormLabel>
+                      <FormControl>
+                        <Input
+                          min={1}
+                          type="number"
+                          placeholder="تعداد شرکت‌کنندگان"
+                          {...ticketCapacityField}
+                        />
+                      </FormControl>
+                      <FormDescription>حداکثر ظرفیت شرکت‌کنندگان</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name={`tickets.${index}.price`}
+                  control={control}
+                  render={({ field: ticketPriceField }) => (
+                    <FormItem>
+                      <FormLabel>قیمت (تومان)</FormLabel>
+                      <FormControl>
+                        <Input
+                          min={0}
+                          type="number"
+                          placeholder="مثال: 100000"
+                          {...ticketPriceField}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        قیمت بلیت (اگر رایگان است عدد ۰ را وارد کنید)
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+
         <div className="flex justify-center gap-4">
           <Button asChild size="lg" variant="outline">
             <Link href="/dashboard/tickets">انصراف</Link>

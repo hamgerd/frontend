@@ -5,12 +5,13 @@ import type * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import NewEventForm from "@/components/feature-parts/new-event-form";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import api from "@/lib/axios";
 import { newEventSchema } from "@/validator/new-event-schema";
 
 export default function NewEventPage() {
@@ -29,27 +30,54 @@ export default function NewEventPage() {
       endTime: "",
       location: "",
       address: "",
-      capacity: "",
-      price: "",
-      organizerName: "",
-      organizerEmail: "",
-      organizerPhone: "",
+      tickets: [{ title: "", description: "", capacity: 100, price: 0 }],
     },
   });
 
   function onSubmit(values: z.infer<typeof newEventSchema>) {
     setIsLoading(true);
-
-    setTimeout(() => {
-      console.log(values);
-      setIsLoading(false);
+    try {
+      api.post("api/v1/events/", {
+        title: values.title,
+        description: values.description,
+        organization: values.organization,
+        category: values.category,
+        startDate: values.startDate,
+        endDate: values.endDate,
+        startTime: values.startTime,
+        endTime: values.endTime,
+        location: values.location,
+        address: values.address,
+        ticket_types: values.tickets.map(ticket => ({
+          title: ticket.title,
+          description: ticket.description,
+          max_participants: ticket.capacity,
+          price: ticket.price,
+        })),
+      });
       toast({
         title: "رویداد با موفقیت ایجاد شد",
         description: "رویداد شما ایجاد شد و برای بررسی ارسال شد.",
+        variant: "default",
       });
-    }, 1000);
+      form.reset();
+    } catch (error) {
+      console.log("Form erro is:", error);
+      toast({
+        title: "خطا در ایجاد روایداد",
+        description: "مشکلی در ایجاد  به وجود آمد. لطفا دوباره تلاش کنید.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/login";
+    }
+  }, []);
   return (
     <div className="container py-10 mx-auto">
       <div className="mx-6">

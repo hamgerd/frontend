@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+"use client";
 import type { UseFormReturn } from "react-hook-form";
 import type * as z from "zod";
 
@@ -32,18 +33,14 @@ interface NewOrganizationFormProps {
   form: UseFormReturn<z.infer<typeof newOrganizationFormSchema>>;
   isLoading: boolean;
   onSubmit: (values: z.infer<typeof newOrganizationFormSchema>) => void;
-  setCoverFile: (file: File) => void;
   setLogoFile: (file: File) => void;
   logoFile: File | null;
-  coverFile: File | null;
 }
 export default function NewOrganizationForm({
   form,
   isLoading,
   onSubmit,
-  setCoverFile,
   setLogoFile,
-  coverFile,
   logoFile,
 }: NewOrganizationFormProps) {
   return (
@@ -104,7 +101,7 @@ export default function NewOrganizationForm({
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="gap-6">
               <FormField
                 name="category"
                 control={form.control}
@@ -133,22 +130,8 @@ export default function NewOrganizationForm({
                   </FormItem>
                 )}
               />
-              <FormField
-                name="foundedYear"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>سال تاسیس</FormLabel>
-                    <FormControl>
-                      <Input placeholder="مثال: ۱۳۹۰" {...field} />
-                    </FormControl>
-                    <FormDescription>سال تاسیس سازمان خود را وارد کنید.</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className=" gap-6">
               <div>
                 <FormLabel>لوگوی سازمان</FormLabel>
                 <div className="mt-2 flex justify-center rounded-lg border border-dashed border-input px-6 py-10">
@@ -161,7 +144,7 @@ export default function NewOrganizationForm({
                       >
                         <span>آپلود فایل</span>
                         <input
-                          accept="image/*"
+                          accept=".jpg,.jpeg,.png"
                           className="sr-only"
                           id="logo-upload"
                           name="logo-upload"
@@ -175,39 +158,8 @@ export default function NewOrganizationForm({
                       </label>
                       <p className="pr-1">یا بکشید و رها کنید</p>
                     </div>
-                    <p className="text-xs leading-5 text-muted-foreground">PNG, JPG تا ۲ مگابایت</p>
+                    <p className="text-xs leading-5 text-muted-foreground">PNG, JPG تا ۱ مگابایت</p>
                     {logoFile && <p className="mt-2 text-xs text-primary">{logoFile.name}</p>}
-                  </div>
-                </div>
-              </div>
-              <div>
-                <FormLabel>تصویر کاور</FormLabel>
-                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-input px-6 py-10">
-                  <div className="text-center">
-                    <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
-                    <div className="mt-4 flex text-sm leading-6 text-muted-foreground">
-                      <label
-                        className="relative cursor-pointer rounded-md bg-background font-semibold text-primary hover:text-primary/80"
-                        htmlFor="cover-upload"
-                      >
-                        <span>آپلود فایل</span>
-                        <input
-                          accept="image/*"
-                          className="sr-only"
-                          id="cover-upload"
-                          name="cover-upload"
-                          type="file"
-                          onChange={e => {
-                            if (e.target.files && e.target.files[0]) {
-                              setCoverFile(e.target.files[0]);
-                            }
-                          }}
-                        />
-                      </label>
-                      <p className="pr-1">یا بکشید و رها کنید</p>
-                    </div>
-                    <p className="text-xs leading-5 text-muted-foreground">PNG, JPG تا ۵ مگابایت</p>
-                    {coverFile && <p className="mt-2 text-xs text-primary">{coverFile.name}</p>}
                   </div>
                 </div>
               </div>
@@ -303,35 +255,22 @@ export default function NewOrganizationForm({
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col">
               <FormField
-                name="facebook"
+                name="telegram"
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>فیسبوک</FormLabel>
+                    <FormLabel>تلگرام</FormLabel>
                     <FormControl>
-                      <Input placeholder="نام کاربری فیسبوک" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="twitter"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>توییتر</FormLabel>
-                    <FormControl>
-                      <Input placeholder="نام کاربری توییتر" {...field} />
+                      <Input placeholder="نام کاربری تلگرام" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="">
               <FormField
                 name="instagram"
                 control={form.control}

@@ -7,6 +7,7 @@ export const newEventSchema = z.object({
   description: z.string().min(20, {
     message: "توضیحات باید حداقل ۲۰ کاراکتر باشد.",
   }),
+  organization: z.string(),
   category: z.string().nonempty("لطفا یک دسته‌بندی انتخاب کنید."),
   startDate: z.string().nonempty("لطفا تاریخ شروع را وارد کنید."),
   endDate: z.string().nonempty("لطفا تاریخ پایان را وارد کنید."),
@@ -18,17 +19,14 @@ export const newEventSchema = z.object({
   address: z.string().min(10, {
     message: "آدرس باید حداقل ۱۰ کاراکتر باشد.",
   }),
-  capacity: z.string().min(1, {
-    message: "لطفا ظرفیت را وارد کنید.",
-  }),
-  price: z.string(), // You can validate with .regex or .transform if needed
-  organizerName: z.string().min(3, {
-    message: "نام برگزارکننده باید حداقل ۳ کاراکتر باشد.",
-  }),
-  organizerEmail: z.string().email({
-    message: "لطفا یک ایمیل معتبر وارد کنید.",
-  }),
-  organizerPhone: z.string().min(10, {
-    message: "شماره تلفن باید حداقل ۱۰ کاراکتر باشد.",
-  }),
+  tickets: z
+    .array(
+      z.object({
+        title: z.string().min(1, "عنوان بخش الزامی است"),
+        description: z.string().min(1, "توضیحات بخش الزامی است"),
+        capacity: z.number().min(1, "ظرفیت باید حداقل ۱ باشد"),
+        price: z.number().min(0, "قیمت نمی‌تواند منفی باشد"),
+      })
+    )
+    .min(1, "حداقل یک بخش الزامی است"),
 });
