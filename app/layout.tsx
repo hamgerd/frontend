@@ -4,6 +4,7 @@ import "@/app/globals.css";
 
 import type React from "react";
 
+import { Analytics } from "@vercel/analytics/next";
 import localFont from "next/font/local";
 
 import Footer from "@/components/layout/footer";
@@ -42,6 +43,10 @@ const vazir = localFont({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html dir="rtl" lang="fa" suppressHydrationWarning>
+      <head>
+        <script src="//unpkg.com/react-scan/dist/auto.global.js" crossOrigin="anonymous" />
+        <Analytics />
+      </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", vazir.className)}>
         <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <div className="relative flex min-h-screen flex-col">
