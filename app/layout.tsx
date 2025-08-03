@@ -9,6 +9,7 @@ import localFont from "next/font/local";
 
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
+import ErrorBoundary from "@/components/shared/error-boundary";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/const/site";
@@ -49,12 +50,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", vazir.className)}>
         <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <div className="flex-1">{children}</div>
-            <Footer />
-          </div>
-          <Toaster />
+          <ErrorBoundary>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </div>
+            <Toaster />
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>
