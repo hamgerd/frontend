@@ -68,7 +68,7 @@ export default function useEventPage() {
       if (res.data.url) {
         window.location.href = res.data.url;
       } else if (res.data.status === "s") {
-        router.push("/dashboard/tickets");
+        router.push("/verify?freeEvent=true");
       }
     } catch (error) {
       console.log("Payment error:", error);

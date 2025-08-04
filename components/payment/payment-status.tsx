@@ -13,8 +13,10 @@ interface PaymentResponse {
   message: string;
   [key: string]: any;
 }
-
-export function VerifyContent() {
+interface VerifyContentProps {
+  freeEvent?: boolean | undefined;
+}
+export function VerifyContent({ freeEvent }: VerifyContentProps) {
   const searchParams = useSearchParams();
   const Authority = searchParams.get("Authority");
   const Status = searchParams.get("Status");
@@ -23,25 +25,28 @@ export function VerifyContent() {
   const [paymentResponse, setPaymentResponse] = useState<PaymentResponse | null>();
 
   useEffect(() => {
-    const sendAuthority = async () => {
-      try {
-        const res = await api.get(`api/v1/payment/verify/${String(Authority)}/`);
-        setSuccess(res.data.message === "transaction successful");
-        setPaymentResponse(res.data);
-      } catch {
-        setSuccess(false);
-      } finally {
+    if (freeEvent) {
+      setSuccess(true);
+      setLoading(false);
+    } else {
+      const sendAuthority = async () => {
+        try {
+          const res = await api.get(`api/v1/payment/verify/${String(Authority)}/`);
+          setSuccess(res.data.message === "transaction successful");
+          setPaymentResponse(res.data);
+        } catch {
+          setSuccess(false);
+        } finally {
+          setLoading(false);
+        }
+      };
+      if (Authority && Status === "OK") {
+        sendAuthority();
+      } else {
         setLoading(false);
       }
-    };
-
-    if (Authority && Status === "OK") {
-      sendAuthority();
-    } else {
-      setLoading(false);
     }
-  }, [Authority, Status]);
-
+  }, [Authority, Status, freeEvent]);
   return (
     <>
       <CardHeader>
@@ -55,7 +60,7 @@ export function VerifyContent() {
             <CheckCircle2 className="text-green-500 w-16 h-16 mb-2" />
             <span className="text-lg font-semibold">پرداخت با موفقیت انجام شد</span>
             <span className="text-sm text-muted-foreground">
-              کد پیگیری: {paymentResponse?.ref_id}
+              {paymentResponse?.ref_id ? `کد پیگیری: ${paymentResponse?.ref_id}` : " "}
             </span>
             <Button asChild className="mt-4 w-full">
               <a href="/dashboard/tickets">بازگشت به داشبورد</a>
