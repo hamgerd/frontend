@@ -1,6 +1,5 @@
 "use client";
 
-import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import type { Organization } from "@/models/organization";
@@ -8,26 +7,27 @@ import type { Organization } from "@/models/organization";
 import OrganizationCard from "@/components/feature-parts/organization-card";
 import CardLoading from "@/components/shared/card-loading";
 import CreatePromptCard from "@/components/shared/create-prompt-card";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import PaginationSection from "@/components/shared/pagination";
+import Searchbar from "@/components/shared/searchbar";
 import api from "@/lib/axios";
 
 export default function OrganizationsPage() {
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   useEffect(() => {
     const fetchOrganizations = async () => {
       setIsLoading(true);
       try {
-        const res = await api.get("/api/v1/organization/");
+        const res = await api.get("/api/v1/organization/", {
+          params: {
+            page,
+          },
+        });
         setOrganizations(res.data.results);
+        setTotalPages(Math.ceil(res.data.count / 25));
       } catch (error) {
         console.log(`error massage is: ${String(error)}`);
       } finally {
@@ -36,7 +36,7 @@ export default function OrganizationsPage() {
     };
 
     fetchOrganizations();
-  }, []);
+  }, [page, totalPages]);
 
   return (
     <div className="container flex mx-auto flex-col py-10">
@@ -48,101 +48,21 @@ export default function OrganizationsPage() {
           </p>
         </div>
 
-        {/* Search and Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
-          <div className="md:col-span-2 relative">
-            <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
-            <Input className="pr-10" placeholder="جستجوی سازمان..." />
-          </div>
-          <div>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="دسته‌بندی" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">همه</SelectItem>
-                <SelectItem value="technology">فناوری</SelectItem>
-                <SelectItem value="business">کسب و کار</SelectItem>
-                <SelectItem value="education">آموزشی</SelectItem>
-                <SelectItem value="design">طراحی</SelectItem>
-                <SelectItem value="marketing">بازاریابی</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="مرتب‌سازی" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="newest">جدیدترین</SelectItem>
-                <SelectItem value="popular">محبوب‌ترین</SelectItem>
-                <SelectItem value="mostEvents">بیشترین رویداد</SelectItem>
-                <SelectItem value="mostMembers">بیشترین اعضا</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
+        <Searchbar />
       </div>
-
       {/* Organizations Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 mx-6">
         {isLoading ? (
           <CardLoading />
         ) : (
-          organizations.map(organization => (
-            <OrganizationCard key={organization.public_id} organization={organization} />
-          ))
+          <>
+            {organizations.map(organization => (
+              <OrganizationCard key={organization.public_id} organization={organization} />
+            ))}
+          </>
         )}
       </div>
-
-      {/* <div className="flex justify-center my-8">
-        <div className="flex space-x-1 space-x-reverse">
-          <Button variant="outline" size="icon">
-            <span className="sr-only">صفحه قبل</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-4 w-4"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </Button>
-          <Button variant="outline" size="sm">
-            ۱
-          </Button>
-          <Button variant="outline" size="sm" className="bg-muted">
-            ۲
-          </Button>
-          <Button variant="outline" size="sm">
-            ۳
-          </Button>
-          <Button variant="outline" size="icon">
-            <span className="sr-only">صفحه بعد</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-4 w-4"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </Button>
-        </div>
-      </div> */}
+      <PaginationSection page={page} setPage={setPage} totalPages={totalPages} />
       <CreatePromptCard
         title="می‌خواهید سازمان خود را ثبت کنید؟"
         buttonHref="/new-organization"
