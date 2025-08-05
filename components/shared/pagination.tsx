@@ -16,7 +16,7 @@ interface PaginationSectionProps {
 
 export default function PaginationSection({ setPage, page, totalPages }: PaginationSectionProps) {
   return (
-    <div className="flex justify-center my-8">
+    <div className="my-8 flex justify-center">
       <Pagination>
         <PaginationContent>
           <PaginationItem>

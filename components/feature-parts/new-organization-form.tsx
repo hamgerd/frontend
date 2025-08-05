@@ -131,15 +131,15 @@ export default function NewOrganizationForm({
                 )}
               />
             </div>
-            <div className=" gap-6">
+            <div className="gap-6">
               <div>
                 <FormLabel>لوگوی سازمان</FormLabel>
-                <div className="mt-2 flex justify-center rounded-lg border border-dashed border-input px-6 py-10">
+                <div className="border-input mt-2 flex justify-center rounded-lg border border-dashed px-6 py-10">
                   <div className="text-center">
-                    <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
-                    <div className="mt-4 flex text-sm leading-6 text-muted-foreground">
+                    <Upload className="text-muted-foreground mx-auto h-12 w-12" />
+                    <div className="text-muted-foreground mt-4 flex text-sm leading-6">
                       <label
-                        className="relative cursor-pointer rounded-md bg-background font-semibold text-primary hover:text-primary/80"
+                        className="bg-background text-primary hover:text-primary/80 relative cursor-pointer rounded-md font-semibold"
                         htmlFor="logo-upload"
                       >
                         <span>آپلود فایل</span>
@@ -158,8 +158,8 @@ export default function NewOrganizationForm({
                       </label>
                       <p className="pr-1">یا بکشید و رها کنید</p>
                     </div>
-                    <p className="text-xs leading-5 text-muted-foreground">PNG, JPG تا ۱ مگابایت</p>
-                    {logoFile && <p className="mt-2 text-xs text-primary">{logoFile.name}</p>}
+                    <p className="text-muted-foreground text-xs leading-5">PNG, JPG تا ۱ مگابایت</p>
+                    {logoFile && <p className="text-primary mt-2 text-xs">{logoFile.name}</p>}
                   </div>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function NewOrganizationForm({
             <CardDescription>اطلاعات تماس سازمان خود را وارد کنید</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormField
                 name="location"
                 control={form.control}

@@ -16,7 +16,7 @@ export default function CreatePromptCard({
   buttonHref,
 }: CreatePromptCardProps) {
   return (
-    <div className="flex flex-col items-center gap-4 text-center mt-12 bg-muted p-8 rounded-lg mx-4">
+    <div className="bg-muted mx-4 mt-12 flex flex-col items-center gap-4 rounded-lg p-8 text-center">
       <h2 className="text-2xl font-bold">{title}</h2>
       <p className="text-muted-foreground">{description}</p>
       <Button size="lg" className="mt-2">

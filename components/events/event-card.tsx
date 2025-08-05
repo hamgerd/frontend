@@ -23,21 +23,21 @@ const EventCard = ({ event }: EventCardProps) => {
           className="object-cover"
           src={event.image ?? "/placeholder.svg"}
         />
-        <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded-md text-xs">
+        <div className="bg-primary text-primary-foreground absolute top-2 right-2 rounded-md px-2 py-1 text-xs">
           {event.category}
         </div>
       </div>
       <CardContent className="p-6">
-        <h3 className="font-bold text-xl mb-2">{event.title}</h3>
-        <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <h3 className="mb-2 text-xl font-bold">{event.title}</h3>
+        <div className="text-muted-foreground mb-2 flex items-center gap-2">
           <CalendarDays className="h-4 w-4" />
           <span>{moment(event.start_date).locale("fa").format(" شروع YYYY/MM/DD")}</span>
         </div>
-        <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="text-muted-foreground mb-2 flex items-center gap-2">
           <MapPin className="h-4 w-4" />
           <span>{event.location}</span>
         </div>
-        <div className="flex items-center gap-2 text-muted-foreground">
+        <div className="text-muted-foreground flex items-center gap-2">
           <Users className="h-4 w-4" />
           <span>ظرفیت {event.max_participants}</span>
         </div>

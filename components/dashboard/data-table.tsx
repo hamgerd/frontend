@@ -198,7 +198,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
     header: "نوع بلیط",
     cell: ({ row }) => (
       <div className="max-w-[300px]">
-        <Badge className="px-1.5 text-muted-foreground " variant="outline">
+        <Badge className="text-muted-foreground px-1.5" variant="outline">
           {row.original.ticketType}
         </Badge>
       </div>
@@ -234,7 +234,7 @@ const createColumns = (): ColumnDef<TransformedTicket>[] => [
 
       return (
         <Badge
-          className={`flex gap-1 px-1.5 text-muted-foreground ${colorClass}`}
+          className={`text-muted-foreground flex gap-1 px-1.5 ${colorClass}`}
           variant="outline"
         >
           {icon}
@@ -313,7 +313,7 @@ export function DataTable({
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-64">
+      <div className="flex h-64 items-center justify-center">
         <div className="text-muted-foreground">در حال بارگذاری...</div>
       </div>
     );
@@ -331,7 +331,7 @@ export function DataTable({
       >
         <div className="overflow-hidden rounded-lg border">
           <Table>
-            <TableHeader className="sticky top-0 z-10 bg-muted ">
+            <TableHeader className="bg-muted sticky top-0 z-10">
               {table.getHeaderGroups().map(headerGroup => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map(header => {
@@ -443,17 +443,17 @@ export function DataTable({
         </div>
       </TabsContent>
       <TabsContent className="flex flex-col px-4 lg:px-6" value="favorites">
-        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground">
+        <div className="text-muted-foreground flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed">
           علاقه‌مندی‌های شما در اینجا نمایش داده می‌شود
         </div>
       </TabsContent>
       <TabsContent className="flex flex-col px-4 lg:px-6" value="bookmarks">
-        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground">
+        <div className="text-muted-foreground flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed">
           رویدادهای نشان‌شده در اینجا نمایش داده می‌شود
         </div>
       </TabsContent>
       <TabsContent className="flex flex-col px-4 lg:px-6" value="calendar">
-        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground">
+        <div className="text-muted-foreground flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed">
           تقویم رویدادهای شما در اینجا نمایش داده می‌شود
         </div>
       </TabsContent>

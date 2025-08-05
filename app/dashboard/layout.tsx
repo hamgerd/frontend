@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     return null;
   }
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-background">
+    <div className="bg-background fixed inset-0 z-50 overflow-y-auto">
       <SidebarProvider>{children}</SidebarProvider>
     </div>
   );

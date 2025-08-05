@@ -57,9 +57,9 @@ export function VerifyContent({ freeEvent }: VerifyContentProps) {
           <span className="text-muted-foreground">در حال بررسی پرداخت...</span>
         ) : success ? (
           <>
-            <CheckCircle2 className="text-green-500 w-16 h-16 mb-2" />
+            <CheckCircle2 className="mb-2 h-16 w-16 text-green-500" />
             <span className="text-lg font-semibold">پرداخت با موفقیت انجام شد</span>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               {paymentResponse?.ref_id ? `کد پیگیری: ${paymentResponse?.ref_id}` : " "}
             </span>
             <Button asChild className="mt-4 w-full">
@@ -68,9 +68,9 @@ export function VerifyContent({ freeEvent }: VerifyContentProps) {
           </>
         ) : (
           <>
-            <XCircle className="text-destructive w-16 h-16 mb-2" />
+            <XCircle className="text-destructive mb-2 h-16 w-16" />
             <span className="text-lg font-semibold">پرداخت ناموفق بود</span>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               کد پیگیری: {paymentResponse?.ref_id ?? "نامشخص"}
             </span>
             <Button asChild className="mt-4 w-full" variant="outline">

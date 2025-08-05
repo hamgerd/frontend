@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function CopyRight() {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-      <p className="text-sm text-muted-foreground">
+    <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+      <p className="text-muted-foreground text-sm">
         <span dir="ltr" className="flex items-center gap-1 text-sm">
           <a className="hover:underline" href="https://hamgerd.ir">
             هم‌گرد
@@ -20,21 +20,21 @@ export default function CopyRight() {
               height={16}
               width={16}
               alt="CC"
-              className="inline-block mx-0.5"
+              className="mx-0.5 inline-block"
               src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
             />
             <Image
               height={16}
               width={16}
               alt="BY"
-              className="inline-block mx-0.5"
+              className="mx-0.5 inline-block"
               src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
             />
             <Image
               height={16}
               width={16}
               alt="SA"
-              className="inline-block mx-0.5"
+              className="mx-0.5 inline-block"
               src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
             />
           </a>
@@ -42,19 +42,19 @@ export default function CopyRight() {
       </p>
       <div className="flex gap-6">
         <Link
-          className="text-sm text-muted-foreground hover:underline underline-offset-4"
+          className="text-muted-foreground text-sm underline-offset-4 hover:underline"
           href="/tos"
         >
           شرایط استفاده
         </Link>
         <Link
-          className="text-sm text-muted-foreground hover:underline underline-offset-4"
+          className="text-muted-foreground text-sm underline-offset-4 hover:underline"
           href="/privacy"
         >
           حریم خصوصی
         </Link>
         <Link
-          className="text-sm text-muted-foreground hover:underline underline-offset-4"
+          className="text-muted-foreground text-sm underline-offset-4 hover:underline"
           href="/faq"
         >
           سوالات متداول

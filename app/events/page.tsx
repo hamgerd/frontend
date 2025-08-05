@@ -41,11 +41,11 @@ export default function EventsPage() {
     fetchEventData();
   }, [page]);
   return (
-    <div className="container flex mx-auto flex-col py-10">
+    <div className="container mx-auto flex flex-col py-10">
       <div className="mx-4">
-        <div className="flex flex-col items-center gap-4 text-center mb-10 ">
+        <div className="mb-10 flex flex-col items-center gap-4 text-center">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">رویدادها</h1>
-          <p className="max-w-[700px] text-muted-foreground md:text-xl">
+          <p className="text-muted-foreground max-w-[700px] md:text-xl">
             تمام رویدادهای در حال برگزاری را مشاهده و در آن‌ها شرکت کنید
           </p>
         </div>
@@ -53,12 +53,12 @@ export default function EventsPage() {
       </div>
       {/* Events Grid */}
       {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-6 gap-6 mb-10">
+        <div className="mx-6 mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <CardLoading />
         </div>
       ) : events.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-6 gap-6 mb-10">
+          <div className="mx-6 mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {events.map(event => (
               <EventCard event={event} key={event.public_id} />
             ))}
@@ -67,7 +67,7 @@ export default function EventsPage() {
         </>
       ) : (
         <div className="col-span-full flex flex-col items-center justify-center py-12">
-          <p className="text-xl text-muted-foreground mb-4">هیچ رویدادی یافت نشد</p>
+          <p className="text-muted-foreground mb-4 text-xl">هیچ رویدادی یافت نشد</p>
           <Button asChild>
             <Link href="/new-event">ایجاد رویداد جدید</Link>
           </Button>

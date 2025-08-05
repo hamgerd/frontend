@@ -15,8 +15,8 @@ interface EventProps {
 export default function eventsOfOrganization({ events }: EventProps) {
   return (
     <div dir="rtl">
-      <h3 className="text-lg font-bold mb-4"> رویداد های سازمان</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <h3 className="mb-4 text-lg font-bold"> رویداد های سازمان</h3>
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {events?.map(event => (
           <Card className="overflow-hidden" key={event.public_id}>
             <div className="relative h-40">
@@ -28,20 +28,20 @@ export default function eventsOfOrganization({ events }: EventProps) {
               />
             </div>
             <CardContent className="p-4">
-              <h4 className="font-bold mb-2 line-clamp-1">{event.title}</h4>
-              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+              <h4 className="mb-2 line-clamp-1 font-bold">{event.title}</h4>
+              <div className="text-muted-foreground mb-1 flex items-center gap-2 text-sm">
                 <Calendar className="h-3 w-3" />
                 <span>{moment(event.start_date).locale("fa").format("YYYY/MM/DD")}</span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+              <div className="text-muted-foreground mb-1 flex items-center gap-2 text-sm">
                 <Clock className="h-3 w-3" />
                 <span>{moment(event.start_date).locale("fa").format("HH:MM")}</span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground text-sm">
+              <div className="text-muted-foreground flex items-center gap-2 text-sm">
                 <MapPin className="h-3 w-3" />
                 <span>{event.location}</span>
               </div>
-              <Button asChild size="sm" className="w-full mt-3" variant="outline">
+              <Button asChild size="sm" className="mt-3 w-full" variant="outline">
                 <Link href={`/events/${event.public_id}`}>مشاهده جزئیات</Link>
               </Button>
             </CardContent>

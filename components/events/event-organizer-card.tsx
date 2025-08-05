@@ -25,7 +25,7 @@ export default function EventOrganizerCard({ organization }: EventOrganizerCardP
         <CardTitle>برگزارکننده</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex items-center gap-4 static z-1">
+        <div className="static z-1 flex items-center gap-4">
           <Avatar className="h-12 w-12">
             <AvatarImage src={organization.logo ?? "/placeholder.svg"} />
             <AvatarFallback>{organization.name.charAt(0)}</AvatarFallback>
@@ -33,22 +33,22 @@ export default function EventOrganizerCard({ organization }: EventOrganizerCardP
           <div>
             <h3 className="font-bold">{organization.name}</h3>
             <Link
-              className="text-sm text-primary hover:underline"
+              className="text-primary text-sm hover:underline"
               href={`/organizations/${organization.username}`}
             >
               مشاهده پروفایل
             </Link>
           </div>
         </div>
-        <p className="text-sm text-muted-foreground text-center">{organization.description}</p>
+        <p className="text-muted-foreground text-center text-sm">{organization.description}</p>
         <Separator />
         <div dir="ltr" className="space-y-2">
           <div className="flex items-center gap-2">
-            <Mail className="h-4 w-4 text-muted-foreground" />
+            <Mail className="text-muted-foreground h-4 w-4" />
             <span className="text-sm">{organization.email}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Globe className="h-4 w-4 text-muted-foreground" />
+            <Globe className="text-muted-foreground h-4 w-4" />
             <span className="text-sm">{organization.website}</span>
           </div>
         </div>

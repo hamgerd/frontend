@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="container flex flex-col items-center justify-center min-h-[calc(100vh-16rem)] py-20 mx-auto ">
-      <CalendarDays className="h-20 w-20 text-muted-foreground mb-6" />
-      <h1 className="text-4xl font-bold mb-4">۴۰۴ - صفحه پیدا نشد</h1>
-      <p className="text-xl text-muted-foreground mb-8 text-center">
+    <div className="container mx-auto flex min-h-[calc(100vh-16rem)] flex-col items-center justify-center py-20">
+      <CalendarDays className="text-muted-foreground mb-6 h-20 w-20" />
+      <h1 className="mb-4 text-4xl font-bold">۴۰۴ - صفحه پیدا نشد</h1>
+      <p className="text-muted-foreground mb-8 text-center text-xl">
         متأسفانه صفحه مورد نظر شما پیدا نشد.
       </p>
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <Button asChild size="lg">
           <Link href="/">بازگشت به صفحه اصلی</Link>
         </Button>

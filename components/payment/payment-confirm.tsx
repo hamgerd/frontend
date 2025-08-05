@@ -30,13 +30,13 @@ export default function PaymentConfirm({
       <Dialog onOpenChange={onCancel} open={open}>
         <DialogContent className="text-right">
           <DialogHeader className="text-right">
-            <DialogTitle className="text-right font-bold mt-4">تایید پرداخت</DialogTitle>
-            <DialogDescription className="text-right text-muted-foreground py-4">
+            <DialogTitle className="mt-4 text-right font-bold">تایید پرداخت</DialogTitle>
+            <DialogDescription className="text-muted-foreground py-4 text-right">
               خرید بلیط {ticketName} به قیمت {displayPrice}
             </DialogDescription>
           </DialogHeader>
 
-          <DialogFooter className="sm:justify-end flex-row-reverse gap-2">
+          <DialogFooter className="flex-row-reverse gap-2 sm:justify-end">
             <Button onClick={onConfirm}>{displayPrice === "رایگان" ? "تایید" : "پرداخت"}</Button>
             <Button variant="outline" onClick={onCancel}>
               لغو

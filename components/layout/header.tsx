@@ -42,8 +42,8 @@ export default function Header() {
     fetchUserData();
   }, []);
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 flex items-center">
-      <div className="container flex h-20 items-center justify-between lg:space-x-4 ;g:px-6 py-4 mx-auto">
+    <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-40 flex w-full items-center border-b backdrop-blur-sm">
+      <div className=";g:px-6 container mx-auto flex h-20 items-center justify-between py-4 lg:space-x-4">
         <div className="flex items-center gap-2 md:gap-6">
           <Sheet>
             <SheetTrigger asChild>
@@ -71,14 +71,14 @@ export default function Header() {
               height={60}
               width={60}
               alt="logo"
-              className=" ml-2 dark:invert"
+              className="ml-2 dark:invert"
               src="/hamgerd-logo.svg"
             />
           </Link>
-          <nav className="hidden md:flex gap-8 px-6">
+          <nav className="hidden gap-8 px-6 md:flex">
             {siteConfig.mainNav.map(item => (
               <Link
-                className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground flex items-center text-sm font-medium transition-colors"
                 href={item.href}
                 key={item.title}
               >
@@ -91,8 +91,8 @@ export default function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button size="icon" variant="ghost">
-                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <Sun className="h-5 w-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                <Moon className="absolute h-5 w-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
                 <span className="sr-only">تغییر تم</span>
               </Button>
             </DropdownMenuTrigger>

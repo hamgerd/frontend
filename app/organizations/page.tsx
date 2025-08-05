@@ -39,11 +39,11 @@ export default function OrganizationsPage() {
   }, [page, totalPages]);
 
   return (
-    <div className="container flex mx-auto flex-col py-10">
+    <div className="container mx-auto flex flex-col py-10">
       <div className="mx-4">
-        <div className="flex flex-col items-center gap-4 text-center mb-10">
+        <div className="mb-10 flex flex-col items-center gap-4 text-center">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">سازمان‌ها</h1>
-          <p className="max-w-[700px] text-muted-foreground md:text-xl">
+          <p className="text-muted-foreground max-w-[700px] md:text-xl">
             با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها شرکت کنید
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function OrganizationsPage() {
         <Searchbar />
       </div>
       {/* Organizations Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 mx-6">
+      <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {isLoading ? (
           <CardLoading />
         ) : (

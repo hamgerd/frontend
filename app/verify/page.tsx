@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 function VerifyPageContent() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
-      <Card className="w-full max-w-md shadow-lg mx-7">
+      <Card className="mx-7 w-full max-w-md shadow-lg">
         <Suspense fallback={<div className="p-8 text-center">در حال بررسی پرداخت...</div>}>
           <VerifyContentWithParams />
         </Suspense>

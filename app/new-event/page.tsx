@@ -79,9 +79,9 @@ export default function NewEventPage() {
     }
   }, []);
   return (
-    <div className="container py-10 mx-auto">
+    <div className="container mx-auto py-10">
       <div className="mx-6">
-        <div className="flex items-center mb-6">
+        <div className="mb-6 flex items-center">
           <Button asChild size="sm" variant="outline">
             <Link href="/dashboard/tickets">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -90,9 +90,9 @@ export default function NewEventPage() {
           </Button>
         </div>
 
-        <div className="flex flex-col items-center gap-4 text-center mb-10">
+        <div className="mb-10 flex flex-col items-center gap-4 text-center">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">ایجاد رویداد جدید</h1>
-          <p className="max-w-[700px] text-muted-foreground md:text-xl">
+          <p className="text-muted-foreground max-w-[700px] md:text-xl">
             اطلاعات رویداد خود را وارد کنید تا آن را برای شرکت‌کنندگان منتشر کنیم
           </p>
         </div>

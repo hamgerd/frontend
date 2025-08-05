@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="//unpkg.com/react-scan/dist/auto.global.js" crossOrigin="anonymous" />
         <Analytics />
       </head>
-      <body className={cn("min-h-screen bg-background font-sans antialiased", vazir.className)}>
+      <body className={cn("bg-background min-h-screen font-sans antialiased", vazir.className)}>
         <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <ErrorBoundary>
             <div className="relative flex min-h-screen flex-col">

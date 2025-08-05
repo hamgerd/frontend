@@ -51,17 +51,17 @@ export default function OrganizationPage() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-100 bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="text-white text-lg">در حال بارگذاری...</div>
+      <div className="bg-opacity-50 fixed inset-0 z-100 flex items-center justify-center bg-black">
+        <div className="text-lg text-white">در حال بارگذاری...</div>
       </div>
     );
   }
 
   return (
     <div className="mx-10 flex">
-      <div className="container mx-auto py-10 flex flex-col">
+      <div className="container mx-auto flex flex-col py-10">
         <div>
-          <div className="flex items-center mb-6">
+          <div className="mb-6 flex items-center">
             <Button asChild size="sm" variant="outline">
               <Link href="/organizations">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -72,8 +72,8 @@ export default function OrganizationPage() {
 
           {/* Cover Image and Logo */}
           <div className="relative mb-8">
-            <div className="relative h-20 rounded-lg overflow-hidden"></div>
-            <div className="absolute -bottom-12 right-8 h-24 w-24 rounded-full overflow-hidden border-4 border-background bg-background">
+            <div className="relative h-20 overflow-hidden rounded-lg"></div>
+            <div className="border-background bg-background absolute right-8 -bottom-12 h-24 w-24 overflow-hidden rounded-full border-4">
               <Image
                 fill
                 alt=""
@@ -83,16 +83,16 @@ export default function OrganizationPage() {
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="mb-2 flex items-center gap-2">
                 <h1 className="text-3xl font-bold">{organizationDetails?.name}</h1>
                 <Badge className="bg-primary/10 text-primary" variant="outline">
                   تایید شده
                 </Badge>
               </div>
-              <div className="flex flex-wrap gap-4 mb-6">
-                <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="mb-6 flex flex-wrap gap-4">
+                <div className="text-muted-foreground flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
                   <span>{organizationDetails?.address}</span>
                 </div>
@@ -106,10 +106,10 @@ export default function OrganizationPage() {
                 <TabsContent dir="rtl" className="mt-6" value="about">
                   <p className="mb-6 whitespace-pre-line">{organizationDetails?.description}</p>
 
-                  <h3 className="text-lg font-bold mb-2">آدرس: {organizationDetails?.address}</h3>
-                  <div className="rounded-lg overflow-hidden h-64 bg-muted">
+                  <h3 className="mb-2 text-lg font-bold">آدرس: {organizationDetails?.address}</h3>
+                  <div className="bg-muted h-64 overflow-hidden rounded-lg">
                     {/* Map place */}
-                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    <div className="text-muted-foreground flex h-full w-full items-center justify-center">
                       نقشه محل سازمان
                     </div>
                   </div>
@@ -128,13 +128,13 @@ export default function OrganizationPage() {
                 <CardContent className="space-y-4">
                   {organizationDetails?.email && (
                     <div className="flex items-center gap-2">
-                      <Mail className="h-4 w-4 text-muted-foreground" />
+                      <Mail className="text-muted-foreground h-4 w-4" />
                       <span>{organizationDetails.email}</span>
                     </div>
                   )}
                   {organizationDetails?.website && (
                     <div className="flex items-center gap-2">
-                      <Globe className="h-4 w-4 text-muted-foreground" />
+                      <Globe className="text-muted-foreground h-4 w-4" />
                       <a
                         className="hover:underline"
                         href={`https://${organizationDetails.website}`}

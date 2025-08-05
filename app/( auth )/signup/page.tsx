@@ -12,8 +12,8 @@ export default function SignupPage() {
 
   return (
     <div className="container flex h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-      <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex">
-        <div className="absolute inset-0 bg-primary" />
+      <div className="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex">
+        <div className="bg-primary absolute inset-0" />
         <div className="relative z-20 flex items-center gap-2 text-lg font-medium">
           <Link className="flex items-center text-white" href="/">
             هم‌گرد
@@ -32,14 +32,14 @@ export default function SignupPage() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">ایجاد حساب کاربری</h1>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               اطلاعات خود را وارد کنید تا حساب کاربری جدید ایجاد شود
             </p>
           </div>
           {emailSent ? (
-            <div className="rounded-md bg-green-100 dark:bg-green-900 p-4 text-center text-green-700 dark:text-green-200 flex flex-col items-center">
+            <div className="flex flex-col items-center rounded-md bg-green-100 p-4 text-center text-green-700 dark:bg-green-900 dark:text-green-200">
               <svg
-                className="h-8 w-8 mb-2 text-green-600 dark:text-green-300"
+                className="mb-2 h-8 w-8 text-green-600 dark:text-green-300"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -47,19 +47,19 @@ export default function SignupPage() {
               >
                 <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <h2 className="text-lg font-semibold mb-1">ثبت‌نام موفقیت‌آمیز بود!</h2>
-              <p className="text-zinc-500 text-sm mb-2">ایمیل تایید برای شما ارسال شد.</p>
-              <p className="text-xs text-zinc-400 mb-2">
+              <h2 className="mb-1 text-lg font-semibold">ثبت‌نام موفقیت‌آمیز بود!</h2>
+              <p className="mb-2 text-sm text-zinc-500">ایمیل تایید برای شما ارسال شد.</p>
+              <p className="mb-2 text-xs text-zinc-400">
                 لطفاً صندوق ورودی یا پوشه اسپم ایمیل خود را بررسی کنید و روی لینک تایید کلیک کنید.
               </p>
               <Link
-                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-white hover:bg-primary/90 transition-colors text-sm font-medium mt-2"
+                className="bg-primary hover:bg-primary/90 mt-2 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white transition-colors"
                 href="/login"
               >
                 ورود به حساب کاربری
               </Link>
               <Link
-                className="inline-flex items-center justify-center rounded-md border border-primary px-4 py-2 text-primary hover:bg-primary/10 transition-colors text-sm font-medium mt-2"
+                className="border-primary text-primary hover:bg-primary/10 mt-2 inline-flex items-center justify-center rounded-md border px-4 py-2 text-sm font-medium transition-colors"
                 href="/"
               >
                 بازگشت به خانه
@@ -75,7 +75,7 @@ export default function SignupPage() {
                   <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">یا</span>
+                  <span className="bg-background text-muted-foreground px-2">یا</span>
                 </div>
               </div>
               <div className="text-center text-sm">

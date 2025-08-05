@@ -161,7 +161,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             <CardDescription>زمان و مکان برگزاری رویداد را مشخص کنید</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormField
                 name="startDate"
                 control={form.control}
@@ -189,7 +189,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 )}
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormField
                 name="startTime"
                 control={form.control}
@@ -252,7 +252,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
           </CardContent>
         </Card>
 
-        <div className="flex gap-3 items-center">
+        <div className="flex items-center gap-3">
           <p>ایونت شامل چند بخش می‌شود؟</p>
           <Select onValueChange={handleTicketCountChange}>
             <SelectTrigger className="w-20">
@@ -309,7 +309,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   )}
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <FormField
                   name={`tickets.${index}.capacity`}
                   control={control}

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Enamad() {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex items-center justify-center">
       <a
         href="https://trustseal.enamad.ir/?id=615587&Code=Qw0Ofji05K3rhWG4GTTm5LZMuLYnr6wB"
         rel="noreferrer noopener"

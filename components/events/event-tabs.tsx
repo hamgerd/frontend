@@ -21,19 +21,19 @@ export default function EventTabs({ speakers, eventDetails }: EventTabsProps) {
 
       <TabsContent dir="rtl" className="mt-6" value="about">
         <p className="mb-6 whitespace-pre-line">{eventDetails.description}</p>
-        <h3 className="text-lg font-bold mb-2">محل برگزاری: </h3>
+        <h3 className="mb-2 text-lg font-bold">محل برگزاری: </h3>
         <p className="mb-6">{eventDetails.location}</p>
-        <div className="rounded-lg overflow-hidden h-64 bg-muted flex items-center justify-center text-muted-foreground">
+        <div className="bg-muted text-muted-foreground flex h-64 items-center justify-center overflow-hidden rounded-lg">
           نقشه محل برگزاری
         </div>
       </TabsContent>
 
       <TabsContent dir="rtl" className="mt-6" value="speakers">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {speakers.map(speaker => (
             <Card key={speaker.public_id}>
               <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
+                <div className="mb-4 flex items-center gap-4">
                   <Avatar className="h-16 w-16">
                     <AvatarImage src={speaker.image ?? "/placeholder.svg"} />
                     <AvatarFallback>{speaker.name.charAt(0)}</AvatarFallback>

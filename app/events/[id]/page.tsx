@@ -24,9 +24,9 @@ export default function EventPage() {
 
   if (!eventDetails) {
     return (
-      <div className="container flex lg:mx-auto flex-col py-10">
+      <div className="container flex flex-col py-10 lg:mx-auto">
         <div className="mx-4">
-          <div className="flex items-center mb-6">
+          <div className="mb-6 flex items-center">
             <Button asChild size="sm" variant="outline">
               <Link href="/events">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -34,7 +34,7 @@ export default function EventPage() {
               </Link>
             </Button>
           </div>
-          <div className="flex items-center justify-center h-64">
+          <div className="flex h-64 items-center justify-center">
             <p>در حال بارگذاری اطلاعات رویداد...</p>
           </div>
         </div>
@@ -44,17 +44,17 @@ export default function EventPage() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-100 bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="text-white text-lg">در حال بارگذاری...</div>
+      <div className="bg-opacity-50 fixed inset-0 z-100 flex items-center justify-center bg-black">
+        <div className="text-lg text-white">در حال بارگذاری...</div>
       </div>
     );
   }
 
   return (
     <div>
-      <div className="container flex flex-col  lg:mx-auto py-10">
+      <div className="container flex flex-col py-10 lg:mx-auto">
         <div className="mx-4">
-          <div className="flex items-center mb-6">
+          <div className="mb-6 flex items-center">
             <Button asChild size="sm" variant="outline">
               <Link href="/events">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -62,14 +62,14 @@ export default function EventPage() {
               </Link>
             </Button>
           </div>
-          <div className="flex flex-col lg:flex-row justify-between gap-10">
+          <div className="flex flex-col justify-between gap-10 lg:flex-row">
             <div className="lg:w-8/12">
               <EventImageBanner
                 image={eventDetails.image}
                 title={eventDetails.title}
                 category={eventDetails.category}
               />
-              <h1 className="text-3xl font-bold flex mb-4">{eventDetails.title}</h1>
+              <h1 className="mb-4 flex text-3xl font-bold">{eventDetails.title}</h1>
 
               <EventMetaInfo
                 endDate={eventDetails.end_date}
