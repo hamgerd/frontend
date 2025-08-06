@@ -27,7 +27,7 @@ export default function OrganizationsPage() {
           },
         });
         setOrganizations(res.data.results);
-        setTotalPages(Math.ceil(res.data.count / 25));
+        setTotalPages(Math.ceil(res.data.count / 24));
       } catch (error) {
         console.log(`error massage is: ${String(error)}`);
       } finally {
@@ -47,8 +47,7 @@ export default function OrganizationsPage() {
             با سازمان‌های برگزارکننده رویدادها آشنا شوید و در رویدادهای آن‌ها شرکت کنید
           </p>
         </div>
-
-        <Searchbar />
+        <Searchbar type="organization" />
       </div>
       {/* Organizations Grid */}
       <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

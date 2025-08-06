@@ -29,7 +29,7 @@ export default function EventsPage() {
         });
         if (response.data) {
           setEvents(response.data.results);
-          setTotalPages(Math.ceil(response.data.count / 25));
+          setTotalPages(Math.ceil(response.data.count / 24));
         }
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -49,7 +49,7 @@ export default function EventsPage() {
             تمام رویدادهای در حال برگزاری را مشاهده و در آن‌ها شرکت کنید
           </p>
         </div>
-        <Searchbar />
+        <Searchbar type="events" />
       </div>
       {/* Events Grid */}
       {isLoading ? (
