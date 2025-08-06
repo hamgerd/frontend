@@ -13,6 +13,7 @@ import ErrorBoundary from "@/components/shared/error-boundary";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/const/site";
+import { AuthProvider } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 
 export const viewport = {
@@ -45,19 +46,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html dir="rtl" lang="fa" suppressHydrationWarning>
       <head>
-        <script src="//unpkg.com/react-scan/dist/auto.global.js" crossOrigin="anonymous" />
         <Analytics />
       </head>
       <body className={cn("bg-background min-h-screen font-sans antialiased", vazir.className)}>
         <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          <ErrorBoundary>
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <div className="flex-1">{children}</div>
-              <Footer />
-            </div>
-            <Toaster />
-          </ErrorBoundary>
+          <AuthProvider>
+            <ErrorBoundary>
+              <div className="relative flex min-h-screen flex-col">
+                <Header />
+                <div className="flex-1">{children}</div>
+                <Footer />
+              </div>
+              <Toaster />
+            </ErrorBoundary>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

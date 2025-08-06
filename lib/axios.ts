@@ -2,7 +2,6 @@ import type { AxiosError, AxiosRequestConfig } from "axios";
 
 import axios from "axios";
 
-// Initialize tokens from localStorage if available
 let accessToken: string | null =
   typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
 let refreshToken: string | null =
@@ -23,13 +22,11 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Separate instance for refreshing tokens (no interceptors)
 const authApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 });
 
-// Request interceptor
 api.interceptors.request.use(
   config => {
     if (accessToken && config.headers) {
@@ -40,7 +37,6 @@ api.interceptors.request.use(
   (error: AxiosError) => Promise.reject(error)
 );
 
-// Response interceptor
 api.interceptors.response.use(
   response => response,
   async (error: AxiosError) => {

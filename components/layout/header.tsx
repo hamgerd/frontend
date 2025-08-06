@@ -18,19 +18,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/const/site";
+import { useAuth } from "@/hooks/useAuth";
 import api from "@/lib/axios";
 
 export default function Header() {
   const { setTheme } = useTheme();
-  const [Token, setToken] = useState<boolean>();
   const [userData, setUserData] = useState<any>(null);
+  const { isAuthenticated, setAuthenticated } = useAuth();
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(!!storedToken);
-
     const fetchUserData = async () => {
       try {
-        if (!storedToken) {
+        if (!isAuthenticated) {
           const response = await api.get("/api/v1/users/me/");
           setUserData(response.data);
         }
@@ -40,7 +38,7 @@ export default function Header() {
     };
 
     fetchUserData();
-  }, []);
+  }, [isAuthenticated]);
   return (
     <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-40 flex w-full items-center border-b backdrop-blur-sm">
       <div className=";g:px-6 container mx-auto flex h-20 items-center justify-between py-4 lg:space-x-4">
@@ -102,12 +100,12 @@ export default function Header() {
               <DropdownMenuItem onClick={() => setTheme("system")}>سیستم</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          {Token ? (
+          {isAuthenticated ? (
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <a href="/dashboard/tickets">
                   <Avatar>
-                    <AvatarImage src={userData?.image || "https://github.com/shadcn.png"} />
+                    <AvatarImage src={userData?.image} />
                     <AvatarFallback>HAM</AvatarFallback>
                   </Avatar>
                 </a>
@@ -120,6 +118,7 @@ export default function Header() {
                 <DropdownMenuItem
                   dir="rtl"
                   onClick={() => {
+                    setAuthenticated(false);
                     localStorage.removeItem("token");
                     localStorage.removeItem("refreshToken");
                     window.location.reload();

@@ -1,27 +1,26 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [authorized, setAuthorized] = useState<boolean | null>(null);
-
+  const { isAuthenticated } = useAuth();
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "/";
-    } else {
-      setAuthorized(true);
+    if (!isAuthenticated) {
+      window.location.href = "/login";
     }
-  }, []);
+  }, [isAuthenticated]);
 
-  if (authorized === null) {
+  if (isAuthenticated === false) {
     return null;
   }
   return (
     <div className="bg-background fixed inset-0 z-50 overflow-y-auto">
-      <SidebarProvider>{children}</SidebarProvider>
+      <AuthProvider>
+        <SidebarProvider>{children}</SidebarProvider>
+      </AuthProvider>
     </div>
   );
 }

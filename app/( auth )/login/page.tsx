@@ -5,6 +5,7 @@ import type * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -19,10 +20,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import api, { setAccessToken, setRefreshToken } from "@/lib/axios";
+import { useAuth } from "@/hooks/useAuth";
+import api from "@/lib/axios";
 import { loginSchema } from "@/validator/login-schema";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { setAuthenticated } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -42,15 +46,15 @@ export default function LoginPage() {
       });
 
       const refresh = res.data.refresh;
-      setRefreshToken(refresh);
 
-      const accessRes = await api.post<{ access: string }>("/api/v1/users/auth/token/refresh/", {
+      await api.post<{ access: string }>("/api/v1/users/auth/token/refresh/", {
         refresh,
       });
 
-      setAccessToken(accessRes.data.access);
+      setAuthenticated(true);
+
       if (res.status === 200) {
-        window.location.href = "/";
+        router.push("/");
       }
       toast({
         title: "ورود موفقیت‌آمیز",
@@ -65,6 +69,7 @@ export default function LoginPage() {
         description: "ورود شما ناموفق بود. لطفاً دوباره تلاش کنید.",
         variant: "destructive",
       });
+      setAuthenticated(false);
     } finally {
       setIsLoading(false);
     }
