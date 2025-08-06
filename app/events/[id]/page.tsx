@@ -81,8 +81,8 @@ export default function EventPage() {
             </div>
             <div className="lg:w-4/12">
               <EventRegisterCard
-                capacity={eventDetails.ticket_types[0].max_participants}
-                price={eventDetails.ticket_types[0].price}
+                capacity={eventDetails.ticket_types[0]?.max_participants}
+                price={eventDetails.ticket_types[0]?.price}
                 onRegister={createTicket}
               />
               <EventOrganizerCard organization={eventDetails.organization} />

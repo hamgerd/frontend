@@ -6,7 +6,7 @@ import DevAlert from "@/components/shared/dev-alert";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-center">
+    <main className="mx-auto flex min-h-screen w-full flex-col items-center justify-center">
       <DevAlert />
       <HeroSection />
       <FeaturedEvent />

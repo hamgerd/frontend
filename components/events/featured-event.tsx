@@ -42,7 +42,7 @@ export default function FeaturedEvent() {
         </div>
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featuredEvents.slice(0, 3).map(event => (
-            <Card className="w-full max-w-sm overflow-hidden" key={event.public_id}>
+            <Card className="mx-auto w-full max-w-sm overflow-hidden" key={event.public_id}>
               <div className="relative h-48">
                 <Image
                   fill
