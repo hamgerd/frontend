@@ -3,6 +3,7 @@
 import type * as z from "zod";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Cookies from "js-cookie";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -47,12 +48,13 @@ export default function LoginPage() {
 
       const refresh = res.data.refresh;
 
-      await api.post<{ access: string }>("/api/v1/users/auth/token/refresh/", {
+      Cookies.set("refreshToken", refresh, { secure: true, sameSite: "strict" });
+      const response = await api.post<{ access: string }>("/api/v1/users/auth/token/refresh/", {
         refresh,
       });
-
+      const accessToken = response.data.access;
+      Cookies.set("token", accessToken, { secure: true, sameSite: "strict" });
       setAuthenticated(true);
-
       if (res.status === 200) {
         router.push("/");
       }

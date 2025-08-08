@@ -1,20 +1,13 @@
 import type { AxiosError, AxiosRequestConfig } from "axios";
 
 import axios from "axios";
+import Cookies from "js-cookie";
 
-let accessToken: string | null =
-  typeof localStorage !== "undefined" ? localStorage.getItem("token") : null;
-let refreshToken: string | null =
-  typeof localStorage !== "undefined" ? localStorage.getItem("refreshToken") : null;
+let accessToken = Cookies.get("token") || null;
 
 export const setAccessToken = (token: string) => {
   accessToken = token;
-  localStorage.setItem("token", token);
-};
-
-export const setRefreshToken = (token: string) => {
-  refreshToken = token;
-  localStorage.setItem("refreshToken", token);
+  Cookies.set("token", token, { secure: true, sameSite: "strict" });
 };
 
 const api = axios.create({
@@ -45,28 +38,25 @@ api.interceptors.response.use(
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      try {
-        if (!refreshToken) {
-          throw new Error("No refresh token available");
-        }
+      const refreshToken = Cookies.get("refreshToken");
 
-        const res = await authApi.post<{ access: string }>("api/v1/users/auth/token/refresh/", {
-          refresh: refreshToken,
-        });
-
-        const newAccessToken = res.data.access;
-        setAccessToken(newAccessToken);
-
-        originalRequest.headers = {
-          ...originalRequest.headers,
-          Authorization: `Bearer ${newAccessToken}`,
-        };
-
-        return await api(originalRequest);
-      } catch (Error) {
-        console.error("Token refresh failed:", Error);
+      if (!refreshToken) {
         return Promise.reject(error);
       }
+
+      const res = await authApi.post<{ access: string }>("api/v1/users/auth/token/refresh/", {
+        refresh: refreshToken,
+      });
+
+      const newAccessToken = res.data.access;
+      setAccessToken(newAccessToken);
+
+      originalRequest.headers = {
+        ...originalRequest.headers,
+        Authorization: `Bearer ${newAccessToken}`,
+      };
+
+      return api(originalRequest);
     }
 
     return Promise.reject(error);

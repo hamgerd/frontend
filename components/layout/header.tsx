@@ -1,5 +1,6 @@
 "use client";
 
+import Cookies from "js-cookie";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
@@ -119,8 +120,8 @@ export default function Header() {
                   dir="rtl"
                   onClick={() => {
                     setAuthenticated(false);
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("refreshToken");
+                    Cookies.remove("token");
+                    Cookies.remove("refreshToken");
                     window.location.reload();
                   }}
                 >

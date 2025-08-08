@@ -12,7 +12,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "type-check": "tsc --noEmit",
-    "format": "npx prettier  --write ."
+    "format": "npx prettier  --write .",
+    "playwright": "npx playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.0",
@@ -33,11 +34,12 @@
     "@radix-ui/react-toggle": "1.1.9",
     "@radix-ui/react-tooltip": "1.2.7",
     "@tanstack/react-table": "^8.21.3",
+    "@types/js-cookie": "^3.0.6",
     "@vercel/analytics": "^1.5.0",
     "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "jalali-moment": "^3.3.11",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.525.0",
     "next": "15.4.4",
     "next-themes": "^0.4.6",
