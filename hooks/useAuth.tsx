@@ -1,7 +1,6 @@
 "use client";
+import Cookies from "js-cookie";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-
-import api from "@/lib/axios";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -15,10 +14,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      try {
-        await api.get("/api/v1/users/me");
+      if (Cookies.get("token")) {
         setAuthenticated(true);
-      } catch {
+      } else {
         setAuthenticated(false);
       }
     };
