@@ -5,16 +5,20 @@ import type * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import NewEventForm from "@/components/feature-parts/new-event-form";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 import api from "@/lib/axios";
 import { newEventSchema } from "@/validator/new-event-schema";
 
 export default function NewEventPage() {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,8 +28,8 @@ export default function NewEventPage() {
       title: "",
       description: "",
       category: "",
-      startDate: "",
-      endDate: "",
+      start_date: "",
+      end_date: "",
       startTime: "",
       endTime: "",
       location: "",
@@ -42,8 +46,8 @@ export default function NewEventPage() {
         description: values.description,
         organization: values.organization,
         category: values.category,
-        startDate: values.startDate,
-        endDate: values.endDate,
+        start_date: values.start_date,
+        end_date: values.end_date,
         startTime: values.startTime,
         endTime: values.endTime,
         location: values.location,
@@ -73,11 +77,10 @@ export default function NewEventPage() {
     }
   }
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "/login";
+    if (!isAuthenticated) {
+      router.push("/login");
     }
-  }, []);
+  });
   return (
     <div className="container mx-auto py-10">
       <div className="mx-6">

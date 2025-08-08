@@ -23,9 +23,6 @@ const EventCard = ({ event }: EventCardProps) => {
           className="object-cover"
           src={event.image ?? "/placeholder.svg"}
         />
-        <div className="bg-primary text-primary-foreground absolute top-2 right-2 rounded-md px-2 py-1 text-xs">
-          {event.category}
-        </div>
       </div>
       <CardContent className="p-6">
         <h3 className="mb-2 text-xl font-bold">{event.title}</h3>

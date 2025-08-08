@@ -3,7 +3,7 @@ import type { UseFormReturn } from "react-hook-form";
 import type * as z from "zod";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFieldArray } from "react-hook-form";
 
 import type { newEventSchema } from "@/validator/new-event-schema";
@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
+import api from "@/lib/axios";
 
 interface NewEventFormProps {
   form: UseFormReturn<z.infer<typeof newEventSchema>>;
@@ -36,7 +37,19 @@ interface NewEventFormProps {
   onSubmit: (values: z.infer<typeof newEventSchema>) => void;
 }
 
+interface Category {
+  title: string;
+}
+
+interface Organization {
+  public_id: string;
+  username: string;
+  name: string;
+}
+
 export default function NewEventForm({ form, isLoading, onSubmit }: NewEventFormProps) {
+  const [organization, setOrganization] = useState<Organization[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const { control } = form;
 
   const { fields, append, remove } = useFieldArray({
@@ -64,7 +77,22 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
       }
     }
   };
-
+  const fetchCategories = async () => {
+    try {
+      const res = await api.get("api/v1/events/categories/");
+      setCategories(res.data.results);
+    } catch (error) {
+      console.log("error in fetching categories:", error);
+    }
+  };
+  const fetchOrganization = async () => {
+    try {
+      const res = await api.get("api/v1/users/me/");
+      setOrganization(res.data.organizations);
+    } catch (error) {
+      console.log("orgnization fetch error:", error);
+    }
+  };
   return (
     <Form {...form}>
       <form className="space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
@@ -115,11 +143,27 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               control={form.control}
               render={({ field: organizationField }) => (
                 <FormItem>
-                  <FormLabel> سازمان برگزار کننده</FormLabel>
+                  <FormLabel>سازمان برگزار کننده</FormLabel>
                   <FormControl>
-                    <Input placeholder="urmlog" {...organizationField} />
+                    <Select
+                      value={organizationField.value}
+                      onValueChange={organizationField.onChange}
+                    >
+                      <SelectTrigger onClick={fetchOrganization}>
+                        <SelectValue placeholder="یکی از سازمان های خود را انتخاب کنید" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {organization.map(item => (
+                          <SelectItem key={item.public_id} value={item.username}>
+                            {item.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </FormControl>
-                  <FormDescription>یوزرنیم سازمان برگزار کننده</FormDescription>
+                  <FormDescription>
+                    دسته‌بندی رویداد به کاربران کمک می‌کند تا رویداد شما را راحت‌تر پیدا کنند.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -132,19 +176,19 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   <FormLabel>دسته‌بندی</FormLabel>
                   <Select defaultValue={categoryField.value} onValueChange={categoryField.onChange}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger onClick={fetchCategories}>
                         <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="technology">فناوری</SelectItem>
-                      <SelectItem value="business">کسب و کار</SelectItem>
-                      <SelectItem value="education">آموزشی</SelectItem>
-                      <SelectItem value="design">طراحی</SelectItem>
-                      <SelectItem value="marketing">بازاریابی</SelectItem>
-                      <SelectItem value="other">سایر</SelectItem>
+                      {categories?.map(categorie => (
+                        <SelectItem key={categorie.title} value={categorie.title}>
+                          {categorie.title}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
+
                   <FormDescription>
                     دسته‌بندی رویداد به کاربران کمک می‌کند تا رویداد شما را راحت‌تر پیدا کنند.
                   </FormDescription>
@@ -163,7 +207,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <FormField
-                name="startDate"
+                name="start_date"
                 control={form.control}
                 render={({ field: startDateField }) => (
                   <FormItem>
@@ -176,7 +220,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 )}
               />
               <FormField
-                name="endDate"
+                name="end_date"
                 control={form.control}
                 render={({ field: endDateField }) => (
                   <FormItem>

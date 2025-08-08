@@ -64,11 +64,7 @@ export default function EventPage() {
           </div>
           <div className="flex flex-col justify-between gap-10 lg:flex-row">
             <div className="lg:w-8/12">
-              <EventImageBanner
-                image={eventDetails.image}
-                title={eventDetails.title}
-                category={eventDetails.category}
-              />
+              <EventImageBanner image={eventDetails.image} title={eventDetails.title} />
               <h1 className="mb-4 flex text-3xl font-bold">{eventDetails.title}</h1>
 
               <EventMetaInfo

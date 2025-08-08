@@ -51,7 +51,7 @@ export default function EventsPage() {
         </div>
         <Searchbar type="events" />
       </div>
-      {/* Events Grid */}
+
       {isLoading ? (
         <div className="mx-6 mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <CardLoading />

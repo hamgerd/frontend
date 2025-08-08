@@ -1,6 +1,8 @@
 import moment from "jalali-moment";
 import { CalendarDays, Clock, MapPin, Users } from "lucide-react";
 
+import { toFarsiNumber } from "@/lib/utils";
+
 interface EventMetaInfoProps {
   startDate: Date;
   endDate: Date;
@@ -33,7 +35,7 @@ export default function EventMetaInfo({
       </div>
       <div className="flex items-center gap-2">
         <Users className="h-5 w-5" />
-        <span>ظرفیت {maxParticipants}</span>
+        <span>ظرفیت {toFarsiNumber(maxParticipants)}</span>
       </div>
     </div>
   );
