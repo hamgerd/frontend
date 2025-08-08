@@ -20,13 +20,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
 interface NewOrganizationFormProps {
@@ -59,7 +52,11 @@ export default function NewOrganizationForm({
                 <FormItem>
                   <FormLabel>نام سازمان</FormLabel>
                   <FormControl>
-                    <Input placeholder="مثال: انجمن برنامه‌نویسان ایران" {...field} />
+                    <Input
+                      className="my-1"
+                      placeholder="مثال: انجمن برنامه‌نویسان ایران"
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>
                     نام سازمان خود را وارد کنید. این نام در همه جا نمایش داده می‌شود.
@@ -75,7 +72,7 @@ export default function NewOrganizationForm({
                 <FormItem>
                   <FormLabel>یوزنیم</FormLabel>
                   <FormControl>
-                    <Input placeholder="programming_inc" {...field} />
+                    <Input className="my-1" placeholder="programming_inc" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -89,7 +86,7 @@ export default function NewOrganizationForm({
                   <FormLabel>توضیحات</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="min-h-32 resize-none"
+                      className="my-1 min-h-32 resize-none"
                       placeholder="توضیحاتی درباره سازمان خود بنویسید..."
                       {...field}
                     />
@@ -101,36 +98,6 @@ export default function NewOrganizationForm({
                 </FormItem>
               )}
             />
-            <div className="gap-6">
-              <FormField
-                name="category"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>دسته‌بندی</FormLabel>
-                    <Select defaultValue={field.value} onValueChange={field.onChange}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="technology">فناوری</SelectItem>
-                        <SelectItem value="business">کسب و کار</SelectItem>
-                        <SelectItem value="education">آموزشی</SelectItem>
-                        <SelectItem value="design">طراحی</SelectItem>
-                        <SelectItem value="marketing">بازاریابی</SelectItem>
-                        <SelectItem value="other">سایر</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormDescription>
-                      دسته‌بندی سازمان به کاربران کمک می‌کند تا سازمان شما را راحت‌تر پیدا کنند.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
             <div className="gap-6">
               <div>
                 <FormLabel>لوگوی سازمان</FormLabel>
@@ -173,34 +140,19 @@ export default function NewOrganizationForm({
             <CardDescription>اطلاعات تماس سازمان خود را وارد کنید</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <FormField
-                name="location"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>شهر</FormLabel>
-                    <FormControl>
-                      <Input placeholder="مثال: تهران" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="phone"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>شماره تماس</FormLabel>
-                    <FormControl>
-                      <Input placeholder="مثال: ۰۲۱۸۸۶۶۵۵۴۴" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              name="phone"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>شماره تماس</FormLabel>
+                  <FormControl>
+                    <Input className="my-1" placeholder="مثال: ۰۲۱۸۸۶۶۵۵۴۴" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               name="address"
               control={form.control}
@@ -209,7 +161,7 @@ export default function NewOrganizationForm({
                   <FormLabel>آدرس دقیق</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="resize-none"
+                      className="my-1 resize-none"
                       placeholder="آدرس کامل سازمان را وارد کنید..."
                       {...field}
                     />
@@ -225,7 +177,12 @@ export default function NewOrganizationForm({
                 <FormItem>
                   <FormLabel>ایمیل</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="example@domain.com" {...field} />
+                    <Input
+                      className="my-1"
+                      type="email"
+                      placeholder="example@domain.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -238,7 +195,7 @@ export default function NewOrganizationForm({
                 <FormItem>
                   <FormLabel>وب‌سایت (اختیاری)</FormLabel>
                   <FormControl>
-                    <Input placeholder="مثال: www.example.com" {...field} />
+                    <Input className="my-1" placeholder="مثال: www.example.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -263,7 +220,7 @@ export default function NewOrganizationForm({
                   <FormItem>
                     <FormLabel>تلگرام</FormLabel>
                     <FormControl>
-                      <Input placeholder="نام کاربری تلگرام" {...field} />
+                      <Input className="my-1" placeholder="لینک تلگرام" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -278,7 +235,7 @@ export default function NewOrganizationForm({
                   <FormItem>
                     <FormLabel>اینستاگرام</FormLabel>
                     <FormControl>
-                      <Input placeholder="نام کاربری اینستاگرام" {...field} />
+                      <Input className="my-1" placeholder="لینک اینستاگرام" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -291,7 +248,7 @@ export default function NewOrganizationForm({
                   <FormItem>
                     <FormLabel>لینکدین</FormLabel>
                     <FormControl>
-                      <Input placeholder="نام کاربری لینکدین" {...field} />
+                      <Input className="my-1" placeholder="لینک  لینکدین" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

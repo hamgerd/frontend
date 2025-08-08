@@ -5,16 +5,20 @@ import type * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import NewOrganizationForm from "@/components/feature-parts/new-organization-form";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 import api from "@/lib/axios";
 import { newOrganizationFormSchema } from "@/validator/new-organization-schema";
 
 export default function NewOrganizationPage() {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -37,33 +41,35 @@ export default function NewOrganizationPage() {
   });
   async function onSubmit(values: z.infer<typeof newOrganizationFormSchema>) {
     setIsLoading(true);
-    console.log(values);
     try {
-      await api.post(
-        "/api/v1/organization/",
-        {
-          name: values.name,
-          username: values.username,
-          email: values.email,
-          description: values.description,
-          address: values.address,
-          website: values.website,
-          logoFile,
-          phone: values.phone,
-          location: values.location,
-          linkedin: values.linkedin,
-          instagram: values.instagram,
-          category: values.category,
-          telegram: values.telegram,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const formData = new FormData();
 
-      console.log("Logo file:", logoFile);
+      formData.append("name", values.name);
+      formData.append("username", values.username);
+      formData.append("email", values.email || "");
+      formData.append("description", values.description || "");
+      formData.append("address", values.address || "");
+      formData.append("website", values.website || "");
+      formData.append("phone", values.phone);
+      formData.append("location", values.location || "");
+      formData.append("category", values.category);
+
+      if (logoFile) {
+        formData.append("logo", logoFile);
+      }
+      const socialMedia = [
+        { platform: "tg", url: values.telegram },
+        { platform: "instagram", url: values.instagram },
+        { platform: "linkedin", url: values.linkedin },
+      ].filter(s => s.url && s.url.trim() !== "");
+
+      formData.append("social_links", JSON.stringify(socialMedia));
+
+      await api.post("/api/v1/organization/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       toast({
         title: "سازمان با موفقیت ایجاد شد",
@@ -83,12 +89,9 @@ export default function NewOrganizationPage() {
       setIsLoading(false);
     }
   }
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "/login";
-    }
-  }, []);
+  if (!isAuthenticated) {
+    router.push("/login");
+  }
   return (
     <div className="mx-5">
       <div className="container mx-auto py-10">
