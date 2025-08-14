@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 "use client";
 
 import type {
@@ -64,7 +63,6 @@ interface TransformedTicket {
   ticketType: string;
   date: string;
   time: string;
-  venue: string;
   price: string;
   status: string;
   notes: string;
@@ -72,7 +70,6 @@ interface TransformedTicket {
   maxParticipants: number;
 }
 
-// Utility functions
 function transformTicketData(tickets: Tickets[]): TransformedTicket[] {
   return tickets.map(ticket => {
     const createdDate = new Date(ticket.created_at);
@@ -100,47 +97,24 @@ function transformTicketData(tickets: Tickets[]): TransformedTicket[] {
 
     return {
       id: ticket.public_id,
-      eventName: ticket.ticket_type.title,
+      eventName: ticket.ticket_type?.title,
       ticketType:
-        ticket.ticket_type.description.length > 50
-          ? `${ticket.ticket_type.description.substring(0, 50)}...`
-          : ticket.ticket_type.description,
+        ticket.ticket_type?.description.length > 50
+          ? `${ticket.ticket_type?.description.substring(0, 50)}...`
+          : ticket.ticket_type?.description,
       date,
       time,
-      venue: "مکان رویداد", // This would come from event data if available
-      price: ticket.ticket_type.price.toString(),
+      price: ticket.ticket_type?.price.toString(),
       status: statusMap[ticket.status] || "نامشخص",
       notes: ticket.notes,
       ticketNumber: ticket.ticket_number,
-      maxParticipants: ticket.ticket_type.max_participants,
+      maxParticipants: ticket.ticket_type?.max_participants,
     };
   });
 }
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("fa-IR").format(price);
-}
-
-// API function to fetch tickets
-async function fetchTickets(): Promise<Tickets[]> {
-  try {
-    const response = await fetch("/api/v1/ticket/me", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching tickets:", error);
-    throw error;
-  }
 }
 
 // Custom hook for managing tickets
@@ -367,80 +341,8 @@ export function DataTable({
             </TableBody>
           </Table>
         </div>
-        <div className="flex items-center justify-between px-4">
-          {/* <div className="hidden flex-1 text-sm text-muted-foreground lg:flex">
-            {table.getFilteredSelectedRowModel().rows.length} از{" "}
-            {table.getFilteredRowModel().rows.length} ردیف انتخاب شده.
-          </div> */}
-          <div className="flex w-full items-center gap-8 lg:w-fit">
-            {/* <div className="hidden items-center gap-2 lg:flex">
-              <Label htmlFor="rows-per-page" className="text-sm font-medium">
-                ردیف در هر صفحه
-              </Label>
-              <Select
-                value={`${table.getState().pagination.pageSize}`}
-                onValueChange={value => {
-                  table.setPageSize(Number(value));
-                }}
-              >
-                <SelectTrigger className="w-20" id="rows-per-page">
-                  <SelectValue placeholder={table.getState().pagination.pageSize} />
-                </SelectTrigger>
-                <SelectContent side="top">
-                  {[10, 20, 30, 40, 50].map(pageSize => (
-                    <SelectItem key={pageSize} value={`${pageSize}`}>
-                      {pageSize}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div> */}
-            {/* <div className="flex w-fit items-center justify-center text-sm font-medium">
-              صفحه {table.getState().pagination.pageIndex + 1} از {table.getPageCount()}
-            </div> */}
-            {/* <div className="ml-auto flex items-center gap-2 lg:ml-0">
-              <Button
-                variant="outline"
-                className="hidden h-8 w-8 p-0 lg:flex bg-transparent"
-                onClick={() => table.setPageIndex(0)}
-                disabled={!table.getCanPreviousPage()}
-              >
-                <span className="sr-only">رفتن به صفحه اول</span>
-                <ChevronsRightIcon />
-              </Button>
-              <Button
-                variant="outline"
-                className="size-8 bg-transparent"
-                size="icon"
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
-              >
-                <span className="sr-only">رفتن به صفحه قبل</span>
-                <ChevronRightIcon />
-              </Button>
-              <Button
-                variant="outline"
-                className="size-8 bg-transparent"
-                size="icon"
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
-              >
-                <span className="sr-only">رفتن به صفحه بعد</span>
-                <ChevronLeftIcon />
-              </Button>
-              <Button
-                variant="outline"
-                className="hidden size-8 lg:flex bg-transparent"
-                size="icon"
-                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                disabled={!table.getCanNextPage()}
-              >
-                <span className="sr-only">رفتن به صفحه آخر</span>
-                <ChevronsLeftIcon />
-              </Button>
-            </div> */}
-          </div>
-        </div>
+        <div className="flex items-center justify-between px-4"></div>
+        <div className="flex w-full items-center gap-8 lg:w-fit"></div>
       </TabsContent>
       <TabsContent className="flex flex-col px-4 lg:px-6" value="favorites">
         <div className="text-muted-foreground flex aspect-video w-full flex-1 items-center justify-center rounded-lg border border-dashed">
@@ -458,47 +360,5 @@ export function DataTable({
         </div>
       </TabsContent>
     </Tabs>
-  );
-}
-
-// Main component with API integration
-export default function TicketManagement() {
-  const [tickets, setTickets] = React.useState<Tickets[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [, setError] = React.useState<string | null>(null);
-
-  // Function to load tickets from API
-  const loadTickets = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-      const data = await fetchTickets();
-      setTickets(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "خطا در دریافت داده‌ها");
-      console.error("Error loading tickets:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Load tickets on component mount
-  React.useEffect(() => {
-    loadTickets();
-  }, []);
-
-  // Handle refresh
-  const handleRefresh = () => {
-    loadTickets();
-  };
-
-  return (
-    <div dir="rtl" className="container mx-auto py-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">مدیریت بلیط‌ها</h1>
-        <p className="text-muted-foreground">مشاهده و مدیریت بلیط‌های خریداری شده</p>
-      </div>
-      <DataTable data={tickets} isLoading={isLoading} onRefresh={handleRefresh} />
-    </div>
   );
 }

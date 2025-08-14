@@ -83,18 +83,24 @@ export default function Searchbar({ type }: SearchbarProp) {
           ref={containerRef}
         >
           {results.map(item => (
-            <button
+            <div
               className="hover:bg-card cursor-pointer px-4 py-2"
               key={item.public_id}
-              type="button"
               onClick={() =>
                 redirect(
                   `${type === "organization" ? "organizations" : "events"}/${type === "organization" ? item.username : item.public_id}`
                 )
               }
+              onKeyDown={e => {
+                if (e.key === "Enter" || e.key === " ") {
+                  redirect(
+                    `${type === "organization" ? "organizations" : "events"}/${type === "organization" ? item.username : item.public_id}`
+                  );
+                }
+              }}
             >
               {type === "organization" ? item.name : item.title}
-            </button>
+            </div>
           ))}
         </div>
       )}
