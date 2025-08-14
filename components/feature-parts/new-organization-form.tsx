@@ -123,7 +123,6 @@ export default function NewOrganizationForm({
                           }}
                         />
                       </label>
-                      <p className="pr-1">یا بکشید و رها کنید</p>
                     </div>
                     <p className="text-muted-foreground text-xs leading-5">PNG, JPG تا ۱ مگابایت</p>
                     {logoFile && <p className="text-primary mt-2 text-xs">{logoFile.name}</p>}
@@ -195,7 +194,7 @@ export default function NewOrganizationForm({
                 <FormItem>
                   <FormLabel>وب‌سایت (اختیاری)</FormLabel>
                   <FormControl>
-                    <Input className="my-1" placeholder="مثال: www.example.com" {...field} />
+                    <Input className="my-1" placeholder="مثال: example.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

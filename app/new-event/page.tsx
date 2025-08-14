@@ -34,14 +34,14 @@ export default function NewEventPage() {
       endTime: "",
       location: "",
       address: "",
-      tickets: [{ title: "", description: "", capacity: 100, price: 0 }],
+      tickets: [{ title: "", description: "", capacity: "100", price: "0" }],
     },
   });
 
-  function onSubmit(values: z.infer<typeof newEventSchema>) {
+  async function onSubmit(values: z.infer<typeof newEventSchema>) {
     setIsLoading(true);
     try {
-      api.post("api/v1/events/", {
+      const createEventResponse = await api.post("api/v1/events/", {
         title: values.title,
         description: values.description,
         organization: values.organization,
@@ -55,7 +55,7 @@ export default function NewEventPage() {
         ticket_types: values.tickets.map(ticket => ({
           title: ticket.title,
           description: ticket.description,
-          max_participants: ticket.capacity,
+          max_participants: Number(ticket.capacity),
           price: ticket.price,
         })),
       });
@@ -65,6 +65,9 @@ export default function NewEventPage() {
         variant: "default",
       });
       form.reset();
+      router.push(
+        `/new-event/continue?public_id=${createEventResponse.data.public_id}&organizationUsername=${createEventResponse.data.organization}`
+      );
     } catch (error) {
       console.log("Form erro is:", error);
       toast({
@@ -98,6 +101,9 @@ export default function NewEventPage() {
           <p className="text-muted-foreground max-w-[700px] md:text-xl">
             اطلاعات رویداد خود را وارد کنید تا آن را برای شرکت‌کنندگان منتشر کنیم
           </p>
+        </div>
+        <div className="mb-10 text-red-500 underline">
+          توجه: برای ایجاد رویداد باید حتما باید سازمان ساخته شده داشته باشید{" "}
         </div>
         <NewEventForm form={form} isLoading={isLoading} onSubmit={onSubmit} />
       </div>

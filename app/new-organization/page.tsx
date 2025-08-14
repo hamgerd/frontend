@@ -49,7 +49,7 @@ export default function NewOrganizationPage() {
       formData.append("email", values.email || "");
       formData.append("description", values.description || "");
       formData.append("address", values.address || "");
-      formData.append("website", values.website || "");
+      formData.append("website", `https://www.${values.website}`);
       formData.append("phone", values.phone);
       formData.append("location", values.location || "");
       formData.append("category", values.category);

@@ -23,8 +23,12 @@ export const newEventSchema = z.object({
     z.object({
       title: z.string().min(1, "عنوان بخش الزامی است"),
       description: z.string().min(1, "توضیحات بخش الزامی است"),
-      capacity: z.number().min(1, "ظرفیت باید حداقل ۱ باشد"),
-      price: z.number(),
+      capacity: z.string().refine(val => !isNaN(Number(val)) && Number(val) >= 1, {
+        message: "ظرفیت باید حداقل ۱ باشد",
+      }),
+      price: z.string().refine(val => !isNaN(Number(val)), {
+        message: "قیمت باید یک عدد معتبر باشد",
+      }),
     })
   ),
 });

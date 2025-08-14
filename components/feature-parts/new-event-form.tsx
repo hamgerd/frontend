@@ -59,7 +59,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
 
   useEffect(() => {
     if (fields.length === 0) {
-      append({ title: "", description: "", capacity: 0, price: 0 });
+      append({ title: "", description: "", capacity: "100", price: "0" });
     }
   }, [append, fields]);
 
@@ -69,7 +69,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
 
     if (count > currentLength) {
       for (let i = currentLength; i < count; i++) {
-        append({ title: "", description: "", capacity: 0, price: 0 });
+        append({ title: "", description: "", capacity: "100", price: "0" });
       }
     } else if (count < currentLength) {
       for (let i = currentLength; i > count; i--) {
@@ -77,6 +77,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
       }
     }
   };
+
   const fetchCategories = async () => {
     try {
       const res = await api.get("api/v1/events/categories/");
@@ -93,6 +94,12 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
       console.log("orgnization fetch error:", error);
     }
   };
+
+  useEffect(() => {
+    fetchCategories();
+    fetchOrganization();
+  }, []);
+
   return (
     <Form {...form}>
       <form className="space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
@@ -108,7 +115,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               render={({ field: titleField }) => (
                 <FormItem>
                   <FormLabel>عنوان رویداد</FormLabel>
-                  <FormControl>
+                  <FormControl className="mt-2">
                     <Input placeholder="مثال: کنفرانس فناوری‌های نوین وب" {...titleField} />
                   </FormControl>
                   <FormDescription>
@@ -124,7 +131,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               render={({ field: descriptionField }) => (
                 <FormItem>
                   <FormLabel>توضیحات</FormLabel>
-                  <FormControl>
+                  <FormControl className="mt-2">
                     <Textarea
                       className="min-h-32 resize-none"
                       placeholder="توضیحاتی درباره رویداد خود بنویسید..."
@@ -144,15 +151,15 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               render={({ field: organizationField }) => (
                 <FormItem>
                   <FormLabel>سازمان برگزار کننده</FormLabel>
-                  <FormControl>
+                  <FormControl className="mt-2">
                     <Select
                       value={organizationField.value}
                       onValueChange={organizationField.onChange}
                     >
-                      <SelectTrigger onClick={fetchOrganization}>
+                      <SelectTrigger dir="rtl" className="mt-2">
                         <SelectValue placeholder="یکی از سازمان های خود را انتخاب کنید" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent dir="rtl">
                         {organization.map(item => (
                           <SelectItem key={item.public_id} value={item.username}>
                             {item.name}
@@ -161,9 +168,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                       </SelectContent>
                     </Select>
                   </FormControl>
-                  <FormDescription>
-                    دسته‌بندی رویداد به کاربران کمک می‌کند تا رویداد شما را راحت‌تر پیدا کنند.
-                  </FormDescription>
+                  <FormDescription>سازمان خود را انتخاب کنید</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -174,21 +179,23 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               render={({ field: categoryField }) => (
                 <FormItem>
                   <FormLabel>دسته‌بندی</FormLabel>
-                  <Select defaultValue={categoryField.value} onValueChange={categoryField.onChange}>
-                    <FormControl>
-                      <SelectTrigger onClick={fetchCategories}>
+                  <FormControl className="mt-2">
+                    <Select
+                      defaultValue={categoryField.value}
+                      onValueChange={categoryField.onChange}
+                    >
+                      <SelectTrigger dir="rtl" className="mt-2">
                         <SelectValue placeholder="یک دسته‌بندی انتخاب کنید" />
                       </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {categories?.map(categorie => (
-                        <SelectItem key={categorie.title} value={categorie.title}>
-                          {categorie.title}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
+                      <SelectContent dir="rtl">
+                        {categories?.map(categorie => (
+                          <SelectItem key={categorie.title} value={categorie.title}>
+                            {categorie.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
                   <FormDescription>
                     دسته‌بندی رویداد به کاربران کمک می‌کند تا رویداد شما را راحت‌تر پیدا کنند.
                   </FormDescription>
@@ -212,7 +219,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 render={({ field: startDateField }) => (
                   <FormItem>
                     <FormLabel>تاریخ شروع</FormLabel>
-                    <FormControl>
+                    <FormControl className="mt-2">
                       <Input type="date" {...startDateField} />
                     </FormControl>
                     <FormMessage />
@@ -225,7 +232,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 render={({ field: endDateField }) => (
                   <FormItem>
                     <FormLabel>تاریخ پایان</FormLabel>
-                    <FormControl>
+                    <FormControl className="mt-2">
                       <Input type="date" {...endDateField} />
                     </FormControl>
                     <FormMessage />
@@ -240,7 +247,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 render={({ field: startTimeField }) => (
                   <FormItem>
                     <FormLabel>زمان شروع</FormLabel>
-                    <FormControl>
+                    <FormControl className="mt-2">
                       <Input type="time" {...startTimeField} />
                     </FormControl>
                     <FormMessage />
@@ -253,7 +260,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 render={({ field: endTimeField }) => (
                   <FormItem>
                     <FormLabel>زمان پایان</FormLabel>
-                    <FormControl>
+                    <FormControl className="mt-2">
                       <Input type="time" {...endTimeField} />
                     </FormControl>
                     <FormMessage />
@@ -268,7 +275,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               render={({ field: locationField }) => (
                 <FormItem>
                   <FormLabel>مکان برگزاری</FormLabel>
-                  <FormControl>
+                  <FormControl className="mt-2">
                     <Input placeholder="مثال: سالن همایش‌های برج میلاد" {...locationField} />
                   </FormControl>
                   <FormDescription>نام مکان برگزاری رویداد را وارد کنید.</FormDescription>
@@ -282,7 +289,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
               render={({ field: addressField }) => (
                 <FormItem>
                   <FormLabel>آدرس دقیق</FormLabel>
-                  <FormControl>
+                  <FormControl className="mt-2">
                     <Textarea
                       className="resize-none"
                       placeholder="آدرس کامل محل برگزاری رویداد را وارد کنید..."
@@ -299,7 +306,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
         <div className="flex items-center gap-3">
           <p>ایونت شامل چند بخش می‌شود؟</p>
           <Select onValueChange={handleTicketCountChange}>
-            <SelectTrigger className="w-20">
+            <SelectTrigger className="mt-2 w-20">
               <SelectValue placeholder="1" />
             </SelectTrigger>
             <SelectContent>
@@ -326,7 +333,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   render={({ field: ticketTitleField }) => (
                     <FormItem>
                       <FormLabel>عنوان بخش {index + 1} رویداد</FormLabel>
-                      <FormControl>
+                      <FormControl className="mt-2">
                         <Input placeholder="سخنرانی آقای احمدی" {...ticketTitleField} />
                       </FormControl>
                       <FormDescription>عنوانی برای بخش بنویسید</FormDescription>
@@ -340,7 +347,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   render={({ field: ticketDescriptionField }) => (
                     <FormItem>
                       <FormLabel>توضیحات</FormLabel>
-                      <FormControl>
+                      <FormControl className="mt-2">
                         <Textarea
                           className="min-h-32 resize-none"
                           placeholder="توضیحاتی بنویسید..."
@@ -360,10 +367,10 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   render={({ field: ticketCapacityField }) => (
                     <FormItem>
                       <FormLabel>ظرفیت</FormLabel>
-                      <FormControl>
+                      <FormControl className="mt-2">
                         <Input
                           min={1}
-                          type="number"
+                          type="string"
                           placeholder="تعداد شرکت‌کنندگان"
                           {...ticketCapacityField}
                         />
@@ -379,7 +386,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   render={({ field: ticketPriceField }) => (
                     <FormItem>
                       <FormLabel>قیمت (تومان)</FormLabel>
-                      <FormControl>
+                      <FormControl className="mt-2">
                         <Input
                           min={0}
                           type="number"
@@ -404,7 +411,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
             <Link href="/dashboard/tickets">انصراف</Link>
           </Button>
           <Button size="lg" disabled={isLoading} type="submit">
-            {isLoading ? "در حال ایجاد..." : "ایجاد رویداد"}
+            {isLoading ? "در حال ایجاد..." : " ادامه ایجاد رویداد"}
           </Button>
         </div>
       </form>
