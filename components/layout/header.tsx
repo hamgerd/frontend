@@ -24,25 +24,34 @@ import api from "@/lib/axios";
 
 export default function Header() {
   const { setTheme } = useTheme();
-  const [userData, setUserData] = useState<any>(null);
   const { isAuthenticated, setAuthenticated } = useAuth();
+  const [profile, setProfile] = useState<{ image?: string; email?: string }>({});
+
   useEffect(() => {
     const fetchUserData = async () => {
+      if (!isAuthenticated) return;
+      if (Cookies.get("image")) {
+        setProfile({
+          image: Cookies.get("image"),
+          email: Cookies.get("email"),
+        });
+        return;
+      }
       try {
-        if (!isAuthenticated) {
-          const response = await api.get("/api/v1/users/me/");
-          setUserData(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
+        const res = await api.get("/api/v1/users/me/");
+        Cookies.set("image", res.data.image);
+        Cookies.set("email", res.data.email);
+        setProfile(res.data);
+      } catch (err) {
+        console.error("Error fetching user data", err);
       }
     };
-
     fetchUserData();
   }, [isAuthenticated]);
+
   return (
     <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-40 flex w-full items-center border-b backdrop-blur-sm">
-      <div className=";g:px-6 container mx-auto flex h-20 items-center justify-between py-4 lg:space-x-4">
+      <div className="container mx-auto flex h-20 items-center justify-between py-4 lg:space-x-4 lg:px-6">
         <div className="flex items-center gap-2 md:gap-6">
           <Sheet>
             <SheetTrigger asChild>
@@ -106,8 +115,8 @@ export default function Header() {
               <DropdownMenuTrigger>
                 <a href="/dashboard/tickets">
                   <Avatar>
-                    <AvatarImage src={userData?.image} />
-                    <AvatarFallback>HAM</AvatarFallback>
+                    <AvatarImage src={profile.image} />
+                    <AvatarFallback>{profile.email?.split("@")[0]?.slice(0, 4)}</AvatarFallback>
                   </Avatar>
                 </a>
               </DropdownMenuTrigger>
