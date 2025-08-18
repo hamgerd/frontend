@@ -2,7 +2,7 @@
 
 import type * as React from "react";
 
-import { CreditCardIcon, TicketIcon } from "lucide-react";
+import { Building2, House, Pickaxe, PiggyBank, TicketIcon, Users } from "lucide-react";
 import Link from "next/link";
 
 import { NavMain } from "@/components/dashboard/nav-main";
@@ -16,20 +16,17 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const data = {
-  navMain: [
-    {
-      title: " خانه",
-      url: "/",
-      icon: CreditCardIcon,
-    },
-    {
-      title: "بلیت‌های من",
-      url: "/dashboard/tickets",
-      icon: TicketIcon,
-    },
-  ],
-};
+const navMain1 = [
+  { title: "خانه", url: "/", icon: House },
+  { title: "بلیت‌های من", url: "/dashboard/tickets", icon: TicketIcon },
+  { title: "اعتبار", url: "/dashboard/credit", icon: PiggyBank },
+];
+
+const navMain2 = [
+  { title: "رویداد", url: "/dashboard/events", icon: Users },
+  { title: "سازمان", url: "/dashboard/organizations", icon: Building2 },
+  { title: "ایجاد سازمان و رویداد", url: "/dashboard/create", icon: Pickaxe },
+];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -45,10 +42,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        {/* First group */}
+        <NavMain items={navMain1} />
+        <div className="mt-1 border-t pt-2">
+          <NavMain items={navMain2} />
+        </div>
       </SidebarContent>
-      <SidebarFooter></SidebarFooter>
+
+      <SidebarFooter />
     </Sidebar>
   );
 }

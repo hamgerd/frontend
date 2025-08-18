@@ -33,7 +33,6 @@ export default function NewEventPage() {
       startTime: "",
       endTime: "",
       location: "",
-      address: "",
       tickets: [{ title: "", description: "", capacity: "100", price: "0" }],
     },
   });
@@ -51,7 +50,6 @@ export default function NewEventPage() {
         startTime: values.startTime,
         endTime: values.endTime,
         location: values.location,
-        address: values.address,
         ticket_types: values.tickets.map(ticket => ({
           title: ticket.title,
           description: ticket.description,

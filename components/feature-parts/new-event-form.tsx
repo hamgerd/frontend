@@ -283,23 +283,6 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 </FormItem>
               )}
             />
-            <FormField
-              name="address"
-              control={form.control}
-              render={({ field: addressField }) => (
-                <FormItem>
-                  <FormLabel>آدرس دقیق</FormLabel>
-                  <FormControl className="mt-2">
-                    <Textarea
-                      className="resize-none"
-                      placeholder="آدرس کامل محل برگزاری رویداد را وارد کنید..."
-                      {...addressField}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </CardContent>
         </Card>
 

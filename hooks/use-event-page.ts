@@ -5,11 +5,13 @@ import type { Event } from "@/models/event";
 import type { Speaker } from "@/models/speaker";
 import type { TicketCreateResponse } from "@/models/ticket-create-response";
 
+import { useToast } from "@/hooks/use-toast";
 import api from "@/lib/axios";
 
 export default function useEventPage() {
   const params = useParams();
   const router = useRouter();
+  const { toast } = useToast();
   const [eventDetails, setEventDetails] = useState<Event>();
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
   const [ticketType, setTicketType] = useState("");
@@ -49,14 +51,24 @@ export default function useEventPage() {
         `/api/v1/events/${params.id}/tickets/create_by_type/`,
         [{ ticket_type_public_id: ticketType, count: 1 }]
       );
+      console.log("you status", res.status);
       const data = res.data;
       const id = data.ticket_data[0].ticket_public_ids[0];
       setTransactionsId(data.transaction_public_id);
       console.log("Ticket ID to patch:", id);
       await handleTicket(id);
       setShowConfirmationDialog(true);
-    } catch (error) {
+    } catch (error: any) {
       console.log("Ticket creation error:", error);
+      if (error.response?.status === 401) {
+        router.push("/login");
+        return;
+      }
+      toast({
+        title: "مشکلی در خرید بلیط وجود دارد",
+        description: "لطفاً دوباره تلاش کنید",
+        variant: "destructive",
+      });
     }
   };
 

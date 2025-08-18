@@ -16,9 +16,6 @@ export const newEventSchema = z.object({
   location: z.string().min(5, {
     message: "مکان باید حداقل ۵ کاراکتر باشد.",
   }),
-  address: z.string().min(10, {
-    message: "آدرس باید حداقل ۱۰ کاراکتر باشد.",
-  }),
   tickets: z.array(
     z.object({
       title: z.string().min(1, "عنوان بخش الزامی است"),
