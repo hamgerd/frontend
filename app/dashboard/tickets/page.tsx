@@ -37,8 +37,7 @@ export default function TicketsPage() {
     const fetchTickets = async () => {
       try {
         const res = await api.get("/api/v1/events/tickets/me/");
-        const data = Array.isArray(res.data) ? res.data : [res.data];
-        setTickets(data);
+        setTickets(res.data.results);
       } catch (_error) {
         setError("خطا در دریافت اطلاعات بلیت‌ها");
       } finally {
@@ -56,17 +55,19 @@ export default function TicketsPage() {
     return new Date(futureDate) > new Date();
   }).length;
   const uniqueLocations = new Set(tickets.map(t => t.ticket_type?.description || "")).size;
-  const totalValue = tickets.reduce(
-    (sum, t) => sum + ((t.status === "s" && t.ticket_type.price) || 0),
-    0
-  );
+  const totalValue = tickets.reduce((sum, t) => {
+    if (t.status === "s") {
+      return sum + Number(t.ticket_type?.price || 0);
+    }
+    return sum;
+  }, 0);
 
   return (
     <div dir="rtl" className="dark w-full max-w-full overflow-x-hidden font-sans">
       <SidebarProvider>
         <AppSidebar variant="inset" />
         <SidebarInset className="w-full max-w-full overflow-x-hidden">
-          <SiteHeader title="بلیت‌های من" />
+          <SiteHeader title="اطلاعات بلیط " />
           <div className="flex w-full max-w-full flex-1 flex-col overflow-x-hidden">
             <div className="flex w-full max-w-full flex-1 flex-col gap-4 overflow-x-hidden p-4 md:p-6">
               {loading ? (
@@ -83,8 +84,12 @@ export default function TicketsPage() {
                           <TicketIcon className="text-muted-foreground h-4 w-4 shrink-0" />
                         </CardHeader>
                         <CardContent>
-                          <div className="text-2xl font-bold">{totalTickets}</div>
-                          <p className="text-muted-foreground text-xs">{activeTickets} بلیت فعال</p>
+                          <div className="text-2xl font-bold">
+                            {totalTickets.toLocaleString("fa-IR")}
+                          </div>
+                          <p className="text-muted-foreground text-xs">
+                            {activeTickets.toLocaleString("fa-IR")} بلیت فعال
+                          </p>
                         </CardContent>
                       </Card>
 
@@ -96,7 +101,9 @@ export default function TicketsPage() {
                           <CalendarIcon className="text-muted-foreground h-4 w-4 shrink-0" />
                         </CardHeader>
                         <CardContent>
-                          <div className="text-2xl font-bold">{futureEvents}</div>
+                          <div className="text-2xl font-bold">
+                            {futureEvents.toLocaleString("fa-IR")}
+                          </div>
                           <p className="text-muted-foreground text-xs">در آینده</p>
                         </CardContent>
                       </Card>
@@ -109,7 +116,9 @@ export default function TicketsPage() {
                           <MapPinIcon className="text-muted-foreground h-4 w-4 shrink-0" />
                         </CardHeader>
                         <CardContent>
-                          <div className="text-2xl font-bold">{uniqueLocations}</div>
+                          <div className="text-2xl font-bold">
+                            {uniqueLocations.toLocaleString("fa-IR")}
+                          </div>
                           <p className="text-muted-foreground text-xs">مکان‌های متفاوت</p>
                         </CardContent>
                       </Card>
@@ -121,7 +130,10 @@ export default function TicketsPage() {
                         </CardHeader>
                         <CardContent>
                           <div className="text-2xl font-bold">
-                            {totalValue.toLocaleString("fa-IR")}
+                            {totalValue.toLocaleString("fa-IR", {
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 0,
+                            })}
                           </div>
                           <p className="text-muted-foreground text-xs">تومان</p>
                         </CardContent>
@@ -130,6 +142,7 @@ export default function TicketsPage() {
                   </div>
 
                   <div className="w-full max-w-full overflow-x-auto">
+                    <div className="m-5 text-2xl font-bold"> بلیت های من</div>
                     <DataTable data={tickets} />
                   </div>
                 </div>
