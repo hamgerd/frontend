@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import PasswordField from "@/components/shared/password-field";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,11 +26,14 @@ import { useAuth } from "@/hooks/useAuth";
 import api from "@/lib/axios";
 import { loginSchema } from "@/validator/login-schema";
 
-export default function LoginPage() {
-  const router = useRouter();
-  const { setAuthenticated } = useAuth();
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
+interface LoginFormProps {
+  onSubmit: (values: z.infer<typeof loginSchema>) => Promise<void>;
+  isLoading: boolean;
+  showPassword: boolean;
+  setShowPassword: (show: boolean) => void;
+}
+
+function LoginForm({ onSubmit, isLoading, showPassword, setShowPassword }: LoginFormProps) {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -37,6 +41,56 @@ export default function LoginPage() {
       password: "",
     },
   });
+
+  return (
+    <Form {...form}>
+      <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          name="email"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>ایمیل</FormLabel>
+              <FormControl>
+                <Input placeholder="example@domain.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="password"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>رمز عبور</FormLabel>
+              <FormControl>
+                <PasswordField
+                  field={field}
+                  setShowPassword={setShowPassword}
+                  showPassword={showPassword}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button className="w-full" disabled={isLoading} type="submit">
+          {isLoading ? "در حال ورود..." : "ورود"}
+        </Button>
+      </form>
+    </Form>
+  );
+}
+
+export default function LoginPage() {
+  const router = useRouter();
+  const { setAuthenticated } = useAuth();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setIsLoading(true);
@@ -65,7 +119,6 @@ export default function LoginPage() {
       });
     } catch (err) {
       console.log(err);
-      console.log("Toast error being called");
       toast({
         title: "ورود ناموفق",
         description: "ورود شما ناموفق بود. لطفاً دوباره تلاش کنید.",
@@ -79,6 +132,7 @@ export default function LoginPage() {
 
   return (
     <div className="container flex h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      {/* Left section */}
       <div className="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex">
         <div className="bg-primary absolute inset-0" />
         <div className="relative z-20 flex items-center gap-2 text-lg font-medium">
@@ -90,50 +144,29 @@ export default function LoginPage() {
           <blockquote className="space-y-2"></blockquote>
         </div>
       </div>
+
+      {/* Right section */}
       <div className="p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">ورود به حساب کاربری</h1>
             <p className="text-muted-foreground text-sm">اطلاعات حساب کاربری خود را وارد کنید</p>
           </div>
-          <Form {...form}>
-            <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
-              <FormField
-                name="email"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>ایمیل</FormLabel>
-                    <FormControl>
-                      <Input placeholder="example@domain.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="password"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>رمز عبور</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="********" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button className="w-full" disabled={isLoading} type="submit">
-                {isLoading ? "در حال ورود..." : "ورود"}
-              </Button>
-            </form>
-          </Form>
+
+          <LoginForm
+            isLoading={isLoading}
+            onSubmit={onSubmit}
+            setShowPassword={setShowPassword}
+            showPassword={showPassword}
+          />
+
+          {/* Links */}
           <div className="text-center text-sm">
             <Link className="text-primary hover:underline" href="/forgot-password">
               رمز عبور خود را فراموش کرده‌اید؟
             </Link>
           </div>
+
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
@@ -142,12 +175,14 @@ export default function LoginPage() {
               <span className="bg-background text-muted-foreground px-2">یا</span>
             </div>
           </div>
+
           <div className="text-center text-sm">
             <span>حساب کاربری ندارید؟ </span>
             <Link className="text-primary hover:underline" href="/signup">
               ثبت‌نام کنید
             </Link>
           </div>
+
           <Button asChild className="mt-4" variant="outline">
             <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />

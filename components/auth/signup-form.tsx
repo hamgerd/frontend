@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import PasswordField from "@/components/shared/password-field";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -29,6 +30,7 @@ interface SignupFormProps {
 export default function SignupForm({ setEmailSent }: SignupFormProps) {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -83,7 +85,13 @@ export default function SignupForm({ setEmailSent }: SignupFormProps) {
             <FormItem>
               <FormLabel>رمز عبور</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="********" {...field} />
+                <div>
+                  <PasswordField
+                    field={field}
+                    setShowPassword={setShowPassword}
+                    showPassword={showPassword}
+                  />{" "}
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -96,7 +104,13 @@ export default function SignupForm({ setEmailSent }: SignupFormProps) {
             <FormItem>
               <FormLabel>تکرار رمز عبور</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="********" {...field} />
+                <div>
+                  <PasswordField
+                    field={field}
+                    setShowPassword={setShowPassword}
+                    showPassword={showPassword}
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>

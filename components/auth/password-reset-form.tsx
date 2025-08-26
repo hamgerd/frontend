@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import PasswordField from "@/components/shared/password-field";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,7 +16,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import api from "@/lib/axios";
 
@@ -35,6 +35,7 @@ export function PasswordResetForm({ setSuccess }: { setSuccess: (v: boolean) => 
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof passwordResetSchema>>({
     resolver: zodResolver(passwordResetSchema),
@@ -86,7 +87,13 @@ export function PasswordResetForm({ setSuccess }: { setSuccess: (v: boolean) => 
             <FormItem>
               <FormLabel>رمز عبور جدید</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="رمز عبور جدید" {...field} />
+                <div>
+                  <PasswordField
+                    field={field}
+                    setShowPassword={setShowPassword}
+                    showPassword={showPassword}
+                  />
+                </div>{" "}
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -99,7 +106,13 @@ export function PasswordResetForm({ setSuccess }: { setSuccess: (v: boolean) => 
             <FormItem>
               <FormLabel>تکرار رمز عبور</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="تکرار رمز عبور" {...field} />
+                <div>
+                  <PasswordField
+                    field={field}
+                    setShowPassword={setShowPassword}
+                    showPassword={showPassword}
+                  />
+                </div>{" "}
               </FormControl>
               <FormMessage />
             </FormItem>
