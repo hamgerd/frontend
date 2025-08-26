@@ -25,7 +25,11 @@ const navMain1 = [
 const navMain2 = [
   { title: "رویداد", url: "/dashboard/events", icon: Users },
   { title: "سازمان", url: "/dashboard/organizations", icon: Building2 },
-  { title: "ایجاد سازمان و رویداد", url: "/dashboard/create", icon: Pickaxe },
+];
+
+const navMain3 = [
+  { title: "ایجاد سازمان", url: "/new-organization", icon: Pickaxe },
+  { title: "ثبت رویداد", url: "/new-event", icon: Pickaxe },
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -48,6 +52,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={navMain1} />
         <div className="mt-1 border-t pt-2">
           <NavMain items={navMain2} />
+        </div>
+        <div className="mt-1 border-t pt-2">
+          <NavMain items={navMain3} />
         </div>
       </SidebarContent>
 

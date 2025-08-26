@@ -13,9 +13,7 @@ export const newOrganizationFormSchema = z.object({
   }),
   location: z.string().optional(),
   address: z.string().optional(),
-  phone: z.string().min(10, {
-    message: "شماره تلفن باید حداقل ۱۰ کاراکتر باشد.",
-  }),
+  phone: z.string().optional(),
   email: z
     .string()
     .email({

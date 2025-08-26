@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import type { Organization } from "@/models/organization";
@@ -9,6 +10,7 @@ import CardLoading from "@/components/shared/card-loading";
 import CreatePromptCard from "@/components/shared/create-prompt-card";
 import PaginationSection from "@/components/shared/pagination";
 import Searchbar from "@/components/shared/searchbar";
+import { Button } from "@/components/ui/button";
 import api from "@/lib/axios";
 
 export default function OrganizationsPage() {
@@ -50,18 +52,27 @@ export default function OrganizationsPage() {
         <Searchbar type="organization" />
       </div>
       {/* Organizations Grid */}
-      <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {isLoading ? (
+      {isLoading ? (
+        <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <CardLoading />
-        ) : (
-          <>
+        </div>
+      ) : organizations.length > 0 ? (
+        <div>
+          <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {organizations.map(organization => (
               <OrganizationCard key={organization.public_id} organization={organization} />
             ))}
-          </>
-        )}
-      </div>
-      <PaginationSection page={page} setPage={setPage} totalPages={totalPages} />
+          </div>
+          <PaginationSection page={page} setPage={setPage} totalPages={totalPages} />
+        </div>
+      ) : (
+        <div className="col-span-full flex flex-col items-center justify-center py-12">
+          <p className="text-muted-foreground mb-4 text-xl">هیچ سازمانی یافت نشد</p>
+          <Button asChild>
+            <Link href="/new-organization">ایجاد سازمان جدید</Link>
+          </Button>
+        </div>
+      )}
       <CreatePromptCard
         title="می‌خواهید سازمان خود را ثبت کنید؟"
         buttonHref="/new-organization"

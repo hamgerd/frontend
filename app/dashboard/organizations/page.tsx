@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import type { Organization } from "@/models/organization";
@@ -8,6 +9,7 @@ import OrganizationCard from "@/components/feature-parts/organization-card";
 import { AppSidebar } from "@/components/shared/app-sidebar";
 import CardLoading from "@/components/shared/card-loading";
 import PaginationSection from "@/components/shared/pagination";
+import { Button } from "@/components/ui/button";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import api from "@/lib/axios";
 
@@ -48,18 +50,27 @@ export default function MyOrganizationPage() {
             <div className="mb-10 flex flex-col items-center gap-4 text-center"></div>
           </div>
 
-          <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {isLoading ? (
+          {isLoading ? (
+            <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <CardLoading />
-            ) : (
-              <>
+            </div>
+          ) : organizations.length > 0 ? (
+            <div>
+              <div className="mx-6 mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                 {organizations.map(organization => (
                   <OrganizationCard key={organization.public_id} organization={organization} />
                 ))}
-              </>
-            )}
-          </div>
-          <PaginationSection page={page} setPage={setPage} totalPages={totalPages} />
+              </div>
+              <PaginationSection page={page} setPage={setPage} totalPages={totalPages} />
+            </div>
+          ) : (
+            <div className="col-span-full flex flex-col items-center justify-center py-12">
+              <p className="text-muted-foreground mb-4 text-xl">هیچ سازمانی یافت نشد</p>
+              <Button asChild>
+                <Link href="/new-organization">ایجاد سازمان جدید</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </SidebarInset>
     </SidebarProvider>

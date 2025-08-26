@@ -50,7 +50,8 @@ export default function NewOrganizationForm({
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>نام سازمان</FormLabel>
+                  <FormLabel> نام سازمان</FormLabel>
+                  <span className="text-destructive">*</span>
                   <FormControl>
                     <Input
                       className="my-1"
@@ -70,10 +71,14 @@ export default function NewOrganizationForm({
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>یوزنیم</FormLabel>
+                  <FormLabel>نام کاربری</FormLabel>
+                  <span className="text-destructive">*</span>
                   <FormControl>
                     <Input className="my-1" placeholder="programming_inc" {...field} />
                   </FormControl>
+                  <FormDescription>
+                    نام کاربری فقط می‌تواند شامل حروف انگلیسی، اعداد و زیرخط (_) باشد
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -84,6 +89,7 @@ export default function NewOrganizationForm({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>توضیحات</FormLabel>
+                  <span className="text-destructive">*</span>
                   <FormControl>
                     <Textarea
                       className="my-1 min-h-32 resize-none"
@@ -101,15 +107,13 @@ export default function NewOrganizationForm({
             <div className="gap-6">
               <div>
                 <FormLabel>لوگوی سازمان</FormLabel>
-                <div className="border-input mt-2 flex justify-center rounded-lg border border-dashed px-6 py-10">
+                <span className="text-destructive">*</span>
+                <div className="border-input mt-2 flex flex-col justify-center rounded-lg border border-dashed px-6 py-10">
                   <div className="text-center">
-                    <Upload className="text-muted-foreground mx-auto h-12 w-12" />
-                    <div className="text-muted-foreground mt-4 flex text-sm leading-6">
-                      <label
-                        className="bg-background text-primary hover:text-primary/80 relative cursor-pointer rounded-md font-semibold"
-                        htmlFor="logo-upload"
-                      >
-                        <span>آپلود فایل</span>
+                    <label className="hover:text-primary/80 relative cursor-pointer rounded-md font-semibold">
+                      <Upload className="text-muted-foreground mx-auto h-12 w-12" />
+                      <div className="text-muted-foreground mt-4 text-sm leading-6">
+                        <span className="text-primary text-3xl">آپلود فایل </span>
                         <input
                           accept=".jpg,.jpeg,.png"
                           className="sr-only"
@@ -122,11 +126,11 @@ export default function NewOrganizationForm({
                             }
                           }}
                         />
-                      </label>
-                    </div>
-                    <p className="text-muted-foreground text-xs leading-5">PNG, JPG تا ۱ مگابایت</p>
-                    {logoFile && <p className="text-primary mt-2 text-xs">{logoFile.name}</p>}
+                      </div>
+                    </label>
                   </div>
+                  <p className="text-muted-foreground text-xs leading-5">PNG, JPG تا ۱ مگابایت</p>
+                  {logoFile && <p className="text-primary mt-2 text-xs">{logoFile.name}</p>}
                 </div>
               </div>
             </div>
@@ -192,7 +196,7 @@ export default function NewOrganizationForm({
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>وب‌سایت (اختیاری)</FormLabel>
+                  <FormLabel>وب‌سایت</FormLabel>
                   <FormControl>
                     <Input className="my-1" placeholder="مثال: example.com" {...field} />
                   </FormControl>

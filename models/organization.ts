@@ -18,6 +18,9 @@
  * @export
  * @interface Organization
  */
+
+import type { SocialLinks } from "./social-links";
+
 export interface Organization {
   /**
    * @type {string}
@@ -72,4 +75,11 @@ export interface Organization {
    * @memberof Organization
    */
   event_count: number;
+
+  /**
+   * @type {Array<SocialLinks>}
+   * @memberof Organization
+   */
+
+  social_links: SocialLinks[];
 }

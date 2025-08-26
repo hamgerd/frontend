@@ -107,6 +107,9 @@ importers:
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@19.1.1)
+      simple-icons:
+        specifier: ^15.12.0
+        version: 15.12.0
       sonner:
         specifier: ^2.0.6
         version: 2.0.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -3775,6 +3778,10 @@ packages:
   signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==, tarball: https://mirrorss.kubarcloud.com/npm/signal-exit/-/signal-exit-4.1.0.tgz}
     engines: {node: '>=14'}
+
+  simple-icons@15.12.0:
+    resolution: {integrity: sha512-C5hMZsJ7naKwjbpzodQE9qjuExnZ1z1lb5rV52FKUdBJvCEc082WgyTGNCazmoGDUae2LVckqSv0zC+zcS8jxA==, tarball: https://mirrorss.kubarcloud.com/npm/simple-icons/-/simple-icons-15.12.0.tgz}
+    engines: {node: '>=0.12.18'}
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==, tarball: https://mirrorss.kubarcloud.com/npm/simple-swizzle/-/simple-swizzle-0.2.2.tgz}
@@ -7988,6 +7995,8 @@ snapshots:
   signal-exit@3.0.7: {}
 
   signal-exit@4.1.0: {}
+
+  simple-icons@15.12.0: {}
 
   simple-swizzle@0.2.2:
     dependencies:

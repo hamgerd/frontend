@@ -194,6 +194,9 @@ export default function EventFormPage() {
                           <p className="text-muted-foreground text-xs leading-5">
                             PNG, JPG تا ۱ مگابایت
                           </p>
+                          {field.value && (
+                            <p className="text-primary mt-2 text-xs">{field.value.name}</p>
+                          )}
                         </div>
                       </div>
                     </FormItem>
@@ -235,6 +238,9 @@ export default function EventFormPage() {
                       <p className="text-muted-foreground text-xs leading-5">
                         PNG, JPG تا ۱ مگابایت
                       </p>
+                      {field.value && (
+                        <p className="text-primary mt-2 text-xs">{field.value.name}</p>
+                      )}
                     </div>
                   </div>
                 </FormItem>

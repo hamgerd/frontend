@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 "use client";
 import { ArrowLeft, Globe, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -146,6 +147,71 @@ export default function OrganizationPage() {
                     </div>
                   )}
                   <Separator />
+                  <div className="flex justify-between">
+                    {organizationDetails?.social_links?.map(socialMedia => {
+                      if (socialMedia.platform === "tg") {
+                        return (
+                          <a
+                            className="text-muted-foreground hover:text-foreground"
+                            href={socialMedia.url}
+                            key={socialMedia.platform}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            <Image
+                              height="32"
+                              width="32"
+                              alt="telegram link"
+                              src="https://cdn.simpleicons.org/telegram"
+                            />
+                            <span className="sr-only">تلگرام</span>
+                          </a>
+                        );
+                      }
+
+                      if (socialMedia.platform === "ig") {
+                        return (
+                          <a
+                            className="text-muted-foreground hover:text-foreground"
+                            href={socialMedia.url}
+                            key={socialMedia.platform}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            <Image
+                              height="32"
+                              width="32"
+                              alt="instagram link"
+                              src="https://cdn.simpleicons.org/instagram"
+                            />{" "}
+                            <span className="sr-only">اینستاگرام</span>
+                          </a>
+                        );
+                      }
+
+                      if (socialMedia.platform === "in") {
+                        return (
+                          <a
+                            className="text-muted-foreground hover:text-foreground"
+                            href={socialMedia.url}
+                            key={socialMedia.platform}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            <Image
+                              height="32"
+                              width="32"
+                              alt="linkdin image"
+                              src="https://cdn.simpleicons.org/npm"
+                            />{" "}
+                            <span className="sr-only">لینکدین</span>
+                          </a>
+                        );
+                      }
+
+                      return null;
+                    })}
+                  </div>
                 </CardContent>
               </Card>
             </div>

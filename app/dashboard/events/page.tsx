@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import type { Event } from "@/models/event";
@@ -8,6 +9,7 @@ import EventCard from "@/components/events/event-card";
 import { AppSidebar } from "@/components/shared/app-sidebar";
 import CardLoading from "@/components/shared/card-loading";
 import PaginationSection from "@/components/shared/pagination";
+import { Button } from "@/components/ui/button";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import api from "@/lib/axios";
 
@@ -54,7 +56,12 @@ export default function MayEventsPage() {
             <PaginationSection page={page} setPage={setPage} totalPages={totalPages} />
           </>
         ) : (
-          <div> رویدادی ایجاد نشده است </div>
+          <div className="col-span-full mt-20 flex flex-col items-center justify-center py-12 text-center">
+            <p className="text-muted-foreground mb-4 text-xl">هیچ رویدادی یافت نشد</p>
+            <Button asChild>
+              <Link href="/new-event">ایجاد رویداد جدید</Link>
+            </Button>
+          </div>
         )}
       </SidebarInset>
     </SidebarProvider>

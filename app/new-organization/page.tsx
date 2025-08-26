@@ -49,18 +49,19 @@ export default function NewOrganizationPage() {
       formData.append("email", values.email || "");
       formData.append("description", values.description || "");
       formData.append("address", values.address || "");
-      formData.append("website", `https://www.${values.website}`);
-      formData.append("phone", values.phone);
+      formData.append("phone", values.phone || "");
       formData.append("location", values.location || "");
       formData.append("category", values.category);
-
+      if (values.website && values.website.trim() !== "") {
+        formData.append("website", `https://www.${values.website}`);
+      }
       if (logoFile) {
         formData.append("logo", logoFile);
       }
       const socialMedia = [
         { platform: "tg", url: values.telegram },
-        { platform: "instagram", url: values.instagram },
-        { platform: "linkedin", url: values.linkedin },
+        { platform: "ig", url: values.instagram },
+        { platform: "in", url: values.linkedin },
       ].filter(s => s.url && s.url.trim() !== "");
 
       formData.append("social_links", JSON.stringify(socialMedia));

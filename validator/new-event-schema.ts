@@ -1,5 +1,22 @@
 import * as z from "zod";
 
+const persianToEnglishMap: Record<string, string> = {
+  "۰": "0",
+  "۱": "1",
+  "۲": "2",
+  "۳": "3",
+  "۴": "4",
+  "۵": "5",
+  "۶": "6",
+  "۷": "7",
+  "۸": "8",
+  "۹": "9",
+};
+
+const normalizeNumbers = (input: string): string => {
+  return input.replace(/[۰-۹]/g, char => persianToEnglishMap[char] || char);
+};
+
 export const newEventSchema = z.object({
   title: z.string().min(5, {
     message: "عنوان باید حداقل ۵ کاراکتر باشد.",
@@ -20,12 +37,18 @@ export const newEventSchema = z.object({
     z.object({
       title: z.string().min(1, "عنوان بخش الزامی است"),
       description: z.string().min(1, "توضیحات بخش الزامی است"),
-      capacity: z.string().refine(val => !isNaN(Number(val)) && Number(val) >= 1, {
-        message: "ظرفیت باید حداقل ۱ باشد",
-      }),
-      price: z.string().refine(val => !isNaN(Number(val)), {
-        message: "قیمت باید یک عدد معتبر باشد",
-      }),
+      capacity: z
+        .string()
+        .transform(val => normalizeNumbers(val))
+        .refine(val => /^\d+$/.test(val), {
+          message: "ظرفیت فقط میتواند عدد باشد",
+        }),
+      price: z
+        .string()
+        .transform(val => normalizeNumbers(val))
+        .refine(val => /^\d+$/.test(val), {
+          message: "قیمت فقط میتواند عدد باشد",
+        }),
     })
   ),
 });

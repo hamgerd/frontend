@@ -51,8 +51,8 @@ export const siteConfig = {
       href: "/organizations",
     },
     {
-      title: "درباره ما",
-      href: "/about",
+      title: "داشبورد",
+      href: "/dashboard/tickets",
     },
   ],
 };
