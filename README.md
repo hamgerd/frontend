@@ -2,7 +2,6 @@
 
 [![Website](https://img.shields.io/badge/website-hamgerd.ir-blue?style=flat-square)](https://www.hamgerd.ir)
 [![TypeScript](https://img.shields.io/badge/code-typescript-blue?style=flat-square)](https://www.typescriptlang.org/)
-[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](#license)
 
 Hamgerd is a modern web application built with TypeScript, designed for speed, modularity, and developer happiness.  
 Visit the live site: [hamgerd.ir](https://www.hamgerd.ir)
@@ -98,19 +97,7 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 4. Push to the branch (`git push origin feat/awesome-feature`)
 5. Open a Pull Request
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
 ## 🌐 Links
 
 - [Website](https://www.hamgerd.ir)
 - [GitHub Repo](https://github.com/j2a1ck/hamgerd)
-
----
-
-> _Built with ❤️ by [j2a1ck](https://github.com/j2a1ck)_
