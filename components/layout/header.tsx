@@ -125,19 +125,20 @@ export default function Header() {
                   <DropdownMenuLabel className="cursor-pointer text-end">داشبورد</DropdownMenuLabel>
                 </Link>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  dir="rtl"
-                  onClick={() => {
-                    setAuthenticated(false);
-                    Cookies.remove("token");
-                    Cookies.remove("refreshToken");
-                    window.location.reload();
-                  }}
-                >
-                  خروج
-                </DropdownMenuItem>
                 <Link href="/dashboard/tickets">
                   <DropdownMenuItem dir="rtl">بلیط های من</DropdownMenuItem>
+                  <DropdownMenuItem
+                    dir="rtl"
+                    className="text-red-500"
+                    onClick={() => {
+                      setAuthenticated(false);
+                      Cookies.remove("token");
+                      Cookies.remove("refreshToken");
+                      window.location.reload();
+                    }}
+                  >
+                    خروج
+                  </DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
