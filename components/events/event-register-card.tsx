@@ -6,9 +6,16 @@ interface EventRegisterCardProps {
   price: number;
   capacity: number | null | undefined;
   onRegister: () => void;
+  startDate: Date;
 }
 
-export default function EventRegisterCard({ price, capacity, onRegister }: EventRegisterCardProps) {
+export default function EventRegisterCard({
+  price,
+  capacity,
+  onRegister,
+  startDate,
+}: EventRegisterCardProps) {
+  const startDateObj = new Date(startDate);
   return (
     <Card className="sticky top-20 z-10">
       <CardHeader>
@@ -23,8 +30,13 @@ export default function EventRegisterCard({ price, capacity, onRegister }: Event
           <span className="font-medium">ظرفیت :</span>
           <span>{toFarsiNumber(capacity)} نفر</span>
         </div>
-        <Button size="lg" className="w-full" onClick={onRegister}>
-          ثبت‌نام در رویداد
+        <Button
+          size="lg"
+          className={`w-full ${startDateObj < new Date() ? "bg- bg-primary cursor-not-allowed text-white" : ""}`}
+          disabled={startDateObj < new Date()}
+          onClick={onRegister}
+        >
+          {startDateObj < new Date() ? "پایان زمان ثبت‌نام" : " ثبت‌نام در رویداد"}
         </Button>
       </CardContent>
     </Card>

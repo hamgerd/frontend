@@ -138,7 +138,7 @@ export default function OrganizationPage() {
                       <Globe className="text-muted-foreground h-4 w-4" />
                       <a
                         className="hover:underline"
-                        href={`https://${organizationDetails.website}`}
+                        href={organizationDetails.website}
                         rel="noopener noreferrer"
                         target="_blank"
                       >

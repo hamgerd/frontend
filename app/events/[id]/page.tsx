@@ -79,6 +79,7 @@ export default function EventPage() {
               <EventRegisterCard
                 capacity={eventDetails.ticket_types[0]?.max_participants}
                 price={eventDetails.ticket_types[0]?.price}
+                startDate={eventDetails.start_date}
                 onRegister={createTicket}
               />
               <EventOrganizerCard organization={eventDetails.organization} />
