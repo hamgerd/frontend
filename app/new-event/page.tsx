@@ -22,18 +22,24 @@ export default function NewEventPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
+  function combineDateAndTime(date: Date, time: string): string {
+    if (!date || !time) return "";
+    const d = new Date(date);
+    const [hours, minutes] = time.split(":").map(Number);
+    d.setHours(hours, minutes, 0, 0);
+    return d.toISOString();
+  }
+
   const form = useForm<z.infer<typeof newEventSchema>>({
     resolver: zodResolver(newEventSchema),
     defaultValues: {
       title: "",
       description: "",
       category: "",
-      start_date: "",
-      end_date: "",
-      startTime: "",
-      endTime: "",
+      start_date: undefined,
+      end_date: undefined,
       location: "",
-      tickets: [{ title: "", description: "", capacity: "100", price: "0" }],
+      tickets: [{ title: "", description: "", capacity: "", price: "" }],
     },
   });
 
@@ -45,10 +51,8 @@ export default function NewEventPage() {
         description: values.description,
         organization: values.organization,
         category: values.category,
-        start_date: values.start_date,
-        end_date: values.end_date,
-        startTime: values.startTime,
-        endTime: values.endTime,
+        start_date: combineDateAndTime(values.start_date, values.startTime),
+        end_date: combineDateAndTime(values.end_date, values.endTime),
         location: values.location,
         ticket_types: values.tickets.map(ticket => ({
           title: ticket.title,

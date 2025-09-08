@@ -26,8 +26,25 @@ export const newEventSchema = z.object({
   }),
   organization: z.string(),
   category: z.string().nonempty("لطفا یک دسته‌بندی انتخاب کنید."),
-  start_date: z.string().nonempty("لطفا تاریخ شروع را وارد کنید."),
-  end_date: z.string().nonempty("لطفا تاریخ پایان را وارد کنید."),
+  start_date: z
+    .date({
+      error: "لطفا تاریخ شروع را وارد کنید.",
+    })
+    .refine(
+      date => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return date >= today;
+      },
+      { message: "تاریخ شروع نمی‌تواند گذشته باشد." }
+    ),
+  end_date: z
+    .date({
+      error: "لطفا تاریخ پایان را وارد کنید.",
+    })
+    .refine(date => date >= new Date(), {
+      message: "تاریخ پایان نمی‌تواند گذشته باشد.",
+    }),
   startTime: z.string().nonempty("لطفا زمان شروع را وارد کنید."),
   endTime: z.string().nonempty("لطفا زمان پایان را وارد کنید."),
   location: z.string().min(5, {

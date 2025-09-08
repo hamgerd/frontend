@@ -2,6 +2,8 @@
 import type { UseFormReturn } from "react-hook-form";
 import type * as z from "zod";
 
+import moment from "jalali-moment";
+import { CalendarIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useFieldArray } from "react-hook-form";
@@ -9,6 +11,7 @@ import { useFieldArray } from "react-hook-form";
 import type { newEventSchema } from "@/validator/new-event-schema";
 
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
@@ -20,6 +23,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -30,6 +34,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import api from "@/lib/axios";
+import { cn } from "@/lib/utils";
 
 interface NewEventFormProps {
   form: UseFormReturn<z.infer<typeof newEventSchema>>;
@@ -102,7 +107,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
 
   return (
     <Form {...form}>
-      <form className="space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="space-y-10 lg:mx-50" onSubmit={form.handleSubmit(onSubmit)}>
         <Card>
           <CardHeader>
             <CardTitle>اطلاعات اصلی</CardTitle>
@@ -217,11 +222,44 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 name="start_date"
                 control={form.control}
                 render={({ field: startDateField }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col">
                     <FormLabel>تاریخ شروع</FormLabel>
-                    <FormControl className="mt-2">
-                      <Input type="date" {...startDateField} />
-                    </FormControl>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "text-left font-normal",
+                              !startDateField.value && "text-muted-foreground"
+                            )}
+                          >
+                            <span className="flex w-full flex-row items-center justify-between gap-2">
+                              <span>
+                                {startDateField.value ? (
+                                  moment(startDateField.value).locale("fa").format("jYYYY/jMM/jDD")
+                                ) : (
+                                  <span>یه روز را انتخاب کنید</span>
+                                )}
+                              </span>
+                              <CalendarIcon className="h-4 w-4 opacity-50" />
+                            </span>
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent align="start" className="">
+                        <Calendar
+                          className="w-auto"
+                          disabled={date => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                          selected={startDateField.value}
+                          captionLayout="dropdown"
+                          endMonth={new Date(2028, 11)}
+                          mode="single"
+                          onSelect={startDateField.onChange}
+                          startMonth={new Date(2025, 0)}
+                        />
+                      </PopoverContent>
+                    </Popover>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -230,11 +268,44 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                 name="end_date"
                 control={form.control}
                 render={({ field: endDateField }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col">
                     <FormLabel>تاریخ پایان</FormLabel>
-                    <FormControl className="mt-2">
-                      <Input type="date" {...endDateField} />
-                    </FormControl>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "text-left font-normal",
+                              !endDateField.value && "text-muted-foreground"
+                            )}
+                          >
+                            <span className="flex w-full flex-row items-center justify-between gap-2">
+                              <span>
+                                {endDateField.value ? (
+                                  moment(endDateField.value).locale("fa").format("jYYYY/jMM/jDD")
+                                ) : (
+                                  <span>یه روز را انتخاب کنید</span>
+                                )}
+                              </span>
+                              <CalendarIcon className="h-4 w-4 opacity-50" />
+                            </span>
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent align="start" className="">
+                        <Calendar
+                          className="w-auto"
+                          disabled={date => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                          selected={endDateField.value}
+                          captionLayout="dropdown"
+                          endMonth={new Date(2028, 11)}
+                          mode="single"
+                          onSelect={endDateField.onChange}
+                          startMonth={new Date(2025, 0)}
+                        />
+                      </PopoverContent>
+                    </Popover>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -248,7 +319,15 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   <FormItem>
                     <FormLabel>زمان شروع</FormLabel>
                     <FormControl className="mt-2">
-                      <Input type="time" {...startTimeField} />
+                      <Input
+                        dir="ltr"
+                        type="time"
+                        value={startTimeField.value}
+                        onChange={e => {
+                          const val = e.target.value;
+                          startTimeField.onChange(val);
+                        }}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -261,7 +340,7 @@ export default function NewEventForm({ form, isLoading, onSubmit }: NewEventForm
                   <FormItem>
                     <FormLabel>زمان پایان</FormLabel>
                     <FormControl className="mt-2">
-                      <Input type="time" {...endTimeField} />
+                      <Input dir="ltr" type="time" {...endTimeField} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
