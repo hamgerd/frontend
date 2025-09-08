@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaLinkedin, FaTelegram } from "react-icons/fa";
+import { RiInstagramFill } from "react-icons/ri";
 
 import type { Organization } from "@/models/organization";
 
@@ -158,12 +160,7 @@ export default function OrganizationPage() {
                             rel="noopener noreferrer"
                             target="_blank"
                           >
-                            <Image
-                              height="32"
-                              width="32"
-                              alt="telegram link"
-                              src="https://cdn.simpleicons.org/telegram"
-                            />
+                            <FaTelegram className="h-7 w-7" />
                             <span className="sr-only">تلگرام</span>
                           </a>
                         );
@@ -178,12 +175,7 @@ export default function OrganizationPage() {
                             rel="noopener noreferrer"
                             target="_blank"
                           >
-                            <Image
-                              height="32"
-                              width="32"
-                              alt="instagram link"
-                              src="https://cdn.simpleicons.org/instagram"
-                            />{" "}
+                            <RiInstagramFill className="h-7 w-7" />
                             <span className="sr-only">اینستاگرام</span>
                           </a>
                         );
@@ -198,12 +190,7 @@ export default function OrganizationPage() {
                             rel="noopener noreferrer"
                             target="_blank"
                           >
-                            <Image
-                              height="32"
-                              width="32"
-                              alt="linkdin image"
-                              src="https://cdn.simpleicons.org/npm"
-                            />{" "}
+                            <FaLinkedin className="h-7 w-7" />
                             <span className="sr-only">لینکدین</span>
                           </a>
                         );

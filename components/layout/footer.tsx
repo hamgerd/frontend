@@ -1,7 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaTelegram } from "react-icons/fa";
+import { FaGithub, FaTelegram } from "react-icons/fa";
 
 import CopyRight from "../feature-parts/copyright-footer";
 import Enamad from "../feature-parts/enamad";
@@ -31,6 +31,13 @@ export default function Footer() {
               >
                 <FaTelegram className="h-5 w-5" />
                 <span className="sr-only">تلگرام</span>
+              </Link>
+              <Link
+                className="text-muted-foreground hover:text-foreground"
+                href="https://github.com/hamgerd"
+              >
+                <FaGithub className="h-5 w-5" />
+                <span className="sr-only">گیت هاب</span>
               </Link>
             </div>
           </div>
