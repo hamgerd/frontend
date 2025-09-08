@@ -52,9 +52,16 @@ export default function NewOrganizationPage() {
       formData.append("phone", values.phone || "");
       formData.append("location", values.location || "");
       formData.append("category", values.category);
-      if (values.website && values.website.trim() !== "") {
-        formData.append("website", `https://www.${values.website}`);
+
+      let url = values.website?.trim();
+
+      if (url) {
+        if (!/^https?:\/\//i.test(url)) {
+          url = `https://${url}`;
+        }
+        formData.append("website", url);
       }
+
       if (logoFile) {
         formData.append("logo", logoFile);
       }

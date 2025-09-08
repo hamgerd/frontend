@@ -122,7 +122,7 @@ export default function EventFormPage() {
   return (
     <div className="container mx-auto mt-10 max-w-[900px]">
       <Form {...form}>
-        <form className="space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="mx-5 space-y-10" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex items-center gap-3">
             <p> تعداد سخنران های رویداد</p>
             <Select
